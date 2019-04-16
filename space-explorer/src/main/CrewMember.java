@@ -59,15 +59,26 @@ public abstract class CrewMember {
 		return returnString;
 	}
 	
-	
-	public static void main(String[] args) {
-		CrewMember bob = new Engineer("Bob");
-		Ship alpha = new Ship();
-		alpha.setShieldLevel(10);
-		bob.sleep();
-		System.out.println(bob);
-		bob.repair(alpha);
+
+	public String getName() {
+		return name;
 	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getType() {
+		return type;
+	}
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 
 	public int getActionsLeft() {
 		return actionsLeft;

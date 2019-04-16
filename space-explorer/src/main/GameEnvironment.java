@@ -1,4 +1,5 @@
 package main;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class GameEnvironment {
@@ -7,8 +8,9 @@ public class GameEnvironment {
 		
 		Scanner in = new Scanner(System.in);
 		
-		
-		
+		/* Initialize objects */
+		Crew crew = new Crew();
+		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
 		System.out.println("Welcome to Space Explorers!");
 		System.out.println("Your spaceship has been broken and its pieces are scattered throughout the surrounding planets."
 				+ "\nYou will need to find the missing pieces of your spaceship so that you can repair it and get home.");
@@ -29,14 +31,14 @@ public class GameEnvironment {
 		CREWCREATION:
 		while (crewCreation) {
 			
-			System.out.println("There are 6 different types of potential crew members: ");
+			System.out.println("There are 6 different types of crew members: ");
 			System.out.println("\t1. Engineer");
 			System.out.println("\t2. place holder"); /* Placeholder crew members, need to decide on them */
 			System.out.println("\t3. place holder");
 			System.out.println("\t4. place holder");
 			System.out.println("\t5. place holder");
 			System.out.println("\t6. place holder");
-			System.out.println("Please select a crew member.");
+			System.out.println("Please select a crew member to recruit to your crew.");
 			input = in.nextLine();
 			parsedInput = Integer.parseInt(input);
 			String selectedCrewMember = "";
@@ -66,20 +68,35 @@ public class GameEnvironment {
 				System.out.println("Placeholder");
 				break;	
 			}
-			System.out.println("Do you want to create an " + selectedCrewMember + "? (Y/N)");
+			System.out.println("Recruit " + selectedCrewMember + "? (Y/N)");
 			input = in.nextLine();
-			if (input == "Y") {
-				System.out.println("What is the crew member's name?");
+			if (input.equals("Y")) {
+				System.out.println("Name your crew: ");
 				input = in.nextLine();
+				String name = input;
+				if (selectedCrewMember == "Engineer") {
+					crewMembers.add(new Engineer(name));
+				}
 				
+			} else {
+				continue CREWCREATION;
 			}
 			crewMemberCount++;
 			if (crewMemberCount == crewMemberNeeded) {
 				crewCreation = false;
 			}
 		}
+		
+		System.out.println("Name your ship: ");
+		input = in.nextLine();
+		crew.setName(input);
+		
+		boolean mainGame = true;
+		MAINGAME:
+		while (mainGame) {
 			
-		
-		
+		}
 	}
+	
+	
 }
