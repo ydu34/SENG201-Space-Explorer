@@ -3,6 +3,7 @@ package main;
 public class Ship {
 	private int shieldLevel; 
 	private int maxShieldLevel;
+	private int piecesNeeded = 0;
 	
 	public Ship() {
 		maxShieldLevel = 100;
@@ -26,6 +27,14 @@ public class Ship {
 	public void setMaxShieldLevel(int maxShieldLevel) {
 		this.maxShieldLevel = maxShieldLevel;
 	}
+	public int getPiecesNeeded() {
+		return piecesNeeded;
+	}
+	public void setPiecesNeeded(int piecesNeeded) {
+		this.piecesNeeded = piecesNeeded;
+	}
+	
+	
 	
 	
 }

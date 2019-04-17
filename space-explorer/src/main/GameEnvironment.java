@@ -5,12 +5,14 @@ import java.util.Scanner;
 public class GameEnvironment {
 	
 	
+	
 	public static void main(String[] args) {
 		
 		Scanner in = new Scanner(System.in);
 		
 		/* Initialize objects */
 		Crew crew = new Crew();
+		Ship ship = new Ship();
 		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
 		
 		/* Initialize medical items */
@@ -31,7 +33,7 @@ public class GameEnvironment {
 		FoodItem[] foodItems = {food1, food2, food3, food4, food5, food6};
 		
 		/* Initialize planets that the crew can pilot to */
-		String[] planetNames = {"asauzuno","uchiliv","yangosie","putrilia","emia","doyama","bruxotune","divunus","coth LTS4"};
+		String[] planetNames = {"Asauzuno","Uchiliv","Yangosie","Putrilia","Emia","Doyama","Bruxotune","Divunus","Coth LTS4"};
 		ArrayList<Planet> planets = new ArrayList<Planet>();
 		for (String name: planetNames) {
 			SpaceOutpost outpost = new SpaceOutpost();
@@ -47,7 +49,8 @@ public class GameEnvironment {
 		System.out.println("How many days (between 3 and 10) do you want to play for?");
 		String input = in.nextLine();
 		int gameDuration = Integer.parseInt(input);
-		int partsToBeFound = gameDuration * 2 / 3;
+		int partsToBeFound = ship.getPiecesNeeded();
+		ship.setPiecesNeeded(gameDuration * 2 / 3);
 		System.out.println(partsToBeFound + " missing pieces are scattered throughout the surrounding planets.");
 		
 		boolean crewCreation = true;
@@ -128,11 +131,40 @@ public class GameEnvironment {
 		
 		System.out.println("Which planet would you like to start at");
 		
+		for(int i = 0; i < planets.size() ; i++) {
+			System.out.println(i+1 + ". " + planets.get(i));
+		}
+		input = in.nextLine();
+		parsedInput = Integer.parseInt(input);
+		crew.setCurrentLocation(planets.get(parsedInput-1));
+		
+		System.out.println("The adventure has begun!");
 		/* The main game loop */
 		boolean mainGame = true;
+		int day = 1;
 		MAINGAME:
 		while (mainGame) {
-			
+			System.out.println("Day " + day + ".");
+			System.out.println("Your crew is on " + crew.getCurrentLocation() +".");
+			System.out.println("Tranporter pieces needed to be found " + ship.getPiecesNeeded() +".");
+			System.out.println("1. View crew member.");
+			System.out.println("2. View status of spaceship");
+			System.out.println("3. Visit the space outpost.");
+			System.out.println("4. Move to next day.");
+			input = in.nextLine();
+			parsedInput = Integer.parseInt(input);
+			switch(parsedInput) {
+			case 1:
+				int i = 1;
+				for (CrewMember member:crew.getCrewMembers()) {
+					System.out.println(i + ". " + member.getName());
+					i++;
+				}
+			}
+			day++;
+			if (day > gameDuration) {
+				mainGame = false;
+			}
 		}
 	}
 	
