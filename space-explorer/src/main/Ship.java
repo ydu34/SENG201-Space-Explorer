@@ -3,11 +3,12 @@ package main;
 public class Ship {
 	private int shieldLevel; 
 	private int maxShieldLevel;
-	private int piecesNeeded = 0;
+	private int piecesNeeded;
 	
 	public Ship() {
 		maxShieldLevel = 100;
 		shieldLevel = maxShieldLevel;
+		piecesNeeded = 0;
 	}
 	public String toString() {
 		String returnString =
