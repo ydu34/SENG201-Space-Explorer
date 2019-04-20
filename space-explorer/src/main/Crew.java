@@ -5,21 +5,35 @@ public class Crew {
 	private String name;
 	private Ship ship;
 	private ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
-	private ArrayList<Item> Inventory = new ArrayList<Item>();
-	private int money = 100;
+	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
+	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
+	private int money = 200;
 	private Planet currentLocation;
 	
 	
-	public String inventoryDetails() {
-		TreeSet<Item> InventorySet = new TreeSet<Item>();
-		InventorySet.addAll(Inventory);
-		String inventoryString = "";
-		for (Item item: InventorySet) {
-			inventoryString += item +"(" + Collections.frequency(Inventory, item) + ")";
-			inventoryString += ", ";
+	public String medicalItemsDetails() {
+		TreeSet<MedicalItem> medicalItemsSet = new TreeSet<MedicalItem>(medicalItems);
+		String returnString = "";
+		for (MedicalItem item: medicalItemsSet) {
+			returnString += item.getName() + "(" + Collections.frequency(medicalItems, item) + ")";
+			returnString += "\n"+ item.getDescription();
+			returnString += "\n";
 		}
-		return inventoryString;
+		return returnString;
 	}
+	
+	public String foodItemsDetails() {
+		TreeSet<FoodItem> foodItemsSet = new TreeSet<FoodItem>(foodItems);
+		String returnString = "";
+		for (FoodItem item: foodItemsSet) {
+			returnString += item.getName() + "(" + Collections.frequency(foodItems, item) + ")";
+			returnString += "\n"+ item.getDescription();
+			returnString += "\n";
+		}
+		return returnString;	
+	}
+	
+	
 	public ArrayList<CrewMember> getCrewMembers() {
 		return crewMembers;
 	}
@@ -37,12 +51,6 @@ public class Crew {
 	}
 	public void setShip(Ship ship) {
 		this.ship = ship;
-	}
-	public ArrayList<Item> getInventory() {
-		return Inventory;
-	}
-	public void setInventory(ArrayList<Item> inventory) {
-		Inventory = inventory;
 	}
 	public int getMoney() {
 		return money;

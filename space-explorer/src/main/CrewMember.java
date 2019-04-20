@@ -10,9 +10,9 @@ public abstract class CrewMember {
 	private int fatigue;
 	private int maxFatigue;
 	private int actionsLeft;
-	private int maxActionsLeft;
+	private int maxActions;
 	
-	public CrewMember(String name, String type, int maxHealth, int maxHunger, int maxFatigue, int maxActionsLeft) {
+	public CrewMember(String name, String type, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
 		this.maxHealth = maxHealth;
@@ -21,8 +21,8 @@ public abstract class CrewMember {
 		this.hunger = 0;
 		this.maxFatigue = maxFatigue;
 		this.fatigue = 0;
-		this.maxActionsLeft = maxActionsLeft;
-		this.actionsLeft = maxActionsLeft;
+		this.maxActions = maxActions;
+		this.actionsLeft = maxActions;
 	}
 
 	

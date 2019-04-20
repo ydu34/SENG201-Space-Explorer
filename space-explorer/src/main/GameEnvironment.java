@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.TreeSet;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GameEnvironment {
 	private Scanner in = new Scanner(System.in);
@@ -24,6 +25,7 @@ public class GameEnvironment {
 		game.initMedItems();
 		game.initFoodItems();
 		game.initPlanets();
+		game.generateOutpostsItems();
 		game.gameSetUp();
 		game.mainGame();
 		game.endGame();
@@ -47,9 +49,21 @@ public class GameEnvironment {
 	public void initPlanets() {
 		String[] planetNames = {"Asauzuno","Uchiliv","Yangosie","Putrilia","Emia","Doyama","Bruxotune","Divunus","Coth LTS4"};
 		for (String name: planetNames) {
-			SpaceOutpost outpost = new SpaceOutpost();
-			outpost.generateItems(medItems, foodItems);
-			planets.add(new Planet(name, outpost));
+			planets.add(new Planet(name));
+		}
+	}
+	
+	public void generateOutpostsItems() {
+		for (Planet planet: planets) {
+			SpaceOutpost planetOutpost = planet.getOutpost();
+			while (planetOutpost.getFoodItems().size() < 8) {
+				int randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
+				planetOutpost.getFoodItems().add(foodItems.get(randomNum));
+			}
+			while (planetOutpost.getMedicalItems().size() < 4) {
+				int randomNum = ThreadLocalRandom.current().nextInt(0, medItems.size());
+				planetOutpost.getMedicalItems().add(medItems.get(randomNum));
+			}	
 		}
 	}
 	
@@ -84,14 +98,19 @@ public class GameEnvironment {
 		switch(choice) {
 		case 1:
 			viewCrew();
+			break;
 		case 2:
 			viewShip();
+			break;
 		case 3:
 			visitOutpost();
+			break;
 		case 4:
 			performAction();
+			break;
 		case 5:
 			nextDay();
+			break;
 		}
 		
 	}
@@ -105,25 +124,34 @@ public class GameEnvironment {
 		}
 		choice = in.nextInt();
 		System.out.println(crew.getCrewMembers().get(i-1));
-		System.out.println("Enter to continue.");
+		System.out.println("Press enter to continue.");
 		enter.nextLine();
 		currentDay();
 	}
 	
 	public void viewShip() {
 		System.out.println(ship);
+		System.out.println("Press enter to continue.");
+		enter.nextLine();
 	}
 	
 	public void visitOutpost() {
 		SpaceOutpost currentOutpost = crew.getCurrentLocation().getOutpost();
-		System.out.println("Items for sale:");
-		for (Item item: currentOutpost.getItemsForSale()) {
-			System.out.println(item);
-			System.out.println("\n");
-		}
+		System.out.println("Items for sale:\n");
+		System.out.println(currentOutpost.medicalItemsDetails());
+		System.out.println(currentOutpost.foodItemsDetails());
 		System.out.println("Money: " + crew.getMoney());
-		System.out.println("Inventory: " + crew.inventoryDetails());
-		System.out.println("");
+		System.out.println("Inventory: ");
+		System.out.println(crew.medicalItemsDetails());
+		System.out.println(crew.foodItemsDetails());
+		System.out.println("Do you want purchase an item? (Y/N)");
+		input = in.nextLine();
+		switch(input) {
+		case "Y":
+			purchaseItem();
+		case "N":
+			currentDay();
+		}
 	}
 	
 	public void purchaseItem() {

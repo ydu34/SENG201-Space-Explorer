@@ -1,6 +1,7 @@
 package main;
 
-public class Item {
+
+public class Item implements  Comparable<Item>{
 	private String name;
 	private int price;
 	private String description;
@@ -40,6 +41,12 @@ public class Item {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	@Override
+	public int compareTo(Item o) {
+		return (this.name).compareTo(o.name);
+	}
+
+
 	
 }

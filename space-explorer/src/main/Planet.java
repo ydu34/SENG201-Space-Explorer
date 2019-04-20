@@ -3,11 +3,10 @@ package main;
 public class Planet {
 	private String name;
 	private boolean transporterDiscovery = true;
-	private SpaceOutpost outpost;
+	private SpaceOutpost outpost = new SpaceOutpost();
 	
-	public Planet(String name, SpaceOutpost outpost) {
+	public Planet(String name) {
 		this.name = name;
-		this.outpost = outpost;
 	}
 	
 	public String toString() {

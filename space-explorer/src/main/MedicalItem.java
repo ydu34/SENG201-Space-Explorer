@@ -1,6 +1,7 @@
 package main;
 
-public class MedicalItem extends Item{
+
+public class MedicalItem extends Item {
 
 	private int restoreHealthAmount;
 	private boolean removePlague;
@@ -26,5 +27,9 @@ public class MedicalItem extends Item{
 	public void setRemovePlague(boolean removePlague) {
 		this.removePlague = removePlague;
 	}
+
+
+
+
 
 }
