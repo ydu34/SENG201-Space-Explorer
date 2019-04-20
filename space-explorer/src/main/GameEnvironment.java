@@ -88,6 +88,7 @@ public class GameEnvironment {
 	}
 	
 	public void currentDay() {
+		System.out.println("Day " + day + "/" + gameDuration);
 		System.out.println("What do you want to do?");
 		System.out.println("1. View the status of a crew member.");
 		System.out.println("2. View the status of the spaceship.");
@@ -97,7 +98,7 @@ public class GameEnvironment {
 		choice = in.nextInt();
 		switch(choice) {
 		case 1:
-			viewCrew();
+			viewCrewMember();
 			break;
 		case 2:
 			viewShip();
@@ -115,7 +116,7 @@ public class GameEnvironment {
 		
 	}
 	
-	public void viewCrew() {
+	public void viewCrewMember() {
 		System.out.println("Which crew member?");
 		int i = 1;
 		for (CrewMember member: crew.getCrewMembers()) {
@@ -136,37 +137,74 @@ public class GameEnvironment {
 	}
 	
 	public void visitOutpost() {
-		SpaceOutpost currentOutpost = crew.getCurrentLocation().getOutpost();
-		System.out.println("Items for sale:\n");
-		System.out.println(currentOutpost.medicalItemsDetails());
-		System.out.println(currentOutpost.foodItemsDetails());
 		System.out.println("Money: " + crew.getMoney());
 		System.out.println("Inventory: ");
 		System.out.println(crew.medicalItemsDetails());
 		System.out.println(crew.foodItemsDetails());
-		System.out.println("Do you want purchase an item? (Y/N)");
-		input = in.nextLine();
-		switch(input) {
-		case "Y":
-			purchaseItem();
-		case "N":
-			currentDay();
+		
+		SpaceOutpost currentOutpost = crew.getCurrentLocation().getOutpost();
+		System.out.println("What do you want to purchase?\n");
+		TreeSet<MedicalItem> medicalItemsSet = new TreeSet<MedicalItem>(currentOutpost.getMedicalItems());
+		int i = 1;
+		for (MedicalItem item: medicalItemsSet) {
+			System.out.println(i +". " + item.getName() + "(" + Collections.frequency(currentOutpost.getMedicalItems(), item) + ")");
+			System.out.println(item.getDescription());
+			System.out.println("Price: " + item.getPrice());
+			System.out.println("\n");
+			i++;
+		}
+		TreeSet<FoodItem> foodItemsSet = new TreeSet<FoodItem>(currentOutpost.getFoodItems());
+		for (FoodItem item: foodItemsSet) {
+			System.out.println(i +". " + item.getName() + "(" + Collections.frequency(currentOutpost.getFoodItems(), item) + ")");
+			System.out.println(item.getDescription());
+			System.out.println("Price: " + item.getPrice());
+			System.out.println("\n");
+			i++;
+		}
+		System.out.println(i + ". Nothing.");
+		choice = in.nextInt();
+		switch(choice) {
+		case 1:
 		}
 	}
 	
-	public void purchaseItem() {
+	
+	public void performAction() {
+		System.out.println("Choose crew member.");
+		int i = 1;
+		for (CrewMember member : crew.getCrewMembers()) {
+			System.out.println(i + ". " + member.getName() + ", Actions Left: " + member.getActionsLeft());
+			i++;
+		}
+		choice = in.nextInt();
+		CrewMember chosenCrewMember = crew.getCrewMembers().get(choice - 1);
 		
 	}
 	
-	public void performAction() {
-		
+	public void chooseAction(CrewMember member) {
+		System.out.println("What action to perform?");
+		System.out.println("1. Eat Food.");
+		System.out.println("2. Apply medical item.");
+		System.out.println("3. Sleep.");
+		System.out.println("4. Repair the shields of the ship.");
+		System.out.println("5. Search the current planet" + "(" + crew.getCurrentLocation() +") for missing parts.");
+		System.out.println("6. Pilot the ship to a new planet.");
+		choice = in.nextInt();
 	}
 	
 	public void nextDay() {
-		
+		day++;
+		if (day > gameDuration) {
+			endGame();
+		} else {
+		for (CrewMember member: crew.getCrewMembers()) {
+			member.setActionsLeft(member.getActionsLeft());
+		}
+		generateOutpostsItems();
+		/* Some Event should happen*/
+		currentDay();
+		}
 	}
-	
-	
 	
 	
 	public void endGame() {
