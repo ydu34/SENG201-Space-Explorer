@@ -1,17 +1,22 @@
 package main;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
+import java.util.TreeSet;
 
 public class GameEnvironment {
 	private Scanner in = new Scanner(System.in);
 	private Scanner enter = new Scanner(System.in);
 	private Ship ship = new Ship();
 	private String input;
+	private int choice; 
 	private int parsedInput;
 	private Crew crew = new Crew();
 	private ArrayList<MedicalItem> medItems = new ArrayList<MedicalItem>();
 	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
 	private ArrayList<Planet> planets = new ArrayList<Planet>();
+	int gameDuration;
+	private int day = 0;
 	
 	
 	public static void main(String[] args) {
@@ -20,14 +25,14 @@ public class GameEnvironment {
 		game.initFoodItems();
 		game.initPlanets();
 		game.gameSetUp();
-		
-		
+		game.mainGame();
+		game.endGame();
 	}
 	
 	public void initMedItems() {
 		medItems.add(new MedicalItem("Antiplague", 50, "Cures space plague, heals 20 health.", 20, true));
-		medItems.add(new MedicalItem("Space Bandages", 40, "Heals 50 health", 100, false));
-		medItems.add(new MedicalItem("Galaxy Pills", 20, "Heals 40 health", 40, false));
+		medItems.add(new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false));
+		medItems.add(new MedicalItem("Galaxy Pills", 10, "Heals 20 health", 20, false));
 	}
 	
 	public void initFoodItems() {
@@ -43,6 +48,7 @@ public class GameEnvironment {
 		String[] planetNames = {"Asauzuno","Uchiliv","Yangosie","Putrilia","Emia","Doyama","Bruxotune","Divunus","Coth LTS4"};
 		for (String name: planetNames) {
 			SpaceOutpost outpost = new SpaceOutpost();
+			outpost.generateItems(medItems, foodItems);
 			planets.add(new Planet(name, outpost));
 		}
 	}
@@ -54,11 +60,89 @@ public class GameEnvironment {
 				+ "\nYou will need to find the missing pieces of your spaceship so that you can repair it and get home.");
 		System.out.println("How many days (between 3 and 10) do you want to play for?");
 		input = in.nextLine();
-		int gameDuration = Integer.parseInt(input);
+		gameDuration = Integer.parseInt(input);
 		ship.setPiecesNeeded(gameDuration * 2 / 3);
-		int partsToBeFound = ship.getPiecesNeeded();
-		System.out.println(partsToBeFound + " missing pieces are scattered throughout the surrounding planets.");
+		System.out.println(ship.getPiecesNeeded() + " missing pieces are scattered throughout the surrounding planets.");
 		createCrew();
+		nameShip();
+		chooseStartingPlanet();
+	}
+	
+	public void mainGame() {
+		System.out.println("The crew finds them on the planet " + crew.getCurrentLocation() + " with their spaceship.");
+		currentDay();
+	}
+	
+	public void currentDay() {
+		System.out.println("What do you want to do?");
+		System.out.println("1. View the status of a crew member.");
+		System.out.println("2. View the status of the spaceship.");
+		System.out.println("3. Visit the nearest outpost.");
+		System.out.println("4. Perform a crew member action.");
+		System.out.println("5. Move on to the next day.");
+		choice = in.nextInt();
+		switch(choice) {
+		case 1:
+			viewCrew();
+		case 2:
+			viewShip();
+		case 3:
+			visitOutpost();
+		case 4:
+			performAction();
+		case 5:
+			nextDay();
+		}
+		
+	}
+	
+	public void viewCrew() {
+		System.out.println("Which crew member?");
+		int i = 1;
+		for (CrewMember member: crew.getCrewMembers()) {
+			System.out.println(i + ". " + member.getName());
+			i++;
+		}
+		choice = in.nextInt();
+		System.out.println(crew.getCrewMembers().get(i-1));
+		System.out.println("Enter to continue.");
+		enter.nextLine();
+		currentDay();
+	}
+	
+	public void viewShip() {
+		System.out.println(ship);
+	}
+	
+	public void visitOutpost() {
+		SpaceOutpost currentOutpost = crew.getCurrentLocation().getOutpost();
+		System.out.println("Items for sale:");
+		for (Item item: currentOutpost.getItemsForSale()) {
+			System.out.println(item);
+			System.out.println("\n");
+		}
+		System.out.println("Money: " + crew.getMoney());
+		System.out.println("Inventory: " + crew.inventoryDetails());
+		System.out.println("");
+	}
+	
+	public void purchaseItem() {
+		
+	}
+	
+	public void performAction() {
+		
+	}
+	
+	public void nextDay() {
+		
+	}
+	
+	
+	
+	
+	public void endGame() {
+		
 	}
 	
 	public void createCrew() {
@@ -70,8 +154,6 @@ public class GameEnvironment {
 			chooseCrewMember();
 			crewMemberNeeded-=1;
 		}
-		nameShip();
-		chooseStartingPlanet();
 	}
 	
 	public void chooseCrewMember() {

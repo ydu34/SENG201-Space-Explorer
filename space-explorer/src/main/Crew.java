@@ -5,10 +5,21 @@ public class Crew {
 	private String name;
 	private Ship ship;
 	private ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
-	private ArrayList<Item> Inventory;
-	private int money;
+	private ArrayList<Item> Inventory = new ArrayList<Item>();
+	private int money = 100;
 	private Planet currentLocation;
-
+	
+	
+	public String inventoryDetails() {
+		TreeSet<Item> InventorySet = new TreeSet<Item>();
+		InventorySet.addAll(Inventory);
+		String inventoryString = "";
+		for (Item item: InventorySet) {
+			inventoryString += item +"(" + Collections.frequency(Inventory, item) + ")";
+			inventoryString += ", ";
+		}
+		return inventoryString;
+	}
 	public ArrayList<CrewMember> getCrewMembers() {
 		return crewMembers;
 	}

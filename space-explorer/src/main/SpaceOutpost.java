@@ -6,7 +6,7 @@ public class SpaceOutpost {
 	
 	private ArrayList<Item> itemsForSale = new ArrayList<Item>();
 	
-	public void generateItems(MedicalItem[] medItems, FoodItem[] foodItems) {
+	public void generateItems(ArrayList<MedicalItem> medItems, ArrayList<FoodItem> foodItems) {
 		
 		for (MedicalItem medItem: medItems) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0,3);

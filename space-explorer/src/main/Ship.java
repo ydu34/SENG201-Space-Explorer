@@ -13,7 +13,8 @@ public class Ship {
 	public String toString() {
 		String returnString =
 				"Ship Status: " + 
-				"\nShields: " + shieldLevel + "/" + maxShieldLevel;
+				"\nShields: " + shieldLevel + "/" + maxShieldLevel +
+				"\nPieces needed: " + piecesNeeded;
 		return returnString;
 	}
 	public int getShieldLevel() {

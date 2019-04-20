@@ -10,7 +10,13 @@ public class Item {
 		this.price = price;
 		this.description = description;
 	}
-
+	
+	public String toString() {
+		String returnString = "Name: " + name +
+				"\nPrice: " + price + 
+				"\n" + description;
+		return returnString;
+	}
 	public String getName() {
 		return name;
 	}
