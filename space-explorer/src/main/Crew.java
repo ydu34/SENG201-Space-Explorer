@@ -33,7 +33,12 @@ public class Crew {
 		return returnString;	
 	}
 	
-	
+	public ArrayList<MedicalItem> getMedicalItems() {
+		return medicalItems;
+	}
+	public ArrayList<FoodItem> getFoodItems() {
+		return foodItems;
+	}
 	public ArrayList<CrewMember> getCrewMembers() {
 		return crewMembers;
 	}

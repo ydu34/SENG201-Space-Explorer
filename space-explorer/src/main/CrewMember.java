@@ -25,7 +25,15 @@ public abstract class CrewMember {
 		this.actionsLeft = maxActions;
 	}
 
+	public boolean hasActionsLeft() {
+		return actionsLeft > 0;
+	}
 	
+	public void eat(FoodItem item, Crew crew) {
+		hunger -= item.getRestoreHungerAmount();
+		crew.getFoodItems().remove(item);
+		actionsLeft -= 1;
+	}
 	public void sleep() {
 		int previousFatigue = fatigue;
 		fatigue -= 10;
@@ -45,7 +53,16 @@ public abstract class CrewMember {
 			shieldLevel = maxShieldLevel;
 		}
 		actionsLeft-=1;
+		fatigue += 10;
 		System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
+	}
+	
+	public void pilot(Planet planet, CrewMember other, Crew crew) {
+		fatigue += 5;
+		other.fatigue += 5;
+		actionsLeft -= 1;
+		other.actionsLeft -=1;
+		crew.setCurrentLocation(planet);
 	}
 	
 	public String toString() {
@@ -86,6 +103,76 @@ public abstract class CrewMember {
 
 	public void setActionsLeft(int actionsLeft) {
 		this.actionsLeft = actionsLeft;
+	}
+
+
+	public int getHealth() {
+		return health;
+	}
+
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
+
+	public int getHunger() {
+		return hunger;
+	}
+
+
+	public void setHunger(int hunger) {
+		this.hunger = hunger;
+	}
+
+
+	public int getMaxHunger() {
+		return maxHunger;
+	}
+
+
+	public void setMaxHunger(int maxHunger) {
+		this.maxHunger = maxHunger;
+	}
+
+
+	public int getFatigue() {
+		return fatigue;
+	}
+
+
+	public void setFatigue(int fatigue) {
+		this.fatigue = fatigue;
+	}
+
+
+	public int getMaxFatigue() {
+		return maxFatigue;
+	}
+
+
+	public void setMaxFatigue(int maxFatigue) {
+		this.maxFatigue = maxFatigue;
+	}
+
+
+	public int getMaxActions() {
+		return maxActions;
+	}
+
+
+	public void setMaxActions(int maxActions) {
+		this.maxActions = maxActions;
 	}
 	
 

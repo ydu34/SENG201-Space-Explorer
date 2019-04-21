@@ -124,7 +124,7 @@ public class GameEnvironment {
 			i++;
 		}
 		choice = in.nextInt();
-		System.out.println(crew.getCrewMembers().get(i-1));
+		System.out.println(crew.getCrewMembers().get(choice-1));
 		System.out.println("Press enter to continue.");
 		enter.nextLine();
 		currentDay();
@@ -134,6 +134,7 @@ public class GameEnvironment {
 		System.out.println(ship);
 		System.out.println("Press enter to continue.");
 		enter.nextLine();
+		currentDay();
 	}
 	
 	public void visitOutpost() {
@@ -144,7 +145,8 @@ public class GameEnvironment {
 		
 		SpaceOutpost currentOutpost = crew.getCurrentLocation().getOutpost();
 		System.out.println("What do you want to purchase?\n");
-		TreeSet<MedicalItem> medicalItemsSet = new TreeSet<MedicalItem>(currentOutpost.getMedicalItems());
+		/* medicalItemsSet gets rid of duplicates while still allowing indexing, there is probably a easier way that I haven't figured out */
+		ArrayList<MedicalItem> medicalItemsSet = new ArrayList<MedicalItem>(new TreeSet<MedicalItem>(currentOutpost.getMedicalItems()));
 		int i = 1;
 		for (MedicalItem item: medicalItemsSet) {
 			System.out.println(i +". " + item.getName() + "(" + Collections.frequency(currentOutpost.getMedicalItems(), item) + ")");
@@ -153,7 +155,9 @@ public class GameEnvironment {
 			System.out.println("\n");
 			i++;
 		}
-		TreeSet<FoodItem> foodItemsSet = new TreeSet<FoodItem>(currentOutpost.getFoodItems());
+		int j = i;
+		/* foodItemsSet gets rid of duplicates while still allowing indexing, there is probably a easier way that I haven't figured out */
+		ArrayList<FoodItem> foodItemsSet = new ArrayList<FoodItem>(new TreeSet<FoodItem>(currentOutpost.getFoodItems()));
 		for (FoodItem item: foodItemsSet) {
 			System.out.println(i +". " + item.getName() + "(" + Collections.frequency(currentOutpost.getFoodItems(), item) + ")");
 			System.out.println(item.getDescription());
@@ -163,8 +167,19 @@ public class GameEnvironment {
 		}
 		System.out.println(i + ". Nothing.");
 		choice = in.nextInt();
-		switch(choice) {
-		case 1:
+		if (choice != i) {
+			if (choice < j) {
+				MedicalItem item = medicalItemsSet.get(choice-1);
+				currentOutpost.purchaseItem(item, crew);	
+			} else {
+				FoodItem item = foodItemsSet.get(choice-j);
+				currentOutpost.purchaseItem(item, crew);	
+			}
+			System.out.println("Press enter to continue.");
+			enter.nextLine();
+			visitOutpost();
+		} else {
+			currentDay();
 		}
 	}
 	
@@ -178,7 +193,12 @@ public class GameEnvironment {
 		}
 		choice = in.nextInt();
 		CrewMember chosenCrewMember = crew.getCrewMembers().get(choice - 1);
-		
+		if (chosenCrewMember.hasActionsLeft()) {
+			chooseAction(chosenCrewMember);
+		} else {
+			System.out.println(chosenCrewMember.getName() + " has no more actions left, please choose another.");
+			performAction();
+		}
 	}
 	
 	public void chooseAction(CrewMember member) {
