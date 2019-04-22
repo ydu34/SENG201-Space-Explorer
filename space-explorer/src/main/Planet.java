@@ -2,7 +2,7 @@ package main;
 
 public class Planet {
 	private String name;
-	private boolean transporterDiscovery = true;
+	private boolean shipPieceFound = false;
 	private SpaceOutpost outpost = new SpaceOutpost();
 	
 	public Planet(String name) {
@@ -18,12 +18,15 @@ public class Planet {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isTransporterDiscovery() {
-		return transporterDiscovery;
+
+	public boolean isShipPieceFound() {
+		return shipPieceFound;
 	}
-	public void setTransporterDiscovery(boolean transporterDiscovery) {
-		this.transporterDiscovery = transporterDiscovery;
+
+	public void setShipPieceFound(boolean shipPieceFound) {
+		this.shipPieceFound = shipPieceFound;
 	}
+
 	public SpaceOutpost getOutpost() {
 		return outpost;
 	}

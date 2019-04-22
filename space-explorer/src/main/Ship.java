@@ -4,11 +4,12 @@ public class Ship {
 	private int shieldLevel; 
 	private int maxShieldLevel;
 	private int piecesNeeded;
+	private int piecesFound;
 	
 	public Ship() {
 		maxShieldLevel = 100;
 		shieldLevel = maxShieldLevel;
-		piecesNeeded = 0;
+		piecesFound = 0;
 	}
 	public String toString() {
 		String returnString =
@@ -17,6 +18,12 @@ public class Ship {
 				"\nPieces needed: " + piecesNeeded;
 		return returnString;
 	}
+	
+	public void foundPiece() {
+		piecesFound +=1;
+		System.out.println("Found " + piecesFound + "/" + piecesNeeded + " pieces needed!");
+	}
+	
 	public int getShieldLevel() {
 		return shieldLevel;
 	}

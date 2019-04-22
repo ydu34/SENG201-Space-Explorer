@@ -12,25 +12,38 @@ public class Crew {
 	
 	
 	public String medicalItemsDetails() {
-		TreeSet<MedicalItem> medicalItemsSet = new TreeSet<MedicalItem>(medicalItems);
+		ArrayList<MedicalItem> medicalItemsSet = new ArrayList<MedicalItem>(new TreeSet<MedicalItem>(medicalItems));
 		String returnString = "";
 		for (MedicalItem item: medicalItemsSet) {
 			returnString += item.getName() + "(" + Collections.frequency(medicalItems, item) + ")";
 			returnString += "\n"+ item.getDescription();
+			returnString += "\nPrice: " + item.getPrice();
 			returnString += "\n";
 		}
 		return returnString;
 	}
 	
 	public String foodItemsDetails() {
-		TreeSet<FoodItem> foodItemsSet = new TreeSet<FoodItem>(foodItems);
+		ArrayList<FoodItem> foodItemsSet = new ArrayList<FoodItem>(new TreeSet<FoodItem>(foodItems));
 		String returnString = "";
 		for (FoodItem item: foodItemsSet) {
 			returnString += item.getName() + "(" + Collections.frequency(foodItems, item) + ")";
 			returnString += "\n"+ item.getDescription();
+			returnString += "\nPrice: " + item.getPrice();
 			returnString += "\n";
 		}
 		return returnString;	
+	}
+	
+	public void increaseMoney(int amount) {
+		money += amount;
+	}
+	
+	public void decreaseMoney(int amount) {
+		money -= amount;
+		if (money < 0) {
+			money = 0;
+		}
 	}
 	
 	public ArrayList<MedicalItem> getMedicalItems() {

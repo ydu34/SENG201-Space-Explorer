@@ -10,7 +10,7 @@ public class SpaceOutpost {
 	
 	public void purchaseItem(MedicalItem item, Crew crew) {
 		if (crew.getMoney() >= item.getPrice()) {
-			crew.setMoney(crew.getMoney()-item.getPrice());
+			crew.decreaseMoney(item.getPrice());
 			crew.getMedicalItems().add(item);
 			medicalItems.remove(item);
 			System.out.println(item.getName() + " has been purchased!");
@@ -21,7 +21,7 @@ public class SpaceOutpost {
 	
 	public void purchaseItem(FoodItem item, Crew crew) {
 		if (crew.getMoney() >= item.getPrice()) {
-			crew.setMoney(crew.getMoney()-item.getPrice());
+			crew.decreaseMoney(item.getPrice());
 			crew.getFoodItems().add(item);
 			foodItems.remove(item);
 			System.out.println(item.getName() + " has been purchased!");

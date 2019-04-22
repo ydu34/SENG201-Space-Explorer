@@ -185,6 +185,17 @@ public class GameEnvironment {
 	
 	
 	public void performAction() {
+		CrewMember chosenCrewMember = chooseCrewMember();
+		if (chosenCrewMember.hasActionsLeft()) {
+			chooseAction(chosenCrewMember);
+		} else {
+			System.out.println(chosenCrewMember.getName() + " has no more actions left, please choose another.");
+			performAction();
+		}
+		currentDay();
+	}
+	
+	public CrewMember chooseCrewMember() {
 		System.out.println("Choose crew member.");
 		int i = 1;
 		for (CrewMember member : crew.getCrewMembers()) {
@@ -192,13 +203,7 @@ public class GameEnvironment {
 			i++;
 		}
 		choice = in.nextInt();
-		CrewMember chosenCrewMember = crew.getCrewMembers().get(choice - 1);
-		if (chosenCrewMember.hasActionsLeft()) {
-			chooseAction(chosenCrewMember);
-		} else {
-			System.out.println(chosenCrewMember.getName() + " has no more actions left, please choose another.");
-			performAction();
-		}
+		return crew.getCrewMembers().get(choice - 1);
 	}
 	
 	public void chooseAction(CrewMember member) {
@@ -210,11 +215,103 @@ public class GameEnvironment {
 		System.out.println("5. Search the current planet" + "(" + crew.getCurrentLocation() +") for missing parts.");
 		System.out.println("6. Pilot the ship to a new planet.");
 		choice = in.nextInt();
+		switch(choice) {
+		case 1:
+			FoodItem foodItem = chooseFoodItem();
+			member.eat(foodItem, crew);
+			break;
+		case 2: 
+			MedicalItem medicalItem = chooseMedicalItem();
+			member.useMedicalItem(medicalItem, crew);
+			break;
+		case 3:
+			member.sleep();
+			break;
+		case 4:
+			member.repair(ship);
+			break;
+		case 5:
+			member.search(medItems, foodItems, crew, ship);
+			break;
+		case 6:
+			System.out.println("Requires another crew member to pilot the ship");
+			CrewMember otherCrewMember;
+			do {
+				otherCrewMember = chooseCrewMember();
+				if (otherCrewMember == member) {
+					System.out.println("You can't select the same crew member");
+				} else if (!otherCrewMember.hasActionsLeft()) {
+					System.out.println(otherCrewMember.getName() + " has no more actions left, please choose another.");
+				}
+			} while (!otherCrewMember.hasActionsLeft() || member == otherCrewMember);
+			Planet chosenPlanet = chooseDestinationPlanet();
+			member.pilot(chosenPlanet ,otherCrewMember, crew);
+		}
 	}
+	
+	public Planet chooseDestinationPlanet() {
+		System.out.println("Current Location: " + crew.getCurrentLocation() + ".");
+		System.out.println("Which planet would you like to go to?");
+		
+		for(int i = 0; i < planets.size() ; i++) {
+			System.out.println(i+1 + ". " + planets.get(i));
+		}
+		choice = in.nextInt();
+		Planet chosenPlanet = planets.get(choice-1);
+		if (chosenPlanet == crew.getCurrentLocation()) {
+			System.out.println("Please choose a different planet than the planet you are currently at.");
+			chosenPlanet = chooseDestinationPlanet();
+		}
+		return chosenPlanet;
+
+	}
+	
+	public FoodItem chooseFoodItem() {
+		int i = 1;
+		ArrayList<FoodItem> foodItemsSet = new ArrayList<FoodItem>(new TreeSet<FoodItem>(crew.getFoodItems()));
+		for (FoodItem item: foodItemsSet) {
+			System.out.println(i +". " + item.getName() + "(" + Collections.frequency(crew.getFoodItems(), item) + ")");
+			System.out.println(item.getDescription());
+			System.out.println("Price: " + item.getPrice());
+			System.out.println("\n");
+			i++;
+		}
+		System.out.println(i + ". Nothing.");
+		choice = in.nextInt();
+		if (choice == i) {
+			currentDay();
+		} else {
+			return crew.getFoodItems().get(choice-1);
+		}
+		return null;
+	}
+	
+	public MedicalItem chooseMedicalItem() {
+		int i = 1;
+		ArrayList<MedicalItem> medicalItemsSet = new ArrayList<MedicalItem>(new TreeSet<MedicalItem>(crew.getMedicalItems()));
+		for (MedicalItem item: medicalItemsSet) {
+			System.out.println(i +". " + item.getName() + "(" + Collections.frequency(crew.getMedicalItems(), item) + ")");
+			System.out.println(item.getDescription());
+			System.out.println("Price: " + item.getPrice());
+			System.out.println("\n");
+			i++;
+		}
+		System.out.println(i + ". Nothing.");
+		choice = in.nextInt();
+		if (choice == i) {
+			currentDay();
+		} else {
+			return crew.getMedicalItems().get(choice-1);
+		}
+		return null;
+		
+	}
+	
+
 	
 	public void nextDay() {
 		day++;
-		if (day > gameDuration) {
+		if (day >= gameDuration) {
 			endGame();
 		} else {
 		for (CrewMember member: crew.getCrewMembers()) {
@@ -237,12 +334,12 @@ public class GameEnvironment {
 		parsedInput = Integer.parseInt(input);
 		int crewMemberNeeded = parsedInput; 
 		while (crewMemberNeeded != 0) {
-			chooseCrewMember();
+			chooseCrewMemberType();
 			crewMemberNeeded-=1;
 		}
 	}
 	
-	public void chooseCrewMember() {
+	public void chooseCrewMemberType() {
 		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
 		System.out.println("There are 6 different types of crew members: ");
 		System.out.println("\t1. Engineer");
@@ -293,7 +390,7 @@ public class GameEnvironment {
 			}
 			break;
 		case("N"):
-			chooseCrewMember();
+			chooseCrewMemberType();
 			break;
 		}
 	}
