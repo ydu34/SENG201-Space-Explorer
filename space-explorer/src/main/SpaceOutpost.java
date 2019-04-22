@@ -2,10 +2,16 @@ package main;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Represents a space outpost.
+ */
 public class SpaceOutpost {
 	
 	private ArrayList<Item> itemsForSale = new ArrayList<Item>();
 	
+	/**
+	 * Generates the items available for sale.
+	 */
 	public void generateItems(ArrayList<MedicalItem> medItems, ArrayList<FoodItem> foodItems) {
 		
 		for (MedicalItem medItem: medItems) {
@@ -28,10 +34,18 @@ public class SpaceOutpost {
 		}
 	}
 
+	/**
+	 * Gets the items for sale.
+	 * @return the items for sale.
+	 */
 	public ArrayList<Item> getItemsForSale() {
 		return itemsForSale;
 	}
 
+	/**
+	 * Sets the items for sale.
+	 * @param itemsForSale   An ArrayList of the items for sale.
+	 */
 	public void setItemsForSale(ArrayList<Item> itemsForSale) {
 		this.itemsForSale = itemsForSale;
 	}
