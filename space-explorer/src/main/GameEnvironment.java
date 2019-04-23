@@ -8,16 +8,16 @@ import java.util.concurrent.ThreadLocalRandom;
 public class GameEnvironment {
 	private Scanner in = new Scanner(System.in);
 	private Scanner enter = new Scanner(System.in);
-	private Ship ship = new Ship();
 	private String input;
 	private int choice; 
 	private int parsedInput;
 	private Crew crew = new Crew();
+	private Ship ship = crew.getShip();
 	private ArrayList<MedicalItem> medItems = new ArrayList<MedicalItem>();
 	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
 	private ArrayList<Planet> planets = new ArrayList<Planet>();
 	int gameDuration;
-	private int day = 0;
+	private int day = 1;
 	
 	
 	public static void main(String[] args) {
@@ -28,7 +28,6 @@ public class GameEnvironment {
 		game.generateOutpostsItems();
 		game.gameSetUp();
 		game.mainGame();
-		game.endGame();
 	}
 	
 	public void initMedItems() {
@@ -88,6 +87,9 @@ public class GameEnvironment {
 	}
 	
 	public void currentDay() {
+		if (gameOver()) {
+			endGame(); 
+		}
 		System.out.println("Day " + day + "/" + gameDuration);
 		System.out.println("What do you want to do?");
 		System.out.println("1. View the status of a crew member.");
@@ -192,6 +194,8 @@ public class GameEnvironment {
 			System.out.println(chosenCrewMember.getName() + " has no more actions left, please choose another.");
 			performAction();
 		}
+		System.out.println("Press enter to continue.");
+		enter.nextLine();
 		currentDay();
 	}
 	
@@ -202,8 +206,14 @@ public class GameEnvironment {
 			System.out.println(i + ". " + member.getName() + ", Actions Left: " + member.getActionsLeft());
 			i++;
 		}
+		System.out.println(i + ". None.");
 		choice = in.nextInt();
-		return crew.getCrewMembers().get(choice - 1);
+		if (choice == i) {
+			currentDay();
+			return null;
+		} else {
+			return crew.getCrewMembers().get(choice - 1);
+		} 
 	}
 	
 	public void chooseAction(CrewMember member) {
@@ -246,6 +256,7 @@ public class GameEnvironment {
 			} while (!otherCrewMember.hasActionsLeft() || member == otherCrewMember);
 			Planet chosenPlanet = chooseDestinationPlanet();
 			member.pilot(chosenPlanet ,otherCrewMember, crew);
+			break;
 		}
 	}
 	
@@ -307,24 +318,49 @@ public class GameEnvironment {
 		
 	}
 	
-
+	public boolean gameOver() {
+		if (day > gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 	public void nextDay() {
 		day++;
-		if (day >= gameDuration) {
+		randomEvent.occurDay(crew);
+		if (gameOver()) {
 			endGame();
 		} else {
 		for (CrewMember member: crew.getCrewMembers()) {
-			member.setActionsLeft(member.getActionsLeft());
+			member.setActionsLeft(member.getMaxActions());
 		}
 		generateOutpostsItems();
 		/* Some Event should happen*/
+		
 		currentDay();
 		}
 	}
 	
 	
 	public void endGame() {
+		int score = 0;
+		for (CrewMember member: crew.getCrewMembers()) {
+			score += member.getHealth() * 2;
+			score -= member.getFatigue();
+			score -= member.getHunger();
+		}
+		score += ship.getShieldLevel();
+		System.out.println("The game has ended.");
+		System.out.println(crew.getName());
+		System.out.println("Days took to complete the game: " + day + ".");
+		if (ship.getPiecesFound() == ship.getPiecesNeeded()) {
+			System.out.println("You have found all the pieces needed, and your crew can get back home!");
+			score = score * 2;
+		} else {
+			System.out.println("You have failed to find all the pieces.");
+		}
+		System.out.println("Your score for completing the game: " + score + ".");
 		
 	}
 	

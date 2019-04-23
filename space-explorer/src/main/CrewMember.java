@@ -13,7 +13,7 @@ public abstract class CrewMember {
 	private int maxFatigue;
 	private int actionsLeft;
 	private int maxActions;
-	private boolean isInfected = false;
+	private boolean infected;
 	
 	public CrewMember(String name, String type, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
@@ -26,6 +26,7 @@ public abstract class CrewMember {
 		this.fatigue = 0;
 		this.maxActions = maxActions;
 		this.actionsLeft = maxActions;
+		this.infected = false;
 	}
 
 	public boolean hasActionsLeft() {
@@ -81,7 +82,10 @@ public abstract class CrewMember {
 		actionsLeft -= 1;
 		other.actionsLeft -=1;
 		crew.setCurrentLocation(planet);
-		System.out.println("The crew is now on Planet " + crew.getCurrentLocation() + ".");
+		randomEvent.occurPlanet(crew);
+		if (!crew.getShip().isDestroyed()) {
+			System.out.println("The crew is now on Planet " + crew.getCurrentLocation() + ".");
+		}
 	}
 	
 	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
@@ -218,6 +222,14 @@ public abstract class CrewMember {
 
 	public void setMaxActions(int maxActions) {
 		this.maxActions = maxActions;
+	}
+
+	public boolean isInfected() {
+		return infected;
+	}
+
+	public void setInfected(boolean infected) {
+		this.infected = infected;
 	}
 	
 

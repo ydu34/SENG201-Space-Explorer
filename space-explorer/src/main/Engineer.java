@@ -14,9 +14,8 @@ public class Engineer extends CrewMember{
 		if (shieldLevel > maxShieldLevel) {
 			shieldLevel = maxShieldLevel;
 		}
-		int actionsLeft = super.getActionsLeft();
+		super.setActionsLeft(super.getActionsLeft()-1);
 		super.setFatigue(super.getFatigue()+5);
-		actionsLeft -= 1;
 		System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 	}
 

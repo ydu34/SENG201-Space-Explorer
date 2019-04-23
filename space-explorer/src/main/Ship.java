@@ -5,11 +5,14 @@ public class Ship {
 	private int maxShieldLevel;
 	private int piecesNeeded;
 	private int piecesFound;
+	private boolean destroyed; 
 	
 	public Ship() {
 		maxShieldLevel = 100;
 		shieldLevel = maxShieldLevel;
 		piecesFound = 0;
+		piecesNeeded = 0;
+		destroyed = false;
 	}
 	public String toString() {
 		String returnString =
@@ -24,6 +27,19 @@ public class Ship {
 		System.out.println("Found " + piecesFound + "/" + piecesNeeded + " pieces needed!");
 	}
 	
+	public void increaseShieldLevel(int amount) {
+		shieldLevel += amount;
+		if (shieldLevel > maxShieldLevel) {
+			shieldLevel = maxShieldLevel;
+		}
+	}
+	
+	public void decreaseShieldLevel(int amount) {
+		shieldLevel -= amount;
+		if (shieldLevel < 0) {
+			destroyed = true;
+		}
+	}
 	public int getShieldLevel() {
 		return shieldLevel;
 	}
@@ -41,6 +57,18 @@ public class Ship {
 	}
 	public void setPiecesNeeded(int piecesNeeded) {
 		this.piecesNeeded = piecesNeeded;
+	}
+	public int getPiecesFound() {
+		return piecesFound;
+	}
+	public void setPiecesFound(int piecesFound) {
+		this.piecesFound = piecesFound;
+	}
+	public boolean isDestroyed() {
+		return destroyed;
+	}
+	public void setDestroyed(boolean destroyed) {
+		this.destroyed = destroyed;
 	}
 	
 	
