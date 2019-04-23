@@ -1,6 +1,9 @@
 package main;
 import java.util.*;
 
+/**
+ * Represents a crew.
+ */
 public class Crew {
 	private String name;
 	private Ship ship = new Ship();
@@ -10,7 +13,7 @@ public class Crew {
 	private int money = 200;
 	private Planet currentLocation;
 	
-	
+
 	public String medicalItemsDetails() {
 		ArrayList<MedicalItem> medicalItemsSet = new ArrayList<MedicalItem>(new TreeSet<MedicalItem>(medicalItems));
 		String returnString = "";
@@ -19,7 +22,7 @@ public class Crew {
 			returnString += "\n"+ item.getDescription();
 			returnString += "\nPrice: " + item.getPrice();
 			returnString += "\n";
-		}
+		} 	
 		return returnString;
 	}
 	
@@ -52,9 +55,19 @@ public class Crew {
 	public ArrayList<FoodItem> getFoodItems() {
 		return foodItems;
 	}
+	
+	/**
+	 * Gets the crew members.
+	 * @return An ArrayList of the crew members.
+	 */
 	public ArrayList<CrewMember> getCrewMembers() {
 		return crewMembers;
 	}
+	
+	/**
+	 * Sets the crew members.
+	 * @param crewMembers   An ArrayList of the crew members.
+	 */
 	public void setCrewMembers(ArrayList<CrewMember> crewMembers) {
 		this.crewMembers = crewMembers;
 	}
