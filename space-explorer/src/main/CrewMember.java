@@ -1,4 +1,6 @@
 package main;
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class CrewMember {
 	private String name;
@@ -11,6 +13,7 @@ public abstract class CrewMember {
 	private int maxFatigue;
 	private int actionsLeft;
 	private int maxActions;
+<<<<<<< HEAD
 	
 	/**
 	 * Creates a crew member.
@@ -21,6 +24,10 @@ public abstract class CrewMember {
 	 * @param maxFatigue An int number of the maximum fatigue level.
 	 * @param maxActions An int number of the maximum actions.
 	 */
+=======
+	private boolean isInfected = false;
+	
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public CrewMember(String name, String type, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
@@ -34,9 +41,36 @@ public abstract class CrewMember {
 		this.actionsLeft = maxActions;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * Lets crew members sleep.
 	 */
+=======
+	public boolean hasActionsLeft() {
+		return actionsLeft > 0;
+	}
+	
+	public void eat(FoodItem item, Crew crew) {
+		hunger -= item.getRestoreHungerAmount();
+		if (hunger < 0) {
+			hunger = 0;
+		}
+		crew.getFoodItems().remove(item);
+		actionsLeft -= 1;
+		System.out.println(name + " now has " + hunger + ".");
+	}
+	
+	public void useMedicalItem(MedicalItem item, Crew crew) {
+		health += item.getRestoreHealthAmount();
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+		crew.getMedicalItems().remove(item);
+		actionsLeft -= 1;
+		System.out.println(name + " now has " + health + ".");
+	}
+	
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public void sleep() {
 		int previousFatigue = fatigue;
 		fatigue -= 10;
@@ -60,13 +94,52 @@ public abstract class CrewMember {
 			shieldLevel = maxShieldLevel;
 		}
 		actionsLeft-=1;
+		fatigue += 10;
 		System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * Creates a string representation of the crew member.
 	 * @return A string representation of the crew member.
 	 */
+=======
+	public void pilot(Planet planet, CrewMember other, Crew crew) {
+		fatigue += 5;
+		other.fatigue += 5;
+		actionsLeft -= 1;
+		other.actionsLeft -=1;
+		crew.setCurrentLocation(planet);
+		System.out.println("The crew is now on Planet " + crew.getCurrentLocation() + ".");
+	}
+	
+	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
+		int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
+		if (randomNum >= 0 && randomNum < 15 && !crew.getCurrentLocation().isShipPieceFound()) {
+			System.out.println(name + " has found a ship piece!");
+			crew.getCurrentLocation().setShipPieceFound(true);
+			ship.foundPiece();
+		} else if (randomNum >= 15 && randomNum < 35) {
+			randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
+			crew.getMedicalItems().add(medicalItems.get(randomNum));
+			System.out.println(name + " has found a medical item " + medicalItems.get(randomNum) + "!");
+		} else if (randomNum >= 35 && randomNum < 55) {
+			randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
+			crew.getFoodItems().add(foodItems.get(randomNum));
+			System.out.println(name + " has found a food item " + foodItems.get(randomNum) + "!");
+		} else if (randomNum >= 55 && randomNum < 75) {
+			int amount = 50;
+			crew.increaseMoney(amount);
+			System.out.println(name + "has found " + amount + "Coins.");
+		} else {
+			System.out.println(name + " has found nothing.");
+		}
+		fatigue += 20;
+		hunger += 10;
+		actionsLeft -= 1;
+	}
+	
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public String toString() {
 		String returnString = 
 				"Name: " + name + 
@@ -124,6 +197,76 @@ public abstract class CrewMember {
 	 */
 	public void setActionsLeft(int actionsLeft) {
 		this.actionsLeft = actionsLeft;
+	}
+
+
+	public int getHealth() {
+		return health;
+	}
+
+
+	public void setHealth(int health) {
+		this.health = health;
+	}
+
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+	}
+
+
+	public int getHunger() {
+		return hunger;
+	}
+
+
+	public void setHunger(int hunger) {
+		this.hunger = hunger;
+	}
+
+
+	public int getMaxHunger() {
+		return maxHunger;
+	}
+
+
+	public void setMaxHunger(int maxHunger) {
+		this.maxHunger = maxHunger;
+	}
+
+
+	public int getFatigue() {
+		return fatigue;
+	}
+
+
+	public void setFatigue(int fatigue) {
+		this.fatigue = fatigue;
+	}
+
+
+	public int getMaxFatigue() {
+		return maxFatigue;
+	}
+
+
+	public void setMaxFatigue(int maxFatigue) {
+		this.maxFatigue = maxFatigue;
+	}
+
+
+	public int getMaxActions() {
+		return maxActions;
+	}
+
+
+	public void setMaxActions(int maxActions) {
+		this.maxActions = maxActions;
 	}
 	
 

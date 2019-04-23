@@ -8,10 +8,12 @@ public class Crew {
 	private String name;
 	private Ship ship;
 	private ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
-	private ArrayList<Item> Inventory = new ArrayList<Item>();
-	private int money = 100;
+	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
+	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
+	private int money = 200;
 	private Planet currentLocation;
 	
+<<<<<<< HEAD
 	/**
 	 * Creates an inventory details string
 	 * @return A string representation of the inventory with their frequency.
@@ -23,8 +25,49 @@ public class Crew {
 		for (Item item: InventorySet) {
 			inventoryString += item +"(" + Collections.frequency(Inventory, item) + ")";
 			inventoryString += ", ";
+=======
+	
+	public String medicalItemsDetails() {
+		ArrayList<MedicalItem> medicalItemsSet = new ArrayList<MedicalItem>(new TreeSet<MedicalItem>(medicalItems));
+		String returnString = "";
+		for (MedicalItem item: medicalItemsSet) {
+			returnString += item.getName() + "(" + Collections.frequency(medicalItems, item) + ")";
+			returnString += "\n"+ item.getDescription();
+			returnString += "\nPrice: " + item.getPrice();
+			returnString += "\n";
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 		}
-		return inventoryString;
+		return returnString;
+	}
+	
+	public String foodItemsDetails() {
+		ArrayList<FoodItem> foodItemsSet = new ArrayList<FoodItem>(new TreeSet<FoodItem>(foodItems));
+		String returnString = "";
+		for (FoodItem item: foodItemsSet) {
+			returnString += item.getName() + "(" + Collections.frequency(foodItems, item) + ")";
+			returnString += "\n"+ item.getDescription();
+			returnString += "\nPrice: " + item.getPrice();
+			returnString += "\n";
+		}
+		return returnString;	
+	}
+	
+	public void increaseMoney(int amount) {
+		money += amount;
+	}
+	
+	public void decreaseMoney(int amount) {
+		money -= amount;
+		if (money < 0) {
+			money = 0;
+		}
+	}
+	
+	public ArrayList<MedicalItem> getMedicalItems() {
+		return medicalItems;
+	}
+	public ArrayList<FoodItem> getFoodItems() {
+		return foodItems;
 	}
 	
 	/**
@@ -74,6 +117,7 @@ public class Crew {
 	public void setShip(Ship ship) {
 		this.ship = ship;
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * Gets the inventory.
@@ -95,6 +139,8 @@ public class Crew {
 	 * Gets the amount of money the crew has.
 	 * @return The amount of money the crew has.
 	 */
+=======
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public int getMoney() {
 		return money;
 	}

@@ -1,9 +1,14 @@
 package main;
 
+<<<<<<< HEAD
 /**
  * Represents a medical item.
  */
 public class MedicalItem extends Item{
+=======
+
+public class MedicalItem extends Item {
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 
 	private int restoreHealthAmount;
 	private boolean removePlague;
@@ -53,5 +58,9 @@ public class MedicalItem extends Item{
 	public void setRemovePlague(boolean removePlague) {
 		this.removePlague = removePlague;
 	}
+
+
+
+
 
 }

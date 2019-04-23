@@ -5,17 +5,20 @@ package main;
  */
 public class Planet {
 	private String name;
-	private boolean transporterDiscovery = true;
-	private SpaceOutpost outpost;
+	private boolean shipPieceFound = false;
+	private SpaceOutpost outpost = new SpaceOutpost();
 	
+<<<<<<< HEAD
 	/**
 	 * Creates a planet.
 	 * @param name      A string name of the planet.
 	 * @param outpost   A SpaceOutpost object.
 	 */
 	public Planet(String name, SpaceOutpost outpost) {
+=======
+	public Planet(String name) {
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 		this.name = name;
-		this.outpost = outpost;
 	}
 	
 	/**
@@ -41,6 +44,7 @@ public class Planet {
 	public void setName(String name) {
 		this.name = name;
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * Checks if the transporter part for this planet has been found.
@@ -62,6 +66,17 @@ public class Planet {
 	 * Gets the space outpost on this planet.
 	 * @return the space outpost.
 	 */
+=======
+
+	public boolean isShipPieceFound() {
+		return shipPieceFound;
+	}
+
+	public void setShipPieceFound(boolean shipPieceFound) {
+		this.shipPieceFound = shipPieceFound;
+	}
+
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public SpaceOutpost getOutpost() {
 		return outpost;
 	}

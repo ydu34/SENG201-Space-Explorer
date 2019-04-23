@@ -7,6 +7,7 @@ public class Ship {
 	private int shieldLevel; 
 	private int maxShieldLevel;
 	private int piecesNeeded;
+	private int piecesFound;
 	
 	/**
 	 * Creates a ship.
@@ -14,7 +15,7 @@ public class Ship {
 	public Ship() {
 		maxShieldLevel = 100;
 		shieldLevel = maxShieldLevel;
-		piecesNeeded = 0;
+		piecesFound = 0;
 	}
 	
 	/**
@@ -29,10 +30,18 @@ public class Ship {
 		return returnString;
 	}
 	
+<<<<<<< HEAD
 	/**
 	 * Gets the shield level.
 	 * @return the shield level.
 	 */
+=======
+	public void foundPiece() {
+		piecesFound +=1;
+		System.out.println("Found " + piecesFound + "/" + piecesNeeded + " pieces needed!");
+	}
+	
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public int getShieldLevel() {
 		return shieldLevel;
 	}
