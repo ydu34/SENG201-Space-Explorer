@@ -13,8 +13,25 @@ public abstract class CrewMember {
 	private int maxFatigue;
 	private int actionsLeft;
 	private int maxActions;
-	private boolean infected;
+<<<<<<< HEAD
+<<<<<<< HEAD
 	
+	/**
+	 * Creates a crew member.
+	 * @param name    A string name of the crew member.
+	 * @param type    A string type of the crew member.
+	 * @param maxHealth An int numeber of the maximum health level.
+	 * @param maxHunger An int number of the maximum hunger level.
+	 * @param maxFatigue An int number of the maximum fatigue level.
+	 * @param maxActions An int number of the maximum actions.
+	 */
+=======
+	private boolean isInfected = false;
+=======
+	private boolean infected;
+>>>>>>> 564e6245e33f0b3f1fd6951cd7cd128aed9cf061
+	
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public CrewMember(String name, String type, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
@@ -29,6 +46,11 @@ public abstract class CrewMember {
 		this.infected = false;
 	}
 
+<<<<<<< HEAD
+	/**
+	 * Lets crew members sleep.
+	 */
+=======
 	public boolean hasActionsLeft() {
 		return actionsLeft > 0;
 	}
@@ -53,6 +75,7 @@ public abstract class CrewMember {
 		System.out.println(name + " now has " + health + ".");
 	}
 	
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public void sleep() {
 		int previousFatigue = fatigue;
 		fatigue -= 10;
@@ -64,6 +87,10 @@ public abstract class CrewMember {
 		System.out.println(name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + " fatigue.");
 	}
 	
+	/**
+	 * Repairs the ship.
+	 * @param ship   A ship object.
+	 */
 	public void repair(Ship ship) {
 		int shieldLevel = ship.getShieldLevel();
 		int maxShieldLevel = ship.getMaxShieldLevel();
@@ -76,6 +103,12 @@ public abstract class CrewMember {
 		System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 	}
 	
+<<<<<<< HEAD
+	/**
+	 * Creates a string representation of the crew member.
+	 * @return A string representation of the crew member.
+	 */
+=======
 	public void pilot(Planet planet, CrewMember other, Crew crew) {
 		fatigue += 5;
 		other.fatigue += 5;
@@ -114,6 +147,7 @@ public abstract class CrewMember {
 		actionsLeft -= 1;
 	}
 	
+>>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
 	public String toString() {
 		String returnString = 
 				"Name: " + name + 
@@ -125,31 +159,50 @@ public abstract class CrewMember {
 		return returnString;
 	}
 	
-
+	/**
+	 * Gets the name of the crew member.
+	 * @return the name of the crew member.
+	 */
 	public String getName() {
 		return name;
 	}
 
-
+	/**
+	 * Sets the name of the crew member.
+	 * @param name   A string name of the crew member.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
+	/**
+	 * Gets the type of the crew member.
+	 * @return the type of the crew member.
+	 */
 	public String getType() {
 		return type;
 	}
 
-
+	/**
+	 * Sets the type of the crew member.
+	 * @param type   A string type of the crew member.
+	 */
 	public void setType(String type) {
 		this.type = type;
 	}
 
-
+	/**
+	 * Gets the amount of actions left.
+	 * @return the int number of actions left.
+	 */
 	public int getActionsLeft() {
 		return actionsLeft;
 	}
-
+	
+	/**
+	 * Sets the amount of actions left.
+	 * @param actionsLeft   An int number of the actions left.
+	 */
 	public void setActionsLeft(int actionsLeft) {
 		this.actionsLeft = actionsLeft;
 	}

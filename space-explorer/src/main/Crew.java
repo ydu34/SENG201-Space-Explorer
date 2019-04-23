@@ -13,7 +13,6 @@ public class Crew {
 	private int money = 200;
 	private Planet currentLocation;
 	
-
 	public String medicalItemsDetails() {
 		ArrayList<MedicalItem> medicalItemsSet = new ArrayList<MedicalItem>(new TreeSet<MedicalItem>(medicalItems));
 		String returnString = "";
@@ -22,7 +21,7 @@ public class Crew {
 			returnString += "\n"+ item.getDescription();
 			returnString += "\nPrice: " + item.getPrice();
 			returnString += "\n";
-		} 	
+		} 
 		return returnString;
 	}
 	
@@ -71,27 +70,69 @@ public class Crew {
 	public void setCrewMembers(ArrayList<CrewMember> crewMembers) {
 		this.crewMembers = crewMembers;
 	}
+	
+	/**
+	 * Gets the crew name.
+	 * @return the name of the crew.
+	 */
 	public String getName() {
 		return name;
 	}
+	
+	/**
+	 * Sets the name of the crew.
+	 * @param name  A string name of the crew.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	/**
+	 * Gets the crew ship.
+	 * @return the ship of the crew.
+	 */
 	public Ship getShip() {
 		return ship;
 	}
+	
+	/**
+	 * Sets the ship of the crew.
+	 * @param ship  A ship.
+	 */
 	public void setShip(Ship ship) {
 		this.ship = ship;
 	}
+
+	
+	/**
+	 * Gets the amount of money the crew has.
+	 * @return The amount of money the crew has.
+	 */
+
 	public int getMoney() {
 		return money;
 	}
+	
+	/**
+	 * Sets the amount of money the crew has.
+	 * @param money  An int number of money the crew has.
+	 */
 	public void setMoney(int money) {
 		this.money = money;
 	}
+	
+	/**
+	 * Gets the current location of the crew.
+	 * @return the current location of the crew.
+	 */
 	public Planet getCurrentLocation() {
 		return currentLocation;
 	}
+	
+	/**
+	 * Sets the current location of the crew.
+	 * @param currentLocation  The planet the crew is currently on.
+	 */
 	public void setCurrentLocation(Planet currentLocation) {
 		this.currentLocation = currentLocation;
 	}
