@@ -8,6 +8,7 @@ public class Ship {
 	private int maxShieldLevel;
 	private int piecesNeeded;
 	private int piecesFound;
+	private boolean destroyed; 
 	
 	/**
 	 * Creates a ship.
@@ -16,6 +17,8 @@ public class Ship {
 		maxShieldLevel = 100;
 		shieldLevel = maxShieldLevel;
 		piecesFound = 0;
+		piecesNeeded = 0;
+		destroyed = false;
 	}
 	
 	/**
@@ -41,7 +44,23 @@ public class Ship {
 		System.out.println("Found " + piecesFound + "/" + piecesNeeded + " pieces needed!");
 	}
 	
+<<<<<<< HEAD
 >>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
+=======
+	public void increaseShieldLevel(int amount) {
+		shieldLevel += amount;
+		if (shieldLevel > maxShieldLevel) {
+			shieldLevel = maxShieldLevel;
+		}
+	}
+	
+	public void decreaseShieldLevel(int amount) {
+		shieldLevel -= amount;
+		if (shieldLevel < 0) {
+			destroyed = true;
+		}
+	}
+>>>>>>> 564e6245e33f0b3f1fd6951cd7cd128aed9cf061
 	public int getShieldLevel() {
 		return shieldLevel;
 	}
@@ -84,6 +103,18 @@ public class Ship {
 	 */
 	public void setPiecesNeeded(int piecesNeeded) {
 		this.piecesNeeded = piecesNeeded;
+	}
+	public int getPiecesFound() {
+		return piecesFound;
+	}
+	public void setPiecesFound(int piecesFound) {
+		this.piecesFound = piecesFound;
+	}
+	public boolean isDestroyed() {
+		return destroyed;
+	}
+	public void setDestroyed(boolean destroyed) {
+		this.destroyed = destroyed;
 	}
 	
 	

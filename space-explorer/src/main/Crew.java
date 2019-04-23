@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class Crew {
 	private String name;
-	private Ship ship;
+	private Ship ship = new Ship();
 	private ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
 	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
