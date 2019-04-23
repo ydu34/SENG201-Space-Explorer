@@ -1,14 +1,11 @@
 package main;
 
-<<<<<<< HEAD
 /**
  * Represents an item.
  */
-public class Item {
-=======
 
 public class Item implements  Comparable<Item>{
->>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
+
 	private String name;
 	private int price;
 	private String description;

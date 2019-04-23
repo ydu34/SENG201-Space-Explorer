@@ -33,20 +33,13 @@ public class Ship {
 		return returnString;
 	}
 	
-<<<<<<< HEAD
-	/**
-	 * Gets the shield level.
-	 * @return the shield level.
-	 */
-=======
+
 	public void foundPiece() {
 		piecesFound +=1;
 		System.out.println("Found " + piecesFound + "/" + piecesNeeded + " pieces needed!");
 	}
 	
-<<<<<<< HEAD
->>>>>>> 1c1ed1b57f01f671e256ed7d1bd5929d4af23a8c
-=======
+
 	public void increaseShieldLevel(int amount) {
 		shieldLevel += amount;
 		if (shieldLevel > maxShieldLevel) {
@@ -60,7 +53,10 @@ public class Ship {
 			destroyed = true;
 		}
 	}
->>>>>>> 564e6245e33f0b3f1fd6951cd7cd128aed9cf061
+	/**
+	 * Gets the shield level.
+	 * @return the shield level.
+	 */
 	public int getShieldLevel() {
 		return shieldLevel;
 	}
