@@ -20,11 +20,12 @@ public class Engineer extends CrewMember{
 	public void repair(Ship ship) {
 		int shieldLevel = ship.getShieldLevel();
 		int maxShieldLevel = ship.getMaxShieldLevel();
-		shieldLevel += 20;
+		shieldLevel += 15;
 		if (shieldLevel > maxShieldLevel) {
 			shieldLevel = maxShieldLevel;
 		}
 		int actionsLeft = super.getActionsLeft();
+		super.setFatigue(super.getFatigue()+5);
 		actionsLeft -= 1;
 		System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 	}
