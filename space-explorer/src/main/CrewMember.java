@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public abstract class CrewMember {
 	private String name;
 	private String type;
+	private String status;
 	private int health;
 	private int maxHealth;
 	private int hunger;
@@ -14,7 +15,7 @@ public abstract class CrewMember {
 	private int actionsLeft;
 	private int maxActions;
 	private boolean infected;
-	
+	private boolean dead; 
 	/**
 	 * Creates a crew member.
 	 * @param name    A string name of the crew member.
@@ -26,9 +27,10 @@ public abstract class CrewMember {
 	 */
 
 
-	public CrewMember(String name, String type, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
+	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
+		this.status = status;
 		this.maxHealth = maxHealth;
 		this.health = maxHealth;
 		this.maxHunger = maxHunger;
@@ -38,6 +40,7 @@ public abstract class CrewMember {
 		this.maxActions = maxActions;
 		this.actionsLeft = maxActions;
 		this.infected = false;
+		this.dead = false;
 	}
 
 
@@ -60,9 +63,14 @@ public abstract class CrewMember {
 		if (health > maxHealth) {
 			health = maxHealth;
 		}
+		System.out.println(name + " now has " + health + ".");
+		if (item.isRemovePlague()) {
+			infected = false;
+			status = "Normal";
+		}
 		crew.getMedicalItems().remove(item);
 		actionsLeft -= 1;
-		System.out.println(name + " now has " + health + ".");
+		
 	}
 	
 
@@ -111,19 +119,19 @@ public abstract class CrewMember {
 	
 	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
 		int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-		if (randomNum >= 0 && randomNum < 15 && !crew.getCurrentLocation().isShipPieceFound()) {
+		if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
 			System.out.println(name + " has found a ship piece!");
 			crew.getCurrentLocation().setShipPieceFound(true);
 			ship.foundPiece();
-		} else if (randomNum >= 15 && randomNum < 35) {
+		} else if (randomNum >= 20 && randomNum < 35) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
 			crew.getMedicalItems().add(medicalItems.get(randomNum));
 			System.out.println(name + " has found a medical item " + medicalItems.get(randomNum) + "!");
-		} else if (randomNum >= 35 && randomNum < 55) {
+		} else if (randomNum >= 35 && randomNum < 50) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
 			crew.getFoodItems().add(foodItems.get(randomNum));
 			System.out.println(name + " has found a food item " + foodItems.get(randomNum) + "!");
-		} else if (randomNum >= 55 && randomNum < 75) {
+		} else if (randomNum >= 50 && randomNum < 65) {
 			int amount = 50;
 			crew.increaseMoney(amount);
 			System.out.println(name + "has found " + amount + " Coins.");
@@ -140,9 +148,13 @@ public abstract class CrewMember {
 	 * @return A string representation of the crew member.
 	 */
 	public String toString() {
+		if (infected) {
+			status = "Infected by space plague";
+		}
 		String returnString = 
 				"Name: " + name + 
 				"\nType: " + type +
+				"\nStatus: " + status +
 				"\nHealth: " + health + "/" + maxHealth +
 				"\nHunger: " + hunger + "/" + maxHunger + 
 				"\nFatigue: " + fatigue + "/" + maxFatigue +
@@ -206,6 +218,9 @@ public abstract class CrewMember {
 
 	public void setHealth(int health) {
 		this.health = health;
+		if (health <= 0) {
+			dead = true; 
+		}
 	}
 
 
@@ -274,6 +289,16 @@ public abstract class CrewMember {
 
 	public void setInfected(boolean infected) {
 		this.infected = infected;
+	}
+
+
+	public boolean isDead() {
+		return dead;
+	}
+
+
+	public void setDead(boolean dead) {
+		this.dead = dead;
 	}
 	
 

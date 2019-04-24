@@ -1,4 +1,5 @@
 package main;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -28,6 +29,7 @@ public class GameEnvironment {
 		game.generateOutpostsItems();
 		game.gameSetUp();
 		game.mainGame();
+		game.endGame();
 	}
 	
 	public void initMedItems() {
@@ -87,35 +89,33 @@ public class GameEnvironment {
 	}
 	
 	public void currentDay() {
-		if (gameOver()) {
-			endGame(); 
+		while (!gameOver()) {
+			System.out.println("Day " + day + "/" + gameDuration);
+			System.out.println("What do you want to do?");
+			System.out.println("1. View the status of a crew member.");
+			System.out.println("2. View the status of the spaceship.");
+			System.out.println("3. Visit the nearest outpost.");
+			System.out.println("4. Perform a crew member action.");
+			System.out.println("5. Move on to the next day.");
+			choice = in.nextInt();
+			switch(choice) {
+			case 1:
+				viewCrewMember();
+				break;
+			case 2:
+				viewShip();
+				break;
+			case 3:
+				visitOutpost();
+				break;
+			case 4:
+				performAction();
+				break;
+			case 5:
+				nextDay();
+				break;
+			}
 		}
-		System.out.println("Day " + day + "/" + gameDuration);
-		System.out.println("What do you want to do?");
-		System.out.println("1. View the status of a crew member.");
-		System.out.println("2. View the status of the spaceship.");
-		System.out.println("3. Visit the nearest outpost.");
-		System.out.println("4. Perform a crew member action.");
-		System.out.println("5. Move on to the next day.");
-		choice = in.nextInt();
-		switch(choice) {
-		case 1:
-			viewCrewMember();
-			break;
-		case 2:
-			viewShip();
-			break;
-		case 3:
-			visitOutpost();
-			break;
-		case 4:
-			performAction();
-			break;
-		case 5:
-			nextDay();
-			break;
-		}
-		
 	}
 	
 	public void viewCrewMember() {
@@ -272,9 +272,9 @@ public class GameEnvironment {
 	public Planet chooseDestinationPlanet() {
 		System.out.println("Current Location: " + crew.getCurrentLocation() + ".");
 		System.out.println("Which planet would you like to go to?");
-		int i = 0;
+		int i = 1;
 		for(Planet planet: planets) {
-			System.out.println(i+1 + ". " + planet);
+			System.out.println(i + ". " + planet);
 			i++;
 		}
 		System.out.println(i + ". Cancel.");
@@ -334,7 +334,7 @@ public class GameEnvironment {
 	}
 	
 	public boolean gameOver() {
-		if (day > gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed()) {
+		if (day > gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed() || crew.getCrewMembers().size() == 0) {
 			return true;
 		} else {
 			return false;
@@ -343,19 +343,33 @@ public class GameEnvironment {
 	
 	public void nextDay() {
 		day++;
-		randomEvent.occurDay(crew);
-		if (gameOver()) {
-			endGame();
-		} else {
-		for (CrewMember member: crew.getCrewMembers()) {
-			member.setActionsLeft(member.getMaxActions());
-		}
-		generateOutpostsItems();
-		/* Some Event should happen*/
-		
-		currentDay();
+		if (!gameOver()) {
+			
+	
+			for (CrewMember member: crew.getCrewMembers()) {
+				member.setActionsLeft(member.getMaxActions());
+			}
+			generateOutpostsItems();
+			
+			
+			for (CrewMember member: crew.getCrewMembers()) {
+				if (member.isInfected()) {
+					member.setHealth(member.getHealth()-15);
+					if (member.isDead()) {
+						System.out.println(member.getName() + " has died to the space plague and has been removed from the crew.");
+						crew.getCrewMembers().remove(member);
+					} else {
+						System.out.println(member.getName() + " will lose 15 health each day until he gets cured.");
+						System.out.println(member.getName() + " now has " + member.getHealth() + "/" + member.getMaxHealth() + " health.");
+					}
+				}
+			}
+			
+			randomEvent.occurDay(crew);
+			currentDay();
 		}
 	}
+		
 	
 	
 	public void endGame() {
@@ -367,7 +381,6 @@ public class GameEnvironment {
 		}
 		score += ship.getShieldLevel();
 		System.out.println("The game has ended.");
-		System.out.println(crew.getName());
 		System.out.println("Days took to complete the game: " + day + ".");
 		if (ship.getPiecesFound() == ship.getPiecesNeeded()) {
 			System.out.println("You have found all the pieces needed, and your crew can get back home!");
@@ -433,7 +446,7 @@ public class GameEnvironment {
 		input = in.nextLine();
 		switch(input) {
 		case("Y"):
-			System.out.println("Name your crew: ");
+			System.out.println("Name your crew member: ");
 			input = in.nextLine();
 			String name = input;
 			if (selectedCrewMember == "Engineer") {
