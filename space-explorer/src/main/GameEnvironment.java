@@ -125,11 +125,16 @@ public class GameEnvironment {
 			System.out.println(i + ". " + member.getName());
 			i++;
 		}
+		System.out.println(i + ". Cancel.");
 		choice = in.nextInt();
-		System.out.println(crew.getCrewMembers().get(choice-1));
-		System.out.println("Press enter to continue.");
-		enter.nextLine();
-		currentDay();
+		if (choice == i) {
+			currentDay();
+		} else {
+			System.out.println(crew.getCrewMembers().get(choice-1));
+			System.out.println("Press enter to continue.");
+			enter.nextLine();
+			currentDay();
+		}
 	}
 	
 	public void viewShip() {
@@ -206,7 +211,7 @@ public class GameEnvironment {
 			System.out.println(i + ". " + member.getName() + ", Actions Left: " + member.getActionsLeft());
 			i++;
 		}
-		System.out.println(i + ". None.");
+		System.out.println(i + ". Cancel.");
 		choice = in.nextInt();
 		if (choice == i) {
 			currentDay();
@@ -224,6 +229,7 @@ public class GameEnvironment {
 		System.out.println("4. Repair the shields of the ship.");
 		System.out.println("5. Search the current planet" + "(" + crew.getCurrentLocation() +") for missing parts.");
 		System.out.println("6. Pilot the ship to a new planet.");
+		System.out.println("7. Cancel.");
 		choice = in.nextInt();
 		switch(choice) {
 		case 1:
@@ -257,24 +263,33 @@ public class GameEnvironment {
 			Planet chosenPlanet = chooseDestinationPlanet();
 			member.pilot(chosenPlanet ,otherCrewMember, crew);
 			break;
+		case 7: 
+			performAction();
+			break;
 		}
 	}
 	
 	public Planet chooseDestinationPlanet() {
 		System.out.println("Current Location: " + crew.getCurrentLocation() + ".");
 		System.out.println("Which planet would you like to go to?");
-		
-		for(int i = 0; i < planets.size() ; i++) {
-			System.out.println(i+1 + ". " + planets.get(i));
+		int i = 0;
+		for(Planet planet: planets) {
+			System.out.println(i+1 + ". " + planet);
+			i++;
 		}
+		System.out.println(i + ". Cancel.");
 		choice = in.nextInt();
-		Planet chosenPlanet = planets.get(choice-1);
-		if (chosenPlanet == crew.getCurrentLocation()) {
-			System.out.println("Please choose a different planet than the planet you are currently at.");
-			chosenPlanet = chooseDestinationPlanet();
+		if (choice == i) {
+			currentDay();
+		} else {
+			Planet chosenPlanet = planets.get(choice-1);
+			if (chosenPlanet == crew.getCurrentLocation()) {
+				System.out.println("Please choose a different planet than the planet you are currently at.");
+				chosenPlanet = chooseDestinationPlanet();
+			}
+			return chosenPlanet;
 		}
-		return chosenPlanet;
-
+		return null;
 	}
 	
 	public FoodItem chooseFoodItem() {

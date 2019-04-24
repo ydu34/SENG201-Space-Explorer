@@ -126,7 +126,7 @@ public abstract class CrewMember {
 		} else if (randomNum >= 55 && randomNum < 75) {
 			int amount = 50;
 			crew.increaseMoney(amount);
-			System.out.println(name + "has found " + amount + "Coins.");
+			System.out.println(name + "has found " + amount + " Coins.");
 		} else {
 			System.out.println(name + " has found nothing.");
 		}

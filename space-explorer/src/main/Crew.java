@@ -115,7 +115,7 @@ public class Crew {
 	
 	/**
 	 * Sets the amount of money the crew has.
-	 * @param money  An int number of money the crew has.
+	 * @param money An int number of money the crew has.
 	 */
 	public void setMoney(int money) {
 		this.money = money;
