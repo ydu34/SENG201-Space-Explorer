@@ -193,7 +193,7 @@ public class GameEnvironment {
 	
 	public void performAction() {
 		CrewMember chosenCrewMember = chooseCrewMember();
-		if (chosenCrewMember.hasActionsLeft()) {
+		if (chosenCrewMember.isAvailable()) {
 			chooseAction(chosenCrewMember);
 		} else {
 			System.out.println(chosenCrewMember.getName() + " has no more actions left, please choose another.");
@@ -256,10 +256,10 @@ public class GameEnvironment {
 				otherCrewMember = chooseCrewMember();
 				if (otherCrewMember == member) {
 					System.out.println("You can't select the same crew member");
-				} else if (!otherCrewMember.hasActionsLeft()) {
+				} else if (!otherCrewMember.isAvailable()) {
 					System.out.println(otherCrewMember.getName() + " has no more actions left, please choose another.");
 				}
-			} while (!otherCrewMember.hasActionsLeft() || member == otherCrewMember);
+			} while (!otherCrewMember.isAvailable() || member == otherCrewMember);
 			Planet chosenPlanet = chooseDestinationPlanet();
 			member.pilot(chosenPlanet ,otherCrewMember, crew);
 			break;

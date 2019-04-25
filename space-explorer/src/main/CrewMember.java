@@ -44,9 +44,11 @@ public abstract class CrewMember {
 	}
 
 
-	public boolean hasActionsLeft() {
+	public boolean isAvailable() {
 		return actionsLeft > 0;
 	}
+	
+	
 	
 	public void eat(FoodItem item, Crew crew) {
 		hunger -= item.getRestoreHungerAmount();
@@ -93,54 +95,78 @@ public abstract class CrewMember {
 	 * @param ship   A ship object.
 	 */
 	public void repair(Ship ship) {
-		int shieldLevel = ship.getShieldLevel();
-		int maxShieldLevel = ship.getMaxShieldLevel();
-		shieldLevel += 10;
-		if (shieldLevel > maxShieldLevel) {
-			shieldLevel = maxShieldLevel;
+		int fatigueCost = 10;
+		if (fatigue + fatigueCost> maxFatigue) {
+			System.out.println(this.name + " is too tired to repair the ship.");
+		} else {
+			int shieldLevel = ship.getShieldLevel();
+			int maxShieldLevel = ship.getMaxShieldLevel();
+			shieldLevel += 10;
+			if (shieldLevel > maxShieldLevel) {
+				shieldLevel = maxShieldLevel;
+			}
+			actionsLeft-=1;
+			fatigue += 10;
+			System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 		}
-		actionsLeft-=1;
-		fatigue += 10;
-		System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 	}
 	
 
 	public void pilot(Planet planet, CrewMember other, Crew crew) {
-		fatigue += 5;
-		other.fatigue += 5;
-		actionsLeft -= 1;
-		other.actionsLeft -=1;
-		crew.setCurrentLocation(planet);
-		randomEvent.occurPlanet(crew);
-		if (!crew.getShip().isDestroyed()) {
-			System.out.println("The crew is now on Planet " + crew.getCurrentLocation() + ".");
+		int fatigueCost = 10;
+		if (fatigue + fatigueCost> maxFatigue) {
+			System.out.println(name + " is too tired to pilot the ship.");
+		} 
+		if (other.fatigue + fatigueCost > other.maxFatigue) {
+			System.out.println(other.name + " is too tired to pilot the ship.");
+		} 
+		if (fatigue <= maxFatigue - fatigueCost && other.fatigue <= other.maxFatigue - fatigueCost) {
+			fatigue += fatigueCost;
+			other.fatigue += fatigueCost;
+			actionsLeft -= 1;
+			other.actionsLeft -=1;
+			crew.setCurrentLocation(planet);
+			randomEvent.occurPlanet(crew);
+			if (!crew.getShip().isDestroyed()) {
+				System.out.println("The crew is now on Planet " + crew.getCurrentLocation() + ".");
+			}
 		}
 	}
 	
 	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
-		int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-		if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
-			System.out.println(name + " has found a ship piece!");
-			crew.getCurrentLocation().setShipPieceFound(true);
-			ship.foundPiece();
-		} else if (randomNum >= 20 && randomNum < 35) {
-			randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
-			crew.getMedicalItems().add(medicalItems.get(randomNum));
-			System.out.println(name + " has found a medical item " + medicalItems.get(randomNum) + "!");
-		} else if (randomNum >= 35 && randomNum < 50) {
-			randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
-			crew.getFoodItems().add(foodItems.get(randomNum));
-			System.out.println(name + " has found a food item " + foodItems.get(randomNum) + "!");
-		} else if (randomNum >= 50 && randomNum < 65) {
-			int amount = 50;
-			crew.increaseMoney(amount);
-			System.out.println(name + "has found " + amount + " Coins.");
-		} else {
-			System.out.println(name + " has found nothing.");
+		int fatigueCost = 20;
+		int hungerCost = 20;
+		if (fatigue + fatigueCost > maxFatigue) {
+			System.out.println(name + " is too tired to search the planet.");
 		}
-		fatigue += 20;
-		hunger += 10;
-		actionsLeft -= 1;
+		if (hunger + hungerCost > maxHunger) {
+			System.out.println(name + " is too hungry to search the planet.");
+		}
+		if (fatigue + fatigueCost <= maxFatigue && hunger + hungerCost <= maxHunger) {
+			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
+			if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
+				System.out.println(name + " has found a ship piece!");
+				crew.getCurrentLocation().setShipPieceFound(true);
+				ship.foundPiece();
+			} else if (randomNum >= 20 && randomNum < 35) {
+				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
+				crew.getMedicalItems().add(medicalItems.get(randomNum));
+				System.out.println(name + " has found a medical item " + medicalItems.get(randomNum) + "!");
+			} else if (randomNum >= 35 && randomNum < 50) {
+				randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
+				crew.getFoodItems().add(foodItems.get(randomNum));
+				System.out.println(name + " has found a food item " + foodItems.get(randomNum) + "!");
+			} else if (randomNum >= 50 && randomNum < 65) {
+				int amount = 50;
+				crew.increaseMoney(amount);
+				System.out.println(name + "has found " + amount + " Coins.");
+			} else {
+				System.out.println(name + " has found nothing.");
+			}
+			fatigue += fatigueCost;
+			hunger += hungerCost;
+			actionsLeft -= 1;
+		}
 	}
 	
 	/**
