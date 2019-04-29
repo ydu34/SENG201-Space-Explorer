@@ -21,3 +21,150 @@ Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid projec
 	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.createOrImportProject(SmartImportJob.java:604)
 	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:552)
 	... 2 more
+!SESSION 2019-04-29 15:39:45.423 -----------------------------------------------
+eclipse.buildId=4.9.0.I20180906-0745
+java.version=10.0.2
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_NZ
+Framework arguments:  -product org.eclipse.epp.package.dsl.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.dsl.product
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-04-29 15:41:01.837
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-04-29 15:41:01.837
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-04-29 15:41:01.838
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-04-29 15:41:01.838
+!MESSAGE /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-04-29 15:41:07.410
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-04-29 15:41:07.410
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-04-29 15:41:07.411
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-04-29 15:41:07.411
+!MESSAGE /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-04-29 15:41:11.193
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-04-29 15:41:11.193
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-04-29 15:41:11.193
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-04-29 15:41:11.193
+!MESSAGE /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-04-29 15:41:22.093
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-04-29 15:41:22.093
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-04-29 15:41:22.094
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-04-29 15:41:22.094
+!MESSAGE /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+
+!ENTRY org.eclipse.egit.ui 4 0 2019-04-29 15:42:28.595
+!MESSAGE Invalid project description.
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createExistingProject(ProjectUtils.java:179)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.access$0(ProjectUtils.java:146)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils$1.run(ProjectUtils.java:104)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2292)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2314)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:138)
+	at org.eclipse.egit.ui.internal.clone.ProjectUtils.createProjects(ProjectUtils.java:62)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.importProjects(GitImportWizard.java:256)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard.access$2(GitImportWizard.java:238)
+	at org.eclipse.egit.ui.internal.clone.GitImportWizard$4.run(GitImportWizard.java:208)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:122)
+Contains: OK
+Contains: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
+!SUBENTRY 1 org.eclipse.core.resources 4 77 2019-04-29 15:42:28.595
+!MESSAGE Invalid project description.
+!SUBENTRY 2 unknown 0 0 2019-04-29 15:42:28.595
+!MESSAGE OK
+!SUBENTRY 2 org.eclipse.core.resources 4 77 2019-04-29 15:42:28.595
+!MESSAGE /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer overlaps the workspace location: /home/cosc/student/ydu34/SENG PROJECT/SENG201Project/space-explorer
