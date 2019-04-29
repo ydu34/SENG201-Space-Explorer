@@ -15,7 +15,7 @@ public class Engineer extends CrewMember{
 	
 	/**
 	 * Repairs the ship.
-	 * @param ship   A ship object.
+	 * @param ship   A Ship object.
 	 */
 	public void repair(Ship ship) {
 		int fatigueCost = 5;
@@ -36,7 +36,7 @@ public class Engineer extends CrewMember{
 	
 
 	/**
-	 * Prints a description of the engineer.
+	 * Prints a description of Engineer.
 	 */
 	public static void description() {
 		System.out.println("The Engineer is a master at building, designing and maintaining machines."
