@@ -16,6 +16,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import javax.swing.JSlider;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class IntroScreen {
 
@@ -68,9 +70,16 @@ public class IntroScreen {
 		slider_1.setSnapToTicks(true);
 		slider_1.setPaintTicks(true);
 		slider_1.setPaintLabels(true);
+		
+		JButton btnAccept = new JButton("Accept");
+		btnAccept.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(frmSpaceExplorer.getContentPane());
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap(14, Short.MAX_VALUE)
 					.addComponent(txtpnYourSpaceshipHas, GroupLayout.PREFERRED_SIZE, 572, GroupLayout.PREFERRED_SIZE)
@@ -79,19 +88,23 @@ public class IntroScreen {
 					.addContainerGap(162, Short.MAX_VALUE)
 					.addComponent(lblHowManyDays)
 					.addGap(160))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(165)
 					.addComponent(lblHowManyCrew)
-					.addContainerGap(190, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+					.addContainerGap(163, Short.MAX_VALUE))
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(42)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-							.addComponent(slider_1, GroupLayout.DEFAULT_SIZE, 517, Short.MAX_VALUE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addComponent(slider_1, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
 							.addGap(66))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(slider, GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+							.addComponent(slider, GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
 							.addGap(71))))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(251)
+					.addComponent(btnAccept)
+					.addContainerGap(267, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -106,7 +119,9 @@ public class IntroScreen {
 					.addComponent(lblHowManyCrew)
 					.addGap(18)
 					.addComponent(slider_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(73))
+					.addGap(26)
+					.addComponent(btnAccept)
+					.addGap(22))
 		);
 		frmSpaceExplorer.getContentPane().setLayout(groupLayout);
 	}

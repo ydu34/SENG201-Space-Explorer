@@ -484,5 +484,63 @@ public class GameEnvironment {
 		parsedInput = Integer.parseInt(input);
 		crew.setCurrentLocation(planets.get(parsedInput-1));
 	}
+
+	public Crew getCrew() {
+		return crew;
+	}
+
+	public void setCrew(Crew crew) {
+		this.crew = crew;
+	}
+
+	public Ship getShip() {
+		return ship;
+	}
+
+	public void setShip(Ship ship) {
+		this.ship = ship;
+	}
+
+	public ArrayList<MedicalItem> getMedItems() {
+		return medItems;
+	}
+
+	public void setMedItems(ArrayList<MedicalItem> medItems) {
+		this.medItems = medItems;
+	}
+
+	public ArrayList<FoodItem> getFoodItems() {
+		return foodItems;
+	}
+
+	public void setFoodItems(ArrayList<FoodItem> foodItems) {
+		this.foodItems = foodItems;
+	}
+
+	public ArrayList<Planet> getPlanets() {
+		return planets;
+	}
+
+	public void setPlanets(ArrayList<Planet> planets) {
+		this.planets = planets;
+	}
+
+	public int getGameDuration() {
+		return gameDuration;
+	}
+
+	public void setGameDuration(int gameDuration) {
+		this.gameDuration = gameDuration;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+	
+	
 	
 }
