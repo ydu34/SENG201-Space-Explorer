@@ -1,5 +1,6 @@
 package main;
 
+import views.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -21,8 +22,16 @@ public class GameEnvironment {
 	private int day = 1;
 	
 	
+	public void launchStartingMenu() {
+		StartingMenu startMenuWindow = new StartingMenu(this);
+	}
+	
+	public void launchIntroScreen() {
+		IntroScreen introWindow = new IntroScreen(this);
+	}
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
+		game.launchStartingMenu();
 		game.initMedItems();
 		game.initFoodItems();
 		game.initPlanets();

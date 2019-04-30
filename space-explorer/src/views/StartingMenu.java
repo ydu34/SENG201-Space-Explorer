@@ -1,5 +1,6 @@
 package views;
 
+import main.GameEnvironment;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -21,31 +22,26 @@ import java.awt.BorderLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 
-public class MainMenu {
+public class StartingMenu {
 
 	private JFrame frmSpaceExplorer;
+	private GameEnvironment game;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainMenu window = new MainMenu();
-					window.frmSpaceExplorer.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the application.
 	 */
-	public MainMenu() {
+	public StartingMenu(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frmSpaceExplorer.setVisible(true);
+	}
+	
+	/**
+	 * Close the application.
+	 */
+	public void closeWindow() {
+		frmSpaceExplorer.dispose();
 	}
 
 	/**
@@ -93,8 +89,8 @@ public class MainMenu {
 		JButton btnNewButton = new JButton("Start");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				CrewCreation.callscreen();
-				frmSpaceExplorer.dispose();
+				closeWindow();
+				IntroScreen introWindow = new IntroScreen(game);
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
