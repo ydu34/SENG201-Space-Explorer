@@ -15,6 +15,24 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextPane;
+import java.awt.Checkbox;
+import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
+import javax.swing.JButton;
+import java.awt.GridBagConstraints;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Insets;
+import java.awt.CardLayout;
+import net.miginfocom.swing.MigLayout;
+import java.awt.FlowLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JToolBar;
+import javax.swing.JDesktopPane;
+import javax.swing.JTable;
+import javax.swing.JRadioButtonMenuItem;
+import java.awt.Font;
+import javax.swing.JList;
 
 public class CreateCrewScreen {
 
@@ -52,60 +70,44 @@ public class CreateCrewScreen {
 		frame.setBounds(100, 100, 600, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.BLACK);
+		JPanel panel_1 = new JPanel();
+		panel_1.setBounds(299, 69, 269, 198);
 		
-		JLabel lblName = new JLabel("Name:");
+		JLabel lblCrewName = new JLabel("Crew Name:");
+		lblCrewName.setBounds(306, 38, 78, 19);
+		lblCrewName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		textField = new JTextField();
+		textField.setBounds(402, 40, 166, 19);
 		textField.setColumns(10);
+		frame.getContentPane().setLayout(null);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
 		
-		JLabel lblType = new JLabel("Type:");
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setBounds(27, 10, 94, 74);
+		panel_1.add(btnNewButton_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Engineer", "Placeholder", "Placeholder", "Placeholder", "Placeholder", "Placeholder"}));
+		JButton button = new JButton("New button");
+		button.setBounds(144, 10, 94, 74);
+		panel_1.add(button);
 		
-		JTextPane textPane = new JTextPane();
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(21)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 196, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblName)
-								.addComponent(lblType))
-							.addGap(18)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(textField)
-								.addComponent(comboBox, 0, 173, Short.MAX_VALUE)))
-						.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 227, GroupLayout.PREFERRED_SIZE))
-					.addGap(112))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 339, GroupLayout.PREFERRED_SIZE)
-					.addGap(22))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(24)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblName)
-							.addGap(2)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblType))
-					.addPreferredGap(ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-					.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
-					.addGap(31))
-		);
-		frame.getContentPane().setLayout(groupLayout);
+		JButton button_1 = new JButton("New button");
+		button_1.setBounds(27, 99, 94, 74);
+		panel_1.add(button_1);
+		
+		JButton button_2 = new JButton("New button");
+		button_2.setBounds(144, 99, 94, 74);
+		panel_1.add(button_2);
+		frame.getContentPane().add(lblCrewName);
+		frame.getContentPane().add(textField);
+		
+		JButton btnNewButton = new JButton("Start Adventure!");
+		btnNewButton.setBounds(185, 317, 188, 21);
+		frame.getContentPane().add(btnNewButton);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(26, 38, 242, 229);
+		frame.getContentPane().add(panel);
 	}
 }

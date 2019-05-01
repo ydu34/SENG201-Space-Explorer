@@ -45,12 +45,15 @@ public class IntroScreen {
 		frmSpaceExplorer.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JTextPane txtpnYourSpaceshipHas = new JTextPane();
+		txtpnYourSpaceshipHas.setBounds(10, 10, 572, 62);
 		txtpnYourSpaceshipHas.setBackground(UIManager.getColor("menu"));
 		txtpnYourSpaceshipHas.setText("Your spaceship has been broken and its pieces are scattered throughout the surrounding planets. You will need to find the missing pieces of your spaceship so that you can repair it and get home.");
 		
 		JLabel lblHowManyDays = new JLabel("How many days do you want to play for?");
+		lblHowManyDays.setBounds(203, 94, 186, 13);
 		
 		JSlider slider = new JSlider();
+		slider.setBounds(55, 135, 483, 44);
 		slider.setMajorTickSpacing(1);
 		slider.setSnapToTicks(true);
 		slider.setPaintLabels(true);
@@ -61,8 +64,10 @@ public class IntroScreen {
 		slider.setMaximum(10);
 		
 		JLabel lblHowManyCrew = new JLabel("How many crew members do you want?\n");
+		lblHowManyCrew.setBounds(204, 220, 185, 13);
 		
 		JSlider slider_1 = new JSlider();
+		slider_1.setBounds(52, 254, 488, 44);
 		slider_1.setMaximum(4);
 		slider_1.setMinimum(2);
 		slider_1.setMinorTickSpacing(1);
@@ -72,57 +77,18 @@ public class IntroScreen {
 		slider_1.setPaintLabels(true);
 		
 		JButton btnAccept = new JButton("Accept");
+		btnAccept.setBounds(265, 324, 63, 21);
 		btnAccept.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 			}
 		});
-		GroupLayout groupLayout = new GroupLayout(frmSpaceExplorer.getContentPane());
-		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(14, Short.MAX_VALUE)
-					.addComponent(txtpnYourSpaceshipHas, GroupLayout.PREFERRED_SIZE, 572, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(162, Short.MAX_VALUE)
-					.addComponent(lblHowManyDays)
-					.addGap(160))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(165)
-					.addComponent(lblHowManyCrew)
-					.addContainerGap(163, Short.MAX_VALUE))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(42)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(slider_1, GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
-							.addGap(66))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(slider, GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-							.addGap(71))))
-				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(251)
-					.addComponent(btnAccept)
-					.addContainerGap(267, Short.MAX_VALUE))
-		);
-		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(txtpnYourSpaceshipHas, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addComponent(lblHowManyDays)
-					.addGap(32)
-					.addComponent(slider, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(44)
-					.addComponent(lblHowManyCrew)
-					.addGap(18)
-					.addComponent(slider_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(26)
-					.addComponent(btnAccept)
-					.addGap(22))
-		);
-		frmSpaceExplorer.getContentPane().setLayout(groupLayout);
+		frmSpaceExplorer.getContentPane().setLayout(null);
+		frmSpaceExplorer.getContentPane().add(txtpnYourSpaceshipHas);
+		frmSpaceExplorer.getContentPane().add(lblHowManyDays);
+		frmSpaceExplorer.getContentPane().add(lblHowManyCrew);
+		frmSpaceExplorer.getContentPane().add(slider_1);
+		frmSpaceExplorer.getContentPane().add(slider);
+		frmSpaceExplorer.getContentPane().add(btnAccept);
 	}
 }
