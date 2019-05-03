@@ -1,7 +1,7 @@
 package main;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class randomEvent {
+public class RandomEvent {
 	private static int randomNum;
 	
 	public static void occurDay(Crew crew) {

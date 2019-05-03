@@ -22,16 +22,8 @@ public class GameEnvironment {
 	private int day = 1;
 	
 	
-	public void launchStartingMenu() {
-		StartingMenu startMenuWindow = new StartingMenu(this);
-	}
-	
-	public void launchIntroScreen() {
-		IntroScreen introWindow = new IntroScreen(this);
-	}
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
-		game.launchStartingMenu();
 		game.initMedItems();
 		game.initFoodItems();
 		game.initPlanets();
@@ -77,11 +69,18 @@ public class GameEnvironment {
 		}
 	}
 	
-	public void gameSetUp() {
-		/* Setting up the game */
+	public void introMessage() {
 		System.out.println("Welcome to Space Explorers!");
 		System.out.println("Your spaceship has been broken and its pieces are scattered throughout the surrounding planets."
 				+ "\nYou will need to find the missing pieces of your spaceship so that you can repair it and get home.");
+	}
+	
+	public void promptGameDuration() {
+		
+	}
+	public void gameSetUp() {
+		/* Setting up the game */
+		introMessage();
 		System.out.println("How many days (between 3 and 10) do you want to play for?");
 		input = in.nextLine();
 		gameDuration = Integer.parseInt(input);
@@ -97,15 +96,19 @@ public class GameEnvironment {
 		currentDay();
 	}
 	
+	public void printMainOptions() {
+		System.out.println("Day " + day + "/" + gameDuration);
+		System.out.println("What do you want to do?");
+		System.out.println("1. View the status of a crew member.");
+		System.out.println("2. View the status of the spaceship.");
+		System.out.println("3. Visit the nearest outpost.");
+		System.out.println("4. Perform a crew member action.");
+		System.out.println("5. Move on to the next day.");
+	}
+	
 	public void currentDay() {
 		while (!gameOver()) {
-			System.out.println("Day " + day + "/" + gameDuration);
-			System.out.println("What do you want to do?");
-			System.out.println("1. View the status of a crew member.");
-			System.out.println("2. View the status of the spaceship.");
-			System.out.println("3. Visit the nearest outpost.");
-			System.out.println("4. Perform a crew member action.");
-			System.out.println("5. Move on to the next day.");
+			printMainOptions();
 			choice = in.nextInt();
 			switch(choice) {
 			case 1:
@@ -230,7 +233,7 @@ public class GameEnvironment {
 		} 
 	}
 	
-	public void chooseAction(CrewMember member) {
+	public void printCrewMemberActions() {
 		System.out.println("What action to perform?");
 		System.out.println("1. Eat Food.");
 		System.out.println("2. Apply medical item.");
@@ -239,6 +242,23 @@ public class GameEnvironment {
 		System.out.println("5. Search the current planet" + "(" + crew.getCurrentLocation() +") for missing parts.");
 		System.out.println("6. Pilot the ship to a new planet.");
 		System.out.println("7. Cancel.");
+	}
+	
+	public CrewMember selectOtherCrewMember(CrewMember member) {
+		CrewMember otherCrewMember;
+		do {
+			otherCrewMember = chooseCrewMember();
+			if (otherCrewMember == member) {
+				System.out.println("You can't select the same crew member");
+			} else if (!otherCrewMember.isAvailable()) {
+				System.out.println(otherCrewMember.getName() + " has no more actions left, please choose another.");
+			}
+		} while (!otherCrewMember.isAvailable() || member == otherCrewMember);
+		return otherCrewMember;
+	}
+	
+	public void chooseAction(CrewMember member) {
+		printCrewMemberActions();
 		choice = in.nextInt();
 		switch(choice) {
 		case 1:
@@ -260,15 +280,7 @@ public class GameEnvironment {
 			break;
 		case 6:
 			System.out.println("Requires another crew member to pilot the ship");
-			CrewMember otherCrewMember;
-			do {
-				otherCrewMember = chooseCrewMember();
-				if (otherCrewMember == member) {
-					System.out.println("You can't select the same crew member");
-				} else if (!otherCrewMember.isAvailable()) {
-					System.out.println(otherCrewMember.getName() + " has no more actions left, please choose another.");
-				}
-			} while (!otherCrewMember.isAvailable() || member == otherCrewMember);
+			CrewMember otherCrewMember = selectOtherCrewMember(member);
 			Planet chosenPlanet = chooseDestinationPlanet();
 			member.pilot(chosenPlanet ,otherCrewMember, crew);
 			break;
@@ -353,14 +365,10 @@ public class GameEnvironment {
 	public void nextDay() {
 		day++;
 		if (!gameOver()) {
-			
-	
 			for (CrewMember member: crew.getCrewMembers()) {
 				member.setActionsLeft(member.getMaxActions());
 			}
 			generateOutpostsItems();
-			
-			
 			for (CrewMember member: crew.getCrewMembers()) {
 				if (member.isInfected()) {
 					member.setHealth(member.getHealth()-15);
@@ -373,13 +381,11 @@ public class GameEnvironment {
 					}
 				}
 			}
-			
-			randomEvent.occurDay(crew);
+			RandomEvent.occurDay(crew);
 			currentDay();
 		}
 	}
 		
-	
 	
 	public void endGame() {
 		int score = 0;
@@ -412,8 +418,7 @@ public class GameEnvironment {
 		}
 	}
 	
-	public void chooseCrewMemberType() {
-		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
+	public void printCrewMemberTypesOptions()  {
 		System.out.println("There are 6 different types of crew members: ");
 		System.out.println("\t1. Engineer");
 		System.out.println("\t2. place holder"); /* Placeholder crew members, need to decide on them */
@@ -422,6 +427,10 @@ public class GameEnvironment {
 		System.out.println("\t5. place holder");
 		System.out.println("\t6. place holder");
 		System.out.println("Please select a crew member to recruit to your crew.");
+	}
+	
+	public void chooseCrewMemberType() {
+		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
 		input = in.nextLine();
 		parsedInput = Integer.parseInt(input);
 		String selectedCrewMember = "";

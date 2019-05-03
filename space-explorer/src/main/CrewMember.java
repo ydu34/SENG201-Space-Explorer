@@ -126,7 +126,7 @@ public abstract class CrewMember {
 			actionsLeft -= 1;
 			other.actionsLeft -=1;
 			crew.setCurrentLocation(planet);
-			randomEvent.occurPlanet(crew);
+			RandomEvent.occurPlanet(crew);
 			if (!crew.getShip().isDestroyed()) {
 				System.out.println("The crew is now on Planet " + crew.getCurrentLocation() + ".");
 			}
