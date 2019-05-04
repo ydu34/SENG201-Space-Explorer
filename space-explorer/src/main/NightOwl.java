@@ -56,7 +56,7 @@ public class NightOwl extends CrewMember{
 		if (super.getFatigue() + fatigueCost <= super.getMaxFatigue() && super.getHunger() + hungerCost <= super.getMaxHunger()) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 			if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
-				System.out.println(name + " has found a ship piece!");
+				System.out.println(super.getName() + " has found a ship piece!");
 				crew.getCurrentLocation().setShipPieceFound(true);
 				ship.foundPiece();
 			} else if (randomNum >= 20 && randomNum < 35) {
