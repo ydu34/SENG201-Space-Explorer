@@ -1,5 +1,5 @@
 package main;
-
+import java.util.ArrayList;
 /**
  * Represents a NightOwl type crew member.
  */
@@ -45,13 +45,13 @@ public class NightOwl extends CrewMember{
 	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
 		int fatigueCost = 16;
 		int hungerCost = 20;
-		if (fatigue + fatigueCost > maxFatigue) {
-			System.out.println(name + " is too tired to search the planet.");
+		if (super.getFatigue() + fatigueCost > super.getMaxFatigue()) {
+			System.out.println(super.getName() + " is too tired to search the planet.");
 		}
-		if (hunger + hungerCost > maxHunger) {
-			System.out.println(name + " is too hungry to search the planet.");
+		if (super.getHunger() + hungerCost > super.getMaxHunger()) {
+			System.out.println(super.getName() + " is too hungry to search the planet.");
 		}
-		if (fatigue + fatigueCost <= maxFatigue && hunger + hungerCost <= maxHunger) {
+		if (super.getFatigue() + fatigueCost <= super.getMaxFatigue() && super.getHunger() + hungerCost <= super.getMaxHunger()) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 			if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
 				System.out.println(name + " has found a ship piece!");
@@ -60,17 +60,17 @@ public class NightOwl extends CrewMember{
 			} else if (randomNum >= 20 && randomNum < 35) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
 				crew.getMedicalItems().add(medicalItems.get(randomNum));
-				System.out.println(name + " has found a medical item " + medicalItems.get(randomNum) + "!");
+				System.out.println(super.getName() + " has found a medical item " + medicalItems.get(randomNum) + "!");
 			} else if (randomNum >= 35 && randomNum < 50) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
 				crew.getFoodItems().add(foodItems.get(randomNum));
-				System.out.println(name + " has found a food item " + foodItems.get(randomNum) + "!");
+				System.out.println(super.getName() + " has found a food item " + foodItems.get(randomNum) + "!");
 			} else if (randomNum >= 50 && randomNum < 65) {
 				int amount = 50;
 				crew.increaseMoney(amount);
-				System.out.println(name + "has found " + amount + " Coins.");
+				System.out.println(super.getName() + "has found " + amount + " Coins.");
 			} else {
-				System.out.println(name + " has found nothing.");
+				System.out.println(super.getName() + " has found nothing.");
 			}
 			super.setActionsLeft(super.getActionsLeft()-1);
 			super.setFatigue(super.getFatigue()+fatigueCost);

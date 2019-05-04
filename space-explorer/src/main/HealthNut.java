@@ -19,13 +19,13 @@ public class HealthNut extends CrewMember{
 	public void useMedicalItem(MedicalItem item, Crew crew) {
 		health += 10;
 		health += item.getRestoreHealthAmount();
-		if (health > maxHealth) {
-			health = maxHealth;
+		if (super.getHealth() > super.getMaxHealth()) {
+			super.setHealth(super.getMaxHealth());
 		}
-		System.out.println(name + " now has " + health + ".");
+		System.out.println(super.getName() + " now has " + super.getHealth() + ".");
 		if (item.isRemovePlague()) {
-			infected = false;
-			status = "Normal";
+			super.setInfected(false);
+			super.setStatus("Normal");
 		}
 		crew.getMedicalItems().remove(item);
 		super.setActionsLeft(super.getActionsLeft()-1);
