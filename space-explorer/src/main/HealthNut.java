@@ -17,8 +17,8 @@ public class HealthNut extends CrewMember{
 	 * @param crew   A Crew object.
 	 */
 	public void useMedicalItem(MedicalItem item, Crew crew) {
-		health += 10;
-		health += item.getRestoreHealthAmount();
+		super.setHealth(super.getHealth() + 10);
+		super.setHealth(super.getHealth() + item.getRestoreHealthAmount());
 		if (super.getHealth() > super.getMaxHealth()) {
 			super.setHealth(super.getMaxHealth());
 		}
