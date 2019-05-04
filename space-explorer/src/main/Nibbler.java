@@ -19,12 +19,12 @@ public class Nibbler extends CrewMember{
 	public void eat(FoodItem item, Crew crew) {
 		hunger -= 10;
 		hunger -= item.getRestoreHungerAmount();
-		if (hunger < 0) {
-			hunger = 0;
+		if (super.getHunger() < 0) {
+			super.setHunger(0);
 		}
 		crew.getFoodItems().remove(item);
 		super.setActionsLeft(super.getActionsLeft()-1);
-		System.out.println(name + " now has " + hunger + ".");
+		System.out.println(super.getName() + " now has " + super.getHunger() + ".");
 	}
 	
 	/**
