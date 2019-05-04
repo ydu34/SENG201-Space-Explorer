@@ -17,8 +17,8 @@ public class Nibbler extends CrewMember{
 	 * @param crew   A Crew object.
 	 */
 	public void eat(FoodItem item, Crew crew) {
-		hunger -= 10;
-		hunger -= item.getRestoreHungerAmount();
+		super.setHunger(super.getHunger()-10);
+		super.setHunger(super.getHunger()-item.getRestoreHungerAmount());
 		if (super.getHunger() < 0) {
 			super.setHunger(0);
 		}
@@ -33,5 +33,6 @@ public class Nibbler extends CrewMember{
 	public static void description() {
 		System.out.println("Nibbler does not eat a lot." 
 				+ "/nNibbler's hunger level decreases by more when consuming food items");
+	}
 
 }
