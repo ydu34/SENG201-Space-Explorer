@@ -407,6 +407,22 @@ public abstract class CrewMember {
 		this.dead = dead;
 	}
 	
+	/**
+	 * Gets the status of the crew member.
+	 * @return the status of the crew member.
+	 */
+	public String getStatus() {
+		return status;
+	}
+	
+	/**
+	 * Sets the status of the crew member.
+	 * @param status   The status of the crew member.
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 
 	
 }
