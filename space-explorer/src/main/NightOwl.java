@@ -1,5 +1,7 @@
 package main;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  * Represents a NightOwl type crew member.
  */
