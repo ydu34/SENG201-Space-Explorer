@@ -75,9 +75,7 @@ public class GameEnvironment {
 				+ "\nYou will need to find the missing pieces of your spaceship so that you can repair it and get home.");
 	}
 	
-	public void promptGameDuration() {
-		
-	}
+
 	public void gameSetUp() {
 		/* Setting up the game */
 		introMessage();
@@ -313,6 +311,7 @@ public class GameEnvironment {
 		return null;
 	}
 	
+	
 	public FoodItem chooseFoodItem() {
 		int i = 1;
 		ArrayList<FoodItem> foodItemsSet = new ArrayList<FoodItem>(new TreeSet<FoodItem>(crew.getFoodItems()));
@@ -431,7 +430,7 @@ public class GameEnvironment {
 		System.out.println("\t6. Regular");
 		System.out.println("Please select a crew member to recruit to your crew.");
 	}
-	
+
 	public void chooseCrewMemberType() {
 		printCrewMemberTypesOptions();
 		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
