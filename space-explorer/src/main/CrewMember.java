@@ -16,6 +16,7 @@ public abstract class CrewMember {
 	private int maxActions;
 	private boolean infected;
 	private boolean dead; 
+	
 	/**
 	 * Creates a crew member.
 	 * @param name    A string name of the crew member.
@@ -25,8 +26,6 @@ public abstract class CrewMember {
 	 * @param maxFatigue An int number of the maximum fatigue level.
 	 * @param maxActions An int number of the maximum actions.
 	 */
-
-
 	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
@@ -43,13 +42,20 @@ public abstract class CrewMember {
 		this.dead = false;
 	}
 
-
+	/**
+	 * Checks if the crew member is available.
+	 * @return true if the crew member has actions left, false otherwise.
+	 */
 	public boolean isAvailable() {
 		return actionsLeft > 0;
 	}
 	
 	
-	
+	/**
+	 * Consumes food items.
+	 * @param item   A FoodItem object.
+	 * @param crew   A Crew object.
+	 */
 	public void eat(FoodItem item, Crew crew) {
 		hunger -= item.getRestoreHungerAmount();
 		if (hunger < 0) {
@@ -60,6 +66,11 @@ public abstract class CrewMember {
 		System.out.println(name + " now has " + hunger + ".");
 	}
 	
+	/**
+	 * Applies medical items.
+	 * @param item   A MedicalItem object.
+	 * @param crew   A Crew object.
+	 */
 	public void useMedicalItem(MedicalItem item, Crew crew) {
 		health += item.getRestoreHealthAmount();
 		if (health > maxHealth) {
@@ -92,7 +103,7 @@ public abstract class CrewMember {
 	
 	/**
 	 * Repairs the ship.
-	 * @param ship   A ship object.
+	 * @param ship   A Ship object.
 	 */
 	public void repair(Ship ship) {
 		int fatigueCost = 10;
@@ -106,12 +117,17 @@ public abstract class CrewMember {
 				shieldLevel = maxShieldLevel;
 			}
 			actionsLeft-=1;
-			fatigue += 10;
+			fatigue += fatigueCost;
 			System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 		}
 	}
 	
-
+	/**
+	 * Pilots the ship with another chosen crew member.
+	 * @param planet   A Planet object.
+	 * @param other    A CrewMember object.
+	 * @param crew     A Crew object.
+	 */
 	public void pilot(Planet planet, CrewMember other, Crew crew) {
 		int fatigueCost = 10;
 		if (fatigue + fatigueCost> maxFatigue) {
@@ -133,6 +149,14 @@ public abstract class CrewMember {
 		}
 	}
 	
+	/**
+	 * Searches the planet for items.
+	 * @param medicalItems   An ArrayList of medical items.
+	 * @param foodItems      An ArrayList of food items.
+	 * @param crew           A Crew object.
+	 * @param ship           A Ship object.
+	 * 
+	 */
 	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
 		int fatigueCost = 20;
 		int hungerCost = 20;
@@ -236,12 +260,18 @@ public abstract class CrewMember {
 		this.actionsLeft = actionsLeft;
 	}
 
-
+	/**
+	 * Gets the health level.
+	 * @return health level.
+	 */
 	public int getHealth() {
 		return health;
 	}
 
-
+	/**
+	 * Sets the health level.
+	 * @param health  An int of the health level.  
+	 */
 	public void setHealth(int health) {
 		this.health = health;
 		if (health <= 0) {
@@ -249,82 +279,148 @@ public abstract class CrewMember {
 		}
 	}
 
-
+	/**
+	 * Gets the maximum health level.
+	 * @return the maximum health level.
+	 */
 	public int getMaxHealth() {
 		return maxHealth;
 	}
 
-
+	/**
+	 * Sets the maximum health level.
+	 * @param maxHealth   An int of the maximum health level.
+	 */
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
 	}
 
-
+	/**
+	 * Gets the hunger level.
+	 * @return the hunger level.
+	 */
 	public int getHunger() {
 		return hunger;
 	}
 
-
+	/**
+	 * Sets the hunger level.
+	 * @param hunger   An int of the hunger level.
+	 */
 	public void setHunger(int hunger) {
 		this.hunger = hunger;
 	}
 
-
+	/**
+	 * Gets the maximum hunger level.
+	 * @return the maximum hunger level.
+	 */
 	public int getMaxHunger() {
 		return maxHunger;
 	}
 
-
+	/**
+	 * Sets the maximum hunger level.
+	 * @param maxHunger   An int of the maximum hunger level.
+	 */
 	public void setMaxHunger(int maxHunger) {
 		this.maxHunger = maxHunger;
 	}
 
-
+	/**
+	 * Gets the fatigue level.
+	 * @return the fatigue level.
+	 */
 	public int getFatigue() {
 		return fatigue;
 	}
 
-
+	/**
+	 * Sets the fatigue level.
+	 * @param fatigue   An int of the fatigue level.
+	 */
 	public void setFatigue(int fatigue) {
 		this.fatigue = fatigue;
 	}
 
-
+	/**
+	 * Gets the maximum fatigue level.
+	 * @return the maximum fatigue level.
+	 */
 	public int getMaxFatigue() {
 		return maxFatigue;
 	}
 
-
+	/**
+	 * Sets the maximum fatigue level.
+	 * @param maxFatigue   An int of the maximum fatigue level.
+	 */
 	public void setMaxFatigue(int maxFatigue) {
 		this.maxFatigue = maxFatigue;
 	}
 
-
+	/**
+	 * Gets the maximum actions available.
+	 * @return the maximum actions available.
+	 */
 	public int getMaxActions() {
 		return maxActions;
 	}
 
-
+	/**
+	 * Sets the maximum actions available.
+	 * @param maxActions   An int of the maximum actions available.
+	 */
 	public void setMaxActions(int maxActions) {
 		this.maxActions = maxActions;
 	}
-
+	
+	/**
+	 * Checks if the crew member is infected by space plague.
+	 * @return true if the crew member is infected, false otherwise.
+	 */
 	public boolean isInfected() {
 		return infected;
 	}
-
+	
+	/**
+	 * Sets the crew member as infected by space plague.
+	 * @param infected   A boolean expression on whether crew member is infected.
+	 */
 	public void setInfected(boolean infected) {
 		this.infected = infected;
 	}
 
-
+	/**
+	 * Checks if the crew member is dead.
+	 * @return true if the crew member is dead, false otherwise.
+	 */
 	public boolean isDead() {
 		return dead;
 	}
 
-
+	/**
+	 * Sets the crew member to be dead.
+	 * @param dead   A boolean expression on whether the crew member is dead.
+	 */
 	public void setDead(boolean dead) {
 		this.dead = dead;
+	}
+	
+	/**
+	 * Gets the status of the crew member.
+	 * @return the status of the crew member.
+	 */
+	public String getStatus() {
+		return status;
+	}
+	
+	/**
+	 * Sets the status of the crew member.
+	 * @param status   The status of the crew member.
+	 */
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 
