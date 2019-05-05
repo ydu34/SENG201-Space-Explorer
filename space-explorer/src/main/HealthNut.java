@@ -37,6 +37,6 @@ public class HealthNut extends CrewMember{
 	 */
 	public static void description() {
 		System.out.println("HealthNut has a very healthy lifestyle." 
-				+ "/nHealthNut's health level increases by more when consuming medical items");
+				+ "\nHealthNut's health level increases by more when consuming medical items");
 	}
 }

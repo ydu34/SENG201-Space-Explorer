@@ -390,9 +390,9 @@ public class GameEnvironment {
 	public void endGame() {
 		int score = 0;
 		for (CrewMember member: crew.getCrewMembers()) {
-			score += member.getHealth() * 2;
-			score -= member.getFatigue();
-			score -= member.getHunger();
+			score += member.getHealth();
+			score += member.getMaxFatigue() - member.getFatigue();
+			score += member.getMaxHunger() - member.getHunger();
 		}
 		score += ship.getShieldLevel();
 		System.out.println("The game has ended.");
@@ -402,6 +402,9 @@ public class GameEnvironment {
 			score = score * 2;
 		} else {
 			System.out.println("You have failed to find all the pieces.");
+		}
+		if (score < 0) {
+			score = 0;
 		}
 		System.out.println("Your score for completing the game: " + score + ".");
 		
@@ -421,15 +424,16 @@ public class GameEnvironment {
 	public void printCrewMemberTypesOptions()  {
 		System.out.println("There are 6 different types of crew members: ");
 		System.out.println("\t1. Engineer");
-		System.out.println("\t2. place holder"); /* Placeholder crew members, need to decide on them */
-		System.out.println("\t3. place holder");
-		System.out.println("\t4. place holder");
-		System.out.println("\t5. place holder");
-		System.out.println("\t6. place holder");
+		System.out.println("\t2. HealthNut"); 
+		System.out.println("\t3. Nibbler");
+		System.out.println("\t4. NightOwl");
+		System.out.println("\t5. Protected");
+		System.out.println("\t6. Regular");
 		System.out.println("Please select a crew member to recruit to your crew.");
 	}
 	
 	public void chooseCrewMemberType() {
+		printCrewMemberTypesOptions();
 		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
 		input = in.nextLine();
 		parsedInput = Integer.parseInt(input);
@@ -440,24 +444,24 @@ public class GameEnvironment {
 			Engineer.description();
 			break;
 		case 2:
-			selectedCrewMember = "Placeholder";
-			System.out.println("Placeholder");
+			selectedCrewMember = "HealthNut";
+			HealthNut.description();
 			break;
 		case 3:
-			selectedCrewMember = "Placeholder";
-			System.out.println("Placeholder");
+			selectedCrewMember = "Nibbler";
+			Nibbler.description();
 			break;
 		case 4:
-			selectedCrewMember = "Placeholder";
-			System.out.println("Placeholder");
+			selectedCrewMember = "NightOwl";
+			NightOwl.description();
 			break;
 		case 5:
-			selectedCrewMember = "Placeholder";
-			System.out.println("Placeholder");
+			selectedCrewMember = "Protected";
+			Protected.description();
 			break;
 		case 6:
-			selectedCrewMember = "Placeholder";
-			System.out.println("Placeholder");
+			selectedCrewMember = "Regular";
+			Regular.description();
 			break;	
 		}
 		System.out.println("Recruit " + selectedCrewMember + "? (Y/N)");
@@ -467,8 +471,25 @@ public class GameEnvironment {
 			System.out.println("Name your crew member: ");
 			input = in.nextLine();
 			String name = input;
-			if (selectedCrewMember == "Engineer") {
+			switch(selectedCrewMember) {
+			case "Engineer":
 				crewMembers.add(new Engineer(name));
+				break;
+			case "HealthNut":
+				crewMembers.add(new HealthNut(name));
+				break;
+			case "Nibbler":
+				crewMembers.add(new Nibbler(name));
+				break;
+			case "NightOwl":
+				crewMembers.add(new NightOwl(name));
+				break;
+			case "Protected":
+				crewMembers.add(new Protected(name));
+				break;
+			case "Regular":
+				crewMembers.add(new Regular(name));
+				break;
 			}
 			break;
 		case("N"):

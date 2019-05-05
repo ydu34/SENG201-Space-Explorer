@@ -32,7 +32,7 @@ public class Nibbler extends CrewMember{
 	 */
 	public static void description() {
 		System.out.println("Nibbler does not eat a lot." 
-				+ "/nNibbler's hunger level decreases by more when consuming food items");
+				+ "\nNibbler's hunger level decreases by more when consuming food items");
 	}
 
 }

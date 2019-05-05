@@ -16,7 +16,7 @@ public class Regular extends CrewMember{
 	 */
 	public static void description() {
 		System.out.println("Regular does not have any special powers."
-				+ "/nRegular has higher hunger and fatigue tolerance levels.");
+				+ "\nRegular has higher hunger and fatigue tolerance levels.");
 	}
 
 }

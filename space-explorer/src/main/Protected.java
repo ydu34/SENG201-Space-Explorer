@@ -24,7 +24,7 @@ public class Protected extends CrewMember{
 	 */
 	public static void description() {
 		System.out.println("Protected has a good immune system."
-				+ "/nProtected can not be infected by to space plague");
+				+ "\nProtected can not be infected by to space plague");
 	}
 
 }
