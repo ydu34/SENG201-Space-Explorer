@@ -57,12 +57,12 @@ public class StartWindow {
 		
 		JButton StartButton = new JButton("Start");
 		StartButton.setFont(new Font("SansSerif", Font.BOLD, 16));
-		StartButton.setBounds(280, 391, 220, 41);
+		StartButton.setBounds(289, 391, 220, 41);
 		frame.getContentPane().add(StartButton);
 		
 		JButton QuitButton = new JButton("Quit");
 		QuitButton.setFont(new Font("SansSerif", Font.BOLD, 16));
-		QuitButton.setBounds(280, 458, 220, 41);
+		QuitButton.setBounds(289, 458, 220, 41);
 		frame.getContentPane().add(QuitButton);
 	}
 }
