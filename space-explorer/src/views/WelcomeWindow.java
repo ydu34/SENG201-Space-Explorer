@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.EventQueue;
+import main.GameEnvironment;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,28 +13,23 @@ import javax.swing.SwingConstants;
 public class WelcomeWindow {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					WelcomeWindow window = new WelcomeWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEnvironment game;
 
 	/**
 	 * Create the application.
 	 */
-	public WelcomeWindow() {
+	public WelcomeWindow(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 
 	/**

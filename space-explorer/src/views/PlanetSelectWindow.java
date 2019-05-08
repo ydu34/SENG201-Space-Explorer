@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.EventQueue;
+import main.GameEnvironment;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
@@ -12,28 +13,23 @@ import javax.swing.JComboBox;
 public class PlanetSelectWindow {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PlanetSelectWindow window = new PlanetSelectWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEnvironment game;
 
 	/**
 	 * Create the application.
 	 */
-	public PlanetSelectWindow() {
+	public PlanetSelectWindow(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 
 	/**
