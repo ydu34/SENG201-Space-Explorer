@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 
-public class FatigueWindow {
+public class FatiguePopUp {
 
 	private JFrame frame;
 
@@ -17,7 +17,7 @@ public class FatigueWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FatigueWindow window = new FatigueWindow();
+					FatiguePopUp window = new FatiguePopUp();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -29,7 +29,7 @@ public class FatigueWindow {
 	/**
 	 * Create the application.
 	 */
-	public FatigueWindow() {
+	public FatiguePopUp() {
 		initialize();
 	}
 

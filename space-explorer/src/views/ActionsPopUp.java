@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
-public class ActionsWindow {
+public class ActionsPopUp {
 
 	private JFrame frame;
 
@@ -21,7 +21,7 @@ public class ActionsWindow {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ActionsWindow window = new ActionsWindow();
+					ActionsPopUp window = new ActionsPopUp();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -33,7 +33,7 @@ public class ActionsWindow {
 	/**
 	 * Create the application.
 	 */
-	public ActionsWindow() {
+	public ActionsPopUp() {
 		initialize();
 	}
 
