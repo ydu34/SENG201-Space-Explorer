@@ -1,7 +1,7 @@
 package views;
 
 import java.awt.EventQueue;
-
+import main.GameEnvironment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -17,28 +17,23 @@ public class CreateCrewWindow {
 
 	private JFrame frame;
 	private JTextField textField;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CreateCrewWindow window = new CreateCrewWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEnvironment game;
 
 	/**
 	 * Create the application.
 	 */
-	public CreateCrewWindow() {
+	public CreateCrewWindow(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 
 	/**

@@ -1,7 +1,7 @@
 package views;
 
 import java.awt.EventQueue;
-
+import main.GameEnvironment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -13,28 +13,23 @@ import javax.swing.JPanel;
 public class OutpostWindow {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OutpostWindow window = new OutpostWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEnvironment game;
 
 	/**
 	 * Create the application.
 	 */
-	public OutpostWindow() {
+	public OutpostWindow(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
+	}
+
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 
 	/**
@@ -55,10 +50,10 @@ public class OutpostWindow {
 		ItemsCombo.setBounds(73, 161, 283, 24);
 		frame.getContentPane().add(ItemsCombo);
 		
-		JButton InventoryButton = new JButton("View Inventory");
-		InventoryButton.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
-		InventoryButton.setBounds(73, 501, 180, 25);
-		frame.getContentPane().add(InventoryButton);
+		JButton btnInventory = new JButton("View Inventory");
+		btnInventory.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
+		btnInventory.setBounds(73, 501, 180, 25);
+		frame.getContentPane().add(btnInventory);
 		
 		JLabel lblItemsAvailableIn = new JLabel("See what is available in this outpost!");
 		lblItemsAvailableIn.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 16));
@@ -73,10 +68,10 @@ public class OutpostWindow {
 		lblItemInfo.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 16));
 		panel.add(lblItemInfo);
 		
-		JButton PurchaseButton = new JButton("PURCHASE");
-		PurchaseButton.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
-		PurchaseButton.setBounds(73, 317, 283, 49);
-		frame.getContentPane().add(PurchaseButton);
+		JButton btnPurchase = new JButton("PURCHASE");
+		btnPurchase.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
+		btnPurchase.setBounds(73, 317, 283, 49);
+		frame.getContentPane().add(btnPurchase);
 		
 		JButton btnBackToShip = new JButton("Back to Ship");
 		btnBackToShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));

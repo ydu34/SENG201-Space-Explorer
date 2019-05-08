@@ -1,4 +1,5 @@
 package views;
+import main.GameEnvironment;
 
 import java.awt.EventQueue;
 
@@ -12,28 +13,24 @@ import javax.swing.JLabel;
 public class StartWindow {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StartWindow window = new StartWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEnvironment game;
+	
 
 	/**
 	 * Create the application.
 	 */
-	public StartWindow() {
+	public StartWindow(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 
 	/**

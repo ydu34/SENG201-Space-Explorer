@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.EventQueue;
+import main.GameEnvironment;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
@@ -14,29 +15,25 @@ import java.awt.event.ActionEvent;
 public class CrewMemberWindow {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CrewMemberWindow window = new CrewMemberWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEnvironment game;
 
 	/**
 	 * Create the application.
 	 */
-	public CrewMemberWindow() {
+	public CrewMemberWindow(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
 	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
+	}
+
 
 	/**
 	 * Initialize the contents of the frame.

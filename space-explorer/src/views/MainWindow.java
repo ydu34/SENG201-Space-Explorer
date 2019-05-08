@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.EventQueue;
+import main.GameEnvironment;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,28 +15,23 @@ import java.awt.SystemColor;
 public class MainWindow {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MainWindow window = new MainWindow();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private GameEnvironment game;
 
 	/**
 	 * Create the application.
 	 */
-	public MainWindow() {
+	public MainWindow(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeSetupScreen(this);
 	}
 
 	/**
@@ -66,36 +62,36 @@ public class MainWindow {
 		lblPiecesFound.setBounds(533, 200, 132, 15);
 		frame.getContentPane().add(lblPiecesFound);
 		
-		JButton ShipStatusButton = new JButton("View ship status");
-		ShipStatusButton.setForeground(new Color(160, 82, 45));
-		ShipStatusButton.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		ShipStatusButton.addActionListener(new ActionListener() {
+		JButton btnShipStatus = new JButton("View ship status");
+		btnShipStatus.setForeground(new Color(160, 82, 45));
+		btnShipStatus.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnShipStatus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		ShipStatusButton.setBounds(416, 367, 220, 35);
-		frame.getContentPane().add(ShipStatusButton);
+		btnShipStatus.setBounds(416, 367, 220, 35);
+		frame.getContentPane().add(btnShipStatus);
 		
-		JButton OutpostButton = new JButton("Visit outpost");
-		OutpostButton.setForeground(new Color(0, 100, 0));
-		OutpostButton.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		OutpostButton.addActionListener(new ActionListener() {
+		JButton btnOutpost = new JButton("Visit outpost");
+		btnOutpost.setForeground(new Color(0, 100, 0));
+		btnOutpost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnOutpost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		OutpostButton.setBounds(137, 367, 220, 35);
-		frame.getContentPane().add(OutpostButton);
+		btnOutpost.setBounds(137, 367, 220, 35);
+		frame.getContentPane().add(btnOutpost);
 		
-		JButton ActionsButton = new JButton("Perform actions");
-		ActionsButton.setForeground(new Color(178, 34, 34));
-		ActionsButton.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		ActionsButton.setBounds(137, 432, 220, 35);
-		frame.getContentPane().add(ActionsButton);
+		JButton btnActions = new JButton("Perform actions");
+		btnActions.setForeground(new Color(178, 34, 34));
+		btnActions.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnActions.setBounds(137, 432, 220, 35);
+		frame.getContentPane().add(btnActions);
 		
-		JButton NextDayButton = new JButton("Next day");
-		NextDayButton.setForeground(new Color(240, 128, 128));
-		NextDayButton.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		NextDayButton.setBounds(416, 432, 220, 35);
-		frame.getContentPane().add(NextDayButton);
+		JButton btnNextDay = new JButton("Next day");
+		btnNextDay.setForeground(new Color(240, 128, 128));
+		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnNextDay.setBounds(416, 432, 220, 35);
+		frame.getContentPane().add(btnNextDay);
 	}
 }
