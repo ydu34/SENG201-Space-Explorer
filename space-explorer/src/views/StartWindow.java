@@ -30,7 +30,7 @@ public class StartWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeStartWindow(this);
 	}
 
 	/**

@@ -24,7 +24,7 @@ public class InstructionsWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeInstructionsWindow(this);
 	}
 
 	/**

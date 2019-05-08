@@ -27,7 +27,7 @@ public class EndWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeEndWindow(this);
 	}
 
 

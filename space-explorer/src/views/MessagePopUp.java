@@ -26,7 +26,7 @@ public class MessagePopUp {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeMessagePopUp(this);
 	}
 	
 

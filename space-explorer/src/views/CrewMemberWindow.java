@@ -31,7 +31,7 @@ public class CrewMemberWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeCrewMemberWindow(this);
 	}
 
 

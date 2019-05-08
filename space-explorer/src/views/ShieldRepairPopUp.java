@@ -29,7 +29,7 @@ public class ShieldRepairPopUp {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeShieldRepairPopUp(this);
 	}
 
 	/**

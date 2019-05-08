@@ -29,7 +29,7 @@ public class OutpostWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeOutpostWindow(this);
 	}
 
 	/**

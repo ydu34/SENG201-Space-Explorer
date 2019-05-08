@@ -28,7 +28,7 @@ public class FatiguePopUp {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeFatiguePopUp(this);
 	}
 
 	/**

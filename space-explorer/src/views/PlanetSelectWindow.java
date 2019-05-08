@@ -29,7 +29,7 @@ public class PlanetSelectWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closePlanetSelectWindow(this);
 	}
 
 	/**

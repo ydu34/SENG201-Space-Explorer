@@ -22,8 +22,18 @@ public class GameEnvironment {
 	private int day = 1;
 	
 	
+	public void launchStartWindow() {
+		StartWindow startWindow = new StartWindow(this);
+	}
+	
+	public void closeStartWindow(StartWindow startWindow) {
+		startWindow.closeWindow();
+	}
+	
+	
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
+		game.launchStartWindow();
 		game.initMedItems();
 		game.initFoodItems();
 		game.initPlanets();

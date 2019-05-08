@@ -31,7 +31,7 @@ public class MainWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeMainWindow(this);
 	}
 
 	/**

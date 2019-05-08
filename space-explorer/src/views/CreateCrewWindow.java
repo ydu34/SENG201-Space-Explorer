@@ -33,7 +33,7 @@ public class CreateCrewWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeCreateCrewWindow(this);
 	}
 
 	/**

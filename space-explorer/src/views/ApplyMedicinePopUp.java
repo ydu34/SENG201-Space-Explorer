@@ -29,7 +29,7 @@ public class ApplyMedicinePopUp {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.ApplyMedicinePopUp(this);
 	}
 
 	/**
