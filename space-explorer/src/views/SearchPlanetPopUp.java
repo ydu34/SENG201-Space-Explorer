@@ -5,19 +5,20 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
-import javax.swing.JLabel;
 
-public class FatiguePopUp {
+public class SearchPlanetPopUp {
 
 	private JFrame frame;
 	private GameEnvironment game;
 
+
 	/**
 	 * Create the application.
 	 */
-	public FatiguePopUp(GameEnvironent incomingGame) {
+	public SearchPlanetPopUp(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
 		frame.setVisible(true);
@@ -28,7 +29,7 @@ public class FatiguePopUp {
 	}
 	
 	public void finishedWindow() {
-		game.closeSetupScreen(this);
+		game.closeSearchPlanetPopUp(this);
 	}
 
 	/**
@@ -41,22 +42,22 @@ public class FatiguePopUp {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(47, 58, 229, 207);
-		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		panel.setBounds(63, 26, 200, 200);
+		frame.getContentPane().add(panel);
 		
-		JLabel lblFatigueRestoreInfo = new JLabel("Fatigue restore info");
-		lblFatigueRestoreInfo.setBounds(12, 12, 205, 30);
-		panel.add(lblFatigueRestoreInfo);
+		JLabel lblPlanetHasTransporter = new JLabel("Planet has transporter info\n");
+		lblPlanetHasTransporter.setBounds(0, 12, 205, 30);
+		panel.add(lblPlanetHasTransporter);
 		
-		JButton btnSleep = new JButton("SLEEP");
-		btnSleep.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnSleep.setBounds(12, 321, 90, 25);
-		frame.getContentPane().add(btnSleep);
+		JButton btnSearch = new JButton("SEARCH PLANET");
+		btnSearch.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnSearch.setBounds(63, 256, 209, 25);
+		frame.getContentPane().add(btnSearch);
 		
 		JButton button_1 = new JButton("Let's do something else!");
 		button_1.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 11));
-		button_1.setBounds(137, 323, 160, 25);
+		button_1.setBounds(151, 336, 160, 25);
 		frame.getContentPane().add(button_1);
 	}
 }

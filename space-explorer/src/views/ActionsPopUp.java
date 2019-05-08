@@ -1,5 +1,6 @@
 package views;
 
+import main.GameEnvironment;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,28 +14,22 @@ import javax.swing.SwingConstants;
 public class ActionsPopUp {
 
 	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ActionsPopUp window = new ActionsPopUp();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private GameEnvironment game;
 	/**
 	 * Create the application.
 	 */
-	public ActionsPopUp() {
+	public ActionsPopUp(GameEnvironment incomingGame) {
+		game = incomingGame;
 		initialize();
+		frame.setVisible(true);
+	}
+	
+	public void closeWindow() {
+		frame.dispose();
+	}
+	
+	public void finishedWindow() {
+		game.closeActionsPopUp(this);
 	}
 
 	/**
