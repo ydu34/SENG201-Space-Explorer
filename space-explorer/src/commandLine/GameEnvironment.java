@@ -1,6 +1,6 @@
-package main;
+package commandLine;
 
-import views.*;
+import main.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -22,75 +22,7 @@ public class GameEnvironment {
 	private int currentDay = 1;
 	private String[] planetNames = {"Asauzuno","Uchiliv","Yangosie","Putrilia","Emia","Doyama","Bruxotune","Divunus","Coth LTS4"};
 	
-	public void launchStartWindow() {
-		StartWindow startWindow = new StartWindow(this);
-	}
 	
-	public void closeStartWindow(StartWindow startWindow) {
-		startWindow.closeWindow();
-		launchInstructionsWindow();
-	}
-	
-	public void launchSetUpWindow() {
-		SetupWindow setupWindow = new SetupWindow(this);
-	}
-	
-	public void closeSetupWindow(SetupWindow setupWindow) {
-		setupWindow.closeWindow();
-	}
-	
-	public void launchInstructionsWindow() {
-		InstructionsWindow instructionsWindow = new InstructionsWindow(this);
-	}
-	
-	public void closeInstructionsWindow(InstructionsWindow instructionsWindow) {
-		instructionsWindow.closeWindow();
-		launchSetUpWindow();
-	}
-	
-	public void launchCreateCrewWindow() {
-		CreateCrewWindow createCrewWindow = new CreateCrewWindow(this);
-	}
-	
-	public void closeCreateCrewWindow(CreateCrewWindow createCrewWindow) {
-		createCrewWindow.closeWindow();
-		launchStartingPlanetWindow();
-	}
-	
-	public void launchStartingPlanetWindow() {
-		StartingPlanetWindow startingPlanetWindow = new StartingPlanetWindow(this);
-	}
-	
-	public void closeStartingPlanetWindow(StartingPlanetWindow startingPlanetWindow) {
-		startingPlanetWindow.closeWindow();
-		launchMainWindow();
-	}
-	
-	public void launchMainWindow() {
-		MainWindow mainWindow = new MainWindow(this);
-	}
-	
-	public void closeMainWindow(MainWindow mainWindow) {
-		mainWindow.closeWindow();
-	}
-	
-	public void launchOutpostWindow() {
-		OutpostWindow outpostWindow = new OutpostWindow(this);
-	}
-	
-	public void closeOutpostWindow(OutpostWindow outpostWindow) {
-		outpostWindow.closeWindow();
-		launchMainWindow();
-	}
-	
-	public void launchCrewMemberWindow() {
-		CrewMemberWindow crewMemberWindow = new CrewMemberWindow(this);
-	}
-	
-	public void closeCrewMemberWindow(CrewMemberWindow crewMemberWindow) {
-		crewMemberWindow.closeWindow();
-		launchMainWindow();
-	}
 	
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
@@ -98,12 +30,9 @@ public class GameEnvironment {
 		game.initFoodItems();
 		game.initPlanets();
 		game.generateOutpostsItems();
-		game.launchStartWindow();
-		/*
 		game.gameSetUp();
 		game.mainGame();
 		game.endGame();
-		*/
 	}
 	
 	public void initMedItems() {
@@ -147,6 +76,7 @@ public class GameEnvironment {
 				+ "\nYou will need to find the missing pieces of your spaceship so that you can repair it and get home.");
 	}
 	
+
 	public void gameSetUp() {
 		/* Setting up the game */
 		introMessage();
@@ -270,6 +200,7 @@ public class GameEnvironment {
 			currentDay();
 		}
 	}
+	
 	
 	public void performAction() {
 		CrewMember chosenCrewMember = chooseCrewMember();
@@ -476,7 +407,7 @@ public class GameEnvironment {
 			score = 0;
 		}
 		System.out.println("Your score for completing the game: " + score + ".");
-		
+		System.exit(0);
 	}
 	
 	public void createCrew() {
@@ -647,5 +578,9 @@ public class GameEnvironment {
 	public void setPlanetNames(String[] planetNames) {
 		this.planetNames = planetNames;
 	}
+
+	
+	
+	
 	
 }
