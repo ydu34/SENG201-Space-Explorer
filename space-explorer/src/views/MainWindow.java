@@ -9,7 +9,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import java.awt.Color;
 import java.awt.SystemColor;
 
 public class MainWindow {
@@ -54,44 +53,49 @@ public class MainWindow {
 		
 		JLabel lblDay = new JLabel("Day:");
 		lblDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblDay.setBounds(533, 146, 66, 15);
+		lblDay.setBounds(533, 141, 126, 29);
 		frame.getContentPane().add(lblDay);
 		
 		JLabel lblPiecesFound = new JLabel("Pieces found:");
 		lblPiecesFound.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblPiecesFound.setBounds(533, 200, 132, 15);
+		lblPiecesFound.setBounds(533, 200, 140, 24);
 		frame.getContentPane().add(lblPiecesFound);
 		
-		JButton btnShipStatus = new JButton("View ship status");
-		btnShipStatus.setForeground(new Color(160, 82, 45));
-		btnShipStatus.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnShipStatus.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnShipStatus.setBounds(416, 367, 220, 35);
-		frame.getContentPane().add(btnShipStatus);
-		
 		JButton btnOutpost = new JButton("Visit outpost");
-		btnOutpost.setForeground(new Color(0, 100, 0));
 		btnOutpost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
 		btnOutpost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				finishedWindow();
+				game.launchOutpostWindow();
 			}
 		});
-		btnOutpost.setBounds(137, 367, 220, 35);
+		btnOutpost.setBounds(35, 432, 220, 35);
 		frame.getContentPane().add(btnOutpost);
 		
-		JButton btnActions = new JButton("Perform actions");
-		btnActions.setForeground(new Color(178, 34, 34));
-		btnActions.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnActions.setBounds(137, 432, 220, 35);
-		frame.getContentPane().add(btnActions);
+		JButton btnCrew = new JButton("View Crew");
+		btnCrew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+				game.launchCrewMemberWindow();
+			}
+		});
+		btnCrew.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnCrew.setBounds(279, 432, 220, 35);
+		frame.getContentPane().add(btnCrew);
 		
 		JButton btnNextDay = new JButton("Next day");
-		btnNextDay.setForeground(new Color(240, 128, 128));
 		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnNextDay.setBounds(416, 432, 220, 35);
+		btnNextDay.setBounds(527, 432, 220, 35);
 		frame.getContentPane().add(btnNextDay);
+		
+		JLabel lblShip = new JLabel("Ship: \r\n");
+		lblShip.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblShip.setBounds(79, 146, 109, 24);
+		frame.getContentPane().add(lblShip);
+		
+		JLabel lblShieldLevel = new JLabel("Shield Level:");
+		lblShieldLevel.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblShieldLevel.setBounds(79, 204, 140, 33);
+		frame.getContentPane().add(lblShieldLevel);
 	}
 }

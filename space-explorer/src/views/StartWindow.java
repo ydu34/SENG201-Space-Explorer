@@ -1,14 +1,14 @@
 package views;
+
 import main.GameEnvironment;
-
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Font;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class StartWindow {
 
@@ -43,23 +43,34 @@ public class StartWindow {
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(12, 12, 774, 325);
+		panel.setBounds(7, 7, 772, 325);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("WELCOME TO \nSPACE EXPLORER!");
+		JLabel lblNewLabel = new JLabel("SPACE EXPLORERS");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 40));
-		lblNewLabel.setBounds(12, 12, 750, 301);
+		lblNewLabel.setBounds(10, 10, 750, 301);
 		panel.add(lblNewLabel);
 		
-		JButton StartButton = new JButton("Start");
-		StartButton.setFont(new Font("SansSerif", Font.BOLD, 16));
-		StartButton.setBounds(289, 391, 220, 41);
-		frame.getContentPane().add(StartButton);
+		JButton btnStart = new JButton("Start");
+		btnStart.setBounds(299, 381, 190, 41);
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
+		btnStart.setFont(new Font("SansSerif", Font.BOLD, 16));
+		frame.getContentPane().add(btnStart);
 		
-		JButton QuitButton = new JButton("Quit");
-		QuitButton.setFont(new Font("SansSerif", Font.BOLD, 16));
-		QuitButton.setBounds(289, 458, 220, 41);
-		frame.getContentPane().add(QuitButton);
+		JButton btnQuit = new JButton("Quit");
+		btnQuit.setBounds(299, 453, 188, 41);
+		btnQuit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		btnQuit.setFont(new Font("SansSerif", Font.BOLD, 16));
+		frame.getContentPane().add(btnQuit);
 	}
 }

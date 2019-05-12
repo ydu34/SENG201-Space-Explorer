@@ -28,19 +28,81 @@ public class GameEnvironment {
 	
 	public void closeStartWindow(StartWindow startWindow) {
 		startWindow.closeWindow();
+		launchInstructionsWindow();
 	}
+	
+	public void launchSetUpWindow() {
+		SetupWindow setupWindow = new SetupWindow(this);
+	}
+	
+	public void closeSetupWindow(SetupWindow setupWindow) {
+		setupWindow.closeWindow();
+		launchCreateCrewWindow();
+	}
+	
+	public void launchInstructionsWindow() {
+		InstructionsWindow instructionsWindow = new InstructionsWindow(this);
+	}
+	
+	public void closeInstructionsWindow(InstructionsWindow instructionsWindow) {
+		instructionsWindow.closeWindow();
+		launchSetUpWindow();
+	}
+	
+	public void launchCreateCrewWindow() {
+		CreateCrewWindow createCrewWindow = new CreateCrewWindow(this);
+	}
+	
+	public void closeCreateCrewWindow(CreateCrewWindow createCrewWindow) {
+		createCrewWindow.closeWindow();
+		launchMainWindow();
+	}
+	
+	public void launchMainWindow() {
+		MainWindow mainWindow = new MainWindow(this);
+	}
+	
+	public void closeMainWindow(MainWindow mainWindow) {
+		mainWindow.closeWindow();
+	}
+	
+	public void launchOutpostWindow() {
+		OutpostWindow outpostWindow = new OutpostWindow(this);
+	}
+	
+	public void closeOutpostWindow(OutpostWindow outpostWindow) {
+		outpostWindow.closeWindow();
+		launchMainWindow();
+	}
+	
+	public void launchCrewMemberWindow() {
+		CrewMemberWindow crewMemberWindow = new CrewMemberWindow(this);
+	}
+	
+	public void closeCrewMemberWindow(CrewMemberWindow crewMemberWindow) {
+		crewMemberWindow.closeWindow();
+		launchMainWindow();
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
-		game.launchStartWindow();
 		game.initMedItems();
 		game.initFoodItems();
 		game.initPlanets();
 		game.generateOutpostsItems();
+		game.launchStartWindow();
+		/*
 		game.gameSetUp();
 		game.mainGame();
 		game.endGame();
+		*/
 	}
 	
 	public void initMedItems() {
@@ -579,6 +641,8 @@ public class GameEnvironment {
 	public void setDay(int day) {
 		this.day = day;
 	}
+
+	
 	
 	
 	

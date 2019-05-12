@@ -82,6 +82,11 @@ public class CrewMemberWindow {
 		frame.getContentPane().add(btnPerformAction);
 		
 		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
 		btnBack.setBounds(52, 504, 202, 25);
 		frame.getContentPane().add(btnBack);
 	}

@@ -1,9 +1,12 @@
 package views;
 
-import java.awt.EventQueue;
+
 import main.GameEnvironment;
 
 import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class InstructionsWindow {
 
@@ -35,5 +38,14 @@ public class InstructionsWindow {
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		JButton btnNewButton = new JButton("Next");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
+		btnNewButton.setBounds(256, 470, 273, 65);
+		frame.getContentPane().add(btnNewButton);
 	}
 }

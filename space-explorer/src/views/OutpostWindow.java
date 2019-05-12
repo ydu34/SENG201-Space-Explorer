@@ -9,6 +9,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JPanel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class OutpostWindow {
 
@@ -74,6 +76,11 @@ public class OutpostWindow {
 		frame.getContentPane().add(btnPurchase);
 		
 		JButton btnBackToShip = new JButton("Back to Ship");
+		btnBackToShip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
 		btnBackToShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
 		btnBackToShip.setBounds(571, 501, 180, 25);
 		frame.getContentPane().add(btnBackToShip);

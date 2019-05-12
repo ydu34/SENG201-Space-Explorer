@@ -1,18 +1,17 @@
 package views;
 
-import java.awt.EventQueue;
 import main.GameEnvironment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JScrollBar;
 import javax.swing.JSlider;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.SwingConstants;
-import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CreateCrewWindow {
 
@@ -42,8 +41,6 @@ public class CreateCrewWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(245, 245, 220));
-		frame.setBackground(new Color(176, 196, 222));
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -63,7 +60,6 @@ public class CreateCrewWindow {
 		frame.getContentPane().add(btnNewButton);
 		
 		JLabel lblSelectNumberOf = new JLabel("Number of Crew Members:");
-		lblSelectNumberOf.setForeground(new Color(32, 32, 32));
 		lblSelectNumberOf.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
 		lblSelectNumberOf.setBounds(46, 88, 337, 48);
 		frame.getContentPane().add(lblSelectNumberOf);
@@ -79,7 +75,6 @@ public class CreateCrewWindow {
 		frame.getContentPane().add(slider);
 		
 		JButton btnCrewMember = new JButton("Crew Member2");
-		btnCrewMember.setBackground(new Color(176, 196, 222));
 		btnCrewMember.setBounds(262, 158, 175, 150);
 		frame.getContentPane().add(btnCrewMember);
 		
@@ -104,8 +99,11 @@ public class CreateCrewWindow {
 		panelCrewMember.add(label);
 		
 		JButton button_3 = new JButton("Accept");
-		button_3.setForeground(Color.BLACK);
-		button_3.setBackground(Color.LIGHT_GRAY);
+		button_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+			}
+		});
 		button_3.setBounds(624, 506, 114, 25);
 		frame.getContentPane().add(button_3);
 	}
