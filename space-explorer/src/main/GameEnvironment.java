@@ -7,6 +7,7 @@ import java.util.Scanner;
 import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
 
+
 public class GameEnvironment {
 	private Scanner in = new Scanner(System.in);
 	private Scanner enter = new Scanner(System.in);
@@ -467,7 +468,6 @@ public class GameEnvironment {
 		}
 	}
 		
-	
 	public void endGame() {
 		int score = 0;
 		for (CrewMember member: crew.getCrewMembers()) {
