@@ -1,4 +1,6 @@
 package views;
+
+import main.CrewMember;
 import main.GameEnvironment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,15 +21,23 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ChangeEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
 
 public class CreateCrewWindow {
 
 	private JFrame frame;
 	private JTextField textFieldShipName;
 	private GameEnvironment game;
-	private JTextField textField;
+	private JTextField tfCMName;
+	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>();
+	private JTextField lblHealthValue;
+	private JTextField lblFatigueValue;
+	private JTextField lblHungerValue;
+	private JComboBox comboBox;
 
 	/**
 	 * Create the application.
@@ -62,6 +72,82 @@ public class CreateCrewWindow {
 				finishedWindow();
 			}
 		});
+		
+		JPanel panelCrewMember = new JPanel();
+		panelCrewMember.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelCrewMember.setBounds(410, 158, 328, 329);
+		frame.getContentPane().add(panelCrewMember);
+		panelCrewMember.setLayout(null);
+		
+		JLabel lblName = new JLabel("Name:");
+		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblName.setBounds(23, 10, 78, 32);
+		panelCrewMember.add(lblName);
+		
+		JLabel lblQuirk = new JLabel("Class:");
+		lblQuirk.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblQuirk.setBounds(23, 52, 78, 32);
+		panelCrewMember.add(lblQuirk);
+		
+		tfCMName = new JTextField("Bill");
+		tfCMName.setBounds(109, 10, 207, 32);
+		panelCrewMember.add(tfCMName);
+		tfCMName.setColumns(10);
+		
+		JLabel lblHealth = new JLabel("Health:");
+		lblHealth.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblHealth.setBounds(23, 94, 78, 32);
+		panelCrewMember.add(lblHealth);
+		
+		JLabel lblHunger = new JLabel("Hunger:\r\n");
+		lblHunger.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblHunger.setBounds(23, 136, 78, 32);
+		panelCrewMember.add(lblHunger);
+		
+		JLabel lblFatigue = new JLabel("Fatigue:");
+		lblFatigue.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblFatigue.setBounds(23, 178, 78, 32);
+		panelCrewMember.add(lblFatigue);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setBounds(23, 220, 293, 96);
+		panelCrewMember.add(textArea);
+		
+		
+		CrewMember CM1 = new CrewMember("Bill", "Engineer");
+		CrewMember CM2 = new CrewMember("Carole", "Health Nut");
+		CrewMember CM3 = new CrewMember("Noah", "Nibbler");
+		CrewMember CM4 = new CrewMember("Kim", "Night Owl");
+		
+		
+		JComboBox comboBox = new JComboBox(game.getCrewMemberTypes().toArray());
+		CrewMember currentType = (CrewMember) comboBox.getSelectedItem();
+		
+		JLabel lblHealthValue = new JLabel(currentType.getHealth() + "/" + currentType.getMaxHealth());
+		lblHealthValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblHealthValue.setBounds(109, 96, 207, 32);
+		panelCrewMember.add(lblHealthValue);
+		
+		JLabel lblHungerValue = new JLabel(currentType.getHunger() + "/" + currentType.getMaxHunger());
+		lblHungerValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblHungerValue.setBounds(109, 138, 207, 32);
+		panelCrewMember.add(lblHungerValue);
+		
+		JLabel lblFatigueValue = new JLabel(currentType.getFatigue() + "/" + currentType.getMaxFatigue());
+		lblFatigueValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblFatigueValue.setBounds(109, 178, 207, 32);
+		panelCrewMember.add(lblFatigueValue);
+		
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CrewMember currentType = (CrewMember) comboBox.getSelectedItem();
+				lblHealthValue.setText(currentType.getHealth() + "/" + currentType.getMaxHealth());
+				lblHungerValue.setText(currentType.getHunger() + "/" + currentType.getMaxHunger());
+				lblFatigueValue.setText(currentType.getFatigue() + "/" + currentType.getMaxFatigue());
+			}
+		});
+		comboBox.setBounds(109, 52, 207, 32);
+		panelCrewMember.add(comboBox);
 		btnNext.setBounds(624, 506, 114, 25);
 		frame.getContentPane().add(btnNext);
 		
@@ -98,42 +184,128 @@ public class CreateCrewWindow {
 				}
 			}
 		});
+
 		
-		JButton btnCM1 = new JButton("Crew Member 1\n");
-		btnCM1.addActionListener(new ActionListener() {
+		
+		JToggleButton tglbtnCM1 = new JToggleButton("1", true);
+		tglbtnCM1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				resetToggleButtons();
+				tglbtnCM1.setSelected(true);
+				tfCMName.setText(CM1.getName());
+				switch(CM1.getType()) {
+				case "Engineer" :
+					comboBox.setSelectedIndex(0);
+					break;
+				case "Health Nut":
+					comboBox.setSelectedIndex(1);
+					break;
+				case "Nibbler":
+					comboBox.setSelectedIndex(2);
+					break;
+				case "Night Owl":
+					comboBox.setSelectedIndex(3);
+				case "Protected":
+					comboBox.setSelectedIndex(4);
+				case "Regular":
+					comboBox.setSelectedIndex(5);
+				}
 			}
 		});
-		btnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCM1.setBounds(46, 158, 150, 150);
-		frame.getContentPane().add(btnCM1);
+		tglbtnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnCM1.setBounds(46, 158, 150, 150);
+		frame.getContentPane().add(tglbtnCM1);
+		CrewMemberToggleButtons.add(tglbtnCM1);
 		
-		JButton btnCM2 = new JButton("Crew Member2");
-		btnCM2.addActionListener(new ActionListener() {
+		
+		JToggleButton tglbtnCM2 = new JToggleButton("2");
+		tglbtnCM2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				resetToggleButtons();
+				tglbtnCM2.setSelected(true);
+				tfCMName.setText(CM2.getName());
+				switch(CM2.getType()) {
+				case "Engineer" :
+					comboBox.setSelectedIndex(0);
+					break;
+				case "Health Nut":
+					comboBox.setSelectedIndex(1);
+					break;
+				case "Nibbler":
+					comboBox.setSelectedIndex(2);
+					break;
+				case "Night Owl":
+					comboBox.setSelectedIndex(3);
+				case "Protected":
+					comboBox.setSelectedIndex(4);
+				case "Regular":
+					comboBox.setSelectedIndex(5);
+				}
 			}
 		});
-		btnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCM2.setBounds(225, 158, 150, 150);
-		frame.getContentPane().add(btnCM2);
+		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnCM2.setBounds(225, 158, 150, 150);
+		frame.getContentPane().add(tglbtnCM2);
+		CrewMemberToggleButtons.add(tglbtnCM2);
 		
-		JButton btnCM3 = new JButton("Crew Member 3");
-		btnCM3.addActionListener(new ActionListener() {
+		JToggleButton tglbtnCM3 = new JToggleButton("3");
+		tglbtnCM3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				resetToggleButtons();
+				tglbtnCM3.setSelected(true);
+				switch(CM3.getType()) {
+				case "Engineer" :
+					comboBox.setSelectedIndex(0);
+					break;
+				case "Health Nut":
+					comboBox.setSelectedIndex(1);
+					break;
+				case "Nibbler":
+					comboBox.setSelectedIndex(2);
+					break;
+				case "Night Owl":
+					comboBox.setSelectedIndex(3);
+				case "Protected":
+					comboBox.setSelectedIndex(4);
+				case "Regular":
+					comboBox.setSelectedIndex(5);
+				}
 			}
 		});
-		btnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCM3.setBounds(46, 337, 150, 150);
-		frame.getContentPane().add(btnCM3);
+		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnCM3.setBounds(46, 337, 150, 150);
+		frame.getContentPane().add(tglbtnCM3);
+		CrewMemberToggleButtons.add(tglbtnCM3);
 		
-		JButton btnCM4 = new JButton("Crew Member 4");
-		btnCM4.addActionListener(new ActionListener() {
+		JToggleButton tglbtnCM4 = new JToggleButton("4");
+		tglbtnCM4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				resetToggleButtons();
+				tglbtnCM4.setSelected(true);
+				switch(CM4.getType()) {
+				case "Engineer" :
+					comboBox.setSelectedIndex(0);
+					break;
+				case "Health Nut":
+					comboBox.setSelectedIndex(1);
+					break;
+				case "Nibbler":
+					comboBox.setSelectedIndex(2);
+					break;
+				case "Night Owl":
+					comboBox.setSelectedIndex(3);
+				case "Protected":
+					comboBox.setSelectedIndex(4);
+				case "Regular":
+					comboBox.setSelectedIndex(5);
+				}
 			}
 		});
-		btnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCM4.setBounds(225, 337, 150, 150);
-		frame.getContentPane().add(btnCM4);
+		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnCM4.setBounds(225, 337, 150, 150);
+		frame.getContentPane().add(tglbtnCM4);
+		CrewMemberToggleButtons.add(tglbtnCM4);
+		
 		
 		JLabel lblSelectNumberOf = new JLabel("Number of Crew Members:");
 		lblSelectNumberOf.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
@@ -143,15 +315,15 @@ public class CreateCrewWindow {
 		JSlider slider = new JSlider();
 		slider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				btnCM3.setEnabled(true);
-				btnCM4.setEnabled(true);
+				tglbtnCM3.setEnabled(true);
+				tglbtnCM4.setEnabled(true);
 				switch(slider.getValue()) {
 				case 2: 
-					btnCM3.setEnabled(false);
-					btnCM4.setEnabled(false);		
+					tglbtnCM3.setEnabled(false);
+					tglbtnCM4.setEnabled(false);		
 					break;
 				case 3: 
-					btnCM4.setEnabled(false);
+					tglbtnCM4.setEnabled(false);
 					break;
 				}
 			}
@@ -165,48 +337,16 @@ public class CreateCrewWindow {
 		slider.setBounds(385, 79, 310, 67);
 		frame.getContentPane().add(slider);
 		
-		JPanel panelCrewMember = new JPanel();
-		panelCrewMember.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelCrewMember.setBounds(410, 158, 328, 329);
-		frame.getContentPane().add(panelCrewMember);
-		panelCrewMember.setLayout(null);
-		
-		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblName.setBounds(23, 10, 78, 32);
-		panelCrewMember.add(lblName);
-		
-		JLabel lblQuirk = new JLabel("Class:");
-		lblQuirk.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblQuirk.setBounds(23, 52, 78, 32);
-		panelCrewMember.add(lblQuirk);
-		
-		textField = new JTextField();
-		textField.setBounds(98, 10, 207, 32);
-		panelCrewMember.add(textField);
-		textField.setColumns(10);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(98, 52, 207, 32);
-		panelCrewMember.add(comboBox);
-		
-		JLabel lblHealth = new JLabel("Health:");
-		lblHealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblHealth.setBounds(23, 94, 78, 32);
-		panelCrewMember.add(lblHealth);
-		
-		JLabel lblHunger = new JLabel("Hunger:\r\n");
-		lblHunger.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblHunger.setBounds(23, 136, 78, 32);
-		panelCrewMember.add(lblHunger);
-		
-		JLabel lblFatigue = new JLabel("Fatigue:");
-		lblFatigue.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblFatigue.setBounds(23, 178, 78, 32);
-		panelCrewMember.add(lblFatigue);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(23, 220, 281, 96);
-		panelCrewMember.add(textArea);
 	}
+	
+	public void resetToggleButtons() {
+		for (JToggleButton button : CrewMemberToggleButtons) {
+			button.setSelected(false);
+		}
+	}
+	
+	public void updateType(CrewMember member) {
+		
+	}
+	
 }

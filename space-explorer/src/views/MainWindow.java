@@ -55,12 +55,12 @@ public class MainWindow {
 		
 		JLabel lblDay = new JLabel("Day:");
 		lblDay.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblDay.setBounds(620, 104, 138, 29);
+		lblDay.setBounds(616, 106, 170, 35);
 		frame.getContentPane().add(lblDay);
 		
 		JLabel lblPiecesFound = new JLabel("Pieces found:");
 		lblPiecesFound.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblPiecesFound.setBounds(618, 204, 140, 24);
+		lblPiecesFound.setBounds(616, 206, 170, 35);
 		frame.getContentPane().add(lblPiecesFound);
 		
 		JButton btnOutpost = new JButton("Visit outpost");
@@ -92,36 +92,41 @@ public class MainWindow {
 		
 		JLabel lblShip = new JLabel("Ship: \r\n");
 		lblShip.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblShip.setBounds(26, 106, 140, 27);
+		lblShip.setBounds(12, 106, 170, 35);
 		frame.getContentPane().add(lblShip);
 		
 		JLabel lblShieldLevel = new JLabel("Shield Level:");
 		lblShieldLevel.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblShieldLevel.setBounds(26, 204, 140, 33);
+		lblShieldLevel.setBounds(12, 204, 170, 35);
 		frame.getContentPane().add(lblShieldLevel);
 		
 		JLabel lblDayValue = new JLabel(game.getCurrentDay() + "/" + game.getGameDuration());
 		lblDayValue.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblDayValue.setBounds(636, 143, 126, 29);
+		lblDayValue.setBounds(616, 145, 170, 35);
 		frame.getContentPane().add(lblDayValue);
 		
 		JLabel lblPiecesFoundValue = new JLabel(game.getShip().getPiecesFound() + "/" + game.getShip().getPiecesNeeded());
 		lblPiecesFoundValue.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblPiecesFoundValue.setBounds(636, 249, 140, 24);
+		lblPiecesFoundValue.setBounds(616, 240, 170, 35);
 		frame.getContentPane().add(lblPiecesFoundValue);
 		
-		JLabel label = new JLabel();
-		label.setBounds(192, 75, 400, 350);
-		frame.getContentPane().add(label);
+		JLabel lblPlanetImage = new JLabel();
+		lblPlanetImage.setBounds(192, 75, 400, 350);
+		frame.getContentPane().add(lblPlanetImage);
 		ImageIcon imageIcon = new ImageIcon(StartingPlanetWindow.class.getResource("/resources/planet-2398343_1920.jpg"));
 		Image image = imageIcon.getImage();
 		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
 		imageIcon = new ImageIcon(newimg);
-		label.setIcon(imageIcon);
+		lblPlanetImage.setIcon(imageIcon);
 		
 		JLabel lblShipName = new JLabel(game.getCrew().getName());
 		lblShipName.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblShipName.setBounds(26, 143, 140, 27);
+		lblShipName.setBounds(12, 143, 170, 35);
 		frame.getContentPane().add(lblShipName);
+		
+		JLabel lblShipLevelValue = new JLabel(game.getShip().getShieldLevel() + "/" + game.getShip().getMaxShieldLevel());
+		lblShipLevelValue.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblShipLevelValue.setBounds(12, 240, 170, 35);
+		frame.getContentPane().add(lblShipLevelValue);
 	}
 }

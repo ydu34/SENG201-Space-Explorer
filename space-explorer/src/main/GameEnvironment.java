@@ -21,6 +21,8 @@ public class GameEnvironment {
 	private int gameDuration;
 	private int currentDay = 1;
 	private String[] planetNames = {"Asauzuno","Uchiliv","Yangosie","Putrilia","Emia","Doyama","Bruxotune","Divunus","Coth LTS4"};
+	private ArrayList<CrewMember> crewMemberTypes = new ArrayList<CrewMember>();
+	
 	
 	public void launchStartWindow() {
 		StartWindow startWindow = new StartWindow(this);
@@ -94,6 +96,7 @@ public class GameEnvironment {
 	
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
+		game.initCrewMemberTypes();
 		game.initMedItems();
 		game.initFoodItems();
 		game.initPlanets();
@@ -104,6 +107,15 @@ public class GameEnvironment {
 		game.mainGame();
 		game.endGame();
 		*/
+	}
+	
+	public void initCrewMemberTypes() {
+		crewMemberTypes.add(new Engineer("Engineer"));
+		crewMemberTypes.add(new HealthNut("Health Nut"));
+		crewMemberTypes.add(new Nibbler("Nibbler"));
+		crewMemberTypes.add(new NightOwl("Night Owl"));
+		crewMemberTypes.add(new Protected("Protected"));
+		crewMemberTypes.add(new Regular("Regular"));
 	}
 	
 	public void initMedItems() {
@@ -647,5 +659,15 @@ public class GameEnvironment {
 	public void setPlanetNames(String[] planetNames) {
 		this.planetNames = planetNames;
 	}
+
+	public ArrayList<CrewMember> getCrewMemberTypes() {
+		return crewMemberTypes;
+	}
+
+	public void setCrewMemberTypes(ArrayList<CrewMember> crewMemberTypes) {
+		this.crewMemberTypes = crewMemberTypes;
+	}
+
+
 	
 }

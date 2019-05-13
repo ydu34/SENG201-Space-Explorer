@@ -12,7 +12,7 @@ public class NightOwl extends CrewMember{
 	 * @param name   A string name of the crew member.
 	 */
 	public NightOwl(String name) {
-		super(name, "NightOwl", "Normal", 100, 100, 100, 2);
+		super(name, "Night Owl", "Normal", 100, 100, 100, 2);
 	}
 	
 	/**
@@ -85,7 +85,7 @@ public class NightOwl extends CrewMember{
 	 * Prints a description of NightOwl.
 	 */
 	public static void description() {
-		System.out.println("NightOwl does not like sleeping." 
+		System.out.println("Night Owl does not like sleeping." 
 				+ "\nNightOwl's fatigue level increases by a slower rate when repairing ships and searching on planets.");
 		
 	}

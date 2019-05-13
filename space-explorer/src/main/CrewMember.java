@@ -2,20 +2,37 @@ package main;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class CrewMember {
+public class CrewMember {
 	private String name;
 	private String type;
-	private String status;
-	private int health;
-	private int maxHealth;
-	private int hunger;
-	private int maxHunger;
-	private int fatigue;
-	private int maxFatigue;
-	private int actionsLeft;
-	private int maxActions;
-	private boolean infected;
-	private boolean dead; 
+	private String status = "Normal";
+	private int health = 100;
+	private int maxHealth = 100;
+	private int hunger = 100;
+	private int maxHunger = 100;
+	private int fatigue = 0;
+	private int maxFatigue = 100;
+	private int actionsLeft = 2;
+	private int maxActions = 2;
+	private boolean infected = false;
+	private boolean dead = false; 
+	
+	
+	public CrewMember(String name, String type) {
+		this.name = name;
+		this.type = type;
+		this.status = "";
+		this.maxHealth = 100;
+		this.health = 100;
+		this.maxHunger = 100;
+		this.hunger = 0;
+		this.maxFatigue = 100;
+		this.fatigue = 0;
+		this.maxActions = 2;
+		this.actionsLeft = 2;
+		this.infected = false;
+		this.dead = false;
+	}
 	
 	/**
 	 * Creates a crew member.
@@ -198,18 +215,7 @@ public abstract class CrewMember {
 	 * @return A string representation of the crew member.
 	 */
 	public String toString() {
-		if (infected) {
-			status = "Infected by space plague";
-		}
-		String returnString = 
-				"Name: " + name + 
-				"\nType: " + type +
-				"\nStatus: " + status +
-				"\nHealth: " + health + "/" + maxHealth +
-				"\nHunger: " + hunger + "/" + maxHunger + 
-				"\nFatigue: " + fatigue + "/" + maxFatigue +
-				"\nActions Left: " + actionsLeft;
-		return returnString;
+		return type;
 	}
 	
 	/**

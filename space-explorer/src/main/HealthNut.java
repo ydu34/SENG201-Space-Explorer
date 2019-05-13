@@ -8,7 +8,7 @@ public class HealthNut extends CrewMember{
 	 * @param name   A string name of the crew member.
 	 */
 	public HealthNut(String name) {
-		super(name, "HealthNut", "Normal", 100, 100, 100, 2);
+		super(name, "Health Nut", "Normal", 100, 100, 100, 2);
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class HealthNut extends CrewMember{
 	 * Prints a description of HealthNut.
 	 */
 	public static void description() {
-		System.out.println("HealthNut has a very healthy lifestyle." 
+		System.out.println("Health Nut has a very healthy lifestyle." 
 				+ "\nHealthNut's health level increases by more when consuming medical items");
 	}
 }
