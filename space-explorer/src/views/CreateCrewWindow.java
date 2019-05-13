@@ -41,11 +41,7 @@ public class CreateCrewWindow {
 	private JTextField textFieldShipName;
 	private GameEnvironment game;
 	private JTextField tfCMName;
-	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>();
-	private JTextField lblHealthValue;
-	private JTextField lblFatigueValue;
-	private JTextField lblHungerValue;
-	private JComboBox comboBox;
+	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); // used to contain all the toggle buttons that toggle crew members
 
 	/**
 	 * Create the application.
@@ -115,12 +111,9 @@ public class CreateCrewWindow {
 		lblFatigue.setBounds(23, 178, 78, 32);
 		panelCrewMember.add(lblFatigue);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setBounds(23, 220, 293, 71);
-		panelCrewMember.add(textArea);
-		
 		
 		JComboBox traitComboBox = new JComboBox(game.getCrewMemberTypes().toArray());
+		//Get the current selected type of crew member 
 		CrewMember currentType = (CrewMember) traitComboBox.getSelectedItem();
 		
 		JLabel lblHealthValue_1 = new JLabel(currentType.getHealth() + "/" + currentType.getMaxHealth());
@@ -153,35 +146,13 @@ public class CreateCrewWindow {
 		textFieldShipName.setBounds(393, 37, 292, 30);
 		frame.getContentPane().add(textFieldShipName);
 		textFieldShipName.setColumns(10);
-		textFieldShipName.getDocument().addDocumentListener(new DocumentListener() {
-			public void changedUpdate(DocumentEvent e) {
-			    enableButton();
-			}
-			public void removeUpdate(DocumentEvent e) {
-			    enableButton();
-			}
-			public void insertUpdate(DocumentEvent e) {
-			   enableButton();
-			}
 			
-			public void enableButton() {
-				if (textFieldShipName.getText().equals(""))
-				{
-					btnNext.setEnabled(false);
-				}
-				else
-				{
-					btnNext.setEnabled(true);
-				}
-			}
-		});
-
-		
-		
 		JToggleButton tglbtnCM1 = new JToggleButton("1", true);
 		tglbtnCM1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resetToggleButtons();
+				for (JToggleButton button : CrewMemberToggleButtons) {
+					button.setSelected(false);
+				}
 				tglbtnCM1.setSelected(true);
 				tfCMName.setText(CM1.getName());
 				switch(CM1.getType()) {
@@ -215,7 +186,9 @@ public class CreateCrewWindow {
 		JToggleButton tglbtnCM2 = new JToggleButton("2");
 		tglbtnCM2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resetToggleButtons();
+				for (JToggleButton button : CrewMemberToggleButtons) {
+					button.setSelected(false);
+				}
 				tglbtnCM2.setSelected(true);
 				tfCMName.setText(CM2.getName());
 				switch(CM2.getType()) {
@@ -248,7 +221,9 @@ public class CreateCrewWindow {
 		JToggleButton tglbtnCM3 = new JToggleButton("3");
 		tglbtnCM3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resetToggleButtons();
+				for (JToggleButton button : CrewMemberToggleButtons) {
+					button.setSelected(false);
+				}
 				tglbtnCM3.setSelected(true);
 				tfCMName.setText(CM3.getName());
 				switch(CM3.getType()) {
@@ -281,7 +256,9 @@ public class CreateCrewWindow {
 		JToggleButton tglbtnCM4 = new JToggleButton("4");
 		tglbtnCM4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				resetToggleButtons();
+				for (JToggleButton button : CrewMemberToggleButtons) {
+					button.setSelected(false);
+				}
 				tglbtnCM4.setSelected(true);
 				tfCMName.setText(CM4.getName());
 				switch(CM4.getType()) {
@@ -311,16 +288,21 @@ public class CreateCrewWindow {
 		frame.getContentPane().add(tglbtnCM4);
 		CrewMemberToggleButtons.add(tglbtnCM4);
 		
+		JTextArea textArea = new JTextArea(currentType.description());
+		textArea.setBounds(23, 220, 293, 71);
+		panelCrewMember.add(textArea);
+		textArea.setEditable(false);
+		
 		// The listener for the combo box 
 		traitComboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				CrewMember currentType = (CrewMember) traitComboBox.getSelectedItem();
 				lblHealthValue_1.setText(currentType.getHealth() + "/" + currentType.getMaxHealth());
 				lblHungerValue_1.setText(currentType.getHunger() + "/" + currentType.getMaxHunger());
 				lblFatigueValue_1.setText(currentType.getFatigue() + "/" + currentType.getMaxFatigue());
-				
+				textArea.setText(currentType.description());
 			}
 		});
-		
 		
 		JLabel lblSelectNumberOf = new JLabel("Number of Crew Members:");
 		lblSelectNumberOf.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
@@ -335,11 +317,16 @@ public class CreateCrewWindow {
 				switch(slider.getValue()) {
 				case 2: 
 					tglbtnCM3.setEnabled(false);
-					tglbtnCM4.setEnabled(false);		
-					break;
+					if (tglbtnCM3.isSelected()) {
+						tglbtnCM3.setSelected(false);
+						tglbtnCM1.doClick();
+					}
 				case 3: 
 					tglbtnCM4.setEnabled(false);
-					break;
+					if (tglbtnCM4.isSelected()) {
+						tglbtnCM4.setSelected(false);
+						tglbtnCM1.doClick();
+					}
 				}
 			}
 		});
@@ -415,16 +402,29 @@ public class CreateCrewWindow {
 			}
 		});
 		
-		
 		btnNext.setBounds(624, 506, 114, 25);
 		frame.getContentPane().add(btnNext);
-		
+		textFieldShipName.getDocument().addDocumentListener(new DocumentListener() {
+			public void changedUpdate(DocumentEvent e) {
+			    enableButton();
+			}
+			public void removeUpdate(DocumentEvent e) {
+			    enableButton();
+			}
+			public void insertUpdate(DocumentEvent e) {
+			   enableButton();
+			}
+			
+			public void enableButton() {
+				if (textFieldShipName.getText().equals(""))
+				{
+					btnNext.setEnabled(false);
+				}
+				else
+				{
+					btnNext.setEnabled(true);
+				}
+			}
+		});
 	}
-	
-	public void resetToggleButtons() {
-		for (JToggleButton button : CrewMemberToggleButtons) {
-			button.setSelected(false);
-		}
-	}
-	
 }

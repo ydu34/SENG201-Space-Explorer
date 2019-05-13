@@ -210,6 +210,31 @@ public class CrewMember {
 		}
 	}
 	
+	public String description() {
+		String returnString = "";
+		switch(type) {
+		case "Engineer" :
+			returnString = "Engineer";
+			break;
+		case "Health Nut" :
+			returnString = "Health Nut";
+			break;
+		case "Nibbler":
+			returnString = "Nibbler";
+			break;
+		case "Night Owl":
+			returnString = "Night Owl";
+			break;
+		case "Protected":
+			returnString = "Protected";
+			break;
+		case "Regular":
+			returnString = "Regular";
+			break; 
+		}
+		return returnString;
+	}
+	
 	/**
 	 * Creates a string representation of the crew member.
 	 * @return A string representation of the crew member.

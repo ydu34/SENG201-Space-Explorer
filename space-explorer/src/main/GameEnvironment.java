@@ -7,7 +7,6 @@ import java.util.Scanner;
 import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
 
-
 public class GameEnvironment {
 	private Scanner in = new Scanner(System.in);
 	private Scanner enter = new Scanner(System.in);
