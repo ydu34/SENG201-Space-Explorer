@@ -463,7 +463,6 @@ public class GameEnvironment {
 				}
 			}
 			RandomEvent.occurDay(crew);
-			currentDay();
 		}
 	}
 		

@@ -11,6 +11,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
@@ -85,11 +86,6 @@ public class MainWindow {
 		btnCrew.setBounds(282, 518, 220, 35);
 		frame.getContentPane().add(btnCrew);
 		
-		JButton btnNextDay = new JButton("Next day");
-		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnNextDay.setBounds(533, 518, 220, 35);
-		frame.getContentPane().add(btnNextDay);
-		
 		JLabel lblShip = new JLabel("Ship: \r\n");
 		lblShip.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblShip.setBounds(12, 106, 170, 35);
@@ -101,6 +97,7 @@ public class MainWindow {
 		frame.getContentPane().add(lblShieldLevel);
 		
 		JLabel lblDayValue = new JLabel(game.getCurrentDay() + "/" + game.getGameDuration());
+		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
 		lblDayValue.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblDayValue.setBounds(616, 145, 170, 35);
 		frame.getContentPane().add(lblDayValue);
@@ -128,5 +125,17 @@ public class MainWindow {
 		lblShipLevelValue.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblShipLevelValue.setBounds(12, 240, 170, 35);
 		frame.getContentPane().add(lblShipLevelValue);
+		
+		JButton btnNextDay = new JButton("Next day");
+		btnNextDay.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				game.nextDay();
+				frame.revalidate();
+				frame.repaint();
+			}
+		});
+		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnNextDay.setBounds(533, 518, 220, 35);
+		frame.getContentPane().add(btnNextDay);
 	}
 }

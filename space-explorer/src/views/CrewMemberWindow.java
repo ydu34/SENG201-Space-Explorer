@@ -158,49 +158,6 @@ public class CrewMemberWindow {
 				textArea.setText(member.description());
 			}
 		});
-		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM2.setBounds(231, 118, 150, 150);
-		frame.getContentPane().add(tglbtnCM2);
-		
-		JToggleButton tglbtnCM4 = new JToggleButton("4");
-		tglbtnCM4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for (JToggleButton button : CrewMemberToggleButtons) {
-					button.setSelected(false);
-				}
-				tglbtnCM4.setSelected(true);
-				CrewMember member = game.getCrew().getCrewMembers().get(3);
-				lblNameValue.setText(member.getName());
-				lblTraitValue.setText(member.getType());
-				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
-				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
-				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
-				textArea.setText(member.description());
-			}
-		});
-		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM4.setBounds(231, 297, 150, 150);
-		frame.getContentPane().add(tglbtnCM4);
-		
-		JToggleButton tglbtnCM3 = new JToggleButton("3");
-		tglbtnCM3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				for (JToggleButton button : CrewMemberToggleButtons) {
-					button.setSelected(false);
-				}
-				tglbtnCM3.setSelected(true);
-				CrewMember member = game.getCrew().getCrewMembers().get(2);
-				lblNameValue.setText(member.getName());
-				lblTraitValue.setText(member.getType());
-				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
-				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
-				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
-				textArea.setText(member.description());
-			}
-		});
-		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM3.setBounds(52, 297, 150, 150);
-		frame.getContentPane().add(tglbtnCM3);
 		
 		JToggleButton tglbtnCM1 = new JToggleButton("1", true);
 		tglbtnCM1.addActionListener(new ActionListener() {
@@ -223,6 +180,54 @@ public class CrewMemberWindow {
 		tglbtnCM1.setBounds(52, 118, 150, 150);
 		frame.getContentPane().add(tglbtnCM1);
 		
+	
+		
+		
+		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnCM2.setBounds(231, 118, 150, 150);
+		frame.getContentPane().add(tglbtnCM2);
+		
+		JToggleButton tglbtnCM3 = new JToggleButton("3");
+		tglbtnCM3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (JToggleButton button : CrewMemberToggleButtons) {
+					button.setSelected(false);
+				}
+				tglbtnCM3.setSelected(true);
+				CrewMember member = game.getCrew().getCrewMembers().get(2);
+				lblNameValue.setText(member.getName());
+				lblTraitValue.setText(member.getType());
+				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
+				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
+				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+				textArea.setText(member.description());
+			}
+		});
+		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnCM3.setBounds(52, 297, 150, 150);
+		frame.getContentPane().add(tglbtnCM3);
+		
+		JToggleButton tglbtnCM4 = new JToggleButton("4");
+		tglbtnCM4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (JToggleButton button : CrewMemberToggleButtons) {
+					button.setSelected(false);
+				}
+				tglbtnCM4.setSelected(true);
+				CrewMember member = game.getCrew().getCrewMembers().get(3);
+				lblNameValue.setText(member.getName());
+				lblTraitValue.setText(member.getType());
+				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
+				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
+				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+				textArea.setText(member.description());
+			}
+		});
+		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		tglbtnCM4.setBounds(231, 297, 150, 150);
+		frame.getContentPane().add(tglbtnCM4);
+		
+		
 		JLabel lblNewLabel = new JLabel("THE CREW LOBBY ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -230,9 +235,28 @@ public class CrewMemberWindow {
 		frame.getContentPane().add(lblNewLabel);
 		
 		// Add all the toggle buttons that toggle crew members into the array list for better management of them
-		CrewMemberToggleButtons.add(tglbtnCM1);
-		CrewMemberToggleButtons.add(tglbtnCM2);
-		CrewMemberToggleButtons.add(tglbtnCM3);
-		CrewMemberToggleButtons.add(tglbtnCM4);
+		switch(game.getCrew().getCrewMembers().size()) {
+		case 4:
+			CrewMemberToggleButtons.add(tglbtnCM4);
+		case 3:
+			CrewMemberToggleButtons.add(tglbtnCM3);
+		case 2:
+			CrewMemberToggleButtons.add(tglbtnCM2);
+		case 1:
+			CrewMemberToggleButtons.add(tglbtnCM1);
+		}
+		
+		// Disable Buttons for dead members or members that don't exit.
+		switch(game.getCrew().getCrewMembers().size()) {
+		case 0:
+			tglbtnCM1.setEnabled(false);
+		case 1:
+			tglbtnCM2.setEnabled(false);
+		case 2: 
+			tglbtnCM3.setEnabled(false);
+		case 3: 
+			tglbtnCM4.setEnabled(false);
+		}
+		
 	}
 }

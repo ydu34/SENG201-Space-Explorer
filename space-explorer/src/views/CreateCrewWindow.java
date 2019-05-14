@@ -34,6 +34,9 @@ import java.util.Collections;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import javax.swing.JToggleButton;
+import javax.swing.JTextPane;
+import javax.swing.JTable;
+import javax.swing.JList;
 
 public class CreateCrewWindow {
 
