@@ -27,9 +27,8 @@ public class Item implements  Comparable<Item>{
 	 * @return A string representation of the item.
 	 */
 	public String toString() {
-		String returnString = name +
-				"\nPrice: " + price + 
-				"\n" + description;
+		String returnString = name;
+		//changed string to name only
 		return returnString;
 	}
 	

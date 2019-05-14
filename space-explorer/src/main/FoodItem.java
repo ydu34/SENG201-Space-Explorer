@@ -33,5 +33,7 @@ public class FoodItem extends Item {
 	public void setRestoreHungerAmount(int restoreHungerAmount) {
 		this.restoreHungerAmount = restoreHungerAmount;
 	}
+	
+	
 
 }
