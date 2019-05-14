@@ -94,6 +94,8 @@ public class GameEnvironment {
 		launchMainWindow();
 	}
 	
+
+	
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
 		game.initCrewMemberTypes();

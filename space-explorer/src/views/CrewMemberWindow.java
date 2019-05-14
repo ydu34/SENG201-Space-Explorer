@@ -16,6 +16,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JToggleButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPopupMenu;
@@ -60,6 +61,8 @@ public class CrewMemberWindow {
 		JButton btnPerformAction = new JButton("Perform Action");
 		btnPerformAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				JDialog actions = new JDialog(frame);
+				actions.setVisible(true);
 			}
 		});
 		btnPerformAction.setBounds(542, 504, 202, 25);
