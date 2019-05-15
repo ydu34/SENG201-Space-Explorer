@@ -29,7 +29,7 @@ public class CrewMemberWindow {
 	private JFrame frame;
 	private GameEnvironment game;
 	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); // used to contain all the toggle buttons that toggle crew members
-
+	private CrewMember selectedCrewMember = game.getCrew().getCrewMembers().get(0);
 	/**
 	 * Create the application.
 	 */
@@ -52,6 +52,7 @@ public class CrewMemberWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		CrewMemberWindow window = this;
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 800, 600);
@@ -61,7 +62,8 @@ public class CrewMemberWindow {
 		JButton btnPerformAction = new JButton("Perform Action");
 		btnPerformAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JDialog actions = new JDialog(frame);
+				
+				JDialog actions = new ActionsDialog(frame, "Space Explorers", game, window);
 				actions.setVisible(true);
 			}
 		});
@@ -72,6 +74,7 @@ public class CrewMemberWindow {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
+				game.launchMainWindow();
 			}
 		});
 		btnBack.setBounds(52, 504, 202, 25);

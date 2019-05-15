@@ -130,8 +130,8 @@ public class MainWindow {
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				game.nextDay();
-				frame.revalidate();
-				frame.repaint();
+				finishedWindow();
+				game.launchMainWindow();
 			}
 		});
 		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));

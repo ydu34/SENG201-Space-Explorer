@@ -91,7 +91,14 @@ public class GameEnvironment {
 	
 	public void closeCrewMemberWindow(CrewMemberWindow crewMemberWindow) {
 		crewMemberWindow.closeWindow();
-		launchMainWindow();
+	}
+	
+	public void launchPilotWindow() {
+		PilotWindow pilotWindow = new PilotWindow(this);
+	}
+	
+	public void closePilotWindow(PilotWindow pilotWindow) {
+		pilotWindow.closeWindow();
 	}
 	
 
