@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PilotWindow {
 
@@ -60,7 +62,18 @@ public class PilotWindow {
 		button_1.setBounds(151, 320, 160, 25);
 		frame.getContentPane().add(button_1);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboBox = new JComboBox(game.getPlanets().toArray());
+		comboBox.setSelectedItem(game.getCrew().getCurrentLocation());
+		btnPilot.setEnabled(false);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (comboBox.getSelectedItem() == game.getCrew().getCurrentLocation()) {
+					btnPilot.setEnabled(false);
+				} else {
+					btnPilot.setEnabled(true);
+				}
+			}
+		});
 		comboBox.setBounds(65, 211, 200, 25);
 		frame.getContentPane().add(comboBox);
 		

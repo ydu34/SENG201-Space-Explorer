@@ -41,7 +41,6 @@ public class ActionsDialog extends JDialog {
 		// An actionsListener that is reused, so assign a variable to it
 		ActionListener closeDialog = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				parentWindow.finishedWindow();
 				setVisible(false);
 				dispose();
 			}
@@ -63,12 +62,7 @@ public class ActionsDialog extends JDialog {
 		
 		JButton btnSearchPlanet = new JButton("Search planet ");
 		btnSearchPlanet.addActionListener(closeDialog);
-		btnSearchPlanet.addActionListener(new ActionListener() {
-			
-			public void actionPerformed(ActionEvent arg0) {
-				game.launchPilotWindow();
-			}
-		});
+		
 		btnSearchPlanet.setBounds(12, 246, 301, 25);
 		contentPanel.add(btnSearchPlanet);
 		
@@ -79,6 +73,12 @@ public class ActionsDialog extends JDialog {
 		
 		JButton btnSleep = new JButton("Sleep");
 		btnSleep.addActionListener(closeDialog);
+		btnPilotShip.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				parentWindow.finishedWindow();
+				game.launchPilotWindow();
+			}
+		});	
 		btnSleep.setBounds(12, 132, 301, 25);
 		contentPanel.add(btnSleep);
 		
@@ -86,9 +86,7 @@ public class ActionsDialog extends JDialog {
 		lblNewLabel.setBounds(12, 52, 147, 30);
 		contentPanel.add(lblNewLabel);
 		
-		JLabel label_1 = new JLabel();
-		label_1.setName(game.getChosenCrewMember().getName());
-	
+		JLabel label_1 = new JLabel(game.getChosenCrewMember().getName());
 		label_1.setBounds(164, 52, 147, 30);
 		contentPanel.add(label_1);
 		

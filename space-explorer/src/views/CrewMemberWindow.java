@@ -147,6 +147,8 @@ public class CrewMemberWindow {
 		lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
 		lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 		lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+		textArea.setText(member.description());
+		game.setChosenCrewMember(member);
 		
 		JToggleButton tglbtnCM2 = new JToggleButton("2");
 		tglbtnCM2.addActionListener(new ActionListener() {
