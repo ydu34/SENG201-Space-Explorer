@@ -145,7 +145,7 @@ public class CrewMember {
 	 * @param other    A CrewMember object.
 	 * @param crew     A Crew object.
 	 */
-	public void pilot(Planet planet, CrewMember other, Crew crew) {
+	public String pilot(Planet planet, CrewMember other, Crew crew) {
 		int fatigueCost = 10;
 		if (fatigue + fatigueCost> maxFatigue) {
 			System.out.println(name + " is too tired to pilot the ship.");
@@ -159,11 +159,9 @@ public class CrewMember {
 			actionsLeft -= 1;
 			other.actionsLeft -=1;
 			crew.setCurrentLocation(planet);
-			RandomEvent.occurPlanet(crew);
-			if (!crew.getShip().isDestroyed()) {
-				System.out.println("The crew is now on Planet " + crew.getCurrentLocation() + ".");
-			}
+			return RandomEvent.occurPlanet(crew);
 		}
+		return null;
 	}
 	
 	/**

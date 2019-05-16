@@ -9,6 +9,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -109,9 +110,13 @@ public class PilotWindow {
 		// Action listener when player clicks the pilot button
 		btnPilot.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				mainPilot.pilot((Planet) cBoxPlanet.getSelectedItem(), coPilot, game.getCrew());
+				String message = mainPilot.pilot((Planet) cBoxPlanet.getSelectedItem(), coPilot, game.getCrew());
 				finishedWindow();
 				game.launchMainWindow();
+				if (!(message==null)) {
+					JOptionPane.showMessageDialog(frame, message);
+				}
+				
 			}
 		});
 		

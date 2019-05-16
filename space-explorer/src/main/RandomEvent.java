@@ -14,11 +14,12 @@ public class RandomEvent {
 	}
 	
 	
-	public static void occurPlanet(Crew crew) {
+	public static String occurPlanet(Crew crew) {
 		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 		if (randomNum >= 0 && randomNum < 35) {
-			asteroidBelt(crew);
+			return asteroidBelt(crew);
 		}
+		return null;
 	}
 	
 	public static void alienPirates(Crew crew) {
@@ -58,10 +59,12 @@ public class RandomEvent {
 		}
 	}
 	
-	public static void asteroidBelt(Crew crew) {
+	public static String asteroidBelt(Crew crew) {
+		String returnString = "";
 		int amount = crew.getShip().getShieldLevel() / 4;
 		crew.getShip().decreaseShieldLevel(amount);
-		System.out.println("This ship went through an asteroid belt and took " + amount + " damage to the shield level.");
-		System.out.println("The ship now has " + crew.getShip().getShieldLevel() + "/" + crew.getShip().getMaxShieldLevel() + " shield level.");
+		returnString += "This ship went through an asteroid belt and took " + amount + " damage to the shield level.\n";
+		returnString += "The ship now has " + crew.getShip().getShieldLevel() + "/" + crew.getShip().getMaxShieldLevel() + " shield level.";
+		return returnString;
 	}
 }
