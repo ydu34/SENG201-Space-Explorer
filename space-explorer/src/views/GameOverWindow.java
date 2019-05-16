@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class EndWindow {
+public class GameOverWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
@@ -16,7 +16,7 @@ public class EndWindow {
 	/**
 	 * Create the application.
 	 */
-	public EndWindow(GameEnvironment incomingGame) {
+	public GameOverWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
 		frame.setVisible(true);
@@ -27,7 +27,7 @@ public class EndWindow {
 	}
 	
 	public void finishedWindow() {
-		game.closeEndWindow(this);
+		game.closeGameOverWindow(this);
 	}
 
 

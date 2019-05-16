@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 import main.GameEnvironment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -129,9 +130,16 @@ public class MainWindow {
 		JButton btnNextDay = new JButton("Next day");
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				game.nextDay();
+				String message = game.nextDay();
+				if (!(message.isEmpty())) {
+					JOptionPane.showMessageDialog(frame, message);
+				}
 				finishedWindow();
-				game.launchMainWindow();
+				if (game.gameOver()) {
+					game.launchGameOverWindow();
+				} else {
+					game.launchMainWindow();
+				}
 			}
 		});
 		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));

@@ -102,6 +102,15 @@ public class GameEnvironment {
 		pilotWindow.closeWindow();
 	}
 	
+	public void launchGameOverWindow() {
+		GameOverWindow gameOverWindow = new GameOverWindow(this);
+	}
+	
+	public void closeGameOverWindow(GameOverWindow gameOverWindow) {
+		gameOverWindow.closeWindow();
+	}
+	
+	
 
 	
 	public static void main(String[] args) {
@@ -453,8 +462,9 @@ public class GameEnvironment {
 		}
 	}
 	
-	public void nextDay() {
+	public String nextDay() {
 		currentDay++;
+		String returnString = "";
 		if (!gameOver()) {
 			for (CrewMember member: crew.getCrewMembers()) {
 				member.setActionsLeft(member.getMaxActions());
@@ -464,16 +474,17 @@ public class GameEnvironment {
 				if (member.isInfected()) {
 					member.setHealth(member.getHealth()-15);
 					if (member.isDead()) {
-						System.out.println(member.getName() + " has died to the space plague and has been removed from the crew.");
+						returnString += member.getName() + " has died to the space plague and has been removed from the crew.\n";
 						crew.getCrewMembers().remove(member);
 					} else {
-						System.out.println(member.getName() + " will lose 15 health each day until he gets cured.");
-						System.out.println(member.getName() + " now has " + member.getHealth() + "/" + member.getMaxHealth() + " health.");
+						returnString += member.getName() + " will lose 15 health each day until he gets cured.\n";
+						returnString += member.getName() + " now has " + member.getHealth() + "/" + member.getMaxHealth() + " health.\n";
 					}
 				}
 			}
-			RandomEvent.occurDay(crew);
+			returnString += RandomEvent.occurDay(crew);
 		}
+		return returnString;
 	}
 		
 	public void endGame() {

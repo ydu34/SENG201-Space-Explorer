@@ -4,13 +4,15 @@ import java.util.concurrent.ThreadLocalRandom;
 public class RandomEvent {
 	private static int randomNum;
 	
-	public static void occurDay(Crew crew) {
-		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
+	public static String occurDay(Crew crew) {
+		String returnString = ""
+;		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 		if (randomNum >= 0 && randomNum < 20) {
 			alienPirates(crew);
 		} else if (randomNum >= 20 && randomNum < 40) {
-			spacePlague(crew);
+			returnString += spacePlague(crew);
 		} 
+		return returnString;
 	}
 	
 	
@@ -38,25 +40,27 @@ public class RandomEvent {
 		}
 	}
 	
-	public static void spacePlague(Crew crew) {
+	public static String spacePlague(Crew crew) {
+		String returnString = "";
 		if (crew.getCrewMembers().size() > 0) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, crew.getCrewMembers().size());
 			CrewMember infectedMember = crew.getCrewMembers().get(randomNum);
 			if (!infectedMember.isInfected()) {
 				infectedMember.setInfected(true);
-				System.out.println(infectedMember.getName() + " has been infected with space plague!");
+				returnString += infectedMember.getName() + " has been infected with space plague! \n";
 				
 				infectedMember.setHealth(infectedMember.getHealth()-15);
 				if (infectedMember.isDead()) {
-					System.out.println(infectedMember.getName() + " has died to the space plague and has been removed from the crew.");
+					returnString += infectedMember.getName() + " has died to the space plague and has been removed from the crew.";
 					crew.getCrewMembers().remove(infectedMember);
 				} else {
-					System.out.println(infectedMember.getName() + " will lose 15 health each day until he gets cured.");
-					System.out.println(infectedMember.getName() + " now has " + infectedMember.getHealth() + "/" + infectedMember.getMaxHealth() + " health.");
+					returnString += infectedMember.getName() + " will lose 15 health each day until he gets cured. \n";
+					returnString += infectedMember.getName() + " now has " + infectedMember.getHealth() + "/" + infectedMember.getMaxHealth() + " health.";
 				}
 				
 			} 
 		}
+		return returnString;
 	}
 	
 	public static String asteroidBelt(Crew crew) {
