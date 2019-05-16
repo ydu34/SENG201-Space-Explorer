@@ -59,17 +59,6 @@ public class CrewMemberWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnPerformAction = new JButton("Perform Action");
-		btnPerformAction.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				JDialog actions = new ActionsDialog(frame, "Space Explorers", game, window);
-				actions.setVisible(true);
-			}
-		});
-		btnPerformAction.setBounds(542, 504, 202, 25);
-		frame.getContentPane().add(btnPerformAction);
-		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -83,61 +72,61 @@ public class CrewMemberWindow {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(416, 118, 328, 329);
+		panel.setBounds(384, 118, 360, 330);
 		frame.getContentPane().add(panel);
 		
 		JLabel label = new JLabel("Name:");
 		label.setFont(new Font("Dialog", Font.BOLD, 16));
-		label.setBounds(23, 10, 78, 32);
+		label.setBounds(9, 10, 78, 32);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("Trait:");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_1.setBounds(23, 52, 78, 32);
+		label_1.setBounds(9, 52, 78, 32);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("Health:");
 		label_2.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_2.setBounds(23, 94, 78, 32);
+		label_2.setBounds(9, 94, 78, 32);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("Hunger:\r\n");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_3.setBounds(23, 136, 78, 32);
+		label_3.setBounds(9, 136, 78, 32);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("Fatigue:");
 		label_4.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_4.setBounds(23, 178, 78, 32);
+		label_4.setBounds(183, 94, 78, 32);
 		panel.add(label_4);
 		
 		JTextArea textArea = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
-		textArea.setBounds(23, 220, 293, 71);
+		textArea.setBounds(9, 181, 337, 102);
 		panel.add(textArea);
 		
 		JLabel lblHealthValue = new JLabel();
 		lblHealthValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHealthValue.setBounds(109, 96, 207, 32);
+		lblHealthValue.setBounds(96, 94, 78, 32);
 		panel.add(lblHealthValue);
 		
 		JLabel lblHungerValue = new JLabel();
 		lblHungerValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHungerValue.setBounds(109, 138, 207, 32);
+		lblHungerValue.setBounds(96, 136, 78, 32);
 		panel.add(lblHungerValue);
 		
 		JLabel lblFatigueValue = new JLabel();
 		lblFatigueValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblFatigueValue.setBounds(109, 178, 207, 32);
+		lblFatigueValue.setBounds(270, 94, 78, 32);
 		panel.add(lblFatigueValue);
 		
 		JLabel lblTraitValue = new JLabel();
 		lblTraitValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblTraitValue.setBounds(109, 52, 207, 32);
+		lblTraitValue.setBounds(96, 52, 220, 32);
 		panel.add(lblTraitValue);
 		
 		JLabel lblNameValue = new JLabel();
 		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNameValue.setBounds(109, 10, 207, 32);
+		lblNameValue.setBounds(96, 10, 220, 32);
 		panel.add(lblNameValue);
 		
 		// The default selected crew member when first entering the window
@@ -148,7 +137,34 @@ public class CrewMemberWindow {
 		lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 		lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 		textArea.setText(member.description());
+		
+		
+		JLabel lblActions = new JLabel("Actions");
+		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblActions.setBounds(183, 136, 78, 32);
+		panel.add(lblActions);
+		
+		JLabel lblActionsValue = new JLabel(member.getActionsLeft() + "/" + member.getMaxActions());
+		lblActionsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblActionsValue.setBounds(270, 136, 78, 32);
+		panel.add(lblActionsValue);
+		
+		JButton btnPerformAction = new JButton("Perform Action");
+		btnPerformAction.setBounds(9, 296, 337, 25);
+		panel.add(btnPerformAction);
+		btnPerformAction.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JDialog actions = new ActionsDialog(frame, "Space Explorers", game, window);
+				actions.setVisible(true);
+			}
+		});
 		game.setChosenCrewMember(member);
+		if (member.isAvailable()) {
+			btnPerformAction.setEnabled(true);
+		} else {
+			btnPerformAction.setEnabled(false);
+		}
 		
 		JToggleButton tglbtnCM2 = new JToggleButton("2");
 		tglbtnCM2.addActionListener(new ActionListener() {
@@ -163,8 +179,14 @@ public class CrewMemberWindow {
 				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
+				if (member.isAvailable()) {
+					btnPerformAction.setEnabled(true);
+				} else {
+					btnPerformAction.setEnabled(false);
+				}
 			}
 		});
 		
@@ -182,19 +204,25 @@ public class CrewMemberWindow {
 				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
+				if (member.isAvailable()) {
+					btnPerformAction.setEnabled(true);
+				} else {
+					btnPerformAction.setEnabled(false);
+				}
 			}
 		});
 		tglbtnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM1.setBounds(52, 118, 150, 150);
+		tglbtnCM1.setBounds(45, 129, 140, 140);
 		frame.getContentPane().add(tglbtnCM1);
 		
 	
 		
 		
 		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM2.setBounds(231, 118, 150, 150);
+		tglbtnCM2.setBounds(208, 129, 140, 140);
 		frame.getContentPane().add(tglbtnCM2);
 		
 		JToggleButton tglbtnCM3 = new JToggleButton("3");
@@ -210,12 +238,18 @@ public class CrewMemberWindow {
 				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
+				if (member.isAvailable()) {
+					btnPerformAction.setEnabled(true);
+				} else {
+					btnPerformAction.setEnabled(false);
+				}
 			}
 		});
 		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM3.setBounds(52, 297, 150, 150);
+		tglbtnCM3.setBounds(45, 297, 140, 140);
 		frame.getContentPane().add(tglbtnCM3);
 		
 		JToggleButton tglbtnCM4 = new JToggleButton("4");
@@ -231,12 +265,18 @@ public class CrewMemberWindow {
 				lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
+				if (member.isAvailable()) {
+					btnPerformAction.setEnabled(true);
+				} else {
+					btnPerformAction.setEnabled(false);
+				}
 			}
 		});
 		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM4.setBounds(231, 297, 150, 150);
+		tglbtnCM4.setBounds(208, 297, 140, 140);
 		frame.getContentPane().add(tglbtnCM4);
 		
 		

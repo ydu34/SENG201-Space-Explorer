@@ -240,7 +240,7 @@ public class CrewMember {
 	 * @return A string representation of the crew member.
 	 */
 	public String toString() {
-		return type;
+		return name;
 	}
 	
 	/**

@@ -1,6 +1,9 @@
 package views;
 
+import main.CrewMember;
 import main.GameEnvironment;
+import main.Planet;
+
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -16,6 +19,8 @@ public class PilotWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
+	private CrewMember mainPilot;
+	private CrewMember coPilot;
 
 	/**
 	 * Create the application.
@@ -39,13 +44,14 @@ public class PilotWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 325, 400);
+		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		panel.setBounds(65, 12, 200, 172);
+		panel.setBounds(205, 13, 400, 350);
 		frame.getContentPane().add(panel);
 		
 		JLabel lblPictureOfPlanet = new JLabel("Picture of Planet");
@@ -53,40 +59,78 @@ public class PilotWindow {
 		panel.add(lblPictureOfPlanet);
 		
 		JButton btnPilot = new JButton("PILOT");
+		
 		btnPilot.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnPilot.setBounds(12, 320, 122, 25);
+		btnPilot.setEnabled(false);
+		btnPilot.setBounds(41, 503, 122, 25);
 		frame.getContentPane().add(btnPilot);
 		
 		JButton button_1 = new JButton("Let's do something else!");
-		button_1.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 11));
-		button_1.setBounds(151, 320, 160, 25);
-		frame.getContentPane().add(button_1);
-		
-		JComboBox comboBox = new JComboBox(game.getPlanets().toArray());
-		comboBox.setSelectedItem(game.getCrew().getCurrentLocation());
-		btnPilot.setEnabled(false);
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (comboBox.getSelectedItem() == game.getCrew().getCurrentLocation()) {
-					btnPilot.setEnabled(false);
-				} else {
-					btnPilot.setEnabled(true);
-				}
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+				game.launchCrewMemberWindow();
 			}
 		});
-		comboBox.setBounds(65, 211, 200, 25);
-		frame.getContentPane().add(comboBox);
+		button_1.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 11));
+		button_1.setBounds(535, 504, 200, 25);
+		frame.getContentPane().add(button_1);
+		
+		JComboBox cBoxPlanet = new JComboBox(game.getPlanets().toArray());
+		cBoxPlanet.setSelectedItem(game.getCrew().getCurrentLocation());
+		cBoxPlanet.setBounds(194, 437, 200, 25);
+		frame.getContentPane().add(cBoxPlanet);
+		
+		JComboBox cBoxPilot = new JComboBox(game.getCrew().getCrewMembers().toArray());
+		cBoxPilot.setBounds(427, 437, 200, 25);
+		frame.getContentPane().add(cBoxPilot);
+		
+		// Main Pilot
+		mainPilot = game.getChosenCrewMember();
+		// The other pilot 
+		coPilot = (CrewMember) cBoxPilot.getSelectedItem();
+		
+		// Action listener to check if the conditions meet for piloting to another planet
+		ActionListener pilotConditions = new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (cBoxPlanet.getSelectedItem() == game.getCrew().getCurrentLocation() || cBoxPilot.getSelectedItem() == game.getChosenCrewMember()) {
+					btnPilot.setEnabled(false);
+					btnPilot.setToolTipText("The co-pilot must be different to main pilot, and the planet must be different to current pilot.");
+				} else {
+					coPilot = (CrewMember) cBoxPilot.getSelectedItem();
+					btnPilot.setEnabled(true);
+					btnPilot.setToolTipText(null);
+				}
+			}
+		};
+		cBoxPlanet.addActionListener(pilotConditions);
+		cBoxPilot.addActionListener(pilotConditions);
+		
+		// Action listener when player clicks the pilot button
+		btnPilot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPilot.pilot((Planet) cBoxPlanet.getSelectedItem(), coPilot, game.getCrew());
+				finishedWindow();
+				game.launchMainWindow();
+			}
+		});
+		
+		
 		
 		JLabel lblSelectPlanet = new JLabel("Select New Planet:");
-		lblSelectPlanet.setBounds(65, 196, 197, 15);
+		lblSelectPlanet.setBounds(194, 409, 197, 15);
 		frame.getContentPane().add(lblSelectPlanet);
 		
 		JLabel lblSelectCopilol = new JLabel("Select co-pilot:");
-		lblSelectCopilol.setBounds(68, 248, 197, 15);
+		lblSelectCopilol.setBounds(438, 409, 197, 15);
 		frame.getContentPane().add(lblSelectCopilol);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(65, 265, 200, 25);
-		frame.getContentPane().add(comboBox_1);
+		JLabel lblMainPilot = new JLabel("Main Pilot");
+		lblMainPilot.setBounds(215, 376, 56, 16);
+		frame.getContentPane().add(lblMainPilot);
+		
+		JLabel lblNewLabel = new JLabel(game.getChosenCrewMember().getName());
+		lblNewLabel.setBounds(294, 376, 311, 15);
+		frame.getContentPane().add(lblNewLabel);
 	}
 }
