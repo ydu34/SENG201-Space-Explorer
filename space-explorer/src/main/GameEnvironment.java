@@ -22,6 +22,7 @@ public class GameEnvironment {
 	private int currentDay = 1;
 	private String[] planetNames = {"Asauzuno","Uchiliv","Yangosie","Putrilia","Emia","Doyama","Bruxotune","Divunus","Coth LTS4"};
 	private ArrayList<CrewMember> crewMemberTypes = new ArrayList<CrewMember>();
+	private CrewMember chosenCrewMember;
 	
 	
 	public void launchStartWindow() {
@@ -673,6 +674,14 @@ public class GameEnvironment {
 
 	public void setCrewMemberTypes(ArrayList<CrewMember> crewMemberTypes) {
 		this.crewMemberTypes = crewMemberTypes;
+	}
+
+	public CrewMember getChosenCrewMember() {
+		return chosenCrewMember;
+	}
+
+	public void setChosenCrewMember(CrewMember chosenCrewMember) {
+		this.chosenCrewMember = chosenCrewMember;
 	}
 
 

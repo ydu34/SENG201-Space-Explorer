@@ -29,7 +29,7 @@ public class CrewMemberWindow {
 	private JFrame frame;
 	private GameEnvironment game;
 	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); // used to contain all the toggle buttons that toggle crew members
-	private CrewMember selectedCrewMember = game.getCrew().getCrewMembers().get(0);
+
 	/**
 	 * Create the application.
 	 */
@@ -162,6 +162,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				textArea.setText(member.description());
+				game.setChosenCrewMember(member);
 			}
 		});
 		
@@ -180,6 +181,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				textArea.setText(member.description());
+				game.setChosenCrewMember(member);
 			}
 		});
 		tglbtnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -207,6 +209,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				textArea.setText(member.description());
+				game.setChosenCrewMember(member);
 			}
 		});
 		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -227,6 +230,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				textArea.setText(member.description());
+				game.setChosenCrewMember(member);
 			}
 		});
 		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
