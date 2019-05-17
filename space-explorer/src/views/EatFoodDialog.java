@@ -77,6 +77,8 @@ public class EatFoodDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
+				JDialog actions = new ActionsDialog(parent, "Space Explorers", game, parentWindow);
+				actions.setVisible(true);
 			}
 		});
 		button.setFont(new Font("Dialog", Font.BOLD, 11));

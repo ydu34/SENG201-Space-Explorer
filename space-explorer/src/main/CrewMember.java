@@ -158,9 +158,10 @@ public class CrewMember {
 	 * Repairs the ship.
 	 * @param ship   A Ship object.
 	 */
-	public void repair(Ship ship) {
+	public String repair(Ship ship) {
+		String returnString = "";
 		if (fatigue + repairFatigueCost> maxFatigue) {
-			System.out.println(this.name + " is too tired to repair the ship.");
+			returnString += name + " is too tired to repair the ship.";
 		} else {
 			int shieldLevel = ship.getShieldLevel();
 			int maxShieldLevel = ship.getMaxShieldLevel();
@@ -170,8 +171,9 @@ public class CrewMember {
 			}
 			actionsLeft-=1;
 			fatigue += repairFatigueCost;
-			System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
+			returnString += "The ship's shield is now " + shieldLevel + "/" +maxShieldLevel;
 		}
+		return returnString;
 	}
 	
 	/**
@@ -206,38 +208,40 @@ public class CrewMember {
 	 * @param ship           A Ship object.
 	 * 
 	 */
-	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
+	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
+		String returnString = "";
 		if (fatigue + searchFatigueCost  > maxFatigue) {
-			System.out.println(name + " is too tired to search the planet.");
+			returnString += name + " is too tired to search the planet.\n";
 		}
 		if (hunger + searchHungerCost > maxHunger) {
-			System.out.println(name + " is too hungry to search the planet.");
+			returnString += name + " is too hungry to search the planet.\n";
 		}
 		if (fatigue + searchFatigueCost  <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 			if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
-				System.out.println(name + " has found a ship piece!");
+				returnString += name + " has found a ship piece!\n";
 				crew.getCurrentLocation().setShipPieceFound(true);
 				ship.foundPiece();
 			} else if (randomNum >= 20 && randomNum < 35) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
 				crew.getMedicalItems().add(medicalItems.get(randomNum));
-				System.out.println(name + " has found a medical item " + medicalItems.get(randomNum) + "!");
+				returnString += name + " has found a medical item " + medicalItems.get(randomNum) + "!\n";
 			} else if (randomNum >= 35 && randomNum < 50) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
 				crew.getFoodItems().add(foodItems.get(randomNum));
-				System.out.println(name + " has found a food item " + foodItems.get(randomNum) + "!");
+				returnString += name + " has found a food item " + foodItems.get(randomNum) + "!\n";
 			} else if (randomNum >= 50 && randomNum < 65) {
 				int amount = 50;
 				crew.increaseMoney(amount);
-				System.out.println(name + "has found " + amount + " Coins.");
+				returnString += name + "has found " + amount + " Coins.\n";
 			} else {
-				System.out.println(name + " has found nothing.");
+				returnString += name + " has found nothing.\n";
 			}
 			fatigue += searchFatigueCost;
 			hunger += searchHungerCost;
 			actionsLeft -= 1;
 		}
+		return returnString;
 	}
 	
 	public String description() {

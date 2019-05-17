@@ -79,10 +79,8 @@ public class ActionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				dispose();
-				game.getChosenCrewMember().repair(game.getShip());
-				String message =game.getCrew().getName() + " has been repaired and now has " + game.getShip().getShieldLevel() + "/" + game.getShip().getMaxShieldLevel() + " shields.";
-				MessageDialog messageDialog = new MessageDialog(parent, game, message, parentWindow);
-				messageDialog.setVisible(true);
+				RepairShipDialog repairShip = new RepairShipDialog(parent, game, parentWindow);
+				repairShip.setVisible(true);
 			}
 		});
 		btnRepairShip.setBounds(12, 208, 301, 25);
@@ -94,7 +92,8 @@ public class ActionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
-				game.getChosenCrewMember().search(game.getMedItems(), game.getFoodItems(), game.getCrew(), game.getShip());
+				SearchPlanetDialog searchPlanet = new SearchPlanetDialog(parent, game, parentWindow);
+				searchPlanet.setVisible(true);
 			}
 		});
 		btnSearchPlanet.setBounds(12, 246, 301, 25);
@@ -116,10 +115,8 @@ public class ActionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
-				game.getChosenCrewMember().sleep();	
-				String message = game.getChosenCrewMember().getName() + " has recovered some fatigue.";
-				MessageDialog messageDialog = new MessageDialog(parent, game, message, parentWindow);
-				messageDialog.setVisible(true);
+				SleepDialog sleep = new SleepDialog(parent, title, game, parentWindow);
+				sleep.setVisible(true);
 			}
 		});
 		btnSleep.setBounds(12, 94, 301, 25);
