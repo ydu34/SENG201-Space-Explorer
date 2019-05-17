@@ -1,6 +1,7 @@
 package views;
 
 import main.CrewMember;
+
 import main.Engineer;
 import main.GameEnvironment;
 import main.HealthNut;
@@ -68,6 +69,7 @@ public class CreateCrewWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("SPACE EXPLORERS");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -80,8 +82,10 @@ public class CreateCrewWindow {
 		
 		JPanel panelCrewMember = new JPanel();
 		panelCrewMember.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
 		panelCrewMember.setBounds(373, 158, 360, 330);
 		frame.getContentPane().add(panelCrewMember);
+
 		panelCrewMember.setLayout(null);
 		
 		JLabel lblName = new JLabel("Name:");
@@ -183,6 +187,7 @@ public class CreateCrewWindow {
 		tglbtnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM1.setBounds(45, 171, 140, 140);
 		frame.getContentPane().add(tglbtnCM1);
+
 		CrewMemberToggleButtons.add(tglbtnCM1);
 		
 		
@@ -217,8 +222,11 @@ public class CreateCrewWindow {
 			}
 		});
 		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
 		tglbtnCM2.setBounds(210, 171, 140, 140);
+
 		frame.getContentPane().add(tglbtnCM2);
+
 		CrewMemberToggleButtons.add(tglbtnCM2);
 		
 		JToggleButton tglbtnCM3 = new JToggleButton("3");
@@ -252,8 +260,11 @@ public class CreateCrewWindow {
 			}
 		});
 		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
 		tglbtnCM3.setBounds(45, 335, 140, 140);
+
 		frame.getContentPane().add(tglbtnCM3);
+
 		CrewMemberToggleButtons.add(tglbtnCM3);
 		
 		JToggleButton tglbtnCM4 = new JToggleButton("4");
@@ -287,8 +298,11 @@ public class CreateCrewWindow {
 			}
 		});
 		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
 		tglbtnCM4.setBounds(210, 335, 140, 140);
+
 		frame.getContentPane().add(tglbtnCM4);
+
 		CrewMemberToggleButtons.add(tglbtnCM4);
 		
 		JTextArea textArea = new JTextArea(currentType.description());
@@ -415,8 +429,11 @@ public class CreateCrewWindow {
 			}
 		});
 		
+
 		btnNext.setBounds(573, 515, 160, 25);
+
 		frame.getContentPane().add(btnNext);
+
 		textFieldShipName.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			    enableButton();

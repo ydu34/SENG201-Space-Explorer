@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 
 public class SetupWindow{
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 
 
@@ -26,11 +26,11 @@ public class SetupWindow{
 	public SetupWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -41,10 +41,11 @@ public class SetupWindow{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JLabel lblPiecesNum = new JLabel();
 		JLabel lblDays = new JLabel();
@@ -63,19 +64,19 @@ public class SetupWindow{
 		daysSlider.setMinimum(3);
 		daysSlider.setMaximum(10);
 		daysSlider.setBounds(41, 104, 702, 56);
-		frame.getContentPane().add(daysSlider);
+		frmSpaceExplorers.getContentPane().add(daysSlider);
 		
 		JLabel lblPieces = new JLabel("Missing Pieces");
 		lblPieces.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblPieces.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPieces.setBounds(41, 344, 702, 56);
-		frame.getContentPane().add(lblPieces);
+		frmSpaceExplorers.getContentPane().add(lblPieces);
 		
 		lblPiecesNum.setText("" + daysSlider.getValue() * 2 / 3);
 		lblPiecesNum.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPiecesNum.setFont(new Font("Dialog", Font.BOLD, 30));
 		lblPiecesNum.setBounds(41, 424, 702, 56);
-		frame.getContentPane().add(lblPiecesNum);
+		frmSpaceExplorers.getContentPane().add(lblPiecesNum);
 		
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
@@ -87,13 +88,13 @@ public class SetupWindow{
 			}
 		});
 		btnNext.setBounds(650, 504, 126, 33);
-		frame.getContentPane().add(btnNext);
+		frmSpaceExplorers.getContentPane().add(btnNext);
 		
 		JLabel lblSelectTheNumber = new JLabel("Select the number of days the game will last");
 		lblSelectTheNumber.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblSelectTheNumber.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectTheNumber.setBounds(41, 24, 702, 56);
-		frame.getContentPane().add(lblSelectTheNumber);
+		frmSpaceExplorers.getContentPane().add(lblSelectTheNumber);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -103,20 +104,20 @@ public class SetupWindow{
 			}
 		});
 		btnBack.setBounds(10, 504, 126, 33);
-		frame.getContentPane().add(btnBack);
+		frmSpaceExplorers.getContentPane().add(btnBack);
 		
 		JLabel lblDaysText = new JLabel("Game Duration (days)");
 		lblDaysText.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDaysText.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblDaysText.setBounds(41, 184, 702, 56);
-		frame.getContentPane().add(lblDaysText);
+		frmSpaceExplorers.getContentPane().add(lblDaysText);
 		
 		
 		lblDays.setText("" + daysSlider.getValue());
 		lblDays.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDays.setFont(new Font("Dialog", Font.BOLD, 30));
 		lblDays.setBounds(41, 264, 702, 56);
-		frame.getContentPane().add(lblDays);
+		frmSpaceExplorers.getContentPane().add(lblDays);
 		
 	}
 }

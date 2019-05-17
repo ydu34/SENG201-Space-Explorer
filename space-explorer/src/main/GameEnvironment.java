@@ -1,6 +1,7 @@
 package main;
 
 import views.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -24,9 +25,16 @@ public class GameEnvironment {
 	private ArrayList<CrewMember> crewMemberTypes = new ArrayList<CrewMember>();
 	private CrewMember chosenCrewMember;
 	
-	
 	public void launchStartWindow() {
 		StartWindow startWindow = new StartWindow(this);
+	}
+	
+	public void launchInventoryPopUp() {
+		InventoryPopUp inventoryPopUp = new InventoryPopUp(this);
+	}
+	
+	public void closeInventoryPopUp(InventoryPopUp inventoryPopUP) {
+		inventoryPopUP.closeWindow();
 	}
 	
 	public void closeStartWindow(StartWindow startWindow) {

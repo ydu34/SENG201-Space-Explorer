@@ -12,7 +12,7 @@ import javax.swing.JComboBox;
 
 public class PlanetSelectWindow {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 
 	/**
@@ -21,11 +21,11 @@ public class PlanetSelectWindow {
 	public PlanetSelectWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -36,22 +36,23 @@ public class PlanetSelectWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JLabel lblPlanets = new JLabel("Planets");
 		lblPlanets.setFont(new Font("L M Mono Prop Lt10", Font.PLAIN, 50));
 		lblPlanets.setBounds(291, 60, 189, 94);
-		frame.getContentPane().add(lblPlanets);
+		frmSpaceExplorers.getContentPane().add(lblPlanets);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(280, 429, 200, 30);
-		frame.getContentPane().add(comboBox);
+		frmSpaceExplorers.getContentPane().add(comboBox);
 		
 		JLabel lblPlanetPhotos = new JLabel("planet photos");
 		lblPlanetPhotos.setBounds(331, 241, 105, 15);
-		frame.getContentPane().add(lblPlanetPhotos);
+		frmSpaceExplorers.getContentPane().add(lblPlanetPhotos);
 	}
 }
