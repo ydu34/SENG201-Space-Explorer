@@ -46,12 +46,30 @@ public class ActionsDialog extends JDialog {
 			}
 		};
 		JButton btnEatFood = new JButton("Eat Food");
-		btnEatFood.addActionListener(closeDialog);
+		btnEatFood.addActionListener( new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+				JDialog eatFood = new EatFoodDialog(parent, "Space Explorers", game, parentWindow);
+				eatFood.setVisible(true);
+			}
+			
+		});
 		btnEatFood.setBounds(12, 94, 301, 25);
 		contentPanel.add(btnEatFood);
 		
 		JButton btnApplyMed = new JButton("Apply Medical Item");
-		btnApplyMed.addActionListener(closeDialog);
+		btnApplyMed.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				dispose();
+				JDialog applyMedicine = new ApplyMedicineDialog(parent, "Space Explorers", game, parentWindow);
+				applyMedicine.setVisible(true);
+			}
+			
+		});
 		btnApplyMed.setBounds(12, 170, 301, 25);
 		contentPanel.add(btnApplyMed);
 		
