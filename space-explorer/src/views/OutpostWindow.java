@@ -255,7 +255,11 @@ public class OutpostWindow {
 							currentSpaceOutpost.purchaseItem(currentItem, game.getCrew());
 						}
 					}
-					finishedWindow();
+					lblMoney.setText(Integer.toString(game.getCrew().getMoney()));
+					moneyCounter = 0;
+					lblCost.setText(Integer.toString(moneyCounter));
+					listModel.clear();
+					
 				}
 				else {
 					lblWarningSign.setText("Sorry, you do not have enough coins!");	
