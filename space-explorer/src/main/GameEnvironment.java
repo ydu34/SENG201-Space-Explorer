@@ -108,10 +108,17 @@ public class GameEnvironment {
 	
 	public void closeGameOverWindow(GameOverWindow gameOverWindow) {
 		gameOverWindow.closeWindow();
+		GameEnvironment game = new GameEnvironment();
+		game.initCrewMemberTypes();
+		game.initMedItems();
+		game.initFoodItems();
+		game.initPlanets();
+		game.generateOutpostsItems();
+		game.launchStartWindow();
 	}
 	
 	
-
+	
 	
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
@@ -121,11 +128,6 @@ public class GameEnvironment {
 		game.initPlanets();
 		game.generateOutpostsItems();
 		game.launchStartWindow();
-		/*
-		game.gameSetUp();
-		game.mainGame();
-		game.endGame();
-		*/
 	}
 	
 	public void initCrewMemberTypes() {
@@ -470,24 +472,28 @@ public class GameEnvironment {
 				member.setActionsLeft(member.getMaxActions());
 			}
 			generateOutpostsItems();
+			ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
 			for (CrewMember member: crew.getCrewMembers()) {
 				if (member.isInfected()) {
 					member.setHealth(member.getHealth()-15);
 					if (member.isDead()) {
 						returnString += member.getName() + " has died to the space plague and has been removed from the crew.\n";
-						crew.getCrewMembers().remove(member);
+						deadCrewMembers.add(member);
 					} else {
 						returnString += member.getName() + " will lose 15 health each day until he gets cured.\n";
 						returnString += member.getName() + " now has " + member.getHealth() + "/" + member.getMaxHealth() + " health.\n";
 					}
 				}
 			}
+			for (CrewMember deadMember: deadCrewMembers) {
+				crew.getCrewMembers().remove(deadMember);
+			}
 			returnString += RandomEvent.occurDay(crew);
 		}
 		return returnString;
 	}
 		
-	public void endGame() {
+	public int calculateFinalScore() {
 		int score = 0;
 		for (CrewMember member: crew.getCrewMembers()) {
 			score += member.getHealth();
@@ -495,19 +501,13 @@ public class GameEnvironment {
 			score += member.getMaxHunger() - member.getHunger();
 		}
 		score += ship.getShieldLevel();
-		System.out.println("The game has ended.");
-		System.out.println("Days took to complete the game: " + currentDay + ".");
 		if (ship.getPiecesFound() == ship.getPiecesNeeded()) {
-			System.out.println("You have found all the pieces needed, and your crew can get back home!");
 			score = score * 2;
-		} else {
-			System.out.println("You have failed to find all the pieces.");
+			if (score < 0) {
+				score = 0;
+			}
 		}
-		if (score < 0) {
-			score = 0;
-		}
-		System.out.println("Your score for completing the game: " + score + ".");
-		
+		return score;
 	}
 	
 	public void createCrew() {
