@@ -1,6 +1,7 @@
 package main;
 
 import views.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -23,9 +24,16 @@ public class GameEnvironment {
 	private String[] planetNames = {"Asauzuno","Uchiliv","Yangosie","Putrilia","Emia","Doyama","Bruxotune","Divunus","Coth LTS4"};
 	private ArrayList<CrewMember> crewMemberTypes = new ArrayList<CrewMember>();
 	
-	
 	public void launchStartWindow() {
 		StartWindow startWindow = new StartWindow(this);
+	}
+	
+	public void launchInventoryPopUp() {
+		InventoryPopUp inventoryPopUp = new InventoryPopUp(this);
+	}
+	
+	public void closeInventoryPopUp(InventoryPopUp inventoryPopUP) {
+		inventoryPopUP.closeWindow();
 	}
 	
 	public void closeStartWindow(StartWindow startWindow) {

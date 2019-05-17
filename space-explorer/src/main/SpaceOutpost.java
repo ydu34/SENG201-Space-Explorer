@@ -9,8 +9,8 @@ public class SpaceOutpost {
 	
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
 	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
-	
 
+	
 	public void purchaseItem(MedicalItem item, Crew crew) {
 		if (crew.getMoney() >= item.getPrice()) {
 			crew.decreaseMoney(item.getPrice());
