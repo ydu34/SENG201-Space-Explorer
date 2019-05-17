@@ -54,6 +54,7 @@ public class CrewMemberWindow {
 	private void initialize() {
 		CrewMemberWindow window = this;
 		frame = new JFrame();
+		frame.setTitle("SPACE EXPLORERS");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,6 +102,7 @@ public class CrewMemberWindow {
 		panel.add(label_4);
 		
 		JTextArea textArea = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
+		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setLineWrap(true);

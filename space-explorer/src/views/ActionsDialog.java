@@ -56,7 +56,7 @@ public class ActionsDialog extends JDialog {
 			}
 			
 		});
-		btnEatFood.setBounds(12, 94, 301, 25);
+		btnEatFood.setBounds(12, 132, 301, 25);
 		contentPanel.add(btnEatFood);
 		
 		JButton btnApplyMed = new JButton("Apply Medical Item");
@@ -121,14 +121,16 @@ public class ActionsDialog extends JDialog {
 				messageDialog.setVisible(true);
 			}
 		});
-		btnSleep.setBounds(12, 132, 301, 25);
+		btnSleep.setBounds(12, 94, 301, 25);
 		contentPanel.add(btnSleep);
 		
-		JLabel lblNewLabel = new JLabel("Crew Member:");
+		JLabel lblNewLabel = new JLabel("Selected Crew Member:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(12, 52, 147, 30);
 		contentPanel.add(lblNewLabel);
 		
 		JLabel label_1 = new JLabel(game.getChosenCrewMember().getName());
+		label_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		label_1.setBounds(164, 52, 147, 30);
 		contentPanel.add(label_1);
 		
