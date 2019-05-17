@@ -28,12 +28,4 @@ public class Nibbler extends CrewMember{
 		System.out.println(super.getName() + " now has " + super.getHunger() + ".");
 	}
 	
-	/**
-	 * Prints a description of Nibbler.
-	 */
-	public static void description() {
-		System.out.println("Nibbler does not eat a lot." 
-				+ "\nNibbler's hunger level decreases by more when consuming food items");
-	}
-
 }

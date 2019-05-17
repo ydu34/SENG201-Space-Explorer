@@ -38,6 +38,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.JList;
+import java.awt.SystemColor;
 
 public class CreateCrewWindow {
 
@@ -306,6 +307,11 @@ public class CreateCrewWindow {
 		CrewMemberToggleButtons.add(tglbtnCM4);
 		
 		JTextArea textArea = new JTextArea(currentType.description());
+		textArea.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		textArea.setBackground(SystemColor.menu);
+		textArea.setWrapStyleWord(true);
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		textArea.setLineWrap(true);
 		textArea.setBounds(11, 181, 337, 102);
 		panelCrewMember.add(textArea);
 		textArea.setEditable(false);

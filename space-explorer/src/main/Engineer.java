@@ -36,14 +36,5 @@ public class Engineer extends CrewMember{
 	}
 	
 
-	/**
-	 * Prints a description of Engineer.
-	 */
-	public static void description() {
-		System.out.println("The Engineer is a master at building, designing and maintaining machines."
-				+ "\nThe Engineer is more skilled at reparining the spaceship.");
-		
-	}
-
 }
 

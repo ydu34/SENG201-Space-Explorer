@@ -19,12 +19,4 @@ public class Protected extends CrewMember{
 		super.setInfected(false);
 	}
 	
-	/**
-	 * Prints a description of Protected.
-	 */
-	public static void description() {
-		System.out.println("Protected has a good immune system."
-				+ "\nProtected can not be infected by to space plague");
-	}
-
 }

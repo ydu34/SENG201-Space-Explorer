@@ -81,14 +81,4 @@ public class NightOwl extends CrewMember{
 		}
 	}
 	
-	
-	/**
-	 * Prints a description of NightOwl.
-	 */
-	public static void description() {
-		System.out.println("Night Owl does not like sleeping." 
-				+ "\nNightOwl's fatigue level increases by a slower rate when repairing ships and searching on planets.");
-		
-	}
-
 }

@@ -11,12 +11,4 @@ public class Regular extends CrewMember{
 		super(name, "Regular", "Normal", 100, 130, 130, 2);
 	}
 	
-	/**
-	 * Prints a description of Regular.
-	 */
-	public static void description() {
-		System.out.println("Regular does not have any special powers."
-				+ "\nRegular has higher hunger and fatigue tolerance levels.");
-	}
-
 }

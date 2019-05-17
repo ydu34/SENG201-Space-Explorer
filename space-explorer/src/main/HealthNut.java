@@ -31,12 +31,5 @@ public class HealthNut extends CrewMember{
 		super.setActionsLeft(super.getActionsLeft()-1);
 		
 	}
-	
-	/**
-	 * Prints a description of HealthNut.
-	 */
-	public static void description() {
-		System.out.println("Health Nut has a very healthy lifestyle." 
-				+ "\nHealthNut's health level increases by more when consuming medical items");
-	}
+
 }

@@ -248,22 +248,28 @@ public class CrewMember {
 		String returnString = "";
 		switch(type) {
 		case "Engineer" :
-			returnString = "Engineer";
+			returnString = "Engineers are masters at building, designing and maintaining machines. "
+					+ "The Engineer is more skilled at reparining the spaceship.";
 			break;
 		case "Health Nut" :
-			returnString = "Health Nut";
+			returnString = "Health Nut has a very healthy lifestyle. "
+					+ "Health Nut's health level increases by more when consuming medical items";
 			break;
 		case "Nibbler":
-			returnString = "Nibbler";
+			returnString = "Nibbler does not eat a lot. "
+					+ "Nibbler's hunger level decreases by more when consuming food items";
 			break;
 		case "Night Owl":
-			returnString = "Night Owl";
+			returnString = "Night Owl does not like sleeping. "
+					+ "Night Owl's fatigue level increases by a slower rate when repairing ships and searching on planets.";
 			break;
 		case "Protected":
-			returnString = "Protected";
+			returnString = "Protected has a good immune system. "
+					+ "Protected can not be infected by to space plague";
 			break;
 		case "Regular":
-			returnString = "Regular";
+			returnString = "Regular does not have any special powers. "
+					+ "Regular has higher hunger and fatigue tolerance levels.";
 			break; 
 		}
 		return returnString;

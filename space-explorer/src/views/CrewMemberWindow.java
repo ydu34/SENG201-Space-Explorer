@@ -101,6 +101,9 @@ public class CrewMemberWindow {
 		panel.add(label_4);
 		
 		JTextArea textArea = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
+		textArea.setWrapStyleWord(true);
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		textArea.setLineWrap(true);
 		textArea.setBounds(9, 181, 337, 102);
 		panel.add(textArea);
 		
