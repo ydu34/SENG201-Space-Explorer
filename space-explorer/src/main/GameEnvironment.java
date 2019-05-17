@@ -188,18 +188,6 @@ public class GameEnvironment {
 				+ "\nYou will need to find the missing pieces of your spaceship so that you can repair it and get home.");
 	}
 	
-	public void gameSetUp() {
-		/* Setting up the game */
-		introMessage();
-		System.out.println("How many days (between 3 and 10) do you want to play for?");
-		input = in.nextLine();
-		gameDuration = Integer.parseInt(input);
-		ship.setPiecesNeeded(gameDuration * 2 / 3);
-		System.out.println(ship.getPiecesNeeded() + " missing pieces are scattered throughout the surrounding planets.");
-		createCrew();
-		nameShip();
-		chooseStartingPlanet();
-	}
 	
 	public void mainGame() {
 		System.out.println("The crew finds them on the planet " + crew.getCurrentLocation() + " with their spaceship.");
@@ -518,110 +506,6 @@ public class GameEnvironment {
 		return score;
 	}
 	
-	public void createCrew() {
-		System.out.println("How many crew members (between 2 and 4) would you like?");
-		input = in.nextLine();
-		parsedInput = Integer.parseInt(input);
-		int crewMemberNeeded = parsedInput; 
-		while (crewMemberNeeded != 0) {
-			chooseCrewMemberType();
-			crewMemberNeeded-=1;
-		}
-	}
-	
-	public void printCrewMemberTypesOptions()  {
-		System.out.println("There are 6 different types of crew members: ");
-		System.out.println("\t1. Engineer");
-		System.out.println("\t2. HealthNut"); 
-		System.out.println("\t3. Nibbler");
-		System.out.println("\t4. NightOwl");
-		System.out.println("\t5. Protected");
-		System.out.println("\t6. Regular");
-		System.out.println("Please select a crew member to recruit to your crew.");
-	}
-
-	public void chooseCrewMemberType() {
-		printCrewMemberTypesOptions();
-		ArrayList<CrewMember> crewMembers = crew.getCrewMembers();
-		input = in.nextLine();
-		parsedInput = Integer.parseInt(input);
-		String selectedCrewMember = "";
-		switch(parsedInput) {
-		case 1:
-			selectedCrewMember = "Engineer";
-			Engineer.description();
-			break;
-		case 2:
-			selectedCrewMember = "HealthNut";
-			HealthNut.description();
-			break;
-		case 3:
-			selectedCrewMember = "Nibbler";
-			Nibbler.description();
-			break;
-		case 4:
-			selectedCrewMember = "NightOwl";
-			NightOwl.description();
-			break;
-		case 5:
-			selectedCrewMember = "Protected";
-			Protected.description();
-			break;
-		case 6:
-			selectedCrewMember = "Regular";
-			Regular.description();
-			break;	
-		}
-		System.out.println("Recruit " + selectedCrewMember + "? (Y/N)");
-		input = in.nextLine();
-		switch(input) {
-		case("Y"):
-			System.out.println("Name your crew member: ");
-			input = in.nextLine();
-			String name = input;
-			switch(selectedCrewMember) {
-			case "Engineer":
-				crewMembers.add(new Engineer(name));
-				break;
-			case "HealthNut":
-				crewMembers.add(new HealthNut(name));
-				break;
-			case "Nibbler":
-				crewMembers.add(new Nibbler(name));
-				break;
-			case "NightOwl":
-				crewMembers.add(new NightOwl(name));
-				break;
-			case "Protected":
-				crewMembers.add(new Protected(name));
-				break;
-			case "Regular":
-				crewMembers.add(new Regular(name));
-				break;
-			}
-			break;
-		case("N"):
-			chooseCrewMemberType();
-			break;
-		}
-	}
-	
-	public void nameShip() {
-		System.out.println("Name your ship: ");
-		input = in.nextLine();
-		crew.setName(input);
-	}
-	
-	public void chooseStartingPlanet() {
-		System.out.println("Which planet would you like to start at");
-		
-		for(int i = 0; i < planets.size() ; i++) {
-			System.out.println(i+1 + ". " + planets.get(i));
-		}
-		input = in.nextLine();
-		parsedInput = Integer.parseInt(input);
-		crew.setCurrentLocation(planets.get(parsedInput-1));
-	}
 
 	public Crew getCrew() {
 		return crew;
