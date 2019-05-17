@@ -140,6 +140,7 @@ public class MainWindow {
 				} else {
 					game.launchMainWindow();
 				}
+				
 			}
 		});
 		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));

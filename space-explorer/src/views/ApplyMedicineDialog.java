@@ -43,7 +43,7 @@ public class ApplyMedicineDialog extends JDialog {
 			contentPanel.add(comboBox);
 
 			JButton button = new JButton("APPLY");
-			if (game.getMedItems().size() == 0) {
+			if (game.getCrew().getMedicalItems().size() == 0) {
 				button.setEnabled(false);
 			}
 			button.addActionListener(new ActionListener() {
