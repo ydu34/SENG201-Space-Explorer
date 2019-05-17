@@ -94,7 +94,7 @@ public class PilotWindow {
 		// Action listener to check if the conditions meet for piloting to another planet
 		ActionListener pilotConditions = new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (cBoxPlanet.getSelectedItem() == game.getCrew().getCurrentLocation() || cBoxPilot.getSelectedItem() == game.getChosenCrewMember()) {
+				if (cBoxPlanet.getSelectedItem() == game.getCrew().getCurrentLocation() || cBoxPilot.getSelectedItem() == game.getChosenCrewMember() || !(((CrewMember) cBoxPilot.getSelectedItem()).isAvailable())) {
 					btnPilot.setEnabled(false);
 					btnPilot.setToolTipText("The co-pilot must be different to main pilot, and the planet must be different to current pilot.");
 				} else {

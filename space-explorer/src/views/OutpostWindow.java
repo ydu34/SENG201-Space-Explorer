@@ -31,6 +31,7 @@ import javax.swing.JTextArea;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 public class OutpostWindow {
 
@@ -106,6 +107,7 @@ public class OutpostWindow {
 		frmSpaceExplorers.getContentPane().add(lblItemsAvailableIn);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(414, 108, 343, 314);
 		frmSpaceExplorers.getContentPane().add(panel);
 		panel.setLayout(null);

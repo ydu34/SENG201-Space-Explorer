@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
+import javax.swing.border.TitledBorder;
 
 public class MainWindow {
 
@@ -50,22 +51,6 @@ public class MainWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JLabel lblPlanetName = new JLabel(game.getCrew().getCurrentLocation().getName());
-		lblPlanetName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlanetName.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblPlanetName.setBounds(192, 13, 400, 50);
-		frame.getContentPane().add(lblPlanetName);
-		
-		JLabel lblDay = new JLabel("Day:");
-		lblDay.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblDay.setBounds(616, 106, 170, 35);
-		frame.getContentPane().add(lblDay);
-		
-		JLabel lblPiecesFound = new JLabel("Pieces found:");
-		lblPiecesFound.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblPiecesFound.setBounds(616, 236, 170, 35);
-		frame.getContentPane().add(lblPiecesFound);
-		
 		JButton btnOutpost = new JButton("Visit outpost");
 		btnOutpost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
 		btnOutpost.addActionListener(new ActionListener() {
@@ -74,7 +59,7 @@ public class MainWindow {
 				game.launchOutpostWindow();
 			}
 		});
-		btnOutpost.setBounds(28, 505, 220, 35);
+		btnOutpost.setBounds(20, 505, 170, 35);
 		frame.getContentPane().add(btnOutpost);
 		
 		JButton btnCrew = new JButton("View Crew");
@@ -85,48 +70,17 @@ public class MainWindow {
 			}
 		});
 		btnCrew.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnCrew.setBounds(279, 505, 220, 35);
+		btnCrew.setBounds(210, 505, 170, 35);
 		frame.getContentPane().add(btnCrew);
 		
-		JLabel lblShip = new JLabel("Ship: \r\n");
-		lblShip.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblShip.setBounds(12, 106, 170, 35);
-		frame.getContentPane().add(lblShip);
-		
-		JLabel lblShieldLevel = new JLabel("Shield Level:");
-		lblShieldLevel.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblShieldLevel.setBounds(12, 234, 170, 35);
-		frame.getContentPane().add(lblShieldLevel);
-		
-		JLabel lblDayValue = new JLabel(game.getCurrentDay() + "/" + game.getGameDuration());
-		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
-		lblDayValue.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblDayValue.setBounds(616, 145, 170, 35);
-		frame.getContentPane().add(lblDayValue);
-		
-		JLabel lblPiecesFoundValue = new JLabel(game.getShip().getPiecesFound() + "/" + game.getShip().getPiecesNeeded());
-		lblPiecesFoundValue.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblPiecesFoundValue.setBounds(616, 270, 170, 35);
-		frame.getContentPane().add(lblPiecesFoundValue);
-		
 		JLabel lblPlanetImage = new JLabel();
-		lblPlanetImage.setBounds(192, 75, 400, 350);
+		lblPlanetImage.setBounds(28, 76, 400, 350);
 		frame.getContentPane().add(lblPlanetImage);
 		ImageIcon imageIcon = new ImageIcon(StartingPlanetWindow.class.getResource("/resources/planet-2398343_1920.jpg"));
 		Image image = imageIcon.getImage();
 		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
 		imageIcon = new ImageIcon(newimg);
 		lblPlanetImage.setIcon(imageIcon);
-		
-		JLabel lblShipName = new JLabel(game.getCrew().getName());
-		lblShipName.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblShipName.setBounds(12, 143, 170, 35);
-		frame.getContentPane().add(lblShipName);
-		
-		JLabel lblShipLevelValue = new JLabel(game.getShip().getShieldLevel() + "/" + game.getShip().getMaxShieldLevel());
-		lblShipLevelValue.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblShipLevelValue.setBounds(12, 270, 170, 35);
-		frame.getContentPane().add(lblShipLevelValue);
 		
 		JButton btnNextDay = new JButton("Next day");
 		btnNextDay.addActionListener(new ActionListener() {
@@ -145,7 +99,81 @@ public class MainWindow {
 			}
 		});
 		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
-		btnNextDay.setBounds(530, 505, 220, 35);
+		btnNextDay.setBounds(400, 505, 170, 35);
 		frame.getContentPane().add(btnNextDay);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(440, 76, 312, 350);
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblDay = new JLabel("Day:");
+		lblDay.setBounds(12, 158, 137, 31);
+		panel.add(lblDay);
+		lblDay.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblDayValue = new JLabel(game.getCurrentDay() + "/" + game.getGameDuration());
+		lblDayValue.setBounds(161, 158, 151, 31);
+		panel.add(lblDayValue);
+		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
+		lblDayValue.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblShip = new JLabel("Ship: \r\n");
+		lblShip.setBounds(12, 95, 137, 31);
+		panel.add(lblShip);
+		lblShip.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblShipName = new JLabel(game.getCrew().getName());
+		lblShipName.setBounds(161, 95, 151, 31);
+		panel.add(lblShipName);
+		lblShipName.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblPiecesFound = new JLabel("Pieces found:");
+		lblPiecesFound.setBounds(12, 221, 137, 31);
+		panel.add(lblPiecesFound);
+		lblPiecesFound.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblPiecesFoundValue = new JLabel(game.getShip().getPiecesFound() + "/" + game.getShip().getPiecesNeeded());
+		lblPiecesFoundValue.setBounds(161, 221, 151, 31);
+		panel.add(lblPiecesFoundValue);
+		lblPiecesFoundValue.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblShieldLevel = new JLabel("Shield Level:");
+		lblShieldLevel.setBounds(12, 284, 137, 31);
+		panel.add(lblShieldLevel);
+		lblShieldLevel.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblShipLevelValue = new JLabel(game.getShip().getShieldLevel() + "/" + game.getShip().getMaxShieldLevel());
+		lblShipLevelValue.setBounds(161, 284, 151, 31);
+		panel.add(lblShipLevelValue);
+		lblShipLevelValue.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JLabel lblPlanet = new JLabel("Planet:");
+		lblPlanet.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblPlanet.setBounds(12, 32, 137, 31);
+		panel.add(lblPlanet);
+		
+		JLabel lblPlanetName = new JLabel(game.getCrew().getCurrentLocation().getName());
+		lblPlanetName.setBounds(161, 32, 151, 31);
+		panel.add(lblPlanetName);
+		lblPlanetName.setFont(new Font("Dialog", Font.BOLD, 20));
+		
+		JButton btnExitGame = new JButton("Exit Game");
+		btnExitGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int n = JOptionPane.showConfirmDialog(
+					    frame,
+					    "Are you sure you want to exit?",
+					    "Exit Game",
+					    JOptionPane.YES_NO_OPTION);
+				if (n == 0) {
+					System.exit(0);
+				}
+			}
+		});
+		btnExitGame.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnExitGame.setBounds(590, 505, 170, 35);
+		frame.getContentPane().add(btnExitGame);
 	}
 }

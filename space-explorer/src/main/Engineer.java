@@ -19,20 +19,8 @@ public class Engineer extends CrewMember{
 	 * @param ship   A Ship object.
 	 */
 	public void repair(Ship ship) {
-		int fatigueCost = 5;
-		if (super.getFatigue() + fatigueCost > super.getMaxFatigue()) {
-			System.out.println(super.getName() + " is too tired to repair the ship.");
-		} else { 
-			int shieldLevel = ship.getShieldLevel();
-			int maxShieldLevel = ship.getMaxShieldLevel();
-			shieldLevel += 15;
-			if (shieldLevel > maxShieldLevel) {
-				shieldLevel = maxShieldLevel;
-			}
-			super.setActionsLeft(super.getActionsLeft()-1);
-			super.setFatigue(super.getFatigue()+fatigueCost);
-			System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
-		}
+		super.repair(ship);
+		ship.setShieldLevel(ship.getShieldLevel()+10);
 	}
 	
 

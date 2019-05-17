@@ -17,19 +17,8 @@ public class HealthNut extends CrewMember{
 	 * @param crew   A Crew object.
 	 */
 	public void useMedicalItem(MedicalItem item, Crew crew) {
+		super.useMedicalItem(item, crew);
 		super.setHealth(super.getHealth() + 10);
-		super.setHealth(super.getHealth() + item.getRestoreHealthAmount());
-		if (super.getHealth() > super.getMaxHealth()) {
-			super.setHealth(super.getMaxHealth());
-		}
-		System.out.println(super.getName() + " now has " + super.getHealth() + ".");
-		if (item.isRemovePlague()) {
-			super.setInfected(false);
-			super.setStatus("Normal");
-		}
-		crew.getMedicalItems().remove(item);
-		super.setActionsLeft(super.getActionsLeft()-1);
-		
 	}
 
 }

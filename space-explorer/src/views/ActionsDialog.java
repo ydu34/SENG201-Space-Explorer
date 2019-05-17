@@ -14,6 +14,7 @@ import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Window.Type;
 
 public class ActionsDialog extends JDialog {
 

@@ -159,8 +159,7 @@ public class CrewMember {
 	 * @param ship   A Ship object.
 	 */
 	public void repair(Ship ship) {
-		int fatigueCost = 10;
-		if (fatigue + fatigueCost> maxFatigue) {
+		if (fatigue + repairFatigueCost> maxFatigue) {
 			System.out.println(this.name + " is too tired to repair the ship.");
 		} else {
 			int shieldLevel = ship.getShieldLevel();
@@ -170,7 +169,7 @@ public class CrewMember {
 				shieldLevel = maxShieldLevel;
 			}
 			actionsLeft-=1;
-			fatigue += fatigueCost;
+			fatigue += repairFatigueCost;
 			System.out.println("The ship's shield is now " + shieldLevel + "/" +maxShieldLevel);
 		}
 	}
@@ -182,16 +181,15 @@ public class CrewMember {
 	 * @param crew     A Crew object.
 	 */
 	public String pilot(Planet planet, CrewMember other, Crew crew) {
-		int fatigueCost = 10;
-		if (fatigue + fatigueCost> maxFatigue) {
+		if (fatigue + pilotFatigueCost> maxFatigue) {
 			System.out.println(name + " is too tired to pilot the ship.");
 		} 
-		if (other.fatigue + fatigueCost > other.maxFatigue) {
+		if (other.fatigue + pilotFatigueCost > other.maxFatigue) {
 			System.out.println(other.name + " is too tired to pilot the ship.");
 		} 
-		if (fatigue <= maxFatigue - fatigueCost && other.fatigue <= other.maxFatigue - fatigueCost) {
-			fatigue += fatigueCost;
-			other.fatigue += fatigueCost;
+		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost) {
+			fatigue += pilotFatigueCost;
+			other.fatigue += pilotFatigueCost;
 			actionsLeft -= 1;
 			other.actionsLeft -=1;
 			crew.setCurrentLocation(planet);
@@ -209,15 +207,13 @@ public class CrewMember {
 	 * 
 	 */
 	public void search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
-		int fatigueCost = 20;
-		int hungerCost = 20;
-		if (fatigue + fatigueCost > maxFatigue) {
+		if (fatigue + searchFatigueCost  > maxFatigue) {
 			System.out.println(name + " is too tired to search the planet.");
 		}
-		if (hunger + hungerCost > maxHunger) {
+		if (hunger + searchHungerCost > maxHunger) {
 			System.out.println(name + " is too hungry to search the planet.");
 		}
-		if (fatigue + fatigueCost <= maxFatigue && hunger + hungerCost <= maxHunger) {
+		if (fatigue + searchFatigueCost  <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 			if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
 				System.out.println(name + " has found a ship piece!");
@@ -238,8 +234,8 @@ public class CrewMember {
 			} else {
 				System.out.println(name + " has found nothing.");
 			}
-			fatigue += fatigueCost;
-			hunger += hungerCost;
+			fatigue += searchFatigueCost;
+			hunger += searchHungerCost;
 			actionsLeft -= 1;
 		}
 	}
