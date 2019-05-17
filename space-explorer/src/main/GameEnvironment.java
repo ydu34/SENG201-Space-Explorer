@@ -74,7 +74,6 @@ public class GameEnvironment {
 	
 	public void closeStartingPlanetWindow(StartingPlanetWindow startingPlanetWindow) {
 		startingPlanetWindow.closeWindow();
-		launchMainWindow();
 	}
 	
 	public void launchMainWindow() {
@@ -130,12 +129,17 @@ public class GameEnvironment {
 	
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
-		game.initCrewMemberTypes();
-		game.initMedItems();
-		game.initFoodItems();
-		game.initPlanets();
-		game.generateOutpostsItems();
+		game.initialize();
 		game.launchStartWindow();
+		
+	}
+	
+	public void initialize() {
+		initCrewMemberTypes();
+		initMedItems();
+		initFoodItems();
+		initPlanets();
+		generateOutpostsItems();
 	}
 	
 	public void initCrewMemberTypes() {

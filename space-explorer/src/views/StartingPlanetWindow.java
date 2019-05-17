@@ -65,12 +65,19 @@ public class StartingPlanetWindow {
 			public void actionPerformed(ActionEvent e) {
 				game.getCrew().setCurrentLocation((Planet) comboBox.getSelectedItem());
 				finishedWindow();
+				game.launchMainWindow();
 			}
 		});
 		btnStartGame.setBounds(635, 520, 126, 33);
 		frmSpaceExplorers.getContentPane().add(btnStartGame);
 		
 		JButton button_1 = new JButton("Back");
+		button_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
+				game.launchCreateCrewWindow();
+			}
+		});
 		button_1.setBounds(21, 520, 126, 33);
 		frmSpaceExplorers.getContentPane().add(button_1);
 		

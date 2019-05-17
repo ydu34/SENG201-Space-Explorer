@@ -81,6 +81,10 @@ public class CreateCrewWindow {
 		CrewMember CM3 = new CrewMember("Noah", "Nibbler");
 		CrewMember CM4 = new CrewMember("Kim", "Night Owl");
 		
+		JLabel lblNotify = new JLabel();
+		lblNotify.setBounds(373, 489, 360, 25);
+		frame.getContentPane().add(lblNotify);
+		
 		JPanel panelCrewMember = new JPanel();
 		panelCrewMember.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
@@ -161,6 +165,7 @@ public class CreateCrewWindow {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
 				}
+				lblNotify.setText("");
 				tglbtnCM1.setSelected(true);
 				tfCMName.setText(CM1.getName());
 				switch(CM1.getType()) {
@@ -198,6 +203,7 @@ public class CreateCrewWindow {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
 				}
+				lblNotify.setText("");
 				tglbtnCM2.setSelected(true);
 				tfCMName.setText(CM2.getName());
 				switch(CM2.getType()) {
@@ -236,6 +242,7 @@ public class CreateCrewWindow {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
 				}
+				lblNotify.setText("");
 				tglbtnCM3.setSelected(true);
 				tfCMName.setText(CM3.getName());
 				switch(CM3.getType()) {
@@ -274,6 +281,7 @@ public class CreateCrewWindow {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
 				}
+				lblNotify.setText("");
 				tglbtnCM4.setSelected(true);
 				tfCMName.setText(CM4.getName());
 				switch(CM4.getType()) {
@@ -365,6 +373,7 @@ public class CreateCrewWindow {
 		JButton btnSave = new JButton("Save Crew Member");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					if (button.isSelected()) {
 						if (button.equals(tglbtnCM1)) {
@@ -382,9 +391,10 @@ public class CreateCrewWindow {
 						}
 					}
 				}
+				lblNotify.setText("Crew Member profile saved");
 			}
 		});
-		btnSave.setBounds(11, 296, 337, 25);
+		btnSave.setBounds(11, 292, 337, 25);
 		panelCrewMember.add(btnSave);
 		
 		JLabel lblActions = new JLabel("Actions:");
