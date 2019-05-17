@@ -28,6 +28,8 @@ import java.util.TreeSet;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JTextArea;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
 
 public class OutpostWindow {
 
@@ -60,8 +62,6 @@ public class OutpostWindow {
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		
 		
 		JLabel lblCoins = new JLabel("Coins Available:");
 		lblCoins.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
@@ -169,9 +169,15 @@ public class OutpostWindow {
 		btnRemoveFromCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
 		btnRemoveFromCart.setBounds(73, 437, 283, 25);
 		frame.getContentPane().add(btnRemoveFromCart);
+		btnRemoveFromCart.setEnabled(false);
 		
 		DefaultListModel listModel = new DefaultListModel();
 		JList list = new JList(listModel);
+		list.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				btnRemoveFromCart.setEnabled(true);
+			}
+		});
 		list.setBounds(73, 196, 283, 230);
 		frame.getContentPane().add(list);
 		
@@ -201,50 +207,37 @@ public class OutpostWindow {
 				lblItemName.setText(currentItem.getName());
 				lblItemPrice.setText(Integer.toString(currentItem.getPrice()));
 				lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
+				if (itemFrequency.get(currentItem) == 0) {
+					btnAddCart.setEnabled(false);
+				} else {
+					btnAddCart.setEnabled(true);
+				}
 			}
 		});
-		
-		
 
 		btnAddCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//this is my failed attempt at trying to limit the number purchased to the amount available
-				
-				//ArrayList<Item> cartItems = new ArrayList<Item>();
-				//for (int i = 0; i < list.getModel().getSize(); i++) {
-					//cartItems.add((Item) list.getModel().getElementAt(i));
-				//}
-				//ArrayList<Item> uniqueCartItems = new ArrayList<Item>(new TreeSet<Item>(cartItems));
-				//Map<Item, Integer> cartItemFrequency = new HashMap<Item, Integer>();
-				//for (Item item: uniqueCartItems) {
-					//cartItemFrequency.put(item, Collections.frequency(cartItems, item));
-				//}
-				
-				//if (cartItemFrequency.get(ItemsCombo.getSelectedItem()) > itemFrequency.get(ItemsCombo.getSelectedItem())) {
-					//descriptionArea.setText("Sorry, we have ran out of stock!");
-				//}
-				
-				//else {
-					//listModel.addElement(ItemsCombo.getSelectedItem());
-					//moneyCounter += ((Item) ItemsCombo.getSelectedItem()).getPrice();
-					//lblCost.setText(Integer.toString(moneyCounter));
-					
-				//}
-				
 				listModel.addElement(ItemsCombo.getSelectedItem());
+				itemFrequency.replace((Item) ItemsCombo.getSelectedItem(), itemFrequency.get(ItemsCombo.getSelectedItem()) - 1);
 				moneyCounter += ((Item) ItemsCombo.getSelectedItem()).getPrice();
 				lblCost.setText(Integer.toString(moneyCounter));
-				
-				
+				if (itemFrequency.get(ItemsCombo.getSelectedItem()) == 0) {
+					btnAddCart.setEnabled(false);
+				} else {
+					btnAddCart.setEnabled(true);
+				}
 			}
 		});
 		
 		btnRemoveFromCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				itemFrequency.replace((Item) ItemsCombo.getSelectedItem(), itemFrequency.get(ItemsCombo.getSelectedItem()) + 1);
+				btnAddCart.setEnabled(true);
 				moneyCounter -= ((Item) list.getSelectedValue()).getPrice();
 				listModel.removeElement(list.getSelectedValue());
 				lblCost.setText(Integer.toString(moneyCounter));
+				btnRemoveFromCart.setEnabled(false);
 			}
 		});
 		

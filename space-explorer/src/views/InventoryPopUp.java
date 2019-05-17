@@ -84,7 +84,10 @@ public class InventoryPopUp {
 		panel.add(lblAmount);
 		lblAmount.setFont(new Font("Dialog", Font.BOLD, 12));
 		
-		JLabel lblItemName = new JLabel(((Item) list.getModel().getElementAt(0)).getName());
+		JLabel lblItemName = new JLabel();
+		if (uniqueInventoryItems.size() != 0) {
+			lblItemName.setText(((Item) list.getModel().getElementAt(0)).getName());
+		}
 		lblItemName.setFont(new Font("Dialog", Font.PLAIN, 12));
 		lblItemName.setBounds(50, 27, 112, 14);
 		panel.add(lblItemName);
@@ -94,12 +97,18 @@ public class InventoryPopUp {
 		lblName.setBounds(10, 26, 37, 16);
 		panel.add(lblName);
 		
-		JLabel lblItemAmount = new JLabel(Integer.toString(itemFrequency.get((Item) list.getModel().getElementAt(0))));
+		JLabel lblItemAmount = new JLabel();
+		if (uniqueInventoryItems.size() != 0) {
+			lblItemAmount.setText(Integer.toString(itemFrequency.get((Item) list.getModel().getElementAt(0))));
+		}
 		lblItemAmount.setFont(new Font("Dialog", Font.PLAIN, 12));
 		lblItemAmount.setBounds(71, 51, 91, 14);
 		panel.add(lblItemAmount);
 		
 		JTextArea textArea = new JTextArea();
+		if (uniqueInventoryItems.size() != 0) {
+			textArea.setText(((Item) list.getModel().getElementAt(0)).getDescription());
+		}
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
 		textArea.setBounds(10, 97, 152, 66);
 		panel.add(textArea);
