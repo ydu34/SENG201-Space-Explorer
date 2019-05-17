@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 public class EndWindow {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 
 	/**
@@ -19,11 +19,11 @@ public class EndWindow {
 	public EndWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -35,28 +35,29 @@ public class EndWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JLabel lblScore = new JLabel("SCORE: ");
 		lblScore.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 26));
 		lblScore.setBounds(324, 171, 151, 49);
-		frame.getContentPane().add(lblScore);
+		frmSpaceExplorers.getContentPane().add(lblScore);
 		
 		JLabel lblMessage = new JLabel("Message");
 		lblMessage.setBounds(367, 302, 66, 15);
-		frame.getContentPane().add(lblMessage);
+		frmSpaceExplorers.getContentPane().add(lblMessage);
 		
 		JButton btnExit = new JButton("Exit");
 		btnExit.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
 		btnExit.setBounds(647, 486, 114, 25);
-		frame.getContentPane().add(btnExit);
+		frmSpaceExplorers.getContentPane().add(btnExit);
 		
 		JButton btnPlayAgain = new JButton("Play Again");
 		btnPlayAgain.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
 		btnPlayAgain.setBounds(647, 523, 114, 25);
-		frame.getContentPane().add(btnPlayAgain);
+		frmSpaceExplorers.getContentPane().add(btnPlayAgain);
 	}
 }

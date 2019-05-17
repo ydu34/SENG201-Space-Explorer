@@ -25,7 +25,7 @@ import java.awt.event.MouseEvent;
 
 public class CrewMemberWindow {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); // used to contain all the toggle buttons that toggle crew members
 
@@ -35,11 +35,11 @@ public class CrewMemberWindow {
 	public CrewMemberWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -51,11 +51,12 @@ public class CrewMemberWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setResizable(false);
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JButton btnPerformAction = new JButton("Perform Action");
 		btnPerformAction.addActionListener(new ActionListener() {
@@ -63,7 +64,7 @@ public class CrewMemberWindow {
 			}
 		});
 		btnPerformAction.setBounds(542, 504, 202, 25);
-		frame.getContentPane().add(btnPerformAction);
+		frmSpaceExplorers.getContentPane().add(btnPerformAction);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {
@@ -72,13 +73,13 @@ public class CrewMemberWindow {
 			}
 		});
 		btnBack.setBounds(52, 504, 202, 25);
-		frame.getContentPane().add(btnBack);
+		frmSpaceExplorers.getContentPane().add(btnBack);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(416, 118, 328, 329);
-		frame.getContentPane().add(panel);
+		frmSpaceExplorers.getContentPane().add(panel);
 		
 		JLabel label = new JLabel("Name:");
 		label.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -160,7 +161,7 @@ public class CrewMemberWindow {
 		});
 		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM2.setBounds(231, 118, 150, 150);
-		frame.getContentPane().add(tglbtnCM2);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM2);
 		
 		JToggleButton tglbtnCM4 = new JToggleButton("4");
 		tglbtnCM4.addActionListener(new ActionListener() {
@@ -180,7 +181,7 @@ public class CrewMemberWindow {
 		});
 		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM4.setBounds(231, 297, 150, 150);
-		frame.getContentPane().add(tglbtnCM4);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM4);
 		
 		JToggleButton tglbtnCM3 = new JToggleButton("3");
 		tglbtnCM3.addActionListener(new ActionListener() {
@@ -200,7 +201,7 @@ public class CrewMemberWindow {
 		});
 		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM3.setBounds(52, 297, 150, 150);
-		frame.getContentPane().add(tglbtnCM3);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM3);
 		
 		JToggleButton tglbtnCM1 = new JToggleButton("1", true);
 		tglbtnCM1.addActionListener(new ActionListener() {
@@ -221,13 +222,13 @@ public class CrewMemberWindow {
 		});
 		tglbtnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM1.setBounds(52, 118, 150, 150);
-		frame.getContentPane().add(tglbtnCM1);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM1);
 		
 		JLabel lblNewLabel = new JLabel("THE CREW LOBBY ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(52, 30, 690, 60);
-		frame.getContentPane().add(lblNewLabel);
+		frmSpaceExplorers.getContentPane().add(lblNewLabel);
 		
 		// Add all the toggle buttons that toggle crew members into the array list for better management of them
 		CrewMemberToggleButtons.add(tglbtnCM1);

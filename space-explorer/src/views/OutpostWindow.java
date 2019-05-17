@@ -33,7 +33,7 @@ import javax.swing.event.ListSelectionEvent;
 
 public class OutpostWindow {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 	private int moneyCounter = 0;
 
@@ -43,11 +43,11 @@ public class OutpostWindow {
 	public OutpostWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -58,15 +58,16 @@ public class OutpostWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JLabel lblCoins = new JLabel("Coins Available:");
 		lblCoins.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
 		lblCoins.setBounds(425, 489, 148, 15);
-		frame.getContentPane().add(lblCoins);
+		frmSpaceExplorers.getContentPane().add(lblCoins);
 		
 		ArrayList<Item> outpostItems = new ArrayList<Item>();
 		outpostItems.addAll(game.getCrew().getCurrentLocation().getOutpost().getFoodItems());
@@ -80,7 +81,7 @@ public class OutpostWindow {
 		JComboBox ItemsCombo = new JComboBox(uniqueOutpostItems.toArray());
 		Item currentItem = (Item) ItemsCombo.getSelectedItem();
 		ItemsCombo.setBounds(73, 161, 283, 24);
-		frame.getContentPane().add(ItemsCombo);
+		frmSpaceExplorers.getContentPane().add(ItemsCombo);
 		
 		JButton btnInventory = new JButton("View Inventory");
 		btnInventory.addActionListener(new ActionListener() {
@@ -90,16 +91,16 @@ public class OutpostWindow {
 		});
 		btnInventory.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
 		btnInventory.setBounds(425, 518, 148, 25);
-		frame.getContentPane().add(btnInventory);
+		frmSpaceExplorers.getContentPane().add(btnInventory);
 		
 		JLabel lblItemsAvailableIn = new JLabel("See what is available in this outpost!");
 		lblItemsAvailableIn.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 16));
 		lblItemsAvailableIn.setBounds(73, 112, 283, 15);
-		frame.getContentPane().add(lblItemsAvailableIn);
+		frmSpaceExplorers.getContentPane().add(lblItemsAvailableIn);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(425, 112, 343, 335);
-		frame.getContentPane().add(panel);
+		frmSpaceExplorers.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JTextArea descriptionArea = new JTextArea(currentItem.getDescription());
@@ -153,22 +154,22 @@ public class OutpostWindow {
 		});
 		btnBackToShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
 		btnBackToShip.setBounds(632, 518, 136, 25);
-		frame.getContentPane().add(btnBackToShip);
+		frmSpaceExplorers.getContentPane().add(btnBackToShip);
 		
 		JLabel lblWelcomeToOutpost = new JLabel("Welcome to Space Outpost!");
 		lblWelcomeToOutpost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 25));
 		lblWelcomeToOutpost.setBounds(212, 24, 361, 47);
-		frame.getContentPane().add(lblWelcomeToOutpost);
+		frmSpaceExplorers.getContentPane().add(lblWelcomeToOutpost);
 		
 		JButton btnPurchase = new JButton("PURCHASE");
 		btnPurchase.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
 		btnPurchase.setBounds(73, 471, 283, 49);
-		frame.getContentPane().add(btnPurchase);
+		frmSpaceExplorers.getContentPane().add(btnPurchase);
 		
 		JButton btnRemoveFromCart = new JButton("Remove from Cart");
 		btnRemoveFromCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
 		btnRemoveFromCart.setBounds(73, 437, 283, 25);
-		frame.getContentPane().add(btnRemoveFromCart);
+		frmSpaceExplorers.getContentPane().add(btnRemoveFromCart);
 		btnRemoveFromCart.setEnabled(false);
 		
 		DefaultListModel listModel = new DefaultListModel();
@@ -179,26 +180,26 @@ public class OutpostWindow {
 			}
 		});
 		list.setBounds(73, 196, 283, 230);
-		frame.getContentPane().add(list);
+		frmSpaceExplorers.getContentPane().add(list);
 		
 		JLabel lblTotalCost = new JLabel("Total Cost:");
 		lblTotalCost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
 		lblTotalCost.setBounds(425, 459, 136, 15);
-		frame.getContentPane().add(lblTotalCost);
+		frmSpaceExplorers.getContentPane().add(lblTotalCost);
 		
 		JLabel lblCost = new JLabel(Integer.toString(moneyCounter));
 		lblCost.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblCost.setBounds(586, 459, 49, 14);
-		frame.getContentPane().add(lblCost);
+		frmSpaceExplorers.getContentPane().add(lblCost);
 		
 		JLabel lblMoney = new JLabel(Integer.toString(game.getCrew().getMoney()));
 		lblMoney.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblMoney.setBounds(586, 489, 49, 14);
-		frame.getContentPane().add(lblMoney);
+		frmSpaceExplorers.getContentPane().add(lblMoney);
 		
 		JLabel lblWarningSign = new JLabel("");
 		lblWarningSign.setBounds(73, 529, 283, 14);
-		frame.getContentPane().add(lblWarningSign);
+		frmSpaceExplorers.getContentPane().add(lblWarningSign);
 		
 		ItemsCombo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

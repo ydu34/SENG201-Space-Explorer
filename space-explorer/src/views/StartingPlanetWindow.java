@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 
 public class StartingPlanetWindow {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 
 	/**
@@ -25,11 +25,11 @@ public class StartingPlanetWindow {
 	public StartingPlanetWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -40,16 +40,17 @@ public class StartingPlanetWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("SELECT STARTING PLANET\r\n");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 34));
 		lblNewLabel.setBounds(-4, 0, 776, 91);
-		frame.getContentPane().add(lblNewLabel);		
+		frmSpaceExplorers.getContentPane().add(lblNewLabel);		
 		JComboBox comboBox = new JComboBox(game.getPlanets().toArray());
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		comboBox.addActionListener(new ActionListener() {
@@ -57,7 +58,7 @@ public class StartingPlanetWindow {
 			}
 		});
 		comboBox.setBounds(192, 441, 400, 41);
-		frame.getContentPane().add(comboBox);
+		frmSpaceExplorers.getContentPane().add(comboBox);
 		
 		JButton btnStartGame = new JButton("Start Game");
 		btnStartGame.addActionListener(new ActionListener() {
@@ -67,11 +68,11 @@ public class StartingPlanetWindow {
 			}
 		});
 		btnStartGame.setBounds(635, 520, 126, 33);
-		frame.getContentPane().add(btnStartGame);
+		frmSpaceExplorers.getContentPane().add(btnStartGame);
 		
 		JButton button_1 = new JButton("Back");
 		button_1.setBounds(21, 520, 126, 33);
-		frame.getContentPane().add(button_1);
+		frmSpaceExplorers.getContentPane().add(button_1);
 		
 		ImageIcon imageIcon = new ImageIcon(StartingPlanetWindow.class.getResource("/resources/planet-2398343_1920.jpg"));
 		Image image = imageIcon.getImage();
@@ -80,7 +81,7 @@ public class StartingPlanetWindow {
 		
 		JLabel lblNewLabel_1 = new JLabel();
 		lblNewLabel_1.setBounds(192, 75, 400, 350);
-		frame.getContentPane().add(lblNewLabel_1);
+		frmSpaceExplorers.getContentPane().add(lblNewLabel_1);
 		lblNewLabel_1.setIcon(imageIcon);
 	}
 }

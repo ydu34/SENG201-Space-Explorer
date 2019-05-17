@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 
 public class InstructionsWindow {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 
 	/**
@@ -16,11 +16,11 @@ public class InstructionsWindow {
 	public InstructionsWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -31,10 +31,11 @@ public class InstructionsWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JButton btnNewButton = new JButton("Next");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -43,6 +44,6 @@ public class InstructionsWindow {
 			}
 		});
 		btnNewButton.setBounds(256, 470, 273, 65);
-		frame.getContentPane().add(btnNewButton);
+		frmSpaceExplorers.getContentPane().add(btnNewButton);
 	}
 }

@@ -38,7 +38,7 @@ import javax.swing.JToggleButton;
 
 public class CreateCrewWindow {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private JTextField textFieldShipName;
 	private GameEnvironment game;
 	private JTextField tfCMName;
@@ -50,11 +50,11 @@ public class CreateCrewWindow {
 	public CreateCrewWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -65,10 +65,11 @@ public class CreateCrewWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 800, 600);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		
 		CrewMember CM1 = new CrewMember("Bill", "Engineer");
@@ -79,7 +80,7 @@ public class CreateCrewWindow {
 		JPanel panelCrewMember = new JPanel();
 		panelCrewMember.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panelCrewMember.setBounds(410, 158, 328, 329);
-		frame.getContentPane().add(panelCrewMember);
+		frmSpaceExplorers.getContentPane().add(panelCrewMember);
 		panelCrewMember.setLayout(null);
 		
 		JLabel lblName = new JLabel("Name:");
@@ -139,13 +140,13 @@ public class CreateCrewWindow {
 		JLabel lblNameYourShip = new JLabel("Ship name:");
 		lblNameYourShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
 		lblNameYourShip.setBounds(46, 26, 337, 48);
-		frame.getContentPane().add(lblNameYourShip);
+		frmSpaceExplorers.getContentPane().add(lblNameYourShip);
 		
 		textFieldShipName = new JTextField();
 		textFieldShipName.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		textFieldShipName.setText("Gattaca");
 		textFieldShipName.setBounds(393, 37, 292, 30);
-		frame.getContentPane().add(textFieldShipName);
+		frmSpaceExplorers.getContentPane().add(textFieldShipName);
 		textFieldShipName.setColumns(10);
 			
 		JToggleButton tglbtnCM1 = new JToggleButton("1", true);
@@ -180,7 +181,7 @@ public class CreateCrewWindow {
 		});
 		tglbtnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM1.setBounds(46, 158, 150, 150);
-		frame.getContentPane().add(tglbtnCM1);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM1);
 		CrewMemberToggleButtons.add(tglbtnCM1);
 		
 		
@@ -216,7 +217,7 @@ public class CreateCrewWindow {
 		});
 		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM2.setBounds(225, 158, 150, 150);
-		frame.getContentPane().add(tglbtnCM2);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM2);
 		CrewMemberToggleButtons.add(tglbtnCM2);
 		
 		JToggleButton tglbtnCM3 = new JToggleButton("3");
@@ -251,7 +252,7 @@ public class CreateCrewWindow {
 		});
 		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM3.setBounds(46, 337, 150, 150);
-		frame.getContentPane().add(tglbtnCM3);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM3);
 		CrewMemberToggleButtons.add(tglbtnCM3);
 		
 		JToggleButton tglbtnCM4 = new JToggleButton("4");
@@ -286,7 +287,7 @@ public class CreateCrewWindow {
 		});
 		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		tglbtnCM4.setBounds(225, 337, 150, 150);
-		frame.getContentPane().add(tglbtnCM4);
+		frmSpaceExplorers.getContentPane().add(tglbtnCM4);
 		CrewMemberToggleButtons.add(tglbtnCM4);
 		
 		JTextArea textArea = new JTextArea(currentType.description());
@@ -308,7 +309,7 @@ public class CreateCrewWindow {
 		JLabel lblSelectNumberOf = new JLabel("Number of Crew Members:");
 		lblSelectNumberOf.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
 		lblSelectNumberOf.setBounds(46, 88, 337, 48);
-		frame.getContentPane().add(lblSelectNumberOf);
+		frmSpaceExplorers.getContentPane().add(lblSelectNumberOf);
 		
 		JSlider slider = new JSlider();
 		slider.addChangeListener(new ChangeListener() {
@@ -338,7 +339,7 @@ public class CreateCrewWindow {
 		slider.setMinimum(2);
 		slider.setMaximum(4);
 		slider.setBounds(385, 79, 310, 67);
-		frame.getContentPane().add(slider);
+		frmSpaceExplorers.getContentPane().add(slider);
 		
 		JButton btnSave = new JButton("Save Crew Member");
 		btnSave.addActionListener(new ActionListener() {
@@ -404,7 +405,7 @@ public class CreateCrewWindow {
 		});
 		
 		btnNext.setBounds(624, 506, 114, 25);
-		frame.getContentPane().add(btnNext);
+		frmSpaceExplorers.getContentPane().add(btnNext);
 		textFieldShipName.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {
 			    enableButton();

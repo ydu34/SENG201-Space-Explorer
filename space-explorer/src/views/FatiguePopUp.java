@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 public class FatiguePopUp {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 
 	/**
@@ -20,11 +20,11 @@ public class FatiguePopUp {
 	public FatiguePopUp(GameEnvironent incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -35,14 +35,15 @@ public class FatiguePopUp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 325, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 325, 400);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(47, 58, 229, 207);
-		frame.getContentPane().add(panel);
+		frmSpaceExplorers.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblFatigueRestoreInfo = new JLabel("Fatigue restore info");
@@ -52,11 +53,11 @@ public class FatiguePopUp {
 		JButton btnSleep = new JButton("SLEEP");
 		btnSleep.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
 		btnSleep.setBounds(12, 321, 90, 25);
-		frame.getContentPane().add(btnSleep);
+		frmSpaceExplorers.getContentPane().add(btnSleep);
 		
 		JButton button_1 = new JButton("Let's do something else!");
 		button_1.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 11));
 		button_1.setBounds(137, 323, 160, 25);
-		frame.getContentPane().add(button_1);
+		frmSpaceExplorers.getContentPane().add(button_1);
 	}
 }

@@ -11,7 +11,7 @@ import java.awt.Font;
 
 public class SearchPlanetPopUp {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 
 
@@ -21,11 +21,11 @@ public class SearchPlanetPopUp {
 	public SearchPlanetPopUp(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -36,15 +36,16 @@ public class SearchPlanetPopUp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 325, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 325, 400);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(63, 26, 200, 200);
-		frame.getContentPane().add(panel);
+		frmSpaceExplorers.getContentPane().add(panel);
 		
 		JLabel lblPlanetHasTransporter = new JLabel("Planet has transporter info\n");
 		lblPlanetHasTransporter.setBounds(0, 12, 205, 30);
@@ -53,11 +54,11 @@ public class SearchPlanetPopUp {
 		JButton btnSearch = new JButton("SEARCH PLANET");
 		btnSearch.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
 		btnSearch.setBounds(63, 256, 209, 25);
-		frame.getContentPane().add(btnSearch);
+		frmSpaceExplorers.getContentPane().add(btnSearch);
 		
 		JButton button_1 = new JButton("Let's do something else!");
 		button_1.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 11));
 		button_1.setBounds(151, 336, 160, 25);
-		frame.getContentPane().add(button_1);
+		frmSpaceExplorers.getContentPane().add(button_1);
 	}
 }

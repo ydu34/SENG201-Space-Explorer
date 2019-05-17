@@ -24,7 +24,7 @@ import java.awt.event.ActionEvent;
 
 public class InventoryPopUp {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 	
 
@@ -34,11 +34,11 @@ public class InventoryPopUp {
 	public InventoryPopUp(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -49,15 +49,16 @@ public class InventoryPopUp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 325, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 325, 400);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JLabel lblYourInventory = new JLabel("Your Inventory");
 		lblYourInventory.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblYourInventory.setBounds(96, 24, 120, 21);
-		frame.getContentPane().add(lblYourInventory);
+		frmSpaceExplorers.getContentPane().add(lblYourInventory);
 		
 		ArrayList<Item> inventoryItems = new ArrayList<Item>();
 		inventoryItems.addAll(game.getCrew().getFoodItems());
@@ -72,11 +73,11 @@ public class InventoryPopUp {
 		list.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		
 		list.setBounds(10, 76, 105, 254);
-		frame.getContentPane().add(list);
+		frmSpaceExplorers.getContentPane().add(list);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(125, 76, 176, 174);
-		frame.getContentPane().add(panel);
+		frmSpaceExplorers.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblAmount = new JLabel("Amount:");
@@ -121,7 +122,7 @@ public class InventoryPopUp {
 		});
 		btnBackToOutpost.setFont(new Font("Dialog", Font.BOLD, 10));
 		btnBackToOutpost.setBounds(181, 329, 120, 23);
-		frame.getContentPane().add(btnBackToOutpost);
+		frmSpaceExplorers.getContentPane().add(btnBackToOutpost);
 		
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {

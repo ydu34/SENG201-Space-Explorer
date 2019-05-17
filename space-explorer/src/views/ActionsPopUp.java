@@ -13,7 +13,7 @@ import javax.swing.SwingConstants;
 
 public class ActionsPopUp {
 
-	private JFrame frame;
+	private JFrame frmSpaceExplorers;
 	private GameEnvironment game;
 	/**
 	 * Create the application.
@@ -21,11 +21,11 @@ public class ActionsPopUp {
 	public ActionsPopUp(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frame.setVisible(true);
+		frmSpaceExplorers.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frame.dispose();
+		frmSpaceExplorers.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -36,36 +36,37 @@ public class ActionsPopUp {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 325, 400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
+		frmSpaceExplorers.setBounds(100, 100, 325, 400);
+		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSpaceExplorers.getContentPane().setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Actions");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblNewLabel.setBounds(52, 31, 221, 25);
-		frame.getContentPane().add(lblNewLabel);
+		frmSpaceExplorers.getContentPane().add(lblNewLabel);
 		
 		JButton btnNewButton = new JButton("Eat Food");
 		btnNewButton.setBounds(49, 87, 221, 25);
-		frame.getContentPane().add(btnNewButton);
+		frmSpaceExplorers.getContentPane().add(btnNewButton);
 		
 		JButton btnApplyMedicalItem = new JButton("Apply Medical Item");
 		btnApplyMedicalItem.setBounds(49, 143, 221, 25);
-		frame.getContentPane().add(btnApplyMedicalItem);
+		frmSpaceExplorers.getContentPane().add(btnApplyMedicalItem);
 		
 		JButton btnRepairShipShields = new JButton("Repair ship shields");
 		btnRepairShipShields.setBounds(49, 199, 221, 25);
-		frame.getContentPane().add(btnRepairShipShields);
+		frmSpaceExplorers.getContentPane().add(btnRepairShipShields);
 		
 		JButton btnSearchPlanet = new JButton("Search planet ");
 		btnSearchPlanet.setBounds(49, 255, 221, 25);
-		frame.getContentPane().add(btnSearchPlanet);
+		frmSpaceExplorers.getContentPane().add(btnSearchPlanet);
 		
 		JButton btnPilotTheShip = new JButton("Pilot the ship");
 		btnPilotTheShip.setBounds(49, 311, 221, 25);
-		frame.getContentPane().add(btnPilotTheShip);
+		frmSpaceExplorers.getContentPane().add(btnPilotTheShip);
 	}
 
 }
