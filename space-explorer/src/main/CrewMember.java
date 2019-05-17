@@ -16,6 +16,13 @@ public class CrewMember {
 	private int maxActions = 2;
 	private boolean infected = false;
 	private boolean dead = false; 
+	private int repairFatigueCost;
+	private int repairHungerCost;
+	private int pilotFatigueCost;
+	private int pilotHungerCost;
+	private int searchFatigueCost;
+	private int searchHungerCost;
+	
 	
 	
 	public CrewMember(String name, String type) {
@@ -32,17 +39,14 @@ public class CrewMember {
 		this.actionsLeft = 2;
 		this.infected = false;
 		this.dead = false;
+		this.repairFatigueCost = 10;
+		this.repairHungerCost = 10;
+		this.pilotFatigueCost = 10;
+		this.pilotHungerCost = 10;	
+		this.searchFatigueCost = 20;
+		this.searchHungerCost = 20;
 	}
 	
-	/**
-	 * Creates a crew member.
-	 * @param name    A string name of the crew member.
-	 * @param type    A string type of the crew member.
-	 * @param maxHealth An int number of the maximum health level.
-	 * @param maxHunger An int number of the maximum hunger level.
-	 * @param maxFatigue An int number of the maximum fatigue level.
-	 * @param maxActions An int number of the maximum actions.
-	 */
 	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
@@ -57,6 +61,38 @@ public class CrewMember {
 		this.actionsLeft = maxActions;
 		this.infected = false;
 		this.dead = false;
+	}
+	
+	/**
+	 * Creates a crew member.
+	 * @param name    A string name of the crew member.
+	 * @param type    A string type of the crew member.
+	 * @param maxHealth An int number of the maximum health level.
+	 * @param maxHunger An int number of the maximum hunger level.
+	 * @param maxFatigue An int number of the maximum fatigue level.
+	 * @param maxActions An int number of the maximum actions.
+	 */
+	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions, 
+			int repairFatigueCost, int repairHungerCost, int pilotFatigueCost, int pilotHungerCost, int searchFatigueCost, int searchHungerCost) {
+		this.name = name;
+		this.type = type;
+		this.status = status;
+		this.maxHealth = maxHealth;
+		this.health = maxHealth;
+		this.maxHunger = maxHunger;
+		this.hunger = 0;
+		this.maxFatigue = maxFatigue;
+		this.fatigue = 0;
+		this.maxActions = maxActions;
+		this.actionsLeft = maxActions;
+		this.infected = false;
+		this.dead = false;
+		this.repairFatigueCost = 10;
+		this.repairHungerCost = 10;
+		this.pilotFatigueCost = 10;
+		this.pilotHungerCost = 10;	
+		this.searchFatigueCost = 20;
+		this.searchHungerCost = 20;
 	}
 
 	/**
@@ -450,6 +486,54 @@ public class CrewMember {
 	 */
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public int getRepairFatigueCost() {
+		return repairFatigueCost;
+	}
+
+	public void setRepairFatigueCost(int repairFatigueCost) {
+		this.repairFatigueCost = repairFatigueCost;
+	}
+
+	public int getRepairHungerCost() {
+		return repairHungerCost;
+	}
+
+	public void setRepairHungerCost(int repairHungerCost) {
+		this.repairHungerCost = repairHungerCost;
+	}
+
+	public int getPilotFatigueCost() {
+		return pilotFatigueCost;
+	}
+
+	public void setPilotFatigueCost(int pilotFatigueCost) {
+		this.pilotFatigueCost = pilotFatigueCost;
+	}
+
+	public int getPilotHungerCost() {
+		return pilotHungerCost;
+	}
+
+	public void setPilotHungerCost(int pilotHungerCost) {
+		this.pilotHungerCost = pilotHungerCost;
+	}
+
+	public int getSearchFatigueCost() {
+		return searchFatigueCost;
+	}
+
+	public void setSearchFatigueCost(int searchFatigueCost) {
+		this.searchFatigueCost = searchFatigueCost;
+	}
+
+	public int getSearchHungerCost() {
+		return searchHungerCost;
+	}
+
+	public void setSearchHungerCost(int searchHungerCost) {
+		this.searchHungerCost = searchHungerCost;
 	}
 	
 

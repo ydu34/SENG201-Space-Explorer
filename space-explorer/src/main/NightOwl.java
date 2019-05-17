@@ -12,7 +12,8 @@ public class NightOwl extends CrewMember{
 	 * @param name   A string name of the crew member.
 	 */
 	public NightOwl(String name) {
-		super(name, "Night Owl", "Normal", 100, 100, 100, 2);
+		super(name, "Night Owl", "Normal", 100, 100, 100, 2,
+				8,8,8,8,16,16);
 	}
 	
 	/**

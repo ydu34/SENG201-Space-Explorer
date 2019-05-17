@@ -8,7 +8,8 @@ public class Nibbler extends CrewMember{
 	 * @param name   A string name of the crew member.
 	 */
 	public Nibbler(String name) {
-		super(name, "Nibbler", "Normal", 100, 100, 100, 2);
+		super(name, "Nibbler", "Normal", 100, 100, 100, 2,
+				10,10,10,10,20,20);
 	}
 	
 	/**
