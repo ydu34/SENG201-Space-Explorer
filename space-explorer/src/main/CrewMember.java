@@ -172,7 +172,7 @@ public class CrewMember {
 			ship.increaseShieldLevel(10);
 			actionsLeft-=1;
 			fatigue += repairFatigueCost;
-			returnString += "The ship's shield is now " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
+			returnString += ship.getName() +"'s shields is at " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
 		}
 		return returnString;
 	}

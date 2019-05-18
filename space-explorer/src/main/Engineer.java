@@ -23,7 +23,7 @@ public class Engineer extends CrewMember{
 		returnString += super.repair(ship);
 		ship.increaseShieldLevel(10);
 		returnString += "\n" + super.getName() +" repairs extra shields from their trait Engineer.";
-		returnString += "\n" + ship +" now has " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel() + " shields.";
+		returnString += "\n" + ship.getName() +"'s shields is at " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel() + " shields.";
 		return returnString;
 	}
 	
