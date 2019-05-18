@@ -23,8 +23,6 @@ public class CrewMember {
 	private int searchFatigueCost;
 	private int searchHungerCost;
 	
-	
-	
 	public CrewMember(String name, String type) {
 		this.name = name;
 		this.type = type;
@@ -61,6 +59,12 @@ public class CrewMember {
 		this.actionsLeft = maxActions;
 		this.infected = false;
 		this.dead = false;
+		this.repairFatigueCost = 10;
+		this.repairHungerCost = 10;
+		this.pilotFatigueCost = 10;
+		this.pilotHungerCost = 10;	
+		this.searchFatigueCost = 20;
+		this.searchHungerCost = 20;
 	}
 	
 	/**
