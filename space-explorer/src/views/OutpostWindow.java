@@ -123,7 +123,7 @@ public class OutpostWindow {
 		
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblStock.setBounds(35, 126, 68, 15);
+		lblStock.setBounds(35, 126, 68, 22);
 		panel.add(lblStock);
 		
 		JLabel lblItemInfo = new JLabel("About this item");
@@ -133,7 +133,7 @@ public class OutpostWindow {
 		
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblName.setBounds(35, 74, 68, 15);
+		lblName.setBounds(35, 74, 68, 22);
 		panel.add(lblName);
 		
 		JButton btnAddCart = new JButton("Add to Cart");
@@ -144,24 +144,24 @@ public class OutpostWindow {
 		
 		JLabel lblItemName = new JLabel("");
 		lblItemName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemName.setBounds(114, 74, 194, 14);
+		lblItemName.setBounds(114, 74, 194, 22);
 		lblItemName.setText(currentItem.getName());
 		panel.add(lblItemName);
 		
 		JLabel lblItemCount = new JLabel("");
 		lblItemCount.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemCount.setBounds(114, 126, 194, 14);
+		lblItemCount.setBounds(114, 126, 194, 22);
 		lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
 		panel.add(lblItemCount);
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPrice.setBounds(35, 99, 68, 15);
+		lblPrice.setBounds(35, 99, 68, 22);
 		panel.add(lblPrice);
 		
 		JLabel lblItemPrice = new JLabel("");
 		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemPrice.setBounds(114, 99, 194, 15);
+		lblItemPrice.setBounds(114, 99, 194, 22);
 		lblItemPrice.setText(Integer.toString(currentItem.getPrice()));
 		panel.add(lblItemPrice);
 		
@@ -193,7 +193,7 @@ public class OutpostWindow {
 		frame.getContentPane().add(btnRemoveFromCart);
 		btnRemoveFromCart.setEnabled(false);
 		
-		DefaultListModel listModel = new DefaultListModel();
+		DefaultListModel<Item> listModel = new DefaultListModel();
 		JList list = new JList(listModel);
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
@@ -240,26 +240,35 @@ public class OutpostWindow {
 		btnAddCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				listModel.addElement(ItemsCombo.getSelectedItem());
+				listModel.addElement((Item) ItemsCombo.getSelectedItem());
 				itemFrequency.replace((Item) ItemsCombo.getSelectedItem(), itemFrequency.get(ItemsCombo.getSelectedItem()) - 1);
 				moneyCounter += ((Item) ItemsCombo.getSelectedItem()).getPrice();
 				lblCost.setText(Integer.toString(moneyCounter));
-				if (itemFrequency.get(ItemsCombo.getSelectedItem()) == 0) {
+				if (itemFrequency.get(ItemsCombo.getSelectedItem()) <= 0){
 					btnAddCart.setEnabled(false);
 				} else {
 					btnAddCart.setEnabled(true);
+				}
+				if (listModel.getSize() <= 0 || list.isSelectionEmpty()) {
+					btnRemoveFromCart.setEnabled(false);
+				} else {
+					btnRemoveFromCart.setEnabled(true);
 				}
 			}
 		});
 		
 		btnRemoveFromCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				itemFrequency.replace((Item) ItemsCombo.getSelectedItem(), itemFrequency.get(ItemsCombo.getSelectedItem()) + 1);
-				btnAddCart.setEnabled(true);
-				moneyCounter -= ((Item) list.getSelectedValue()).getPrice();
-				listModel.removeElement(list.getSelectedValue());
-				lblCost.setText(Integer.toString(moneyCounter));
-				btnRemoveFromCart.setEnabled(false);
+					itemFrequency.replace((Item) ItemsCombo.getSelectedItem(), itemFrequency.get(ItemsCombo.getSelectedItem()) + 1);
+					btnAddCart.setEnabled(true);
+					moneyCounter -= ((Item) list.getSelectedValue()).getPrice();
+					listModel.removeElement(list.getSelectedValue());
+					lblCost.setText(Integer.toString(moneyCounter));
+					if (listModel.getSize() <= 0 || list.isSelectionEmpty()) {
+						btnRemoveFromCart.setEnabled(false);
+					} else {
+						btnRemoveFromCart.setEnabled(true);
+					}
 			}
 		});
 		
