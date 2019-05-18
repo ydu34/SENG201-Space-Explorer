@@ -169,15 +169,10 @@ public class CrewMember {
 		if (fatigue + repairFatigueCost> maxFatigue) {
 			returnString += name + " is too tired to repair the ship.";
 		} else {
-			int shieldLevel = ship.getShieldLevel();
-			int maxShieldLevel = ship.getMaxShieldLevel();
-			shieldLevel += 10;
-			if (shieldLevel > maxShieldLevel) {
-				shieldLevel = maxShieldLevel;
-			}
+			ship.increaseShieldLevel(10);
 			actionsLeft-=1;
 			fatigue += repairFatigueCost;
-			returnString += "The ship's shield is now " + shieldLevel + "/" +maxShieldLevel;
+			returnString += "The ship's shield is now " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
 		}
 		return returnString;
 	}
@@ -351,6 +346,9 @@ public class CrewMember {
 	 */
 	public void setHealth(int health) {
 		this.health = health;
+		if (this.health > this.maxHealth) {
+			this.health = this.maxHealth;
+		}
 		if (health <= 0) {
 			dead = true; 
 		}
@@ -418,6 +416,9 @@ public class CrewMember {
 	 */
 	public void setFatigue(int fatigue) {
 		this.fatigue = fatigue;
+		if (this.fatigue > this.maxFatigue) {
+			this.fatigue = this.maxFatigue;
+		}
 	}
 
 	/**

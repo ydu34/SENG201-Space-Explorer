@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import java.awt.SystemColor;
 
 public class GameOverWindow {
 
@@ -66,19 +68,37 @@ public class GameOverWindow {
 		JLabel lblGameOverMessage = new JLabel();
 		lblGameOverMessage.setHorizontalAlignment(SwingConstants.CENTER);
 		if (game.getShip().getPiecesFound() == game.getShip().getPiecesNeeded()) {
-			lblGameOverMessage.setText("YOUR CREW HAVE FOUND ALL THE PIECES AND CAN RETURN HOME!");
+			lblGameOverMessage.setText("VICTORY");
 		} else {
-			lblGameOverMessage.setText("YOUR CREW HAVE FAILED TO FIND ALL THE PIECES.");
+			lblGameOverMessage.setText("GAME OVER");
 		}
-		lblGameOverMessage.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblGameOverMessage.setBounds(12, 13, 749, 49);
+		lblGameOverMessage.setFont(new Font("Dialog", Font.BOLD, 40));
+		lblGameOverMessage.setBounds(12, 30, 749, 104);
 		frame.getContentPane().add(lblGameOverMessage);
 		
 		JLabel lblScore = new JLabel();
 		lblScore.setHorizontalAlignment(SwingConstants.CENTER);
 		lblScore.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblScore.setText("SCORE:   " + game.calculateFinalScore());
-		lblScore.setBounds(155, 235, 467, 49);
+		lblScore.setBounds(156, 338, 467, 49);
 		frame.getContentPane().add(lblScore);
+		
+		JTextArea textArea = new JTextArea();
+		textArea.setEditable(false);
+		textArea.setBackground(SystemColor.menu);
+		textArea.setFont(new Font("Monospaced", Font.PLAIN, 30));
+		textArea.setWrapStyleWord(true);
+		textArea.setLineWrap(true);
+		if (game.getShip().isDestroyed()) {
+			textArea.setText("The asteroid hits and your ship is torn apart.");
+		} else if (game.getCurrentDay() > game.getGameDuration()) {
+			textArea.setText("The days have passed and all the engines pieces were stolen by alien pirates.");
+		} else if (game.getCrew().getCrewMembers().size() == 0) {
+			textArea.setText("The empty spaceship floats silently through space until it was raided by alien pirates.");
+		} else {
+			textArea.setText("Your crew have found the necessary engine pieces and they returned home.");
+		}
+		textArea.setBounds(145, 147, 493, 180);
+		frame.getContentPane().add(textArea);
 	}
 }

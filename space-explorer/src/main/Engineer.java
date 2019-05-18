@@ -21,7 +21,7 @@ public class Engineer extends CrewMember{
 	public String repair(Ship ship) {
 		String returnString = "";
 		returnString += super.repair(ship);
-		ship.setShieldLevel(ship.getShieldLevel()+10);
+		ship.increaseShieldLevel(10);
 		returnString += "\n" + super.getName() +" repairs extra shields from their trait Engineer.";
 		returnString += "\n" + ship +" now has " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel() + " shields.";
 		return returnString;

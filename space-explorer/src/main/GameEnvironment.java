@@ -456,7 +456,7 @@ public class GameEnvironment {
 	}
 	
 	public boolean gameOver() {
-		if (currentDay > gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed() || crew.getCrewMembers().size() == 0) {
+		if (currentDay > gameDuration || ship.getPiecesNeeded() ==  ship.getPiecesFound() || ship.isDestroyed() || crew.getCrewMembers().size() == 0) {
 			return true;
 		} else {
 			return false;
@@ -488,7 +488,7 @@ public class GameEnvironment {
 				crew.getCrewMembers().remove(deadMember);
 			}
 			returnString += RandomEvent.occurDay(crew);
-		}
+		} 
 		return returnString;
 	}
 		
