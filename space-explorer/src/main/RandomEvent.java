@@ -8,7 +8,7 @@ public class RandomEvent {
 		String returnString = ""
 ;		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 		if (randomNum >= 0 && randomNum < 20) {
-			alienPirates(crew);
+			returnString += alienPirates(crew);
 		} else if (randomNum >= 20 && randomNum < 40) {
 			returnString += spacePlague(crew);
 		} 
@@ -24,20 +24,20 @@ public class RandomEvent {
 		return null;
 	}
 	
-	public static void alienPirates(Crew crew) {
+	public static String alienPirates(Crew crew) {
+		String returnString = "";
 		if (crew.getFoodItems().size() + crew.getMedicalItems().size() > 0) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, crew.getFoodItems().size()+crew.getMedicalItems().size());
 			if (randomNum < crew.getFoodItems().size()) {
-				System.out.println("Alien pirates boarded the ship and stole " + crew.getFoodItems().get(randomNum) + ".");
-				System.out.println("\n");
+				returnString += "Alien pirates boarded the ship and stole " + crew.getFoodItems().get(randomNum) + ".\n";
 				crew.getFoodItems().remove(randomNum);
 			} else {
 				int index = randomNum - crew.getFoodItems().size();
-				System.out.println("Alien pirates boarded the ship and stole " + crew.getMedicalItems().get(index) + ".");
-				System.out.println("\n");
+				returnString += "Alien pirates boarded the ship and stole " + crew.getMedicalItems().get(index) + ".\n";
 				crew.getMedicalItems().remove(index);
 			}
 		}
+		return returnString;
 	}
 	
 	public static String spacePlague(Crew crew) {
