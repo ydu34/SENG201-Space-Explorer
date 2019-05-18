@@ -61,6 +61,7 @@ public class OutpostWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		OutpostWindow window = this;
 		frame = new JFrame();
 		frame.setTitle("SPACE EXPLORERS");
 		frame.setBounds(100, 100, 800, 600);
@@ -69,7 +70,7 @@ public class OutpostWindow {
 		
 		JLabel lblCoins = new JLabel("Coins Available:");
 		lblCoins.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblCoins.setBounds(414, 465, 148, 15);
+		lblCoins.setBounds(414, 465, 148, 24);
 		frame.getContentPane().add(lblCoins);
 		
 		// Create an array list to combine both the food items and the medical items to outpost items
@@ -95,6 +96,7 @@ public class OutpostWindow {
 		JButton btnInventory = new JButton("View Inventory");
 		btnInventory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				finishedWindow();
 				game.launchInventoryPopUp();
 			}
 		});
@@ -109,7 +111,7 @@ public class OutpostWindow {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(414, 108, 343, 314);
+		panel.setBounds(414, 108, 340, 310);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -123,7 +125,7 @@ public class OutpostWindow {
 		
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblStock.setBounds(35, 126, 68, 22);
+		lblStock.setBounds(35, 115, 68, 22);
 		panel.add(lblStock);
 		
 		JLabel lblItemInfo = new JLabel("About this item");
@@ -133,7 +135,7 @@ public class OutpostWindow {
 		
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblName.setBounds(35, 74, 68, 22);
+		lblName.setBounds(35, 63, 68, 22);
 		panel.add(lblName);
 		
 		JButton btnAddCart = new JButton("Add to Cart");
@@ -144,24 +146,24 @@ public class OutpostWindow {
 		
 		JLabel lblItemName = new JLabel("");
 		lblItemName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemName.setBounds(114, 74, 194, 22);
+		lblItemName.setBounds(114, 63, 194, 22);
 		lblItemName.setText(currentItem.getName());
 		panel.add(lblItemName);
 		
 		JLabel lblItemCount = new JLabel("");
 		lblItemCount.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemCount.setBounds(114, 126, 194, 22);
+		lblItemCount.setBounds(114, 115, 194, 22);
 		lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
 		panel.add(lblItemCount);
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPrice.setBounds(35, 99, 68, 22);
+		lblPrice.setBounds(35, 88, 68, 22);
 		panel.add(lblPrice);
 		
 		JLabel lblItemPrice = new JLabel("");
 		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemPrice.setBounds(114, 99, 194, 22);
+		lblItemPrice.setBounds(114, 88, 194, 22);
 		lblItemPrice.setText(Integer.toString(currentItem.getPrice()));
 		panel.add(lblItemPrice);
 		
@@ -169,6 +171,7 @@ public class OutpostWindow {
 		btnBackToShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
+				game.launchMainWindow();
 			}
 		});
 		btnBackToShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
@@ -195,6 +198,7 @@ public class OutpostWindow {
 		
 		DefaultListModel<Item> listModel = new DefaultListModel();
 		JList list = new JList(listModel);
+		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				btnRemoveFromCart.setEnabled(true);
@@ -205,17 +209,17 @@ public class OutpostWindow {
 		
 		JLabel lblTotalCost = new JLabel("Total Cost:");
 		lblTotalCost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblTotalCost.setBounds(414, 435, 136, 15);
+		lblTotalCost.setBounds(414, 431, 136, 19);
 		frame.getContentPane().add(lblTotalCost);
 		
 		JLabel lblCost = new JLabel(Integer.toString(moneyCounter));
 		lblCost.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblCost.setBounds(575, 436, 182, 14);
+		lblCost.setBounds(575, 431, 182, 19);
 		frame.getContentPane().add(lblCost);
 		
 		JLabel lblMoney = new JLabel(Integer.toString(game.getCrew().getMoney()));
 		lblMoney.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblMoney.setBounds(575, 466, 182, 14);
+		lblMoney.setBounds(575, 466, 182, 23);
 		frame.getContentPane().add(lblMoney);
 		
 		JLabel lblWarningSign = new JLabel("");

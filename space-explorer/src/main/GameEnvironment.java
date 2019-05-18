@@ -90,7 +90,6 @@ public class GameEnvironment {
 	
 	public void closeOutpostWindow(OutpostWindow outpostWindow) {
 		outpostWindow.closeWindow();
-		launchMainWindow();
 	}
 	
 	public void launchCrewMemberWindow() {
