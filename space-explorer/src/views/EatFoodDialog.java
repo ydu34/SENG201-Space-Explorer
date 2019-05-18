@@ -68,10 +68,7 @@ public class EatFoodDialog extends JDialog {
 		
 		// The current food item that is selected by the player in the combo box
 		FoodItem currentItem = (FoodItem) comboBox.getSelectedItem();
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		
 		comboBox.setBounds(26, 85, 298, 24);
 		contentPanel.add(comboBox);
 		
@@ -153,7 +150,15 @@ public class EatFoodDialog extends JDialog {
 		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblDescription.setBounds(12, 82, 136, 23);
 		panel.add(lblDescription);
-		
+		// Listener for the combo box when the player changes item
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FoodItem currentItem = (FoodItem) comboBox.getSelectedItem();
+				lblNameValue.setText(currentItem.getName());
+				lblStockValue.setText(Integer.toString(itemFrequency.get(currentItem)));
+				textArea.setText(currentItem.getDescription());
+			}
+		});
 		// Get the name and stock of the item only if there are items. 
 		if (uniqueFoodItems.size() > 0) {
 			lblNameValue.setText(currentItem.getName());

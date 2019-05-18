@@ -57,6 +57,7 @@ public class ApplyMedicineDialog extends JDialog {
 
 		// Combo box for the medical items in the crew inventory
 		JComboBox comboBox = new JComboBox(uniqueMedicalItems.toArray());
+		
 		comboBox.setBounds(26, 85, 298, 24);
 		contentPanel.add(comboBox);
 		JButton button = new JButton("Let's do something else!");
@@ -148,7 +149,15 @@ public class ApplyMedicineDialog extends JDialog {
 		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblDescription.setBounds(12, 82, 136, 23);
 		panel.add(lblDescription);
-
+		// Listener for the combo box when the player changes item
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MedicalItem currentItem = (MedicalItem) comboBox.getSelectedItem();
+				lblNameValue.setText(currentItem.getName());
+				lblStockValue.setText(Integer.toString(itemFrequency.get(currentItem)));
+				textArea.setText(currentItem.getDescription());
+			}
+		});
 		// Get the name and stock of the item only if there are items.
 		if (uniqueMedicalItems.size() > 0) {
 			lblNameValue.setText(currentItem.getName());
