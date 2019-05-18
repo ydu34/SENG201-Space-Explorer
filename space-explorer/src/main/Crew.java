@@ -5,7 +5,6 @@ import java.util.*;
  * Represents a crew.
  */
 public class Crew {
-	private String name;
 	private Ship ship = new Ship();
 	private ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
@@ -69,22 +68,6 @@ public class Crew {
 	 */
 	public void setCrewMembers(ArrayList<CrewMember> crewMembers) {
 		this.crewMembers = crewMembers;
-	}
-	
-	/**
-	 * Gets the crew name.
-	 * @return the name of the crew.
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * Sets the name of the crew.
-	 * @param name  A string name of the crew.
-	 */
-	public void setName(String name) {
-		this.name = name;
 	}
 	
 	/**

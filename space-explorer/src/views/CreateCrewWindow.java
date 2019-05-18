@@ -410,7 +410,7 @@ public class CreateCrewWindow {
 		JButton btnNext = new JButton("Finish Crew Creation");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.getCrew().setName(textFieldShipName.getText());
+				game.getShip().setName(textFieldShipName.getText());
 				ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
 				switch(slider.getValue()) {
 				case 4:

@@ -4,6 +4,7 @@ package main;
  * Represents a ship.
  */
 public class Ship {
+	private String name;
 	private int shieldLevel; 
 	private int maxShieldLevel;
 	private int piecesNeeded;
@@ -112,6 +113,15 @@ public class Ship {
 	public void setDestroyed(boolean destroyed) {
 		this.destroyed = destroyed;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	
 	
 	

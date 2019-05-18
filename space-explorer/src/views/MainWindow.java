@@ -28,13 +28,8 @@ public class MainWindow {
 	 */
 	public MainWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
-		// Check if game over
-		if (game.gameOver()) {
-			game.launchGameOverWindow();
-		} else {
 		initialize();
 		frame.setVisible(true);
-		}
 	}
 
 	public void closeWindow() {
@@ -49,7 +44,10 @@ public class MainWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-
+		if (game.gameOver()) {
+			finishedWindow();
+			game.launchGameOverWindow();
+		} 
 		frame = new JFrame();
 		frame.setTitle("SPACE EXPLORERS");
 		frame.getContentPane().setFont(new Font("L M Mono Prop Lt10", Font.PLAIN, 12));
@@ -131,7 +129,7 @@ public class MainWindow {
 		panel.add(lblShip);
 		lblShip.setFont(new Font("Dialog", Font.BOLD, 20));
 
-		JLabel lblShipName = new JLabel(game.getCrew().getName());
+		JLabel lblShipName = new JLabel(game.getShip().getName());
 		lblShipName.setBounds(161, 95, 151, 31);
 		panel.add(lblShipName);
 		lblShipName.setFont(new Font("Dialog", Font.BOLD, 20));
