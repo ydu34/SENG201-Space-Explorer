@@ -220,13 +220,13 @@ public class GameEnvironment {
 			ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
 			for (CrewMember member : crew.getCrewMembers()) {
 				if (member.isInfected()) {
-					member.setHealth(member.getHealth() - 15);
+					member.setHealth(member.getHealth() - 20);
 					if (member.isDead()) {
 						returnString += member.getName()
 								+ " has died to the space plague and has been removed from the crew.\n";
 						deadCrewMembers.add(member);
 					} else {
-						returnString += member.getName() + " will lose 15 health each day until he gets cured.\n";
+						returnString += member.getName() + " will lose 20 health each day until he gets cured.\n";
 						returnString += member.getName() + " now has " + member.getHealth() + "/"
 								+ member.getMaxHealth() + " health.\n";
 					}

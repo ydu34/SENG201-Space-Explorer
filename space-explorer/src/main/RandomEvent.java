@@ -7,9 +7,9 @@ public class RandomEvent {
 	public static String occurDay(Crew crew) {
 		String returnString = ""
 ;		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-		if (randomNum >= 0 && randomNum < 20) {
+		if (randomNum >= 0 && randomNum < 25) {
 			returnString += alienPirates(crew);
-		} else if (randomNum >= 20 && randomNum < 40) {
+		} else if (randomNum >= 25 && randomNum < 50) {
 			returnString += spacePlague(crew);
 		} 
 		return returnString;
@@ -49,12 +49,12 @@ public class RandomEvent {
 				infectedMember.setInfected(true);
 				returnString += infectedMember.getName() + " has been infected with space plague! \n";
 				infectedMember.setStatus("Infected");
-				infectedMember.setHealth(infectedMember.getHealth()-15);
+				infectedMember.setHealth(infectedMember.getHealth()-20);
 				if (infectedMember.isDead()) {
 					returnString += infectedMember.getName() + " has died to the space plague and has been removed from the crew.";
 					crew.getCrewMembers().remove(infectedMember);
 				} else {
-					returnString += infectedMember.getName() + " will lose 15 health each day until he gets cured. \n";
+					returnString += infectedMember.getName() + " will lose 20 health each day until he gets cured. \n";
 					returnString += infectedMember.getName() + " now has " + infectedMember.getHealth() + "/" + infectedMember.getMaxHealth() + " health.";
 				}
 				
