@@ -17,9 +17,13 @@ public class Nibbler extends CrewMember{
 	 * @param item   A FoodItem object.
 	 * @param crew   A Crew object.
 	 */
-	public void eat(FoodItem item, Crew crew) {
-		super.eat(item, crew);
+	public String eat(FoodItem item, Crew crew) {
+		String returnString = "";
+		returnString += super.eat(item, crew);
 		super.setHunger(super.getHunger()-10);
+		returnString += "\n" + super.getName() +" is less hungry from their trait Nibbler.";
+		returnString += "\n" + super.getName() +" now has " + super.getHunger() + "/" + super.getMaxHunger() + " hunger.";
+		return returnString;
 	}
 	
 }

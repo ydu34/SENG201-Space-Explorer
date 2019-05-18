@@ -130,7 +130,7 @@ public class CrewMember {
 		if (health > maxHealth) {
 			health = maxHealth;
 		}
-		returnString += name + " now has " + health + ".\n";
+		returnString += name + " now has " + health + "/" + maxHealth + "health.\n";
 		if (item.isRemovePlague()) {
 			infected = false;
 			status = "Normal";
