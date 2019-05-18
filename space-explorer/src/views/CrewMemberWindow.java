@@ -73,32 +73,32 @@ public class CrewMemberWindow {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(384, 118, 360, 330);
+		panel.setBounds(384, 118, 360, 380);
 		frame.getContentPane().add(panel);
 		
 		JLabel label = new JLabel("Name:");
 		label.setFont(new Font("Dialog", Font.BOLD, 16));
-		label.setBounds(9, 10, 78, 32);
+		label.setBounds(9, 11, 78, 32);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("Trait:");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_1.setBounds(9, 52, 78, 32);
+		label_1.setBounds(9, 54, 78, 32);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("Health:");
 		label_2.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_2.setBounds(9, 94, 78, 32);
+		label_2.setBounds(9, 140, 78, 32);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("Hunger:\r\n");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_3.setBounds(9, 136, 78, 32);
+		label_3.setBounds(9, 183, 78, 32);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("Fatigue:");
 		label_4.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_4.setBounds(183, 94, 78, 32);
+		label_4.setBounds(183, 140, 78, 32);
 		panel.add(label_4);
 		
 		JTextArea textArea = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
@@ -106,33 +106,39 @@ public class CrewMemberWindow {
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setLineWrap(true);
-		textArea.setBounds(9, 181, 337, 102);
+		textArea.setBounds(9, 226, 337, 102);
 		panel.add(textArea);
 		
 		JLabel lblHealthValue = new JLabel();
 		lblHealthValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHealthValue.setBounds(96, 94, 78, 32);
+		lblHealthValue.setBounds(96, 140, 78, 32);
 		panel.add(lblHealthValue);
 		
 		JLabel lblHungerValue = new JLabel();
 		lblHungerValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHungerValue.setBounds(96, 136, 78, 32);
+		lblHungerValue.setBounds(96, 183, 78, 32);
 		panel.add(lblHungerValue);
 		
 		JLabel lblFatigueValue = new JLabel();
 		lblFatigueValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblFatigueValue.setBounds(270, 94, 78, 32);
+		lblFatigueValue.setBounds(270, 140, 78, 32);
 		panel.add(lblFatigueValue);
 		
 		JLabel lblTraitValue = new JLabel();
 		lblTraitValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblTraitValue.setBounds(96, 52, 220, 32);
+		lblTraitValue.setBounds(96, 54, 250, 32);
 		panel.add(lblTraitValue);
 		
 		JLabel lblNameValue = new JLabel();
 		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNameValue.setBounds(96, 10, 220, 32);
+		lblNameValue.setBounds(96, 11, 250, 32);
 		panel.add(lblNameValue);
+		
+		JLabel lblStatusValue = new JLabel();
+		lblStatusValue.setText((String) null);
+		lblStatusValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblStatusValue.setBounds(96, 97, 250, 32);
+		panel.add(lblStatusValue);
 		
 		// The default selected crew member when first entering the window
 		CrewMember member = game.getCrew().getCrewMembers().get(0);
@@ -141,22 +147,30 @@ public class CrewMemberWindow {
 		lblHealthValue.setText(member.getHealth() + "/" + member.getMaxHealth());
 		lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 		lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
+		lblStatusValue.setText(member.getStatus());
 		textArea.setText(member.description());
+		
+		
 		
 		
 		JLabel lblActions = new JLabel("Actions");
 		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblActions.setBounds(183, 136, 78, 32);
+		lblActions.setBounds(183, 183, 78, 32);
 		panel.add(lblActions);
 		
 		JLabel lblActionsValue = new JLabel(member.getActionsLeft() + "/" + member.getMaxActions());
 		lblActionsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblActionsValue.setBounds(270, 136, 78, 32);
+		lblActionsValue.setBounds(270, 183, 78, 32);
 		panel.add(lblActionsValue);
 		
 		JButton btnPerformAction = new JButton("Perform Action");
-		btnPerformAction.setBounds(9, 296, 337, 25);
+		btnPerformAction.setBounds(9, 339, 337, 25);
 		panel.add(btnPerformAction);
+		
+		JLabel lblStatus = new JLabel("Status:");
+		lblStatus.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblStatus.setBounds(9, 97, 78, 32);
+		panel.add(lblStatus);
 		btnPerformAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -185,6 +199,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
+				lblStatusValue.setText(member.getStatus());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
 				if (member.isAvailable()) {
@@ -210,6 +225,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
+				lblStatusValue.setText(member.getStatus());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
 				if (member.isAvailable()) {
@@ -244,6 +260,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
+				lblStatusValue.setText(member.getStatus());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
 				if (member.isAvailable()) {
@@ -271,6 +288,7 @@ public class CrewMemberWindow {
 				lblHungerValue.setText(member.getHunger() + "/" + member.getMaxHunger());
 				lblFatigueValue.setText(member.getFatigue() + "/" + member.getMaxFatigue());
 				lblActionsValue.setText(member.getActionsLeft() + "/" + member.getMaxActions());
+				lblStatusValue.setText(member.getStatus());
 				textArea.setText(member.description());
 				game.setChosenCrewMember(member);
 				if (member.isAvailable()) {
