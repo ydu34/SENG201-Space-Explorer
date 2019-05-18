@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import javax.swing.border.TitledBorder;
 
 public class SearchPlanetDialog extends JDialog {
 
@@ -36,12 +37,6 @@ public class SearchPlanetDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JPanel panel = new JPanel();
-			panel.setLayout(null);
-			panel.setBounds(47, 13, 255, 205);
-			contentPanel.add(panel);
-		}
-		{
 			JButton btnSearchPlanet = new JButton("SEARCH PLANET");
 			btnSearchPlanet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -56,7 +51,7 @@ public class SearchPlanetDialog extends JDialog {
 				}
 			});
 			btnSearchPlanet.setFont(new Font("Dialog", Font.BOLD, 15));
-			btnSearchPlanet.setBounds(47, 304, 255, 25);
+			btnSearchPlanet.setBounds(37, 304, 285, 25);
 			contentPanel.add(btnSearchPlanet);
 		}
 		{
@@ -69,23 +64,46 @@ public class SearchPlanetDialog extends JDialog {
 					actions.setVisible(true);
 				}
 			});
-			btnReturn.setFont(new Font("Dialog", Font.BOLD, 11));
-			btnReturn.setBounds(140, 365, 205, 25);
+			btnReturn.setFont(new Font("Dialog", Font.PLAIN, 13));
+			btnReturn.setBounds(37, 342, 285, 25);
 			contentPanel.add(btnReturn);
 		}
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		textArea.setBackground(SystemColor.menu);
-		if (game.getCrew().getCurrentLocation().isShipPieceFound()) {
-			textArea.setText("The lightspeed engine piece already found on the planet " + game.getCrew().getCurrentLocation() +"!");
-		} else {
-			textArea.setText("There could be a lightspeed engine piece on the planet " + game.getCrew().getCurrentLocation() +"!");
-		}
-		textArea.setLineWrap(true);
-		textArea.setEditable(false);
-		textArea.setWrapStyleWord(true);
-		textArea.setBounds(47, 231, 255, 60);
-		contentPanel.add(textArea);
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(37, 33, 285, 258);
+		contentPanel.add(panel);
+		
+		JTextArea txtrAllowTheCrew = new JTextArea();
+		txtrAllowTheCrew.setWrapStyleWord(true);
+		txtrAllowTheCrew.setText("Allow the crew member to search the current planet for engine pieces. \r\n \r\nSearching uses up 1 action. The crew member also gains "
+				+ game.getChosenCrewMember().getSearchFatigueCost() + " fatigue and " + game.getChosenCrewMember().getSearchHungerCost() + " hunger.");
+		txtrAllowTheCrew.setLineWrap(true);
+		txtrAllowTheCrew.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		txtrAllowTheCrew.setEditable(false);
+		txtrAllowTheCrew.setBackground(SystemColor.menu);
+		txtrAllowTheCrew.setBounds(12, 83, 261, 162);
+		panel.add(txtrAllowTheCrew);
+		
+		JLabel lblPlanet = new JLabel("Planet:");
+		lblPlanet.setBounds(12, 13, 128, 25);
+		panel.add(lblPlanet);
+		lblPlanet.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		JLabel lblPieceDetected = new JLabel("Piece detected: \r\n");
+		lblPieceDetected.setBounds(12, 50, 128, 25);
+		panel.add(lblPieceDetected);
+		lblPieceDetected.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		JLabel lblPlanetValue = new JLabel(game.getCrew().getCurrentLocation().getName());
+		lblPlanetValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPlanetValue.setBounds(152, 13, 121, 25);
+		panel.add(lblPlanetValue);
+		
+		JLabel lblPieceDetectedValue = new JLabel(""+ !game.getCrew().getCurrentLocation().isShipPieceFound());
+		lblPieceDetectedValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblPieceDetectedValue.setBounds(152, 50, 121, 25);
+		panel.add(lblPieceDetectedValue);
 	}
 }

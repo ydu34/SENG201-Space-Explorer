@@ -66,8 +66,8 @@ public class SleepDialog extends JDialog {
 				game.launchCrewMemberWindow();
 			}
 		});
-		button.setFont(new Font("Dialog", Font.BOLD, 13));
-		button.setBounds(35, 320, 90, 25);
+		button.setFont(new Font("Dialog", Font.BOLD, 15));
+		button.setBounds(35, 309, 285, 25);
 		contentPanel.add(button);
 		
 		JButton button_1 = new JButton("Let's do something else!");
@@ -80,7 +80,7 @@ public class SleepDialog extends JDialog {
 			}
 		});
 		button_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-		button_1.setBounds(137, 321, 183, 25);
+		button_1.setBounds(35, 347, 285, 25);
 		contentPanel.add(button_1);
 	}
 }
