@@ -143,7 +143,7 @@ public class CrewMember {
 	/**
 	 * Lets crew members sleep.
 	 */	
-	public void sleep() {
+	public String sleep() {
 		int previousFatigue = fatigue;
 		fatigue -= 10;
 		if (fatigue < 0) {
@@ -151,7 +151,7 @@ public class CrewMember {
 		}
 		int fatigueRecovered = previousFatigue - fatigue;
 		actionsLeft-=1;
-		System.out.println(name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + " fatigue.");
+		return name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + "/" + maxFatigue + " fatigue.";
 	}
 	
 	/**
