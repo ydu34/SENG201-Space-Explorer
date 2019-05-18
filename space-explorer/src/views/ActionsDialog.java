@@ -20,7 +20,7 @@ public class ActionsDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private GameEnvironment game;
-	
+
 	/**
 	 * Create the dialog.
 	 */
@@ -32,22 +32,15 @@ public class ActionsDialog extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JLabel label = new JLabel("Actions");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Dialog", Font.BOLD, 20));
 		label.setBounds(46, 13, 221, 25);
 		contentPanel.add(label);
-		
-		// An actionsListener that is reused, so assign a variable to it
-		ActionListener closeDialog = new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				setVisible(false);
-				dispose();
-			}
-		};
+
 		JButton btnEatFood = new JButton("Eat Food");
-		btnEatFood.addActionListener( new ActionListener() {
+		btnEatFood.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -55,11 +48,11 @@ public class ActionsDialog extends JDialog {
 				JDialog eatFood = new EatFoodDialog(parent, "Space Explorers", game, parentWindow);
 				eatFood.setVisible(true);
 			}
-			
+
 		});
 		btnEatFood.setBounds(12, 132, 301, 25);
 		contentPanel.add(btnEatFood);
-		
+
 		JButton btnApplyMed = new JButton("Apply Medical Item");
 		btnApplyMed.addActionListener(new ActionListener() {
 
@@ -69,11 +62,11 @@ public class ActionsDialog extends JDialog {
 				JDialog applyMedicine = new ApplyMedicineDialog(parent, "Space Explorers", game, parentWindow);
 				applyMedicine.setVisible(true);
 			}
-			
+
 		});
 		btnApplyMed.setBounds(12, 170, 301, 25);
 		contentPanel.add(btnApplyMed);
-		
+
 		JButton btnRepairShip = new JButton("Repair ship shields");
 		btnRepairShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -85,7 +78,7 @@ public class ActionsDialog extends JDialog {
 		});
 		btnRepairShip.setBounds(12, 208, 301, 25);
 		contentPanel.add(btnRepairShip);
-		
+
 		JButton btnSearchPlanet = new JButton("Search planet ");
 		btnSearchPlanet.addActionListener(new ActionListener() {
 
@@ -98,18 +91,17 @@ public class ActionsDialog extends JDialog {
 		});
 		btnSearchPlanet.setBounds(12, 246, 301, 25);
 		contentPanel.add(btnSearchPlanet);
-		
+
 		JButton btnPilotShip = new JButton("Pilot the ship");
-		btnPilotShip.addActionListener(closeDialog);
 		btnPilotShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parentWindow.finishedWindow();
-				game.launchPilotWindow();
+				game.launchSelectPilotWindow();
 			}
-		});	
+		});
 		btnPilotShip.setBounds(12, 284, 301, 25);
 		contentPanel.add(btnPilotShip);
-		
+
 		JButton btnSleep = new JButton("Sleep");
 		btnSleep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -121,19 +113,24 @@ public class ActionsDialog extends JDialog {
 		});
 		btnSleep.setBounds(12, 94, 301, 25);
 		contentPanel.add(btnSleep);
-		
+
 		JLabel lblNewLabel = new JLabel("Selected Crew Member:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(12, 52, 147, 30);
 		contentPanel.add(lblNewLabel);
-		
+
 		JLabel label_1 = new JLabel(game.getChosenCrewMember().getName());
 		label_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		label_1.setBounds(164, 52, 147, 30);
 		contentPanel.add(label_1);
-		
+
 		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(closeDialog);
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setVisible(false);
+				dispose();
+			}
+		});
 		btnBack.setBounds(12, 322, 301, 25);
 		contentPanel.add(btnBack);
 	}

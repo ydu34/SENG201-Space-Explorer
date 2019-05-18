@@ -304,7 +304,7 @@ public class CrewMemberWindow {
 		
 		
 		JLabel lblNewLabel = new JLabel("THE CREW LOBBY ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(52, 30, 690, 60);
 		frame.getContentPane().add(lblNewLabel);

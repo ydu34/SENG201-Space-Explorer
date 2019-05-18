@@ -265,8 +265,8 @@ public class CrewMember {
 					+ "Night Owl's fatigue level increases by a slower rate when repairing ships and searching on planets.";
 			break;
 		case "Protected":
-			returnString = "Protected has a good immune system. "
-					+ "Protected can not be infected by to space plague";
+			returnString = "Protected has a strong physique. "
+					+ "Protected has more health.";
 			break;
 		case "Regular":
 			returnString = "Regular does not have any special powers. "

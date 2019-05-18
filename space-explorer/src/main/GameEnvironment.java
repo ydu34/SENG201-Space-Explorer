@@ -25,6 +25,7 @@ public class GameEnvironment {
 			"Divunus", "Coth LTS4" };
 	private ArrayList<CrewMember> crewMemberTypes = new ArrayList<CrewMember>();
 	private CrewMember chosenCrewMember;
+	private CrewMember otherChosenCrewMember;
 
 	public void launchStartWindow() {
 		StartWindow startWindow = new StartWindow(this);
@@ -111,6 +112,14 @@ public class GameEnvironment {
 
 	public void launchGameOverWindow() {
 		GameOverWindow gameOverWindow = new GameOverWindow(this);
+	}
+	
+	public void launchSelectPilotWindow() {
+		SelectPilotWindow selectPilotWindow = new SelectPilotWindow(this);
+	}
+	
+	public void closeSelectPilotWindow(SelectPilotWindow selectPilotWindow) {
+		selectPilotWindow.closeWindow();
 	}
 
 	public void closeGameOverWindow(GameOverWindow gameOverWindow) {
@@ -335,6 +344,14 @@ public class GameEnvironment {
 
 	public void setChosenCrewMember(CrewMember chosenCrewMember) {
 		this.chosenCrewMember = chosenCrewMember;
+	}
+
+	public CrewMember getOtherChosenCrewMember() {
+		return otherChosenCrewMember;
+	}
+
+	public void setOtherChosenCrewMember(CrewMember otherChosenCrewMember) {
+		this.otherChosenCrewMember = otherChosenCrewMember;
 	}
 
 }

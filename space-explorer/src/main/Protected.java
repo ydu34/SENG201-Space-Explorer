@@ -8,7 +8,7 @@ public class Protected extends CrewMember{
 	 * @param name   A string name of the crew member.
 	 */
 	public Protected(String name) {
-		super(name, "Protected", "Normal", 100, 100, 100, 2);
+		super(name, "Protected", "Normal", 200, 100, 100, 2);
 	}
 	
 	/**
