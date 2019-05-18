@@ -21,6 +21,7 @@ import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
+import javax.swing.SwingConstants;
 
 public class SearchPlanetDialog extends JDialog {
 
@@ -37,7 +38,7 @@ public class SearchPlanetDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JButton btnSearchPlanet = new JButton("SEARCH PLANET");
+			JButton btnSearchPlanet = new JButton("SEARCH");
 			btnSearchPlanet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.getChosenCrewMember().search(game.getMedItems(), game.getFoodItems(), game.getCrew(), game.getShip());
@@ -51,7 +52,7 @@ public class SearchPlanetDialog extends JDialog {
 				}
 			});
 			btnSearchPlanet.setFont(new Font("Dialog", Font.BOLD, 15));
-			btnSearchPlanet.setBounds(37, 304, 285, 25);
+			btnSearchPlanet.setBounds(32, 335, 95, 25);
 			contentPanel.add(btnSearchPlanet);
 		}
 		{
@@ -65,14 +66,14 @@ public class SearchPlanetDialog extends JDialog {
 				}
 			});
 			btnReturn.setFont(new Font("Dialog", Font.PLAIN, 13));
-			btnReturn.setBounds(37, 342, 285, 25);
+			btnReturn.setBounds(130, 335, 192, 25);
 			contentPanel.add(btnReturn);
 		}
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(37, 33, 285, 258);
+		panel.setBounds(32, 63, 290, 258);
 		contentPanel.add(panel);
 		
 		JTextArea txtrAllowTheCrew = new JTextArea();
@@ -105,5 +106,11 @@ public class SearchPlanetDialog extends JDialog {
 		lblPieceDetectedValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPieceDetectedValue.setBounds(152, 50, 121, 25);
 		panel.add(lblPieceDetectedValue);
+		
+		JLabel lblSearchThePlanet = new JLabel("Search the Planet!");
+		lblSearchThePlanet.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSearchThePlanet.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblSearchThePlanet.setBounds(32, 22, 290, 28);
+		contentPanel.add(lblSearchThePlanet);
 	}
 }

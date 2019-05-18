@@ -19,6 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 public class SleepDialog extends JDialog {
 
@@ -39,7 +40,7 @@ public class SleepDialog extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setLayout(null);
-		panel.setBounds(35, 56, 285, 240);
+		panel.setBounds(35, 64, 290, 247);
 		contentPanel.add(panel);
 		
 		JTextArea textArea = new JTextArea();
@@ -67,7 +68,7 @@ public class SleepDialog extends JDialog {
 			}
 		});
 		button.setFont(new Font("Dialog", Font.BOLD, 15));
-		button.setBounds(35, 309, 285, 25);
+		button.setBounds(35, 345, 90, 25);
 		contentPanel.add(button);
 		
 		JButton button_1 = new JButton("Let's do something else!");
@@ -80,7 +81,13 @@ public class SleepDialog extends JDialog {
 			}
 		});
 		button_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-		button_1.setBounds(35, 347, 285, 25);
+		button_1.setBounds(133, 346, 192, 25);
 		contentPanel.add(button_1);
+		
+		JLabel lblTakeANap = new JLabel("Take a Nap!");
+		lblTakeANap.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTakeANap.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblTakeANap.setBounds(35, 23, 290, 28);
+		contentPanel.add(lblTakeANap);
 	}
 }

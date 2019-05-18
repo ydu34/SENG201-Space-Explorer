@@ -109,14 +109,14 @@ public class CrewMember {
 	 * @param item   A FoodItem object.
 	 * @param crew   A Crew object.
 	 */
-	public void eat(FoodItem item, Crew crew) {
+	public String eat(FoodItem item, Crew crew) {
 		hunger -= item.getRestoreHungerAmount();
 		if (hunger < 0) {
 			hunger = 0;
 		}
 		crew.getFoodItems().remove(item);
 		actionsLeft -= 1;
-		System.out.println(name + " now has " + hunger + ".");
+		return name + " now has " + hunger + ".";
 	}
 	
 	/**
@@ -124,19 +124,21 @@ public class CrewMember {
 	 * @param item   A MedicalItem object.
 	 * @param crew   A Crew object.
 	 */
-	public void useMedicalItem(MedicalItem item, Crew crew) {
+	public String useMedicalItem(MedicalItem item, Crew crew) {
+		String returnString = "";
 		health += item.getRestoreHealthAmount();
 		if (health > maxHealth) {
 			health = maxHealth;
 		}
-		System.out.println(name + " now has " + health + ".");
+		returnString += name + " now has " + health + ".\n";
 		if (item.isRemovePlague()) {
 			infected = false;
 			status = "Normal";
+			returnString += name + " has been cured of space plague.";
 		}
 		crew.getMedicalItems().remove(item);
 		actionsLeft -= 1;
-		
+		return returnString;
 	}
 	
 

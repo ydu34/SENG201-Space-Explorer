@@ -14,6 +14,8 @@ import main.GameEnvironment;
 import main.Item;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
@@ -26,6 +28,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 public class EatFoodDialog extends JDialog {
 
@@ -45,13 +48,13 @@ public class EatFoodDialog extends JDialog {
 		JLabel label = new JLabel("Have a Snack!");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Dialog", Font.BOLD, 20));
-		label.setBounds(26, 13, 319, 18);
+		label.setBounds(26, 13, 294, 31);
 		contentPanel.add(label);
 		
-		JLabel label_1 = new JLabel("Check what you have:");
-		label_1.setFont(new Font("Dialog", Font.BOLD, 14));
-		label_1.setBounds(26, 71, 294, 24);
-		contentPanel.add(label_1);
+		JLabel lblAvailableInInventory = new JLabel("Food available in Inventory:");
+		lblAvailableInInventory.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblAvailableInInventory.setBounds(26, 57, 294, 24);
+		contentPanel.add(lblAvailableInInventory);
 		
 		// Create an array list and get the unique food items, so each item only appears once in the list.
 		ArrayList<FoodItem> uniqueFoodItems = new ArrayList<FoodItem>(new TreeSet<FoodItem>(game.getCrew().getFoodItems()));
@@ -69,11 +72,11 @@ public class EatFoodDialog extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		comboBox.setBounds(26, 99, 294, 24);
+		comboBox.setBounds(26, 85, 298, 24);
 		contentPanel.add(comboBox);
 		
-		JButton button = new JButton("Let's do something else!");
-		button.addActionListener(new ActionListener() {
+		JButton btnReturn = new JButton("Let's do something else!");
+		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
@@ -81,43 +84,46 @@ public class EatFoodDialog extends JDialog {
 				actions.setVisible(true);
 			}
 		});
-		button.setFont(new Font("Dialog", Font.BOLD, 11));
-		button.setBounds(128, 365, 192, 25);
-		contentPanel.add(button);
+		btnReturn.setFont(new Font("Dialog", Font.BOLD, 11));
+		btnReturn.setBounds(128, 345, 192, 25);
+		contentPanel.add(btnReturn);
 		
-		JButton button_1 = new JButton("EAT");
+		JButton btnEat = new JButton("EAT");
 		if (game.getCrew().getFoodItems().size() == 0) {
-			button_1.setEnabled(false);
+			btnEat.setEnabled(false);
 		}
-		button_1.addActionListener(new ActionListener() {
+		btnEat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				game.getChosenCrewMember().eat((FoodItem) comboBox.getSelectedItem(), game.getCrew());
+				String message = game.getChosenCrewMember().eat((FoodItem) comboBox.getSelectedItem(), game.getCrew());
 				setVisible(false);
 				dispose();
+				JOptionPane.showMessageDialog(parent, message);
 				parentWindow.finishedWindow();
 				game.launchCrewMemberWindow();
 			}
 		});
-		button_1.setFont(new Font("Dialog", Font.BOLD, 15));
-		button_1.setBounds(26, 364, 90, 25);
-		contentPanel.add(button_1);
+		btnEat.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnEat.setBounds(26, 344, 90, 25);
+		contentPanel.add(btnEat);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setLayout(null);
-		panel.setBounds(26, 136, 298, 216);
+		panel.setBounds(26, 122, 298, 209);
 		contentPanel.add(panel);
 		
 		JTextArea textArea = new JTextArea((String) null);
+		textArea.setBackground(SystemColor.menu);
+		
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setEditable(false);
-		textArea.setBounds(12, 99, 273, 107);
+		textArea.setBounds(12, 106, 273, 90);
 		panel.add(textArea);
 		
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblStock.setBounds(12, 63, 68, 23);
+		lblStock.setBounds(12, 55, 68, 23);
 		panel.add(lblStock);
 		
 		JLabel label_3 = new JLabel("About this item");
@@ -128,25 +134,31 @@ public class EatFoodDialog extends JDialog {
 		
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblName.setBounds(12, 35, 68, 22);
+		lblName.setBounds(12, 27, 68, 22);
 		panel.add(lblName);
 		
 		JLabel lblStockValue = new JLabel();
 		
-		lblStockValue.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblStockValue.setBounds(79, 63, 206, 23);
+		lblStockValue.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblStockValue.setBounds(79, 55, 206, 23);
 		panel.add(lblStockValue);
 		
 		JLabel lblNameValue = new JLabel();
 		
-		lblNameValue.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNameValue.setBounds(79, 35, 206, 22);
+		lblNameValue.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNameValue.setBounds(79, 27, 206, 22);
 		panel.add(lblNameValue);
+		
+		JLabel lblDescription = new JLabel("Description:");
+		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescription.setBounds(12, 82, 136, 23);
+		panel.add(lblDescription);
 		
 		// Get the name and stock of the item only if there are items. 
 		if (uniqueFoodItems.size() > 0) {
 			lblNameValue.setText(currentItem.getName());
 			lblStockValue.setText(Integer.toString(itemFrequency.get(currentItem)));
+			textArea.setText(currentItem.getDescription());
 		}
 	}
 }
