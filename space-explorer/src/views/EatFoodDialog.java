@@ -96,8 +96,7 @@ public class EatFoodDialog extends JDialog {
 				setVisible(false);
 				dispose();
 				JOptionPane.showMessageDialog(parent, message);
-				parentWindow.finishedWindow();
-				game.launchCrewMemberWindow();
+				parentWindow.updateProfile(game.getChosenCrewMember());
 			}
 		});
 		btnEat.setFont(new Font("Dialog", Font.BOLD, 15));

@@ -64,8 +64,7 @@ public class SleepDialog extends JDialog {
 				dispose();
 				String message = game.getChosenCrewMember().sleep();
 				JOptionPane.showMessageDialog(parent, message);
-				parentWindow.finishedWindow();
-				game.launchCrewMemberWindow();
+				parentWindow.updateProfile(game.getChosenCrewMember());
 			}
 		});
 		button.setFont(new Font("Dialog", Font.BOLD, 15));

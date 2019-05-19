@@ -86,8 +86,7 @@ public class RepairShipDialog extends JDialog {
 					dispose();
 					String message = game.getChosenCrewMember().repair(game.getShip());
 					JOptionPane.showMessageDialog(parent, message);
-					parentWindow.finishedWindow();
-					game.launchCrewMemberWindow();
+					parentWindow.updateProfile(game.getChosenCrewMember());
 				}
 			});
 			button.setFont(new Font("Dialog", Font.BOLD, 15));

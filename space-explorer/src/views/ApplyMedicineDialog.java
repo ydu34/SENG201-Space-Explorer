@@ -95,8 +95,7 @@ public class ApplyMedicineDialog extends JDialog {
 				setVisible(false);
 				dispose();
 				JOptionPane.showMessageDialog(parent, message);
-				parentWindow.finishedWindow();
-				game.launchCrewMemberWindow();
+				parentWindow.updateProfile(game.getChosenCrewMember());
 			}
 		});
 		btnApply.setFont(new Font("Dialog", Font.BOLD, 15));

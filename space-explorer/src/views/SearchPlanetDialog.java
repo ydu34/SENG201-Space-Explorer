@@ -48,8 +48,7 @@ public class SearchPlanetDialog extends JDialog {
 					if (!(message.isEmpty())) {
 						JOptionPane.showMessageDialog(parent, message);
 					}
-					parentWindow.finishedWindow();
-					game.launchCrewMemberWindow();
+					parentWindow.updateProfile(game.getChosenCrewMember());
 				}
 			});
 			btnSearchPlanet.setFont(new Font("Dialog", Font.BOLD, 15));
