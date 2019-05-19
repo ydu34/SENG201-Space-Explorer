@@ -46,7 +46,7 @@ public class OutpostWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
-	private int moneyCounter = 0;
+	private int totalCost = 0;
 
 	/**
 	 * Create the application.
@@ -118,11 +118,11 @@ public class OutpostWindow {
 		lblSeeItems.setBounds(50, 96, 283, 24);
 		frame.getContentPane().add(lblSeeItems);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(402, 95, 340, 310);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel panelItemInfo = new JPanel();
+		panelItemInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelItemInfo.setBounds(402, 95, 340, 310);
+		frame.getContentPane().add(panelItemInfo);
+		panelItemInfo.setLayout(null);
 		
 		JTextArea descriptionArea = new JTextArea(currentItem.getDescription());
 		descriptionArea.setBackground(SystemColor.menu);
@@ -131,65 +131,65 @@ public class OutpostWindow {
 		descriptionArea.setWrapStyleWord(true);
 		descriptionArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		descriptionArea.setBounds(35, 197, 273, 52);
-		panel.add(descriptionArea);
+		panelItemInfo.add(descriptionArea);
 		
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblStock.setBounds(35, 129, 68, 22);
-		panel.add(lblStock);
+		panelItemInfo.add(lblStock);
 		
 		JLabel lblItemInfo = new JLabel("About this item");
 		lblItemInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblItemInfo.setBounds(35, 12, 273, 37);
 		lblItemInfo.setFont(new Font("Dialog", Font.BOLD, 20));
-		panel.add(lblItemInfo);
+		panelItemInfo.add(lblItemInfo);
 		
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblName.setBounds(35, 61, 68, 22);
-		panel.add(lblName);
+		panelItemInfo.add(lblName);
 		
 		JButton btnAddCart = new JButton("Add to Cart");
 		
 		btnAddCart.setBounds(35, 271, 273, 25);
-		panel.add(btnAddCart);
+		panelItemInfo.add(btnAddCart);
 		btnAddCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
 		
 		JLabel lblItemName = new JLabel("");
 		lblItemName.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblItemName.setBounds(114, 61, 194, 22);
 		lblItemName.setText(currentItem.getName());
-		panel.add(lblItemName);
+		panelItemInfo.add(lblItemName);
 		
 		JLabel lblItemCount = new JLabel("");
 		lblItemCount.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblItemCount.setBounds(114, 129, 194, 22);
 		lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
-		panel.add(lblItemCount);
+		panelItemInfo.add(lblItemCount);
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblPrice.setBounds(35, 95, 68, 22);
-		panel.add(lblPrice);
+		panelItemInfo.add(lblPrice);
 		
 		JLabel lblItemPrice = new JLabel("");
 		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblItemPrice.setBounds(114, 95, 194, 22);
 		lblItemPrice.setText(Integer.toString(currentItem.getPrice()));
-		panel.add(lblItemPrice);
+		panelItemInfo.add(lblItemPrice);
 		
 		JLabel lblDescription = new JLabel("Description:");
 		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblDescription.setBounds(35, 163, 134, 22);
-		panel.add(lblDescription);
+		panelItemInfo.add(lblDescription);
 		
 		JSeparator separator_2 = new JSeparator();
 		separator_2.setBounds(22, 47, 306, 2);
-		panel.add(separator_2);
+		panelItemInfo.add(separator_2);
 		
 		JSeparator separator_3 = new JSeparator();
 		separator_3.setBounds(22, 257, 306, 2);
-		panel.add(separator_3);
+		panelItemInfo.add(separator_3);
 		
 		JButton btnBackToShip = new JButton("Return to ship");
 		btnBackToShip.addActionListener(new ActionListener() {
@@ -241,7 +241,7 @@ public class OutpostWindow {
 		lblTotalCost.setBounds(402, 413, 163, 33);
 		frame.getContentPane().add(lblTotalCost);
 		
-		JLabel lblTotalCostValue = new JLabel(Integer.toString(moneyCounter));
+		JLabel lblTotalCostValue = new JLabel(Integer.toString(totalCost));
 		lblTotalCostValue.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblTotalCostValue.setBounds(577, 413, 168, 33);
 		frame.getContentPane().add(lblTotalCostValue);
@@ -283,8 +283,8 @@ public class OutpostWindow {
 				
 				listModel.addElement((Item) comboBoxItems.getSelectedItem());
 				itemFrequency.replace((Item) comboBoxItems.getSelectedItem(), itemFrequency.get(comboBoxItems.getSelectedItem()) - 1);
-				moneyCounter += ((Item) comboBoxItems.getSelectedItem()).getPrice();
-				lblTotalCostValue.setText(Integer.toString(moneyCounter));
+				totalCost += ((Item) comboBoxItems.getSelectedItem()).getPrice();
+				lblTotalCostValue.setText(Integer.toString(totalCost));
 				if (itemFrequency.get(comboBoxItems.getSelectedItem()) <= 0){
 					btnAddCart.setEnabled(false);
 				} else {
@@ -302,9 +302,9 @@ public class OutpostWindow {
 			public void actionPerformed(ActionEvent e) {
 					itemFrequency.replace((Item) comboBoxItems.getSelectedItem(), itemFrequency.get(comboBoxItems.getSelectedItem()) + 1);
 					btnAddCart.setEnabled(true);
-					moneyCounter -= ((Item) listItems.getSelectedValue()).getPrice();
+					totalCost -= ((Item) listItems.getSelectedValue()).getPrice();
 					listModel.removeElement(listItems.getSelectedValue());
-					lblTotalCostValue.setText(Integer.toString(moneyCounter));
+					lblTotalCostValue.setText(Integer.toString(totalCost));
 					if (listModel.getSize() <= 0 || listItems.isSelectionEmpty()) {
 						btnRemoveFromCart.setEnabled(false);
 					} else {
@@ -318,7 +318,7 @@ public class OutpostWindow {
 				SpaceOutpost currentSpaceOutpost = game.getCrew().getCurrentLocation().getOutpost();
 				if (listModel.getSize() == 0) {
 					lblWarning.setText("There are no items to purchase!");
-				}else if (moneyCounter <= game.getCrew().getMoney()) {
+				}else if (totalCost <= game.getCrew().getMoney()) {
 					for (int i = 0; i < listItems.getModel().getSize(); i++) {
 						if (listItems.getModel().getElementAt(i) instanceof MedicalItem) {
 							MedicalItem currentItem = (MedicalItem) listItems.getModel().getElementAt(i);
@@ -330,8 +330,8 @@ public class OutpostWindow {
 						}
 					}
 					lblMoney.setText(Integer.toString(game.getCrew().getMoney()));
-					moneyCounter = 0;
-					lblTotalCostValue.setText(Integer.toString(moneyCounter));
+					totalCost = 0;
+					lblTotalCostValue.setText(Integer.toString(totalCost));
 					listModel.clear();
 					lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
 					JOptionPane.showMessageDialog(frame, "Items purchased!");
