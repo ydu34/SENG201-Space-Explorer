@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 
 public class StartWindow {
 
-	private JFrame frmSpaceExplorers;
+	private JFrame frame;
 	private GameEnvironment game;
 	
 
@@ -22,11 +22,11 @@ public class StartWindow {
 	public StartWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frmSpaceExplorers.setVisible(true);
+		frame.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frmSpaceExplorers.dispose();
+		frame.dispose();
 	}
 	
 	public void finishedWindow() {
@@ -37,15 +37,15 @@ public class StartWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmSpaceExplorers = new JFrame();
-		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
-		frmSpaceExplorers.setBounds(100, 100, 800, 600);
-		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmSpaceExplorers.getContentPane().setLayout(null);
+		frame = new JFrame();
+		frame.setTitle("SPACE EXPLORERS");
+		frame.setBounds(100, 100, 800, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(7, 7, 772, 325);
-		frmSpaceExplorers.getContentPane().add(panel);
+		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("SPACE EXPLORERS");
@@ -62,7 +62,7 @@ public class StartWindow {
 			}
 		});
 		btnStart.setFont(new Font("SansSerif", Font.BOLD, 16));
-		frmSpaceExplorers.getContentPane().add(btnStart);
+		frame.getContentPane().add(btnStart);
 		
 		JButton btnQuit = new JButton("Quit");
 		btnQuit.setBounds(299, 453, 188, 41);
@@ -72,6 +72,6 @@ public class StartWindow {
 			}
 		});
 		btnQuit.setFont(new Font("SansSerif", Font.BOLD, 16));
-		frmSpaceExplorers.getContentPane().add(btnQuit);
+		frame.getContentPane().add(btnQuit);
 	}
 }
