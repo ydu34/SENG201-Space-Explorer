@@ -46,10 +46,6 @@ public class MainWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		if (game.gameOver()) {
-			finishedWindow();
-			game.launchGameOverWindow();
-		} 
 		frame = new JFrame();
 		frame.setResizable(false);
 		frame.setTitle("SPACE EXPLORERS");
