@@ -20,6 +20,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import javax.swing.JSeparator;
 
 public class RepairShipDialog extends JDialog {
 
@@ -40,28 +41,28 @@ public class RepairShipDialog extends JDialog {
 		{
 			JPanel panel = new JPanel();
 			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel.setBounds(38, 47, 290, 259);
+			panel.setBounds(30, 63, 314, 277);
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
 				JLabel lblShipNameValue = new JLabel(game.getShip().getName());
 				lblShipNameValue.setHorizontalAlignment(SwingConstants.CENTER);
-				lblShipNameValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				lblShipNameValue.setBounds(12, 13, 246, 34);
+				lblShipNameValue.setFont(new Font("Dialog", Font.BOLD, 25));
+				lblShipNameValue.setBounds(0, 0, 314, 47);
 				panel.add(lblShipNameValue);
 			}
 			{
 				JLabel lblShields = new JLabel("Shields:");
 				lblShields.setHorizontalAlignment(SwingConstants.LEFT);
-				lblShields.setFont(new Font("Tahoma", Font.BOLD, 15));
-				lblShields.setBounds(12, 60, 99, 26);
+				lblShields.setFont(new Font("Dialog", Font.PLAIN, 16));
+				lblShields.setBounds(12, 60, 100, 26);
 				panel.add(lblShields);
 			}
 			{
 				JLabel lblShieldsValue = new JLabel(game.getCrew().getShip().getShieldLevel() + "/" + game.getCrew().getShip().getMaxShieldLevel());
 				lblShieldsValue.setHorizontalAlignment(SwingConstants.CENTER);
-				lblShieldsValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				lblShieldsValue.setBounds(123, 60, 135, 26);
+				lblShieldsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+				lblShieldsValue.setBounds(123, 60, 184, 26);
 				panel.add(lblShieldsValue);
 			}
 			{
@@ -74,7 +75,7 @@ public class RepairShipDialog extends JDialog {
 				txtrTheCrewMember.setFont(new Font("Monospaced", Font.PLAIN, 15));
 				txtrTheCrewMember.setEditable(false);
 				txtrTheCrewMember.setBackground(SystemColor.menu);
-				txtrTheCrewMember.setBounds(12, 88, 261, 162);
+				txtrTheCrewMember.setBounds(12, 99, 290, 165);
 				panel.add(txtrTheCrewMember);
 			}
 		}
@@ -89,12 +90,12 @@ public class RepairShipDialog extends JDialog {
 					parentWindow.updateProfile(game.getChosenCrewMember());
 				}
 			});
-			button.setFont(new Font("Dialog", Font.BOLD, 15));
-			button.setBounds(41, 332, 117, 29);
+			button.setFont(new Font("Dialog", Font.BOLD, 16));
+			button.setBounds(30, 353, 110, 25);
 			contentPanel.add(button);
 		}
 		{
-			JButton btnReturn = new JButton("Return");
+			JButton btnReturn = new JButton("Do something else!");
 			btnReturn.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
@@ -103,9 +104,21 @@ public class RepairShipDialog extends JDialog {
 					actions.setVisible(true);
 				}
 			});
-			btnReturn.setFont(new Font("Dialog", Font.BOLD, 15));
-			btnReturn.setBounds(199, 332, 117, 29);
+			btnReturn.setFont(new Font("Dialog", Font.PLAIN, 16));
+			btnReturn.setBounds(144, 353, 200, 25);
 			contentPanel.add(btnReturn);
+		}
+		{
+			JLabel lblRepairTheShip = new JLabel("Repair the ship!");
+			lblRepairTheShip.setHorizontalAlignment(SwingConstants.CENTER);
+			lblRepairTheShip.setFont(new Font("Dialog", Font.BOLD, 25));
+			lblRepairTheShip.setBounds(0, 0, 369, 50);
+			contentPanel.add(lblRepairTheShip);
+		}
+		{
+			JSeparator separator = new JSeparator();
+			separator.setBounds(30, 52, 314, 2);
+			contentPanel.add(separator);
 		}
 	}
 }

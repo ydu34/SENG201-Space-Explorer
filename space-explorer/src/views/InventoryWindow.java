@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import main.GameEnvironment;
 import main.Item;
@@ -22,8 +23,12 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSeparator;
+import java.awt.SystemColor;
 
 public class InventoryWindow {
 
@@ -74,60 +79,68 @@ public class InventoryWindow {
 			itemFrequency.put(item, Collections.frequency(inventoryItems, item));
 		}
 		
-		JList list = new JList(uniqueInventoryItems.toArray());
-		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		JList listInventory = new JList(uniqueInventoryItems.toArray());
+		listInventory.setBackground(SystemColor.menu);
+		listInventory.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
+		listInventory.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		list.setBounds(50, 127, 286, 348);
-		frame.getContentPane().add(list);
+		listInventory.setBounds(50, 127, 314, 348);
+		frame.getContentPane().add(listInventory);
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(400, 97, 340, 310);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		JPanel panelItemInfo = new JPanel();
+		panelItemInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelItemInfo.setBounds(396, 127, 344, 280);
+		frame.getContentPane().add(panelItemInfo);
+		panelItemInfo.setLayout(null);
 		
 		JLabel lblAmount = new JLabel("Amount:");
-		lblAmount.setBounds(31, 101, 112, 35);
-		panel.add(lblAmount);
+		lblAmount.setBounds(12, 89, 112, 22);
+		panelItemInfo.add(lblAmount);
 		lblAmount.setFont(new Font("Dialog", Font.BOLD, 16));
 		
 		JLabel lblItemName = new JLabel();
 		if (uniqueInventoryItems.size() != 0) {
-			lblItemName.setText(((Item) list.getModel().getElementAt(0)).getName());
+			lblItemName.setText(((Item) listInventory.getModel().getElementAt(0)).getName());
 		}
 		lblItemName.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblItemName.setBounds(155, 50, 151, 38);
-		panel.add(lblItemName);
+		panelItemInfo.add(lblItemName);
 		
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblName.setBounds(31, 50, 112, 38);
-		panel.add(lblName);
+		lblName.setBounds(12, 54, 112, 22);
+		panelItemInfo.add(lblName);
 		
 		JLabel lblItemAmount = new JLabel();
 		if (uniqueInventoryItems.size() != 0) {
-			lblItemAmount.setText(Integer.toString(itemFrequency.get((Item) list.getModel().getElementAt(0))));
+			lblItemAmount.setText(Integer.toString(itemFrequency.get((Item) listInventory.getModel().getElementAt(0))));
 		}
 		lblItemAmount.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblItemAmount.setBounds(155, 101, 151, 35);
-		panel.add(lblItemAmount);
+		panelItemInfo.add(lblItemAmount);
 		
 		JTextArea textArea = new JTextArea();
+		textArea.setBackground(SystemColor.menu);
 		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		if (uniqueInventoryItems.size() != 0) {
-			textArea.setText(((Item) list.getModel().getElementAt(0)).getDescription());
+			textArea.setText(((Item) listInventory.getModel().getElementAt(0)).getDescription());
 		}
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		textArea.setBounds(31, 149, 275, 135);
-		panel.add(textArea);
+		textArea.setBounds(12, 149, 309, 118);
+		panelItemInfo.add(textArea);
 		
 		JLabel label_2 = new JLabel("About this item");
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
 		label_2.setFont(new Font("Dialog", Font.BOLD, 20));
-		label_2.setBounds(0, 0, 340, 50);
-		panel.add(label_2);
+		label_2.setBounds(0, 0, 344, 50);
+		panelItemInfo.add(label_2);
+		
+		JLabel lblDescription = new JLabel("Description:");
+		lblDescription.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblDescription.setBounds(12, 123, 112, 22);
+		panelItemInfo.add(lblDescription);
 		
 		JButton btnBackToOutpost = new JButton("Back to Outpost");
 		btnBackToOutpost.addActionListener(new ActionListener() {
@@ -163,9 +176,9 @@ public class InventoryWindow {
 		separator_1.setBounds(50, 503, 695, 2);
 		frame.getContentPane().add(separator_1);
 		
-		list.addListSelectionListener(new ListSelectionListener() {
+		listInventory.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				Item currentItem = (Item) list.getSelectedValue();
+				Item currentItem = (Item) listInventory.getSelectedValue();
 				lblItemName.setText(currentItem.getName());
 				lblItemAmount.setText(Integer.toString(itemFrequency.get(currentItem)));
 				textArea.setText(currentItem.getDescription());

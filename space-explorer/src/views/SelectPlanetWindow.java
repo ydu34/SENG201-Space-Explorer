@@ -119,7 +119,11 @@ public class SelectPlanetWindow {
 			public void actionPerformed(ActionEvent e) {
 				String message = pilot1.pilot((Planet) listPlanets.getSelectedValue(), pilot2, game.getCrew());
 				finishedWindow();
-				game.launchMainWindow();
+				if (game.gameOver()) {
+					game.launchGameOverWindow();
+				}  else {
+					game.launchMainWindow();
+				}
 				if (!(message == null)) {
 					JOptionPane.showMessageDialog(frame, message);
 				}

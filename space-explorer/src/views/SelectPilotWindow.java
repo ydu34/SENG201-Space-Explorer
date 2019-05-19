@@ -1,5 +1,6 @@
 package views;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -14,6 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.Font;
+
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import main.CrewMember;
@@ -22,8 +26,11 @@ import main.GameEnvironment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class SelectPilotWindow {
 
@@ -74,13 +81,15 @@ public class SelectPilotWindow {
 		game.setOtherChosenCrewMember(pilot2);
 
 		JTextArea textAreaPilotInfo = new JTextArea();
+		textAreaPilotInfo.setBackground(SystemColor.menu);
+		textAreaPilotInfo.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
 		String info = pilotInfo(pilot1, pilot2);
 		textAreaPilotInfo.setText(info);
 		textAreaPilotInfo.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textAreaPilotInfo.setWrapStyleWord(true);
 		textAreaPilotInfo.setLineWrap(true);
 		textAreaPilotInfo.setEditable(false);
-		textAreaPilotInfo.setBounds(45, 109, 287, 351);
+		textAreaPilotInfo.setBounds(45, 85, 287, 398);
 		frame.getContentPane().add(textAreaPilotInfo);
 
 		cBoxPilot1.setSelectedItem(game.getChosenCrewMember());
@@ -131,6 +140,7 @@ public class SelectPilotWindow {
 		panel.add(lblFatigue);
 
 		JTextArea textArea = new JTextArea(pilot1.description());
+		textArea.setBackground(SystemColor.menu);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
@@ -196,7 +206,7 @@ public class SelectPilotWindow {
 		JLabel lblPreparationToTravel = new JLabel("Preparation to travel!");
 		lblPreparationToTravel.setFont(new Font("Tahoma", Font.BOLD, 30));
 		lblPreparationToTravel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPreparationToTravel.setBounds(45, 0, 681, 71);
+		lblPreparationToTravel.setBounds(0, 0, 794, 71);
 		frame.getContentPane().add(lblPreparationToTravel);
 
 		JButton btnSelectPlanet_1 = new JButton("Select Planet");

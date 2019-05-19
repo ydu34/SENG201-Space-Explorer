@@ -20,6 +20,7 @@ import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
 
 public class SleepDialog extends JDialog {
 
@@ -41,7 +42,7 @@ public class SleepDialog extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setLayout(null);
-		panel.setBounds(35, 64, 290, 247);
+		panel.setBounds(30, 63, 314, 277);
 		contentPanel.add(panel);
 		
 		JTextArea textArea = new JTextArea();
@@ -54,7 +55,7 @@ public class SleepDialog extends JDialog {
 		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
-		textArea.setBounds(12, 13, 261, 212);
+		textArea.setBounds(12, 13, 290, 251);
 		panel.add(textArea);
 		
 		JButton button = new JButton("SLEEP");
@@ -67,12 +68,12 @@ public class SleepDialog extends JDialog {
 				parentWindow.updateProfile(game.getChosenCrewMember());
 			}
 		});
-		button.setFont(new Font("Dialog", Font.BOLD, 15));
-		button.setBounds(35, 345, 90, 25);
+		button.setFont(new Font("Dialog", Font.BOLD, 16));
+		button.setBounds(30, 353, 110, 25);
 		contentPanel.add(button);
 		
-		JButton button_1 = new JButton("Let's do something else!");
-		button_1.addActionListener(new ActionListener() {
+		JButton btnDoSomethingElse = new JButton("Do something else!");
+		btnDoSomethingElse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
@@ -80,14 +81,18 @@ public class SleepDialog extends JDialog {
 				actions.setVisible(true);
 			}
 		});
-		button_1.setFont(new Font("Dialog", Font.PLAIN, 13));
-		button_1.setBounds(133, 346, 192, 25);
-		contentPanel.add(button_1);
+		btnDoSomethingElse.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnDoSomethingElse.setBounds(144, 353, 200, 25);
+		contentPanel.add(btnDoSomethingElse);
 		
 		JLabel lblTakeANap = new JLabel("Take a Nap!");
 		lblTakeANap.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTakeANap.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblTakeANap.setBounds(35, 23, 290, 28);
+		lblTakeANap.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblTakeANap.setBounds(0, 0, 369, 50);
 		contentPanel.add(lblTakeANap);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(30, 52, 314, 2);
+		contentPanel.add(separator);
 	}
 }

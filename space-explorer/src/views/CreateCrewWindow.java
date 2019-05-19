@@ -234,7 +234,6 @@ public class CreateCrewWindow {
 		CrewMemberToggleButtons.add(tglbtnCrewMember4);
 
 		JTextArea textArea = new JTextArea(currentType.description());
-		textArea.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		textArea.setBackground(SystemColor.menu);
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
