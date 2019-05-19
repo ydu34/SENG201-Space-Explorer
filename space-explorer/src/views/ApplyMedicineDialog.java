@@ -28,6 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import javax.swing.JSeparator;
 
 public class ApplyMedicineDialog extends JDialog {
 
@@ -58,11 +59,12 @@ public class ApplyMedicineDialog extends JDialog {
 
 		// Combo box for the medical items in the crew inventory
 		JComboBox comboBox = new JComboBox(uniqueMedicalItems.toArray());
+		comboBox.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
-		comboBox.setBounds(26, 85, 298, 24);
+		comboBox.setBounds(25, 95, 319, 24);
 		contentPanel.add(comboBox);
-		JButton button = new JButton("Let's do something else!");
-		button.addActionListener(new ActionListener() {
+		JButton btnDoSomethingElse = new JButton("Do something else!");
+		btnDoSomethingElse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
@@ -70,22 +72,22 @@ public class ApplyMedicineDialog extends JDialog {
 				actions.setVisible(true);
 			}
 		});
-		button.setFont(new Font("Dialog", Font.BOLD, 11));
-		button.setBounds(128, 344, 192, 25);
-		contentPanel.add(button);
+		btnDoSomethingElse.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnDoSomethingElse.setBounds(128, 353, 217, 25);
+		contentPanel.add(btnDoSomethingElse);
 
 		// The current medical item that is selected by the player in the combo box
 		MedicalItem currentItem = (MedicalItem) comboBox.getSelectedItem();
 
 		JLabel lblImproveYourHealth = new JLabel("Improve your Health!");
 		lblImproveYourHealth.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImproveYourHealth.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblImproveYourHealth.setBounds(26, 13, 298, 31);
+		lblImproveYourHealth.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblImproveYourHealth.setBounds(0, 0, 369, 50);
 		contentPanel.add(lblImproveYourHealth);
 
 		JLabel lblMedicineAvailable = new JLabel("Medicine available in Inventory:");
-		lblMedicineAvailable.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblMedicineAvailable.setBounds(26, 57, 294, 24);
+		lblMedicineAvailable.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblMedicineAvailable.setBounds(25, 63, 319, 24);
 		contentPanel.add(lblMedicineAvailable);
 
 		JButton btnApply = new JButton("Apply");
@@ -98,8 +100,8 @@ public class ApplyMedicineDialog extends JDialog {
 				parentWindow.updateProfile(game.getChosenCrewMember());
 			}
 		});
-		btnApply.setFont(new Font("Dialog", Font.BOLD, 15));
-		btnApply.setBounds(26, 343, 90, 25);
+		btnApply.setFont(new Font("Dialog", Font.BOLD, 16));
+		btnApply.setBounds(25, 353, 90, 25);
 		contentPanel.add(btnApply);
 		if (game.getCrew().getMedicalItems().size() == 0) {
 			btnApply.setEnabled(false);
@@ -108,61 +110,66 @@ public class ApplyMedicineDialog extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(26, 122, 298, 208);
+		panel.setBounds(25, 132, 319, 208);
 		contentPanel.add(panel);
 
-		JTextArea textArea = new JTextArea((String) null);
-		textArea.setBackground(SystemColor.menu);
-		textArea.setWrapStyleWord(true);
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		textArea.setEditable(false);
-		textArea.setBounds(12, 107, 273, 88);
-		panel.add(textArea);
-
 		JLabel lblStock = new JLabel("Stock:");
-		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblStock.setBounds(12, 55, 68, 23);
+		lblStock.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblStock.setBounds(12, 68, 68, 23);
 		panel.add(lblStock);
 
 		JLabel label = new JLabel("About this item");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Dialog", Font.BOLD, 17));
-		label.setBounds(12, 0, 273, 22);
+		label.setFont(new Font("Dialog", Font.BOLD, 16));
+		label.setBounds(0, 0, 319, 35);
 		panel.add(label);
 
 		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblName.setBounds(12, 27, 68, 22);
+		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblName.setBounds(12, 40, 68, 22);
 		panel.add(lblName);
 
 		JLabel lblStockValue = new JLabel();
-		lblStockValue.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblStockValue.setBounds(79, 55, 206, 23);
+		lblStockValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblStockValue.setBounds(79, 68, 227, 23);
 		panel.add(lblStockValue);
 
 		JLabel lblNameValue = new JLabel();
-		lblNameValue.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNameValue.setBounds(79, 27, 206, 22);
+		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblNameValue.setBounds(79, 40, 227, 22);
 		panel.add(lblNameValue);
 
 		JLabel lblDescription = new JLabel("Description:");
-		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDescription.setBounds(12, 82, 136, 23);
+		lblDescription.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblDescription.setBounds(12, 95, 136, 23);
 		panel.add(lblDescription);
+		
+				JTextArea textAreaDescription = new JTextArea((String) null);
+				textAreaDescription.setLineWrap(true);
+				textAreaDescription.setBackground(SystemColor.menu);
+				textAreaDescription.setWrapStyleWord(true);
+				textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
+				textAreaDescription.setEditable(false);
+				textAreaDescription.setBounds(12, 120, 294, 75);
+				panel.add(textAreaDescription);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(25, 52, 319, 2);
+		contentPanel.add(separator);
 		// Listener for the combo box when the player changes item
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MedicalItem currentItem = (MedicalItem) comboBox.getSelectedItem();
 				lblNameValue.setText(currentItem.getName());
 				lblStockValue.setText(Integer.toString(itemFrequency.get(currentItem)));
-				textArea.setText(currentItem.getDescription());
+				textAreaDescription.setText(currentItem.getDescription());
 			}
 		});
 		// Get the name and stock of the item only if there are items.
 		if (uniqueMedicalItems.size() > 0) {
 			lblNameValue.setText(currentItem.getName());
 			lblStockValue.setText(Integer.toString(itemFrequency.get(currentItem)));
-			textArea.setText(currentItem.getDescription());
+			textAreaDescription.setText(currentItem.getDescription());
 		}
 	}
 }

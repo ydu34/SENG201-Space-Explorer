@@ -11,3 +11,7 @@ Label Text: Dialog 16 Bold
 Label Value text: Dialog 16 Plain
 Label Spacing: 12
 Lavel bounds: height 22
+
+Dialog Title Text: Dialog 25 Bold
+Dialog Title Bounds: x:0, y: 0, width 369, height: 50
+SeperatorTop: x: 25, y: 52, width 319, height 2

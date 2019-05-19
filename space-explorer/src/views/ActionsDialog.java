@@ -15,6 +15,7 @@ import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
+import javax.swing.JSeparator;
 
 public class ActionsDialog extends JDialog {
 
@@ -33,13 +34,14 @@ public class ActionsDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JLabel label = new JLabel("Actions");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Dialog", Font.BOLD, 20));
-		label.setBounds(46, 13, 221, 25);
-		contentPanel.add(label);
+		JLabel lblDialogTitle = new JLabel("Actions");
+		lblDialogTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDialogTitle.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblDialogTitle.setBounds(0, 0, 319, 50);
+		contentPanel.add(lblDialogTitle);
 
 		JButton btnEatFood = new JButton("Eat Food");
+		btnEatFood.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnEatFood.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -50,10 +52,11 @@ public class ActionsDialog extends JDialog {
 			}
 
 		});
-		btnEatFood.setBounds(12, 132, 301, 25);
+		btnEatFood.setBounds(15, 134, 289, 25);
 		contentPanel.add(btnEatFood);
 
-		JButton btnApplyMed = new JButton("Apply Medical Item");
+		JButton btnApplyMed = new JButton("Apply Medicine");
+		btnApplyMed.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnApplyMed.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -64,10 +67,11 @@ public class ActionsDialog extends JDialog {
 			}
 
 		});
-		btnApplyMed.setBounds(12, 170, 301, 25);
+		btnApplyMed.setBounds(15, 170, 289, 25);
 		contentPanel.add(btnApplyMed);
 
 		JButton btnRepairShip = new JButton("Repair ship shields");
+		btnRepairShip.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnRepairShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
@@ -76,10 +80,11 @@ public class ActionsDialog extends JDialog {
 				repairShip.setVisible(true);
 			}
 		});
-		btnRepairShip.setBounds(12, 208, 301, 25);
+		btnRepairShip.setBounds(15, 206, 289, 25);
 		contentPanel.add(btnRepairShip);
 
 		JButton btnSearchPlanet = new JButton("Search planet ");
+		btnSearchPlanet.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnSearchPlanet.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -89,20 +94,22 @@ public class ActionsDialog extends JDialog {
 				searchPlanet.setVisible(true);
 			}
 		});
-		btnSearchPlanet.setBounds(12, 246, 301, 25);
+		btnSearchPlanet.setBounds(15, 242, 289, 25);
 		contentPanel.add(btnSearchPlanet);
 
 		JButton btnPilotShip = new JButton("Pilot the ship");
+		btnPilotShip.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnPilotShip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				parentWindow.finishedWindow();
 				game.launchSelectPilotWindow();
 			}
 		});
-		btnPilotShip.setBounds(12, 284, 301, 25);
+		btnPilotShip.setBounds(15, 278, 289, 25);
 		contentPanel.add(btnPilotShip);
 
 		JButton btnSleep = new JButton("Sleep");
+		btnSleep.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnSleep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -111,27 +118,32 @@ public class ActionsDialog extends JDialog {
 				sleep.setVisible(true);
 			}
 		});
-		btnSleep.setBounds(12, 94, 301, 25);
+		btnSleep.setBounds(15, 98, 289, 25);
 		contentPanel.add(btnSleep);
 
-		JLabel lblNewLabel = new JLabel("Selected Crew Member:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(12, 52, 147, 30);
-		contentPanel.add(lblNewLabel);
+		JLabel lblCrewMember = new JLabel("Crew Member:");
+		lblCrewMember.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblCrewMember.setBounds(15, 63, 124, 30);
+		contentPanel.add(lblCrewMember);
 
-		JLabel label_1 = new JLabel(game.getChosenCrewMember().getName());
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		label_1.setBounds(164, 52, 147, 30);
-		contentPanel.add(label_1);
+		JLabel lblCrewMemberValue = new JLabel(game.getChosenCrewMember().getName());
+		lblCrewMemberValue.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblCrewMemberValue.setBounds(151, 63, 153, 30);
+		contentPanel.add(lblCrewMemberValue);
 
 		JButton btnBack = new JButton("Back");
+		btnBack.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				dispose();
 			}
 		});
-		btnBack.setBounds(12, 322, 301, 25);
+		btnBack.setBounds(15, 314, 289, 25);
 		contentPanel.add(btnBack);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(12, 52, 295, 2);
+		contentPanel.add(separator);
 	}
 }
