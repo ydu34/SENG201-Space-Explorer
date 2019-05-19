@@ -98,6 +98,10 @@ public class CrewMember {
 		this.searchFatigueCost = 20;
 		this.searchHungerCost = 20;
 	}
+	
+	public boolean canPilot() {
+		return (fatigue + pilotFatigueCost <= maxFatigue && hunger + pilotHungerCost <= maxHunger && actionsLeft > 0);
+	}
 
 	/**
 	 * Checks if the crew member is available.

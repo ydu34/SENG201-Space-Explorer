@@ -20,6 +20,7 @@ import main.CrewMember;
 import main.GameEnvironment;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -58,16 +59,6 @@ public class SelectPilotWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JTextArea textAreaPilotInfo = new JTextArea();
-		String info = "Traveling to another planet requires two crew members to pilot the ship. ";
-		textAreaPilotInfo.setText(info);
-		textAreaPilotInfo.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		textAreaPilotInfo.setWrapStyleWord(true);
-		textAreaPilotInfo.setLineWrap(true);
-		textAreaPilotInfo.setEditable(false);
-		textAreaPilotInfo.setBounds(45, 109, 287, 351);
-		frame.getContentPane().add(textAreaPilotInfo);
-
 		JComboBox cBoxPilot2 = new JComboBox(game.getCrew().getCrewMembers().toArray());
 		for (int i = 0; (cBoxPilot2.getSelectedItem() == game.getChosenCrewMember()); i++) {
 			cBoxPilot2.setSelectedIndex(i);
@@ -80,6 +71,16 @@ public class SelectPilotWindow {
 		pilot2 = (CrewMember) cBoxPilot2.getSelectedItem();
 		game.setChosenCrewMember(pilot1);
 		game.setOtherChosenCrewMember(pilot2);
+
+		JTextArea textAreaPilotInfo = new JTextArea();
+		String info = pilotInfo(pilot1, pilot2);
+		textAreaPilotInfo.setText(info);
+		textAreaPilotInfo.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		textAreaPilotInfo.setWrapStyleWord(true);
+		textAreaPilotInfo.setLineWrap(true);
+		textAreaPilotInfo.setEditable(false);
+		textAreaPilotInfo.setBounds(45, 109, 287, 351);
+		frame.getContentPane().add(textAreaPilotInfo);
 
 		cBoxPilot1.setSelectedItem(game.getChosenCrewMember());
 		cBoxPilot1.setBounds(492, 85, 235, 22);
@@ -200,10 +201,15 @@ public class SelectPilotWindow {
 		JButton btnSelectPlanet_1 = new JButton("Select Planet");
 		btnSelectPlanet_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.setChosenCrewMember(pilot1);
-				game.setOtherChosenCrewMember(pilot2);
-				finishedWindow();
-				game.launchPilotWindow();
+				if (pilot2.canPilot()) {
+					game.setChosenCrewMember(pilot1);
+					game.setOtherChosenCrewMember(pilot2);
+					finishedWindow();
+					game.launchPilotWindow();
+				} else {
+					String message = pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
+					JOptionPane.showMessageDialog(frame, message);
+				}
 			}
 		});
 		btnSelectPlanet_1.setBounds(562, 515, 165, 25);
@@ -226,6 +232,8 @@ public class SelectPilotWindow {
 				} else {
 					btnSelectPlanet_1.setEnabled(true);
 				}
+				String info = pilotInfo(pilot1, pilot2);
+				textAreaPilotInfo.setText(info);
 			}
 		});
 
@@ -246,8 +254,23 @@ public class SelectPilotWindow {
 				} else {
 					btnSelectPlanet_1.setEnabled(true);
 				}
+				String info = pilotInfo(pilot1, pilot2);
+				textAreaPilotInfo.setText(info);
 			}
 		});
 	}
 
+	public String pilotInfo(CrewMember pilot1, CrewMember pilot2) {
+		String info;
+		if (pilot1.equals(pilot2)) {
+			info = "The two crew members can not be the same.";
+		} else {
+			info = "Traveling to another planet requires two crew members to pilot the ship. "
+					+ "\n\nBoth crew members must have 1 action remaining to pilot.\n\n" + pilot1
+					+ "'s fatigue will increase by " + pilot1.getPilotFatigueCost() + " and hunger will increase by "
+					+ pilot1.getPilotHungerCost() + ".\n\n" + pilot2 + "'s fatigue will increase by "
+					+ pilot2.getPilotFatigueCost() + " and hunger will increase by " + pilot2.getPilotHungerCost();
+		}
+		return info;
+	}
 }
