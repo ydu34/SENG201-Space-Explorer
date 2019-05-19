@@ -74,6 +74,23 @@ public class SelectPlanetWindow {
 		btnPilot.setEnabled(false);
 		btnPilot.setBounds(41, 503, 122, 25);
 		frame.getContentPane().add(btnPilot);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(410, 438, 325, 53);
+		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblEnginePieceAvailable = new JLabel("Engine piece detected:");
+		lblEnginePieceAvailable.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblEnginePieceAvailable.setBounds(12, 13, 186, 22);
+		panel_1.add(lblEnginePieceAvailable);
+		
+		JLabel lblPieceAvailableValue = new JLabel();
+		lblPieceAvailableValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		
+		lblPieceAvailableValue.setBounds(210, 13, 103, 22);
+		panel_1.add(lblPieceAvailableValue);
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -84,6 +101,7 @@ public class SelectPlanetWindow {
 		listPlanets.setBorder(null);
 		listPlanets.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
+				lblPieceAvailableValue.setText(((Planet) listPlanets.getSelectedValue()).planetPieceDetected());
 				if ((Planet) listPlanets.getSelectedValue() == game.getCrew().getCurrentLocation()) {
 					btnPilot.setEnabled(false);
 					btnPilot.setToolTipText(
@@ -133,32 +151,6 @@ public class SelectPlanetWindow {
 		button_1.setBounds(535, 504, 200, 25);
 		frame.getContentPane().add(button_1);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(410, 311, 325, 180);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Planet Info");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(12, 13, 301, 37);
-		panel_1.add(lblNewLabel);
-		
-		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblName.setBounds(12, 53, 83, 27);
-		panel_1.add(lblName);
-		
-		JLabel lblEnginePieceAvailable = new JLabel("Engine piece detected:");
-		lblEnginePieceAvailable.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblEnginePieceAvailable.setBounds(12, 93, 186, 27);
-		panel_1.add(lblEnginePieceAvailable);
-		
-		JLabel lblNameValue = new JLabel();
-		lblNameValue.setBounds(107, 53, 206, 27);
-		panel_1.add(lblNameValue);
-		
 		JLabel lblNewLabel_1 = new JLabel("Explore a New World!");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
@@ -168,6 +160,10 @@ public class SelectPlanetWindow {
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(38, 77, 697, 2);
 		frame.getContentPane().add(separator_1);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(410, 92, 320, 280);
+		frame.getContentPane().add(lblNewLabel);
 
 	}
 }
