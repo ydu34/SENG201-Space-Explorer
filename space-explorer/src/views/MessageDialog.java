@@ -26,6 +26,7 @@ public class MessageDialog extends JDialog {
 	 */
 	public MessageDialog(JFrame parent, GameEnvironment game, String message, CrewMemberWindow parentWindow) {
 		super(parent, true);
+		setResizable(false);
 		setBounds(100, 100, 400, 200);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -42,6 +42,7 @@ public class SetupWindow{
 	 */
 	private void initialize() {
 		frmSpaceExplorers = new JFrame();
+		frmSpaceExplorers.setResizable(false);
 		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
 		frmSpaceExplorers.setBounds(100, 100, 800, 600);
 		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

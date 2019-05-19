@@ -30,6 +30,7 @@ public class SleepDialog extends JDialog {
 	 */
 	public SleepDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);
+		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 375, 450);
 		getContentPane().setLayout(new BorderLayout());

@@ -31,6 +31,7 @@ public class RepairShipDialog extends JDialog {
 	 */
 	public RepairShipDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);
+		setResizable(false);
 		setBounds(100, 100, 375, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

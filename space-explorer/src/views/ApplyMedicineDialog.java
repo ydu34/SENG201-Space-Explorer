@@ -38,6 +38,7 @@ public class ApplyMedicineDialog extends JDialog {
 	 */
 	public ApplyMedicineDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, title, true);
+		setResizable(false);
 		setBounds(100, 100, 375, 450);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

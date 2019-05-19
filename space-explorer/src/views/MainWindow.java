@@ -50,6 +50,7 @@ public class MainWindow {
 			game.launchGameOverWindow();
 		} 
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setTitle("SPACE EXPLORERS");
 		frame.getContentPane().setFont(new Font("L M Mono Prop Lt10", Font.PLAIN, 12));
 		frame.setBounds(100, 100, 800, 600);
