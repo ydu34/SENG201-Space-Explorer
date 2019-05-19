@@ -102,7 +102,7 @@ public class SearchPlanetDialog extends JDialog {
 		lblPlanetValue.setBounds(152, 13, 121, 25);
 		panel.add(lblPlanetValue);
 		
-		JLabel lblPieceDetectedValue = new JLabel(""+ !game.getCrew().getCurrentLocation().isShipPieceFound());
+		JLabel lblPieceDetectedValue = new JLabel(""+ game.getCrew().getCurrentLocation().isPieceDetected());
 		lblPieceDetectedValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPieceDetectedValue.setBounds(152, 50, 121, 25);
 		panel.add(lblPieceDetectedValue);

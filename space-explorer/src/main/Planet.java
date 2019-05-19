@@ -5,7 +5,7 @@ package main;
  */
 public class Planet {
 	private String name;
-	private boolean shipPieceFound = false;
+	private boolean pieceDetected = true;
 	private SpaceOutpost outpost = new SpaceOutpost();
 	
 
@@ -15,6 +15,16 @@ public class Planet {
 	 */
 	public Planet(String name) {
 		this.name = name;
+	}
+	
+	public String planetPieceDetected() {
+		String text;
+		if (pieceDetected) {
+			text = "Yes";
+		} else {
+			text = "No";
+		}
+		return text;
 	}
 	
 	/**
@@ -46,16 +56,16 @@ public class Planet {
 	 * Checks if the transporter part for this planet has been found.
 	 * @return true if the transporter part for this planet has been found, false otherwise.
 	 */
-	public boolean isShipPieceFound() {
-		return shipPieceFound;
+	public boolean isPieceDetected() {
+		return pieceDetected;
 	}
 	
 	/**
 	 * Sets if the transporter part has been found.
 	 * @param transporterDiscovery   A boolean expression of whether the transporter part has been found.
 	 */
-	public void setShipPieceFound(boolean shipPieceFound) {
-		this.shipPieceFound = shipPieceFound;
+	public void setPieceDetected(boolean shipPieceFound) {
+		this.pieceDetected = shipPieceFound;
 	}
 
 	/**

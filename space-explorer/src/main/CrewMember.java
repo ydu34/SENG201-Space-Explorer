@@ -223,9 +223,9 @@ public class CrewMember {
 		}
 		if (fatigue + searchFatigueCost  <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-			if (randomNum >= 0 && randomNum < 20 && !crew.getCurrentLocation().isShipPieceFound()) {
+			if (randomNum >= 0 && randomNum < 20 && crew.getCurrentLocation().isPieceDetected()) {
 				returnString += name + " has found a ship piece!\n";
-				crew.getCurrentLocation().setShipPieceFound(true);
+				crew.getCurrentLocation().setPieceDetected(false);
 				ship.foundPiece();
 			} else if (randomNum >= 20 && randomNum < 35) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
