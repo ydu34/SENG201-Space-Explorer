@@ -108,6 +108,7 @@ public class CreateCrewWindow {
 		panelProfile.add(lblTrait);
 
 		tfCMName = new JTextField("Bill");
+		tfCMName.setFont(new Font("Dialog", Font.PLAIN, 16));
 		tfCMName.setBounds(80, 10, 236, 32);
 		panelProfile.add(tfCMName);
 		tfCMName.setColumns(10);
@@ -128,6 +129,7 @@ public class CreateCrewWindow {
 		panelProfile.add(lblFatigue);
 
 		cBoxTrait = new JComboBox(game.getCrewMemberTypes().toArray());
+		cBoxTrait.setFont(new Font("Dialog", Font.PLAIN, 16));
 		// Get the current selected type of crew member
 		CrewMember currentType = (CrewMember) cBoxTrait.getSelectedItem();
 
@@ -258,6 +260,7 @@ public class CreateCrewWindow {
 		frame.getContentPane().add(lblCrewSize);
 
 		JSlider sliderCrewSize = new JSlider();
+		sliderCrewSize.setFont(new Font("Dialog", Font.BOLD, 15));
 		sliderCrewSize.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				tglbtnCrewMember3.setEnabled(true);

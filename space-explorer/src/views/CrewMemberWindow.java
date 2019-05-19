@@ -23,6 +23,8 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JSeparator;
+import java.awt.SystemColor;
 
 public class CrewMemberWindow {
 
@@ -67,77 +69,78 @@ public class CrewMemberWindow {
 				game.launchMainWindow();
 			}
 		});
-		btnBack.setBounds(52, 504, 202, 25);
+		btnBack.setBounds(590, 527, 154, 25);
 		frame.getContentPane().add(btnBack);
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(384, 118, 360, 380);
+		panel.setBounds(375, 100, 370, 355);
 		frame.getContentPane().add(panel);
 		
 		JLabel label = new JLabel("Name:");
 		label.setFont(new Font("Dialog", Font.BOLD, 16));
-		label.setBounds(9, 11, 78, 32);
+		label.setBounds(19, 13, 78, 22);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("Trait:");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_1.setBounds(9, 54, 78, 32);
+		label_1.setBounds(19, 47, 78, 22);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("Health:");
 		label_2.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_2.setBounds(9, 140, 78, 32);
+		label_2.setBounds(19, 115, 78, 22);
 		panel.add(label_2);
 		
 		JLabel label_3 = new JLabel("Hunger:\r\n");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_3.setBounds(9, 183, 78, 32);
+		label_3.setBounds(19, 149, 78, 22);
 		panel.add(label_3);
 		
 		JLabel label_4 = new JLabel("Fatigue:");
 		label_4.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_4.setBounds(183, 140, 78, 32);
+		label_4.setBounds(193, 115, 78, 22);
 		panel.add(label_4);
 		
 		JTextArea textArea = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
+		textArea.setBackground(SystemColor.menu);
 		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setLineWrap(true);
-		textArea.setBounds(9, 226, 337, 102);
+		textArea.setBounds(19, 209, 337, 100);
 		panel.add(textArea);
 		
 		JLabel lblHealthValue = new JLabel();
 		lblHealthValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHealthValue.setBounds(96, 140, 78, 32);
+		lblHealthValue.setBounds(106, 115, 78, 22);
 		panel.add(lblHealthValue);
 		
 		JLabel lblHungerValue = new JLabel();
 		lblHungerValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHungerValue.setBounds(96, 183, 78, 32);
+		lblHungerValue.setBounds(106, 149, 78, 22);
 		panel.add(lblHungerValue);
 		
 		JLabel lblFatigueValue = new JLabel();
 		lblFatigueValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblFatigueValue.setBounds(270, 140, 78, 32);
+		lblFatigueValue.setBounds(280, 115, 78, 22);
 		panel.add(lblFatigueValue);
 		
 		JLabel lblTraitValue = new JLabel();
 		lblTraitValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblTraitValue.setBounds(96, 54, 250, 32);
+		lblTraitValue.setBounds(106, 47, 250, 22);
 		panel.add(lblTraitValue);
 		
 		JLabel lblNameValue = new JLabel();
 		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNameValue.setBounds(96, 11, 250, 32);
+		lblNameValue.setBounds(106, 13, 250, 22);
 		panel.add(lblNameValue);
 		
 		JLabel lblStatusValue = new JLabel();
 		lblStatusValue.setText((String) null);
 		lblStatusValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblStatusValue.setBounds(96, 97, 250, 32);
+		lblStatusValue.setBounds(106, 81, 250, 22);
 		panel.add(lblStatusValue);
 		
 		// The default selected crew member when first entering the window
@@ -155,22 +158,27 @@ public class CrewMemberWindow {
 		
 		JLabel lblActions = new JLabel("Actions");
 		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblActions.setBounds(183, 183, 78, 32);
+		lblActions.setBounds(193, 149, 78, 22);
 		panel.add(lblActions);
 		
 		JLabel lblActionsValue = new JLabel(member.getActionsLeft() + "/" + member.getMaxActions());
 		lblActionsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblActionsValue.setBounds(270, 183, 78, 32);
+		lblActionsValue.setBounds(280, 149, 78, 22);
 		panel.add(lblActionsValue);
 		
 		JButton btnPerformAction = new JButton("Perform Action");
-		btnPerformAction.setBounds(9, 339, 337, 25);
+		btnPerformAction.setBounds(19, 321, 337, 25);
 		panel.add(btnPerformAction);
 		
 		JLabel lblStatus = new JLabel("Status:");
 		lblStatus.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblStatus.setBounds(9, 97, 78, 32);
+		lblStatus.setBounds(19, 81, 78, 22);
 		panel.add(lblStatus);
+		
+		JLabel lblDescription = new JLabel("Description:\r\n");
+		lblDescription.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblDescription.setBounds(19, 183, 165, 22);
+		panel.add(lblDescription);
 		btnPerformAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -236,14 +244,14 @@ public class CrewMemberWindow {
 			}
 		});
 		tglbtnCM1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM1.setBounds(45, 129, 140, 140);
+		tglbtnCM1.setBounds(50, 130, 140, 140);
 		frame.getContentPane().add(tglbtnCM1);
 		
 	
 		
 		
 		tglbtnCM2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM2.setBounds(208, 129, 140, 140);
+		tglbtnCM2.setBounds(210, 130, 140, 140);
 		frame.getContentPane().add(tglbtnCM2);
 		
 		JToggleButton tglbtnCM3 = new JToggleButton("3");
@@ -271,7 +279,7 @@ public class CrewMemberWindow {
 			}
 		});
 		tglbtnCM3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM3.setBounds(45, 297, 140, 140);
+		tglbtnCM3.setBounds(50, 290, 140, 140);
 		frame.getContentPane().add(tglbtnCM3);
 		
 		JToggleButton tglbtnCM4 = new JToggleButton("4");
@@ -299,15 +307,23 @@ public class CrewMemberWindow {
 			}
 		});
 		tglbtnCM4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCM4.setBounds(208, 297, 140, 140);
+		tglbtnCM4.setBounds(210, 290, 140, 140);
 		frame.getContentPane().add(tglbtnCM4);
 		
 		
-		JLabel lblNewLabel = new JLabel("THE CREW LOBBY ");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+		JLabel lblNewLabel = new JLabel("The Crew Lobby!");
+		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(52, 30, 690, 60);
+		lblNewLabel.setBounds(0, 0, 795, 60);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(50, 62, 695, 2);
+		frame.getContentPane().add(separatorTop);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separator);
 		
 		// Add all the toggle buttons that toggle crew members into the array list for better management of them
 		switch(game.getCrew().getCrewMembers().size()) {

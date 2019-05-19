@@ -9,3 +9,5 @@ SeperatorBottom: x: 50, y: 503, width 695, height 2
 Panel Title text: Dialog 20 Bold
 Label Text: Dialog 16 Bold
 Label Value text: Dialog 16 Plain
+Label Spacing: 12
+Lavel bounds: height 22

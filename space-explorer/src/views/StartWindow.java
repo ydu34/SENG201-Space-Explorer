@@ -44,35 +44,30 @@ public class StartWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBounds(7, 7, 772, 325);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("SPACE EXPLORERS");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Dialog", Font.BOLD, 40));
-		lblNewLabel.setBounds(10, 10, 750, 301);
-		panel.add(lblNewLabel);
-		
 		JButton btnStart = new JButton("Start");
-		btnStart.setBounds(299, 381, 190, 41);
+		btnStart.setBounds(302, 439, 190, 41);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
 			}
 		});
-		btnStart.setFont(new Font("SansSerif", Font.BOLD, 16));
+		btnStart.setFont(new Font("SansSerif", Font.BOLD, 20));
 		frame.getContentPane().add(btnStart);
 		
 		JButton btnQuit = new JButton("Quit");
-		btnQuit.setBounds(299, 453, 188, 41);
+		btnQuit.setBounds(303, 493, 188, 41);
 		btnQuit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		btnQuit.setFont(new Font("SansSerif", Font.BOLD, 16));
+		btnQuit.setFont(new Font("SansSerif", Font.BOLD, 20));
 		frame.getContentPane().add(btnQuit);
+		
+		JLabel label = new JLabel("SPACE EXPLORERS");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setFont(new Font("Dialog", Font.BOLD, 60));
+		label.setBounds(0, 0, 795, 408);
+		frame.getContentPane().add(label);
 	}
 }

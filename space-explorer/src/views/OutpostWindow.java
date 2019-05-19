@@ -136,7 +136,7 @@ public class OutpostWindow {
 		panelItemInfo.add(descriptionArea);
 		
 		JLabel lblStock = new JLabel("Stock:");
-		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblStock.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblStock.setBounds(35, 129, 68, 22);
 		panelItemInfo.add(lblStock);
 		
@@ -147,7 +147,7 @@ public class OutpostWindow {
 		panelItemInfo.add(lblItemInfo);
 		
 		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblName.setBounds(35, 61, 68, 22);
 		panelItemInfo.add(lblName);
 		
@@ -158,30 +158,30 @@ public class OutpostWindow {
 		btnAddCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
 		
 		JLabel lblItemName = new JLabel("");
-		lblItemName.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblItemName.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblItemName.setBounds(114, 61, 194, 22);
 		lblItemName.setText(currentItem.getName());
 		panelItemInfo.add(lblItemName);
 		
 		JLabel lblItemCount = new JLabel("");
-		lblItemCount.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblItemCount.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblItemCount.setBounds(114, 129, 194, 22);
 		lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
 		panelItemInfo.add(lblItemCount);
 		
 		JLabel lblPrice = new JLabel("Price:");
-		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblPrice.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblPrice.setBounds(35, 95, 68, 22);
 		panelItemInfo.add(lblPrice);
 		
 		JLabel lblItemPrice = new JLabel("");
-		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblItemPrice.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblItemPrice.setBounds(114, 95, 194, 22);
 		lblItemPrice.setText(Integer.toString(currentItem.getPrice()));
 		panelItemInfo.add(lblItemPrice);
 		
 		JLabel lblDescription = new JLabel("Description:");
-		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescription.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblDescription.setBounds(35, 163, 134, 22);
 		panelItemInfo.add(lblDescription);
 		
