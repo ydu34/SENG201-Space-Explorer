@@ -23,6 +23,7 @@ public class MainWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
+	private JLabel lblDayValue;
 
 	/**
 	 * Create the application.
@@ -96,11 +97,11 @@ public class MainWindow {
 				if (!(message.isEmpty())) {
 					JOptionPane.showMessageDialog(frame, message);
 				}
-				finishedWindow();
 				if (game.gameOver()) {
+					finishedWindow();
 					game.launchGameOverWindow();
 				} else {
-					game.launchMainWindow();
+					updateScreen();
 				}
 
 			}
@@ -120,7 +121,7 @@ public class MainWindow {
 		panel.add(lblDay);
 		lblDay.setFont(new Font("Dialog", Font.BOLD, 18));
 
-		JLabel lblDayValue = new JLabel(game.getCurrentDay() + "/" + game.getGameDuration());
+		lblDayValue = new JLabel(game.getCurrentDay() + "/" + game.getGameDuration());
 		lblDayValue.setBounds(161, 23, 151, 31);
 		panel.add(lblDayValue);
 		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
@@ -207,5 +208,9 @@ public class MainWindow {
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(20, 34, 740, 16);
 		frame.getContentPane().add(separator_1);
+	}
+	
+	public void updateScreen() {
+		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
 	}
 }
