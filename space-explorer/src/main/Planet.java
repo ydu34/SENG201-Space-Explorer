@@ -7,6 +7,7 @@ public class Planet {
 	private String name;
 	private boolean pieceDetected = true;
 	private SpaceOutpost outpost = new SpaceOutpost();
+	private String imageLink;
 	
 
 	/**
@@ -82,6 +83,14 @@ public class Planet {
 	 */
 	public void setOutpost(SpaceOutpost outpost) {
 		this.outpost = outpost;
+	}
+
+	public String getImageLink() {
+		return imageLink;
+	}
+
+	public void setImageLink(String imageLink) {
+		this.imageLink = imageLink;
 	}
 	
 	

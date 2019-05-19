@@ -83,7 +83,7 @@ public class MainWindow {
 		lblPlanetImage.setBounds(28, 76, 400, 350);
 		frame.getContentPane().add(lblPlanetImage);
 		ImageIcon imageIcon = new ImageIcon(
-				StartingPlanetWindow.class.getResource("/resources/planet-2398343_1920.jpg"));
+				StartingPlanetWindow.class.getResource("/resources/planet1.png"));
 		Image image = imageIcon.getImage();
 		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
 		imageIcon = new ImageIcon(newimg);
