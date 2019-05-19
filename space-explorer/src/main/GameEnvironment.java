@@ -3,17 +3,9 @@ package main;
 import views.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
-import java.util.TreeSet;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class GameEnvironment {
-	private Scanner in = new Scanner(System.in);
-	private Scanner enter = new Scanner(System.in);
-	private String input;
-	private int choice;
-	private int parsedInput;
 	private Crew crew = new Crew();
 	private Ship ship = crew.getShip();
 	private ArrayList<MedicalItem> medItems = new ArrayList<MedicalItem>();
