@@ -86,9 +86,9 @@ public class StartingPlanetWindow {
 		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
 		imageIcon = new ImageIcon(newimg);
 		
-		JLabel lblNewLabel_1 = new JLabel();
-		lblNewLabel_1.setBounds(192, 75, 400, 350);
-		frmSpaceExplorers.getContentPane().add(lblNewLabel_1);
-		lblNewLabel_1.setIcon(imageIcon);
+		JLabel lblPlanetImage = new JLabel();
+		lblPlanetImage.setBounds(192, 75, 400, 350);
+		frmSpaceExplorers.getContentPane().add(lblPlanetImage);
+		lblPlanetImage.setIcon(imageIcon);
 	}
 }
