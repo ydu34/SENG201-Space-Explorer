@@ -54,7 +54,7 @@ public class InstructionsWindow {
 		
 		JTextPane txtpnYourCrewIs = new JTextPane();
 		txtpnYourCrewIs.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtpnYourCrewIs.setText("Your crew is lost in space in a unknown galaxy. Your spaceship's lightspeed engines are borken and scattered throughout the surrounding planets. You will need to find the missing pieces of your spaceship so that you can repair it and travel back to Earth. \r\n\r\nEach day you may perform crew member actions. Each crew member has two actions that can be used. ");
+		txtpnYourCrewIs.setText(game.introductionText());
 		txtpnYourCrewIs.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		txtpnYourCrewIs.setBackground(UIManager.getColor("menu"));
 		txtpnYourCrewIs.setEditable(false);

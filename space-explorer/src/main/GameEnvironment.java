@@ -113,11 +113,11 @@ public class GameEnvironment {
 	public void launchGameOverWindow() {
 		GameOverWindow gameOverWindow = new GameOverWindow(this);
 	}
-	
+
 	public void launchSelectPilotWindow() {
 		SelectPilotWindow selectPilotWindow = new SelectPilotWindow(this);
 	}
-	
+
 	public void closeSelectPilotWindow(SelectPilotWindow selectPilotWindow) {
 		selectPilotWindow.closeWindow();
 	}
@@ -192,21 +192,9 @@ public class GameEnvironment {
 		}
 	}
 
-	public void introMessage() {
-		System.out.println("Welcome to Space Explorers!");
-		System.out.println(
-				"Your spaceship has been broken and its pieces are scattered throughout the surrounding planets."
-						+ "\nYou will need to find the missing pieces of your spaceship so that you can repair it and get home.");
-	}
-
-	public void printMainOptions() {
-		System.out.println("Day " + currentDay + "/" + gameDuration);
-		System.out.println("What do you want to do?");
-		System.out.println("1. View the status of a crew member.");
-		System.out.println("2. View the status of the spaceship.");
-		System.out.println("3. Visit the nearest outpost.");
-		System.out.println("4. Perform a crew member action.");
-		System.out.println("5. Move on to the next day.");
+	public String introductionText() {
+		String text = "Your crew is lost in space in a unknown galaxy. Your spaceship's lightspeed engines are borken and scattered throughout the surrounding planets. You will need to find the missing pieces of your spaceship so that you can repair it and travel back to Earth. \r\n\r\nEach day you may perform crew member actions. Each crew member has two actions that can be used. ";
+		return text;
 	}
 
 	public boolean gameOver() {
@@ -216,6 +204,24 @@ public class GameEnvironment {
 		} else {
 			return false;
 		}
+	}
+	
+	public CrewMember createCrewMember(CrewMember member) {
+		switch (member.getType()) {
+		case "Engineer":
+			return new Engineer(member.getName());
+		case "Health Nut":
+			return new HealthNut(member.getName());
+		case "Nibbler":
+			return new Nibbler(member.getName());
+		case "Night Owl":
+			return new NightOwl(member.getName());
+		case "Protected":
+			return new Protected(member.getName());
+		case "Regular":
+			return new Regular(member.getName());
+		}
+		return null;
 	}
 
 	public String nextDay() {
