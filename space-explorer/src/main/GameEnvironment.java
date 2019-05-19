@@ -94,12 +94,12 @@ public class GameEnvironment {
 		crewMemberWindow.closeWindow();
 	}
 
-	public void launchPilotWindow() {
-		PilotWindow pilotWindow = new PilotWindow(this);
+	public void launchSelectPlanetWindow() {
+		SelectPlanetWindow selectPlanetWindow = new SelectPlanetWindow(this);
 	}
 
-	public void closePilotWindow(PilotWindow pilotWindow) {
-		pilotWindow.closeWindow();
+	public void closeSelectPlanetWindow(SelectPlanetWindow selectPlanetWindow) {
+		selectPlanetWindow.closeWindow();
 	}
 
 	public void launchGameOverWindow() {

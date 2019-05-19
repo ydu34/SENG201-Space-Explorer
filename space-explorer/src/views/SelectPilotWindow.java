@@ -206,7 +206,7 @@ public class SelectPilotWindow {
 					game.setChosenCrewMember(pilot1);
 					game.setOtherChosenCrewMember(pilot2);
 					finishedWindow();
-					game.launchPilotWindow();
+					game.launchSelectPlanetWindow();
 				} else {
 					String message = pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
 					JOptionPane.showMessageDialog(frame, message);

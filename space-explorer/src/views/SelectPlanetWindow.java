@@ -24,7 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
-public class PilotWindow {
+public class SelectPlanetWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
@@ -34,7 +34,7 @@ public class PilotWindow {
 	/**
 	 * Create the application.
 	 */
-	public PilotWindow(GameEnvironment incomingGame) {
+	public SelectPlanetWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
 		frame.setVisible(true);
@@ -45,7 +45,7 @@ public class PilotWindow {
 	}
 
 	public void finishedWindow() {
-		game.closePilotWindow(this);
+		game.closeSelectPlanetWindow(this);
 	}
 
 	/**
