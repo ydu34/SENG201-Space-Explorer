@@ -94,7 +94,7 @@ public class GameOverWindow {
 			textArea.setText("The asteroid hits and your ship is torn apart.");
 		} else if (game.getShip().getPiecesFound() >= game.getShip().getPiecesNeeded()) {
 			textArea.setText("Your crew have found the necessary engine pieces and they returned home.");
-		} else if (game.getCurrentDay() > game.getGameDuration()) {
+		} else if (game.getCurrentDay() >= game.getGameDuration()) {
 			textArea.setText("The days have passed and all the engines pieces were stolen by alien pirates.");
 		} else if (game.getCrew().getCrewMembers().size() == 0) {
 			textArea.setText("The empty spaceship floats silently through space eventually looted by alien pirates.");

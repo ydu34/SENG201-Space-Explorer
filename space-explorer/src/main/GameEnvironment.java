@@ -188,18 +188,16 @@ public class GameEnvironment {
 		String text = "Your crew is lost in space in a unknown galaxy. Your spaceship's lightspeed engines are borken and scattered throughout the surrounding planets. You will need to find the missing pieces of your spaceship so that you can repair it and travel back to Earth. \r\n\r\nEach day you may perform crew member actions. Each crew member has two actions that can be used. ";
 		return text;
 	}
-	
-	
 
 	public boolean gameOver() {
-		if (currentDay > gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed()
+		if (currentDay >= gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed()
 				|| crew.getCrewMembers().size() == 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public CrewMember createCrewMember(CrewMember member) {
 		switch (member.getType()) {
 		case "Engineer":
@@ -220,19 +218,17 @@ public class GameEnvironment {
 
 	public String nextDay() {
 		currentDay++;
-		String returnString = "";
-		if (!gameOver()) {
-			for (CrewMember member : crew.getCrewMembers()) {
-				member.setActionsLeft(member.getMaxActions());
-			}
-			returnString += checkInfectedCrewMembers();
-			generateOutpostsItems();
-			
-			returnString += RandomEvent.occurDay(crew);
+		String returnString = "Day " + currentDay + "/" + gameDuration + ".\n";
+		for (CrewMember member : crew.getCrewMembers()) {
+			member.setActionsLeft(member.getMaxActions());
 		}
+		returnString += checkInfectedCrewMembers();
+		generateOutpostsItems();
+
+		returnString += RandomEvent.occurDay(crew);
 		return returnString;
 	}
-	
+
 	public String checkInfectedCrewMembers() {
 		String returnString = "";
 		ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
@@ -245,8 +241,8 @@ public class GameEnvironment {
 					deadCrewMembers.add(member);
 				} else {
 					returnString += member.getName() + " will lose 20 health each day until he gets cured.\n";
-					returnString += member.getName() + " now has " + member.getHealth() + "/"
-							+ member.getMaxHealth() + " health.\n";
+					returnString += member.getName() + " now has " + member.getHealth() + "/" + member.getMaxHealth()
+							+ " health.\n";
 				}
 			}
 		}
