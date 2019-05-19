@@ -231,26 +231,33 @@ public class GameEnvironment {
 			for (CrewMember member : crew.getCrewMembers()) {
 				member.setActionsLeft(member.getMaxActions());
 			}
+			returnString += checkInfectedCrewMembers();
 			generateOutpostsItems();
-			ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
-			for (CrewMember member : crew.getCrewMembers()) {
-				if (member.isInfected()) {
-					member.setHealth(member.getHealth() - 20);
-					if (member.isDead()) {
-						returnString += member.getName()
-								+ " has died to the space plague and has been removed from the crew.\n";
-						deadCrewMembers.add(member);
-					} else {
-						returnString += member.getName() + " will lose 20 health each day until he gets cured.\n";
-						returnString += member.getName() + " now has " + member.getHealth() + "/"
-								+ member.getMaxHealth() + " health.\n";
-					}
+			
+			returnString += RandomEvent.occurDay(crew);
+		}
+		return returnString;
+	}
+	
+	public String checkInfectedCrewMembers() {
+		String returnString = "";
+		ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
+		for (CrewMember member : crew.getCrewMembers()) {
+			if (member.isInfected()) {
+				member.setHealth(member.getHealth() - 20);
+				if (member.isDead()) {
+					returnString += member.getName()
+							+ " has died to the space plague and has been removed from the crew.\n";
+					deadCrewMembers.add(member);
+				} else {
+					returnString += member.getName() + " will lose 20 health each day until he gets cured.\n";
+					returnString += member.getName() + " now has " + member.getHealth() + "/"
+							+ member.getMaxHealth() + " health.\n";
 				}
 			}
-			for (CrewMember deadMember : deadCrewMembers) {
-				crew.getCrewMembers().remove(deadMember);
-			}
-			returnString += RandomEvent.occurDay(crew);
+		}
+		for (CrewMember deadMember : deadCrewMembers) {
+			crew.getCrewMembers().remove(deadMember);
 		}
 		return returnString;
 	}
