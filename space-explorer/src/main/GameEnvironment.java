@@ -156,10 +156,10 @@ public class GameEnvironment {
 	}
 
 	public void initFoodItems() {
-		foodItems.add(new FoodItem("Space soup", 10, "Restore 20 hunger", 5));
-		foodItems.add(new FoodItem("Asteroid Meatballs", 30, "Restore 50 hunger", 20));
-		foodItems.add(new FoodItem("Cosmo crepes", 20, "Restore 30 hunger", 10));
-		foodItems.add(new FoodItem("Galaxy steak", 70, "Restore 80 hunger", 55));
+		foodItems.add(new FoodItem("Space soup", 10, "Restore 20 hunger", 20));
+		foodItems.add(new FoodItem("Asteroid Meatballs", 30, "Restore 50 hunger", 50));
+		foodItems.add(new FoodItem("Cosmo crepes", 20, "Restore 30 hunger", 30));
+		foodItems.add(new FoodItem("Galaxy steak", 70, "Restore 80 hunger", 80));
 		foodItems.add(new FoodItem("Moon cheese", 50, "Restore 40 hunger", 40));
 		foodItems.add(new FoodItem("Space snack", 15, "Restore 8 hunger", 8));
 	}

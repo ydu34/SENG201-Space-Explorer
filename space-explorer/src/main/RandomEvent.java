@@ -65,7 +65,7 @@ public class RandomEvent {
 	
 	public static String asteroidBelt(Crew crew) {
 		String returnString = "";
-		int amount = crew.getShip().getShieldLevel() / 4;
+		int amount = crew.getShip().getShieldLevel() / 5 + 10;
 		crew.getShip().decreaseShieldLevel(amount);
 		returnString += "This ship went through an asteroid belt and took " + amount + " damage to the shield level.\n";
 		returnString += "The ship now has " + crew.getShip().getShieldLevel() + "/" + crew.getShip().getMaxShieldLevel() + " shield level.";

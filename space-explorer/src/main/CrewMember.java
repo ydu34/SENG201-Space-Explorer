@@ -155,7 +155,7 @@ public class CrewMember {
 	 */	
 	public String sleep() {
 		int previousFatigue = fatigue;
-		fatigue -= 10;
+		fatigue -= 20;
 		if (fatigue < 0) {
 			fatigue = 0;
 		}
@@ -172,10 +172,16 @@ public class CrewMember {
 		String returnString = "";
 		if (fatigue + repairFatigueCost> maxFatigue) {
 			returnString += name + " is too tired to repair the ship.";
-		} else {
+		} 
+		
+		if (hunger + repairHungerCost > maxHunger) {
+			returnString += name + " is too hungry to repair the ship.\n";
+		}
+		
+		if (fatigue + repairFatigueCost  <= maxFatigue && hunger + repairHungerCost <= maxHunger) {
 			ship.increaseShieldLevel(10);
 			actionsLeft-=1;
-			fatigue += repairFatigueCost;
+			setFatigue(fatigue + repairFatigueCost);
 			returnString += ship.getName() +"'s shields is at " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
 		}
 		return returnString;
@@ -188,21 +194,31 @@ public class CrewMember {
 	 * @param crew     A Crew object.
 	 */
 	public String pilot(Planet planet, CrewMember other, Crew crew) {
+		String returnString = "";
 		if (fatigue + pilotFatigueCost> maxFatigue) {
-			System.out.println(name + " is too tired to pilot the ship.");
+			returnString += name + " is too tired to pilot the ship.\n";
 		} 
+		if (hunger + pilotHungerCost > maxHunger) {
+			returnString += name + " is too hungry to pilot the ship.\n";
+		}
 		if (other.fatigue + pilotFatigueCost > other.maxFatigue) {
-			System.out.println(other.name + " is too tired to pilot the ship.");
+			returnString += other.name + " is too tired to pilot the ship.\n";
 		} 
-		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost) {
-			fatigue += pilotFatigueCost;
-			other.fatigue += pilotFatigueCost;
+		if (other.hunger + other.pilotHungerCost > other.maxHunger) {
+			returnString += other.name + " is too hungry to pilot the ship.\n";
+		}
+		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost 
+				&& hunger <= maxHunger - pilotHungerCost && other.hunger <= other.maxHunger - other.pilotHungerCost) {
+			setFatigue(fatigue + pilotFatigueCost);
+			other.setFatigue(other.fatigue + other.pilotFatigueCost);
+			setHunger(hunger + pilotHungerCost);
+			other.setHunger(other.hunger + other.pilotHungerCost);
 			actionsLeft -= 1;
 			other.actionsLeft -=1;
 			crew.setCurrentLocation(planet);
 			return RandomEvent.occurPlanet(crew);
 		}
-		return null;
+		return returnString;
 	}
 	
 	/**

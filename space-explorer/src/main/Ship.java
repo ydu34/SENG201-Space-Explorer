@@ -50,7 +50,7 @@ public class Ship {
 	
 	public void decreaseShieldLevel(int amount) {
 		shieldLevel -= amount;
-		if (shieldLevel <= 0) {
+		if (shieldLevel == 0) {
 			destroyed = true;
 		}
 	}
