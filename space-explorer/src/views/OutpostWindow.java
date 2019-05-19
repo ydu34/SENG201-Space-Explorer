@@ -19,6 +19,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +35,12 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import java.awt.SystemColor;
+import javax.swing.JSeparator;
+import javax.swing.border.CompoundBorder;
+import javax.swing.UIManager;
+import java.awt.Color;
+import javax.swing.border.EmptyBorder;
 
 public class OutpostWindow {
 
@@ -70,7 +78,7 @@ public class OutpostWindow {
 		
 		JLabel lblCoins = new JLabel("Coins Available:");
 		lblCoins.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblCoins.setBounds(414, 465, 148, 24);
+		lblCoins.setBounds(402, 443, 163, 33);
 		frame.getContentPane().add(lblCoins);
 		
 		// Create an array list to combine both the food items and the medical items to outpost items
@@ -87,11 +95,12 @@ public class OutpostWindow {
 			itemFrequency.put(item, Collections.frequency(outpostItems, item));
 		}
 
-		JComboBox ItemsCombo = new JComboBox(uniqueOutpostItems.toArray());
+		JComboBox comboBoxItems = new JComboBox(uniqueOutpostItems.toArray());
+		comboBoxItems.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		// The current item that is selected by the player in the combo box
-		Item currentItem = (Item) ItemsCombo.getSelectedItem();
-		ItemsCombo.setBounds(62, 146, 283, 24);
-		frame.getContentPane().add(ItemsCombo);
+		Item currentItem = (Item) comboBoxItems.getSelectedItem();
+		comboBoxItems.setBounds(50, 133, 283, 24);
+		frame.getContentPane().add(comboBoxItems);
 		
 		JButton btnInventory = new JButton("View Inventory");
 		btnInventory.addActionListener(new ActionListener() {
@@ -101,71 +110,86 @@ public class OutpostWindow {
 			}
 		});
 		btnInventory.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
-		btnInventory.setBounds(414, 512, 148, 25);
+		btnInventory.setBounds(399, 515, 148, 25);
 		frame.getContentPane().add(btnInventory);
 		
-		JLabel lblItemsAvailableIn = new JLabel("See what is available at this outpost!");
-		lblItemsAvailableIn.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 16));
-		lblItemsAvailableIn.setBounds(62, 109, 283, 24);
-		frame.getContentPane().add(lblItemsAvailableIn);
+		JLabel lblSeeItems = new JLabel("See what is available at this outpost!");
+		lblSeeItems.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 16));
+		lblSeeItems.setBounds(50, 96, 283, 24);
+		frame.getContentPane().add(lblSeeItems);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(414, 108, 340, 310);
+		panel.setBounds(402, 95, 340, 310);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JTextArea descriptionArea = new JTextArea(currentItem.getDescription());
+		descriptionArea.setBackground(SystemColor.menu);
 		descriptionArea.setEditable(false);
 		descriptionArea.setLineWrap(true);
 		descriptionArea.setWrapStyleWord(true);
 		descriptionArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		descriptionArea.setBounds(35, 152, 273, 93);
+		descriptionArea.setBounds(35, 197, 273, 52);
 		panel.add(descriptionArea);
 		
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblStock.setBounds(35, 115, 68, 22);
+		lblStock.setBounds(35, 129, 68, 22);
 		panel.add(lblStock);
 		
 		JLabel lblItemInfo = new JLabel("About this item");
-		lblItemInfo.setBounds(104, 28, 118, 22);
-		lblItemInfo.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 16));
+		lblItemInfo.setHorizontalAlignment(SwingConstants.CENTER);
+		lblItemInfo.setBounds(35, 12, 273, 37);
+		lblItemInfo.setFont(new Font("Dialog", Font.BOLD, 20));
 		panel.add(lblItemInfo);
 		
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblName.setBounds(35, 63, 68, 22);
+		lblName.setBounds(35, 61, 68, 22);
 		panel.add(lblName);
 		
 		JButton btnAddCart = new JButton("Add to Cart");
 		
-		btnAddCart.setBounds(35, 265, 273, 25);
+		btnAddCart.setBounds(35, 271, 273, 25);
 		panel.add(btnAddCart);
 		btnAddCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
 		
 		JLabel lblItemName = new JLabel("");
 		lblItemName.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemName.setBounds(114, 63, 194, 22);
+		lblItemName.setBounds(114, 61, 194, 22);
 		lblItemName.setText(currentItem.getName());
 		panel.add(lblItemName);
 		
 		JLabel lblItemCount = new JLabel("");
 		lblItemCount.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemCount.setBounds(114, 115, 194, 22);
+		lblItemCount.setBounds(114, 129, 194, 22);
 		lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
 		panel.add(lblItemCount);
 		
 		JLabel lblPrice = new JLabel("Price:");
 		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPrice.setBounds(35, 88, 68, 22);
+		lblPrice.setBounds(35, 95, 68, 22);
 		panel.add(lblPrice);
 		
 		JLabel lblItemPrice = new JLabel("");
 		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblItemPrice.setBounds(114, 88, 194, 22);
+		lblItemPrice.setBounds(114, 95, 194, 22);
 		lblItemPrice.setText(Integer.toString(currentItem.getPrice()));
 		panel.add(lblItemPrice);
+		
+		JLabel lblDescription = new JLabel("Description:");
+		lblDescription.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDescription.setBounds(35, 163, 134, 22);
+		panel.add(lblDescription);
+		
+		JSeparator separator_2 = new JSeparator();
+		separator_2.setBounds(22, 47, 306, 2);
+		panel.add(separator_2);
+		
+		JSeparator separator_3 = new JSeparator();
+		separator_3.setBounds(22, 257, 306, 2);
+		panel.add(separator_3);
 		
 		JButton btnBackToShip = new JButton("Return to ship");
 		btnBackToShip.addActionListener(new ActionListener() {
@@ -175,60 +199,73 @@ public class OutpostWindow {
 			}
 		});
 		btnBackToShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
-		btnBackToShip.setBounds(621, 512, 136, 25);
+		btnBackToShip.setBounds(606, 515, 136, 25);
 		frame.getContentPane().add(btnBackToShip);
 		
-		JLabel lblWelcomeToOutpost = new JLabel();
-		lblWelcomeToOutpost.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWelcomeToOutpost.setText("Welcome to " + game.getCrew().getCurrentLocation() + " space outpost!");
-		lblWelcomeToOutpost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 25));
-		lblWelcomeToOutpost.setBounds(62, 21, 695, 47);
-		frame.getContentPane().add(lblWelcomeToOutpost);
+		JLabel lblTitle = new JLabel();
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setText("Welcome to " + game.getCrew().getCurrentLocation() + " space outpost!");
+		lblTitle.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblTitle.setBounds(12, 0, 758, 60);
+		frame.getContentPane().add(lblTitle);
 		
 		JButton btnPurchase = new JButton("PURCHASE");
-		btnPurchase.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
-		btnPurchase.setBounds(62, 456, 283, 49);
+		btnPurchase.setFont(new Font("Dialog", Font.BOLD, 20));
+		btnPurchase.setBounds(50, 437, 283, 41);
 		frame.getContentPane().add(btnPurchase);
 		
 		JButton btnRemoveFromCart = new JButton("Remove from Cart");
 		btnRemoveFromCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
-		btnRemoveFromCart.setBounds(62, 422, 283, 25);
+		btnRemoveFromCart.setBounds(50, 403, 283, 25);
 		frame.getContentPane().add(btnRemoveFromCart);
 		btnRemoveFromCart.setEnabled(false);
 		
 		DefaultListModel<Item> listModel = new DefaultListModel();
-		JList list = new JList(listModel);
-		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		list.addListSelectionListener(new ListSelectionListener() {
+		JScrollPane scrollPaneItems = new JScrollPane();
+		scrollPaneItems.setSize(283, 214);
+		scrollPaneItems.setLocation(50, 176);
+		frame.getContentPane().add(scrollPaneItems);
+		JList listItems = new JList(listModel);
+		listItems.setBackground(SystemColor.menu);
+		scrollPaneItems.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
+		scrollPaneItems.setViewportView(listItems);
+		listItems.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		listItems.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				btnRemoveFromCart.setEnabled(true);
 			}
 		});
-		list.setBounds(62, 181, 283, 230);
-		frame.getContentPane().add(list);
 		
 		JLabel lblTotalCost = new JLabel("Total Cost:");
 		lblTotalCost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblTotalCost.setBounds(414, 431, 136, 19);
+		lblTotalCost.setBounds(402, 413, 163, 33);
 		frame.getContentPane().add(lblTotalCost);
 		
-		JLabel lblCost = new JLabel(Integer.toString(moneyCounter));
-		lblCost.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblCost.setBounds(575, 431, 182, 19);
-		frame.getContentPane().add(lblCost);
+		JLabel lblTotalCostValue = new JLabel(Integer.toString(moneyCounter));
+		lblTotalCostValue.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblTotalCostValue.setBounds(577, 413, 168, 33);
+		frame.getContentPane().add(lblTotalCostValue);
 		
 		JLabel lblMoney = new JLabel(Integer.toString(game.getCrew().getMoney()));
 		lblMoney.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblMoney.setBounds(575, 466, 182, 23);
+		lblMoney.setBounds(577, 443, 168, 33);
 		frame.getContentPane().add(lblMoney);
 		
-		JLabel lblWarningSign = new JLabel("");
-		lblWarningSign.setBounds(62, 526, 283, 14);
-		frame.getContentPane().add(lblWarningSign);
+		JLabel lblWarning = new JLabel("");
+		lblWarning.setBounds(50, 503, 283, 24);
+		frame.getContentPane().add(lblWarning);
 		
-		ItemsCombo.addActionListener(new ActionListener() {
+		JSeparator separator = new JSeparator();
+		separator.setBounds(50, 62, 693, 2);
+		frame.getContentPane().add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(50, 500, 693, 2);
+		frame.getContentPane().add(separator_1);
+		
+		comboBoxItems.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Item currentItem = (Item) ItemsCombo.getSelectedItem();
+				Item currentItem = (Item) comboBoxItems.getSelectedItem();
 				descriptionArea.setText(currentItem.getDescription());
 				lblItemName.setText(currentItem.getName());
 				lblItemPrice.setText(Integer.toString(currentItem.getPrice()));
@@ -244,16 +281,16 @@ public class OutpostWindow {
 		btnAddCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				listModel.addElement((Item) ItemsCombo.getSelectedItem());
-				itemFrequency.replace((Item) ItemsCombo.getSelectedItem(), itemFrequency.get(ItemsCombo.getSelectedItem()) - 1);
-				moneyCounter += ((Item) ItemsCombo.getSelectedItem()).getPrice();
-				lblCost.setText(Integer.toString(moneyCounter));
-				if (itemFrequency.get(ItemsCombo.getSelectedItem()) <= 0){
+				listModel.addElement((Item) comboBoxItems.getSelectedItem());
+				itemFrequency.replace((Item) comboBoxItems.getSelectedItem(), itemFrequency.get(comboBoxItems.getSelectedItem()) - 1);
+				moneyCounter += ((Item) comboBoxItems.getSelectedItem()).getPrice();
+				lblTotalCostValue.setText(Integer.toString(moneyCounter));
+				if (itemFrequency.get(comboBoxItems.getSelectedItem()) <= 0){
 					btnAddCart.setEnabled(false);
 				} else {
 					btnAddCart.setEnabled(true);
 				}
-				if (listModel.getSize() <= 0 || list.isSelectionEmpty()) {
+				if (listModel.getSize() <= 0 || listItems.isSelectionEmpty()) {
 					btnRemoveFromCart.setEnabled(false);
 				} else {
 					btnRemoveFromCart.setEnabled(true);
@@ -263,12 +300,12 @@ public class OutpostWindow {
 		
 		btnRemoveFromCart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					itemFrequency.replace((Item) ItemsCombo.getSelectedItem(), itemFrequency.get(ItemsCombo.getSelectedItem()) + 1);
+					itemFrequency.replace((Item) comboBoxItems.getSelectedItem(), itemFrequency.get(comboBoxItems.getSelectedItem()) + 1);
 					btnAddCart.setEnabled(true);
-					moneyCounter -= ((Item) list.getSelectedValue()).getPrice();
-					listModel.removeElement(list.getSelectedValue());
-					lblCost.setText(Integer.toString(moneyCounter));
-					if (listModel.getSize() <= 0 || list.isSelectionEmpty()) {
+					moneyCounter -= ((Item) listItems.getSelectedValue()).getPrice();
+					listModel.removeElement(listItems.getSelectedValue());
+					lblTotalCostValue.setText(Integer.toString(moneyCounter));
+					if (listModel.getSize() <= 0 || listItems.isSelectionEmpty()) {
 						btnRemoveFromCart.setEnabled(false);
 					} else {
 						btnRemoveFromCart.setEnabled(true);
@@ -280,28 +317,28 @@ public class OutpostWindow {
 			public void actionPerformed(ActionEvent e) {
 				SpaceOutpost currentSpaceOutpost = game.getCrew().getCurrentLocation().getOutpost();
 				if (listModel.getSize() == 0) {
-					lblWarningSign.setText("There are no items to purchase!");
+					lblWarning.setText("There are no items to purchase!");
 				}else if (moneyCounter <= game.getCrew().getMoney()) {
-					for (int i = 0; i < list.getModel().getSize(); i++) {
-						if (list.getModel().getElementAt(i) instanceof MedicalItem) {
-							MedicalItem currentItem = (MedicalItem) list.getModel().getElementAt(i);
+					for (int i = 0; i < listItems.getModel().getSize(); i++) {
+						if (listItems.getModel().getElementAt(i) instanceof MedicalItem) {
+							MedicalItem currentItem = (MedicalItem) listItems.getModel().getElementAt(i);
 							currentSpaceOutpost.purchaseItem(currentItem, game.getCrew());
 						}
 						else {
-							FoodItem currentItem = (FoodItem) list.getModel().getElementAt(i);
+							FoodItem currentItem = (FoodItem) listItems.getModel().getElementAt(i);
 							currentSpaceOutpost.purchaseItem(currentItem, game.getCrew());
 						}
 					}
 					lblMoney.setText(Integer.toString(game.getCrew().getMoney()));
 					moneyCounter = 0;
-					lblCost.setText(Integer.toString(moneyCounter));
+					lblTotalCostValue.setText(Integer.toString(moneyCounter));
 					listModel.clear();
 					lblItemCount.setText(Integer.toString(itemFrequency.get(currentItem)));
 					JOptionPane.showMessageDialog(frame, "Items purchased!");
 					
 				}
 				else {
-					lblWarningSign.setText("Sorry, you do not have enough coins!");	
+					lblWarning.setText("Sorry, you do not have enough coins!");	
 				}
 				
 			}

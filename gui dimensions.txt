@@ -1,0 +1,7 @@
+Windows: 800x600
+Dialogs: 375*450
+
+Window Title Text: Dialog 30 Bold
+Panel Title text: Dialog 20 Bold
+Label Text: Dialog 16 Bold
+Label Value text: Dialog 16 Plain
