@@ -23,12 +23,12 @@ public class GameEnvironment {
 		StartWindow startWindow = new StartWindow(this);
 	}
 
-	public void launchInventoryPopUp() {
-		InventoryPopUp inventoryPopUp = new InventoryPopUp(this);
+	public void launchInventoryWindow() {
+		InventoryWindow inventoryWindow = new InventoryWindow(this);
 	}
 
-	public void closeInventoryPopUp(InventoryPopUp inventoryPopUP) {
-		inventoryPopUP.closeWindow();
+	public void closeInventoryWindow(InventoryWindow inventoryWindow) {
+		inventoryWindow.closeWindow();
 	}
 
 	public void closeStartWindow(StartWindow startWindow) {

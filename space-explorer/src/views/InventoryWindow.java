@@ -23,45 +23,47 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
+import javax.swing.JSeparator;
 
-public class InventoryPopUp {
+public class InventoryWindow {
 
-	private JFrame frmSpaceExplorers;
+	private JFrame frame;
 	private GameEnvironment game;
 	
 
 	/**
 	 * Create the application.
 	 */
-	public InventoryPopUp(GameEnvironment incomingGame) {
+	public InventoryWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
 		initialize();
-		frmSpaceExplorers.setVisible(true);
+		frame.setVisible(true);
 	}
 	
 	public void closeWindow() {
-		frmSpaceExplorers.dispose();
+		frame.dispose();
 	}
 	
 	public void finishedWindow() {
-		game.closeInventoryPopUp(this);
+		game.closeInventoryWindow(this);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmSpaceExplorers = new JFrame();
-		frmSpaceExplorers.setTitle("SPACE EXPLORERS");
-		frmSpaceExplorers.setBounds(100, 100, 800, 600);
-		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmSpaceExplorers.getContentPane().setLayout(null);
+		frame = new JFrame();
+		frame.setResizable(false);
+		frame.setTitle("SPACE EXPLORERS");
+		frame.setBounds(100, 100, 800, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
 		
 		JLabel lblYourInventory = new JLabel("Ship Inventory");
 		lblYourInventory.setHorizontalAlignment(SwingConstants.CENTER);
-		lblYourInventory.setFont(new Font("Dialog", Font.BOLD, 25));
-		lblYourInventory.setBounds(10, 24, 760, 39);
-		frmSpaceExplorers.getContentPane().add(lblYourInventory);
+		lblYourInventory.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblYourInventory.setBounds(0, 0, 795, 60);
+		frame.getContentPane().add(lblYourInventory);
 		
 		ArrayList<Item> inventoryItems = new ArrayList<Item>();
 		inventoryItems.addAll(game.getCrew().getFoodItems());
@@ -75,13 +77,13 @@ public class InventoryPopUp {
 		JList list = new JList(uniqueInventoryItems.toArray());
 		list.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		list.setBounds(44, 127, 286, 348);
-		frmSpaceExplorers.getContentPane().add(list);
+		list.setBounds(50, 127, 286, 348);
+		frame.getContentPane().add(list);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(384, 91, 340, 310);
-		frmSpaceExplorers.getContentPane().add(panel);
+		panel.setBounds(400, 97, 340, 310);
+		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblAmount = new JLabel("Amount:");
@@ -121,6 +123,12 @@ public class InventoryPopUp {
 		textArea.setBounds(31, 149, 275, 135);
 		panel.add(textArea);
 		
+		JLabel label_2 = new JLabel("About this item");
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setFont(new Font("Dialog", Font.BOLD, 20));
+		label_2.setBounds(0, 0, 340, 50);
+		panel.add(label_2);
+		
 		JButton btnBackToOutpost = new JButton("Back to Outpost");
 		btnBackToOutpost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,23 +137,31 @@ public class InventoryPopUp {
 			}
 		});
 		btnBackToOutpost.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnBackToOutpost.setBounds(563, 494, 160, 27);
-		frmSpaceExplorers.getContentPane().add(btnBackToOutpost);
+		btnBackToOutpost.setBounds(585, 525, 160, 27);
+		frame.getContentPane().add(btnBackToOutpost);
 		
 		JLabel label = new JLabel("Coins Available:");
 		label.setFont(new Font("Dialog", Font.BOLD, 18));
 		label.setBounds(384, 427, 148, 27);
-		frmSpaceExplorers.getContentPane().add(label);
+		frame.getContentPane().add(label);
 		
 		JLabel label_1 = new JLabel(Integer.toString(game.getCrew().getMoney()));
 		label_1.setFont(new Font("Dialog", Font.BOLD, 18));
 		label_1.setBounds(542, 427, 182, 27);
-		frmSpaceExplorers.getContentPane().add(label_1);
+		frame.getContentPane().add(label_1);
 		
 		JLabel lblItems = new JLabel("Items:");
 		lblItems.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblItems.setBounds(44, 91, 286, 27);
-		frmSpaceExplorers.getContentPane().add(lblItems);
+		lblItems.setBounds(50, 91, 286, 27);
+		frame.getContentPane().add(lblItems);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(50, 62, 695, 2);
+		frame.getContentPane().add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separator_1);
 		
 		list.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
