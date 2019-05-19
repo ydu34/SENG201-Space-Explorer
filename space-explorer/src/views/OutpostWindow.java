@@ -71,6 +71,7 @@ public class OutpostWindow {
 	private void initialize() {
 		OutpostWindow window = this;
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setTitle("SPACE EXPLORERS");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -78,7 +79,7 @@ public class OutpostWindow {
 		
 		JLabel lblCoins = new JLabel("Coins Available:");
 		lblCoins.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblCoins.setBounds(402, 443, 163, 33);
+		lblCoins.setBounds(410, 450, 152, 33);
 		frame.getContentPane().add(lblCoins);
 		
 		// Create an array list to combine both the food items and the medical items to outpost items
@@ -99,28 +100,29 @@ public class OutpostWindow {
 		comboBoxItems.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		// The current item that is selected by the player in the combo box
 		Item currentItem = (Item) comboBoxItems.getSelectedItem();
-		comboBoxItems.setBounds(50, 133, 283, 24);
+		comboBoxItems.setBounds(50, 132, 290, 30);
 		frame.getContentPane().add(comboBoxItems);
 		
 		JButton btnInventory = new JButton("View Inventory");
 		btnInventory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
-				game.launchInventoryPopUp();
+				game.launchInventoryWindow();
 			}
 		});
 		btnInventory.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
 		btnInventory.setBounds(399, 515, 148, 25);
 		frame.getContentPane().add(btnInventory);
 		
-		JLabel lblSeeItems = new JLabel("See what is available at this outpost!");
-		lblSeeItems.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 16));
-		lblSeeItems.setBounds(50, 96, 283, 24);
+		JLabel lblSeeItems = new JLabel("See what is available!");
+		lblSeeItems.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeeItems.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblSeeItems.setBounds(50, 97, 290, 30);
 		frame.getContentPane().add(lblSeeItems);
 		
 		JPanel panelItemInfo = new JPanel();
 		panelItemInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelItemInfo.setBounds(402, 95, 340, 310);
+		panelItemInfo.setBounds(400, 97, 340, 310);
 		frame.getContentPane().add(panelItemInfo);
 		panelItemInfo.setLayout(null);
 		
@@ -140,7 +142,7 @@ public class OutpostWindow {
 		
 		JLabel lblItemInfo = new JLabel("About this item");
 		lblItemInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblItemInfo.setBounds(35, 12, 273, 37);
+		lblItemInfo.setBounds(0, 0, 340, 50);
 		lblItemInfo.setFont(new Font("Dialog", Font.BOLD, 20));
 		panelItemInfo.add(lblItemInfo);
 		
@@ -183,13 +185,13 @@ public class OutpostWindow {
 		lblDescription.setBounds(35, 163, 134, 22);
 		panelItemInfo.add(lblDescription);
 		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(22, 47, 306, 2);
-		panelItemInfo.add(separator_2);
+		JSeparator separatorInfoTop = new JSeparator();
+		separatorInfoTop.setBounds(22, 51, 300, 2);
+		panelItemInfo.add(separatorInfoTop);
 		
-		JSeparator separator_3 = new JSeparator();
-		separator_3.setBounds(22, 257, 306, 2);
-		panelItemInfo.add(separator_3);
+		JSeparator separatorInfoBottom = new JSeparator();
+		separatorInfoBottom.setBounds(22, 257, 300, 2);
+		panelItemInfo.add(separatorInfoBottom);
 		
 		JButton btnBackToShip = new JButton("Return to ship");
 		btnBackToShip.addActionListener(new ActionListener() {
@@ -199,31 +201,31 @@ public class OutpostWindow {
 			}
 		});
 		btnBackToShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
-		btnBackToShip.setBounds(606, 515, 136, 25);
+		btnBackToShip.setBounds(612, 515, 136, 25);
 		frame.getContentPane().add(btnBackToShip);
 		
 		JLabel lblTitle = new JLabel();
 		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTitle.setText("Welcome to " + game.getCrew().getCurrentLocation() + " space outpost!");
 		lblTitle.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblTitle.setBounds(12, 0, 758, 60);
+		lblTitle.setBounds(0, 0, 795, 60);
 		frame.getContentPane().add(lblTitle);
 		
 		JButton btnPurchase = new JButton("PURCHASE");
 		btnPurchase.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnPurchase.setBounds(50, 437, 283, 41);
+		btnPurchase.setBounds(50, 437, 290, 46);
 		frame.getContentPane().add(btnPurchase);
 		
 		JButton btnRemoveFromCart = new JButton("Remove from Cart");
 		btnRemoveFromCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
-		btnRemoveFromCart.setBounds(50, 403, 283, 25);
+		btnRemoveFromCart.setBounds(50, 403, 290, 25);
 		frame.getContentPane().add(btnRemoveFromCart);
 		btnRemoveFromCart.setEnabled(false);
 		
 		DefaultListModel<Item> listModel = new DefaultListModel();
 		JScrollPane scrollPaneItems = new JScrollPane();
-		scrollPaneItems.setSize(283, 214);
-		scrollPaneItems.setLocation(50, 176);
+		scrollPaneItems.setSize(290, 220);
+		scrollPaneItems.setLocation(50, 172);
 		frame.getContentPane().add(scrollPaneItems);
 		JList listItems = new JList(listModel);
 		listItems.setBackground(SystemColor.menu);
@@ -238,30 +240,30 @@ public class OutpostWindow {
 		
 		JLabel lblTotalCost = new JLabel("Total Cost:");
 		lblTotalCost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
-		lblTotalCost.setBounds(402, 413, 163, 33);
+		lblTotalCost.setBounds(410, 420, 152, 33);
 		frame.getContentPane().add(lblTotalCost);
 		
 		JLabel lblTotalCostValue = new JLabel(Integer.toString(totalCost));
 		lblTotalCostValue.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblTotalCostValue.setBounds(577, 413, 168, 33);
+		lblTotalCostValue.setBounds(574, 420, 168, 33);
 		frame.getContentPane().add(lblTotalCostValue);
 		
 		JLabel lblMoney = new JLabel(Integer.toString(game.getCrew().getMoney()));
 		lblMoney.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblMoney.setBounds(577, 443, 168, 33);
+		lblMoney.setBounds(574, 450, 168, 33);
 		frame.getContentPane().add(lblMoney);
 		
 		JLabel lblWarning = new JLabel("");
 		lblWarning.setBounds(50, 503, 283, 24);
 		frame.getContentPane().add(lblWarning);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(50, 62, 693, 2);
-		frame.getContentPane().add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(50, 62, 695, 2);
+		frame.getContentPane().add(separatorTop);
 		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(50, 500, 693, 2);
-		frame.getContentPane().add(separator_1);
+		JSeparator separatorBottom = new JSeparator();
+		separatorBottom.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separatorBottom);
 		
 		comboBoxItems.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

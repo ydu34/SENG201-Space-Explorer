@@ -1,7 +1,11 @@
 Windows: 800x600
+Windows Dimensions - borders: 795x565
 Dialogs: 375*450
 
 Window Title Text: Dialog 30 Bold
+Window Title Bounds: x: 0, y: 0, width: 795, height: 60
+SeperatorTop: x: 50, y: 62, width 695, height 2
+SeperatorBottom: x: 50, y: 503, width 695, height 2
 Panel Title text: Dialog 20 Bold
 Label Text: Dialog 16 Bold
 Label Value text: Dialog 16 Plain
