@@ -1,0 +1,2 @@
+Does asteroid belt random event occur both in moving to a new planet and start of a new day or just moving to a new planet.
+Should make images an attribute for the class Planet to allow each planet to have an image.
