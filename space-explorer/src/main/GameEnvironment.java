@@ -268,6 +268,20 @@ public class GameEnvironment {
 		}
 		return score;
 	}
+	
+	public String gameOverMessage() {
+		if (ship.isDestroyed()) {
+			return "The asteroid hits and your ship is torn apart.";
+		} else if (ship.getPiecesFound() >= ship.getPiecesNeeded()) {
+			return "Your crew have found the necessary engine pieces and they returned home.";
+		} else if (currentDay >= gameDuration) {
+			return "The days have passed and all the engines pieces were stolen by alien pirates.";
+		} else if (crew.getCrewMembers().size() == 0) {
+			return "The empty spaceship floats silently through space eventually looted by alien pirates.";
+		} else {
+			return "It is unkown what happend to your crew and spaceship.";
+		}
+	}
 
 	public Crew getCrew() {
 		return crew;
