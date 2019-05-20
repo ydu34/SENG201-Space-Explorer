@@ -317,5 +317,9 @@ public class CrewMemberWindow {
 		} else {
 			btnPerformAction.setEnabled(false);
 		}
+		if (game.gameOver()) {
+			finishedWindow();
+			game.launchGameOverWindow();
+		}
 	}
 }

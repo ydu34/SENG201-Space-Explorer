@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
+import javax.swing.JSeparator;
 
 public class StartingPlanetWindow {
 
@@ -49,16 +50,34 @@ public class StartingPlanetWindow {
 		
 		JLabel lblWindowTitle = new JLabel("SELECT STARTING PLANET\r\n");
 		lblWindowTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblWindowTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblWindowTitle.setBounds(-4, 0, 776, 68);
-		frame.getContentPane().add(lblWindowTitle);		
+		lblWindowTitle.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblWindowTitle.setBounds(0, 0, 795, 60);
+		frame.getContentPane().add(lblWindowTitle);	
+		
 		JComboBox comboBoxPlanets = new JComboBox(game.getPlanets().toArray());
+		ImageIcon imageIcon = new ImageIcon(StartingPlanetWindow.class.getResource(((Planet) comboBoxPlanets.getSelectedItem()).getImageLink()));
+		Image image = imageIcon.getImage();
+		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_FAST);
+		imageIcon = new ImageIcon(newimg);
+		
+		JLabel lblPlanetImage = new JLabel();
+		lblPlanetImage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlanetImage.setBounds(197, 86, 400, 350);
+		frame.getContentPane().add(lblPlanetImage);
+		lblPlanetImage.setIcon(imageIcon);
+		
+		
 		comboBoxPlanets.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		comboBoxPlanets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ImageIcon imageIcon = new ImageIcon(StartingPlanetWindow.class.getResource(((Planet) comboBoxPlanets.getSelectedItem()).getImageLink()));
+				Image image = imageIcon.getImage();
+				Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_FAST);
+				imageIcon = new ImageIcon(newimg);
+				lblPlanetImage.setIcon(imageIcon);
 			}
 		});
-		comboBoxPlanets.setBounds(192, 441, 400, 41);
+		comboBoxPlanets.setBounds(197, 449, 400, 41);
 		frame.getContentPane().add(comboBoxPlanets);
 		
 		JButton btnStartGame = new JButton("Start Game");
@@ -69,7 +88,7 @@ public class StartingPlanetWindow {
 				game.launchMainWindow();
 			}
 		});
-		btnStartGame.setBounds(635, 520, 126, 33);
+		btnStartGame.setBounds(619, 520, 126, 33);
 		frame.getContentPane().add(btnStartGame);
 		
 		JButton btnBack = new JButton("Back");
@@ -79,17 +98,17 @@ public class StartingPlanetWindow {
 				game.launchCreateCrewWindow();
 			}
 		});
-		btnBack.setBounds(21, 520, 126, 33);
+		btnBack.setBounds(50, 520, 126, 33);
 		frame.getContentPane().add(btnBack);
 		
-		ImageIcon imageIcon = new ImageIcon(StartingPlanetWindow.class.getResource("/resources/planet1.png"));
-		Image image = imageIcon.getImage();
-		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
-		imageIcon = new ImageIcon(newimg);
+		JSeparator separator = new JSeparator();
+		separator.setBounds(50, 62, 695, 2);
+		frame.getContentPane().add(separator);
 		
-		JLabel lblPlanetImage = new JLabel();
-		lblPlanetImage.setBounds(192, 75, 400, 350);
-		frame.getContentPane().add(lblPlanetImage);
-		lblPlanetImage.setIcon(imageIcon);
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separator_1);
+		
+		
 	}
 }

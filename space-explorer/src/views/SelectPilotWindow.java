@@ -98,15 +98,15 @@ public class SelectPilotWindow {
 		cBoxPilot2.setBounds(492, 111, 235, 22);
 		frame.getContentPane().add(cBoxPilot2);
 
-		JButton btnNewButton = new JButton("Return ");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnReturn = new JButton("Return ");
+		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
 				game.launchCrewMemberWindow();
 			}
 		});
-		btnNewButton.setBounds(45, 515, 97, 25);
-		frame.getContentPane().add(btnNewButton);
+		btnReturn.setBounds(45, 515, 97, 25);
+		frame.getContentPane().add(btnReturn);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -193,10 +193,10 @@ public class SelectPilotWindow {
 		label_13.setBounds(9, 97, 78, 32);
 		panel.add(label_13);
 
-		JLabel lblNewLabel = new JLabel("Copilot:\r\n");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(377, 114, 93, 22);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblCopilot = new JLabel("Copilot:\r\n");
+		lblCopilot.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCopilot.setBounds(377, 114, 93, 22);
+		frame.getContentPane().add(lblCopilot);
 
 		JLabel lblMainPilot = new JLabel("Main Pilot:\r\n");
 		lblMainPilot.setFont(new Font("Tahoma", Font.BOLD, 16));

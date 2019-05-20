@@ -165,9 +165,15 @@ public class GameEnvironment {
 	}
 
 	public void initPlanets() {
-		for (String name : planetNames) {
-			planets.add(new Planet(name));
-		}
+		planets.add(new Planet("Asauzuno", "/resources/planet1.png"));
+		planets.add(new Planet("Uchiliv", "/resources/planet2.png"));
+		planets.add(new Planet("Yangosie", "/resources/planet3.jpg"));
+		planets.add(new Planet("Putrilia", "/resources/planet4.jpg"));
+		planets.add(new Planet("Emia", "/resources/planet5.png"));
+		planets.add(new Planet("Doyama", "/resources/planet6.png"));
+		planets.add(new Planet("Bruxotune", "/resources/planet7.jpg"));
+		planets.add(new Planet("Divunus", "/resources/planet9.jpg"));
+		planets.add(new Planet("Coth LTS4", "/resources/planet8.jpg"));
 	}
 
 	public void generateOutpostsItems() {
@@ -185,7 +191,21 @@ public class GameEnvironment {
 	}
 
 	public String introductionText() {
-		String text = "Your crew is lost in space in a unknown galaxy. Your spaceship's lightspeed engines are borken and scattered throughout the surrounding planets. You will need to find the missing pieces of your spaceship so that you can repair it and travel back to Earth. \r\n\r\nEach day you may perform crew member actions. Each crew member has two actions that can be used. ";
+		String text = "Your crew is lost in space in a unknown galaxy. "
+				+ "Your spaceship's lightspeed engines are broken and scattered throughout the surrounding planets."
+				+ " You will need to find the missing pieces of your spaceship so that you can repair it and travel back to Earth."
+				+ " \r\n\r\nEach day you may perform crew member actions."
+				+ " Each crew member has two actions that can be used.\n\n"
+				+ "Actions that can be performed are: \n"
+				+ "Eat Food\n"
+				+ "Apply Medicine\n"
+				+ "Sleep\n"
+				+ "Repair the ship\n"
+				+ "Search the planet\n"
+				+ "Pilot the ship to a new planet\n"
+				+ "\n"
+				+ "These actions all cost 1 action point.";
+		;
 		return text;
 	}
 
@@ -268,7 +288,7 @@ public class GameEnvironment {
 		}
 		return score;
 	}
-	
+
 	public String gameOverMessage() {
 		if (ship.isDestroyed()) {
 			return "The asteroid hits and your ship is torn apart.";

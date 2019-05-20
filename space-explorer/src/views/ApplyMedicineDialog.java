@@ -150,8 +150,13 @@ public class ApplyMedicineDialog extends JDialog {
 				textAreaDescription.setWrapStyleWord(true);
 				textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
 				textAreaDescription.setEditable(false);
-				textAreaDescription.setBounds(12, 120, 294, 75);
+				textAreaDescription.setBounds(12, 120, 294, 60);
 				panel.add(textAreaDescription);
+				
+				JLabel lblWarning = new JLabel("This uses up 1 action.");
+				lblWarning.setFont(new Font("Dialog", Font.BOLD, 16));
+				lblWarning.setBounds(12, 180, 290, 22);
+				panel.add(lblWarning);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(30, 52, 314, 2);

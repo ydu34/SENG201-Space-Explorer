@@ -254,7 +254,7 @@ public class OutpostWindow {
 		frame.getContentPane().add(lblMoney);
 		
 		JLabel lblWarning = new JLabel("");
-		lblWarning.setBounds(50, 503, 283, 24);
+		lblWarning.setBounds(50, 503, 290, 24);
 		frame.getContentPane().add(lblWarning);
 		
 		JSeparator separatorTop = new JSeparator();

@@ -77,12 +77,13 @@ public class MainWindow {
 		frame.getContentPane().add(btnCrew);
 
 		JLabel lblPlanetImage = new JLabel();
+		lblPlanetImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlanetImage.setBounds(28, 76, 400, 350);
 		frame.getContentPane().add(lblPlanetImage);
 		ImageIcon imageIcon = new ImageIcon(
-				StartingPlanetWindow.class.getResource("/resources/planet1.png"));
+				StartingPlanetWindow.class.getResource(game.getCrew().getCurrentLocation().getImageLink()));
 		Image image = imageIcon.getImage();
-		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
+		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_DEFAULT);
 		imageIcon = new ImageIcon(newimg);
 		lblPlanetImage.setIcon(imageIcon);
 
