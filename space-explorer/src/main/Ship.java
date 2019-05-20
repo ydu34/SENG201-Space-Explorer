@@ -27,11 +27,7 @@ public class Ship {
 	 * @return A string representation of the ship.
 	 */
 	public String toString() {
-		String returnString =
-				"Ship Status: " + 
-				"\nShields: " + shieldLevel + "/" + maxShieldLevel +
-				"\nPieces needed: " + piecesNeeded;
-		return returnString;
+		return name;
 	}
 	
 
