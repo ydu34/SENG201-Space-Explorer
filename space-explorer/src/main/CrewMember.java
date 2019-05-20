@@ -296,6 +296,49 @@ public class CrewMember {
 		return returnString;
 	}
 	
+	public void increaseHealth(int amount) {
+		health += amount;
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+	}
+	
+	public void decreaseHealth(int amount) {
+		health -= amount;
+		if (health <= 0) {
+			health = 0;
+			dead = true; 
+		}
+	}
+	
+	public void increaseHunger(int amount) {
+		hunger += amount;
+		if (hunger > maxHunger) {
+			hunger = maxHunger;
+		}
+	}
+	
+	public void decreaseHunger(int amount) {
+		hunger -= amount;
+		if (hunger < 0) {
+			hunger = 0;
+		}
+	}
+	
+	public void increaseFatigue(int amount) {
+		fatigue += amount;
+		if (fatigue > maxFatigue) {
+			fatigue = maxFatigue;
+		}
+	}
+	
+	public void decreaseFatigue(int amount) {
+		fatigue -= amount;
+		if (fatigue < 0) {
+			fatigue = 0;
+		}
+	}
+	
 	
 	/**
 	 * Creates a string representation of the crew member.
