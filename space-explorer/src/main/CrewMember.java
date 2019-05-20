@@ -296,6 +296,7 @@ public class CrewMember {
 		return returnString;
 	}
 	
+	
 	/**
 	 * Creates a string representation of the crew member.
 	 * @return A string representation of the crew member.
