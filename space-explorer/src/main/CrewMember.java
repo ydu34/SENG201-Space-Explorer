@@ -118,13 +118,10 @@ public class CrewMember {
 	 * @param crew   A Crew object.
 	 */
 	public String eat(FoodItem item, Crew crew) {
-		hunger -= item.getRestoreHungerAmount();
-		if (hunger < 0) {
-			hunger = 0;
-		}
+		decreaseHunger(item.getRestoreHungerAmount());
 		crew.getFoodItems().remove(item);
 		actionsLeft -= 1;
-		return name + " now has " + hunger + ".";
+		return name + " now has " + hunger + "/" + maxHunger  + " hunger.";
 	}
 	
 	/**
@@ -134,11 +131,8 @@ public class CrewMember {
 	 */
 	public String useMedicalItem(MedicalItem item, Crew crew) {
 		String returnString = "";
-		health += item.getRestoreHealthAmount();
-		if (health > maxHealth) {
-			health = maxHealth;
-		}
-		returnString += name + " now has " + health + "/" + maxHealth + "health.\n";
+		increaseHealth(item.getRestoreHealthAmount());
+		returnString += name + " now has " + health + "/" + maxHealth + " health.\n";
 		if (item.isRemovePlague()) {
 			infected = false;
 			status = "Normal";
@@ -155,10 +149,7 @@ public class CrewMember {
 	 */	
 	public String sleep() {
 		int previousFatigue = fatigue;
-		fatigue -= 20;
-		if (fatigue < 0) {
-			fatigue = 0;
-		}
+		decreaseFatigue(20);
 		int fatigueRecovered = previousFatigue - fatigue;
 		actionsLeft-=1;
 		return name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + "/" + maxFatigue + " fatigue.";
@@ -181,7 +172,7 @@ public class CrewMember {
 		if (fatigue + repairFatigueCost  <= maxFatigue && hunger + repairHungerCost <= maxHunger) {
 			ship.increaseShieldLevel(10);
 			actionsLeft-=1;
-			setFatigue(fatigue + repairFatigueCost);
+			increaseFatigue(repairFatigueCost);
 			returnString += ship.getName() +"'s shields is at " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
 		}
 		return returnString;
@@ -209,10 +200,10 @@ public class CrewMember {
 		}
 		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost 
 				&& hunger <= maxHunger - pilotHungerCost && other.hunger <= other.maxHunger - other.pilotHungerCost) {
-			setFatigue(fatigue + pilotFatigueCost);
-			other.setFatigue(other.fatigue + other.pilotFatigueCost);
-			setHunger(hunger + pilotHungerCost);
-			other.setHunger(other.hunger + other.pilotHungerCost);
+			increaseFatigue(pilotFatigueCost);
+			other.increaseFatigue(other.pilotFatigueCost);
+			increaseHunger(pilotHungerCost);
+			other.increaseHunger(other.pilotHungerCost);
 			actionsLeft -= 1;
 			other.actionsLeft -=1;
 			crew.setCurrentLocation(planet);
@@ -229,7 +220,7 @@ public class CrewMember {
 	 * @param ship           A Ship object.
 	 * 
 	 */
-	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
+	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew) {
 		String returnString = "";
 		if (fatigue + searchFatigueCost  > maxFatigue) {
 			returnString += name + " is too tired to search the planet.\n";
@@ -242,24 +233,24 @@ public class CrewMember {
 			if (randomNum >= 0 && randomNum < 20 && crew.getCurrentLocation().isPieceDetected()) {
 				returnString += name + " has found a ship piece!\n";
 				crew.getCurrentLocation().setPieceDetected(false);
-				ship.foundPiece();
-			} else if (randomNum >= 20 && randomNum < 35) {
+				crew.getShip().foundPiece();
+			} else if (randomNum >= 20 && randomNum < 40) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
 				crew.getMedicalItems().add(medicalItems.get(randomNum));
 				returnString += name + " has found a medical item " + medicalItems.get(randomNum) + "!\n";
-			} else if (randomNum >= 35 && randomNum < 50) {
+			} else if (randomNum >= 40 && randomNum < 60) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
 				crew.getFoodItems().add(foodItems.get(randomNum));
 				returnString += name + " has found a food item " + foodItems.get(randomNum) + "!\n";
-			} else if (randomNum >= 50 && randomNum < 65) {
+			} else if (randomNum >= 60 && randomNum < 80) {
 				int amount = 50;
 				crew.increaseMoney(amount);
 				returnString += name + "has found " + amount + " Coins.\n";
 			} else {
 				returnString += name + " has found nothing.\n";
 			}
-			fatigue += searchFatigueCost;
-			hunger += searchHungerCost;
+			increaseFatigue(searchFatigueCost);
+			increaseHunger(searchHungerCost);
 			actionsLeft -= 1;
 		}
 		return returnString;

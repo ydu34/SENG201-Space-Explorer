@@ -43,7 +43,7 @@ public class SearchPlanetDialog extends JDialog {
 			JButton btnSearchPlanet = new JButton("SEARCH");
 			btnSearchPlanet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.getChosenCrewMember().search(game.getMedItems(), game.getFoodItems(), game.getCrew(), game.getShip());
+					String message = game.getChosenCrewMember().search(game.getMedItems(), game.getFoodItems(), game.getCrew());
 					setVisible(false);
 					dispose();
 					if (!(message.isEmpty())) {
