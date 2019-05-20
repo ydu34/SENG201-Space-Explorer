@@ -145,8 +145,8 @@ public class GameEnvironment {
 		crewMemberTypes.add(new HealthNut("Health Nut"));
 		crewMemberTypes.add(new Nibbler("Nibbler"));
 		crewMemberTypes.add(new NightOwl("Night Owl"));
-		crewMemberTypes.add(new Protected("Protected"));
 		crewMemberTypes.add(new Regular("Regular"));
+		crewMemberTypes.add(new Explorer("Explorer"));
 	}
 
 	public void initMedItems() {
@@ -208,8 +208,8 @@ public class GameEnvironment {
 			return new Nibbler(member.getName());
 		case "Night Owl":
 			return new NightOwl(member.getName());
-		case "Protected":
-			return new Protected(member.getName());
+		case "Explorer":
+			return new Explorer(member.getName());
 		case "Regular":
 			return new Regular(member.getName());
 		}

@@ -250,9 +250,9 @@ public class CrewMember {
 			returnString = "Night Owl does not like sleeping. "
 					+ "Night Owl's fatigue level increases by a slower rate when repairing ships, searching on planets, and piloting the ship.";
 			break;
-		case "Protected":
-			returnString = "Protected has a strong physique. "
-					+ "Protected has more health.";
+		case "Explorer":
+			returnString = "Explorers are born to go where no one has been. "
+					+ "Explorer's fatigue and hunger level increase by a slower rate when piloting the ship, and searching the planet.";
 			break;
 		case "Regular":
 			returnString = "Regular does not have any special powers. "

@@ -2,13 +2,9 @@ package views;
 
 import main.CrewMember;
 
-import main.Engineer;
+
 import main.GameEnvironment;
-import main.HealthNut;
-import main.Nibbler;
-import main.NightOwl;
-import main.Protected;
-import main.Regular;
+
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -389,10 +385,10 @@ public class CreateCrewWindow {
 		case "Night Owl":
 			cBoxTrait.setSelectedIndex(3);
 			break;
-		case "Protected":
+		case "Regular":
 			cBoxTrait.setSelectedIndex(4);
 			break;
-		case "Regular":
+		case "Explorer":
 			cBoxTrait.setSelectedIndex(5);
 			break;
 		}
