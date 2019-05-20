@@ -72,7 +72,7 @@ public class SelectPlanetWindow {
 
 		btnPilot.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
 		btnPilot.setEnabled(false);
-		btnPilot.setBounds(41, 503, 122, 25);
+		btnPilot.setBounds(613, 503, 122, 25);
 		frame.getContentPane().add(btnPilot);
 		
 		JPanel panel_1 = new JPanel();
@@ -152,7 +152,7 @@ public class SelectPlanetWindow {
 			}
 		});
 		button_1.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 11));
-		button_1.setBounds(535, 504, 200, 25);
+		button_1.setBounds(41, 504, 200, 25);
 		frame.getContentPane().add(button_1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Explore a New World!");

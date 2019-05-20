@@ -19,7 +19,7 @@ public class HealthNut extends CrewMember{
 	public String useMedicalItem(MedicalItem item, Crew crew) {
 		String returnString = "";
 		returnString += super.useMedicalItem(item, crew);
-		super.setHealth(super.getHealth() + 10);
+		super.increaseHealth(10);
 		returnString += "\n" + super.getName() +" recovers extra health from their trait Health Nut.";
 		returnString += "\n" + super.getName() +" now has " + super.getHealth() + "/" + super.getMaxHealth() + " health.";
 		return returnString;

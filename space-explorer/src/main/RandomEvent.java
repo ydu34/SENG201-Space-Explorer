@@ -49,7 +49,7 @@ public class RandomEvent {
 				infectedMember.setInfected(true);
 				returnString += infectedMember.getName() + " has been infected with space plague! \n";
 				infectedMember.setStatus("Infected");
-				infectedMember.setHealth(infectedMember.getHealth()-20);
+				infectedMember.decreaseHealth(20);
 				if (infectedMember.isDead()) {
 					returnString += infectedMember.getName() + " has died to the space plague and has been removed from the crew.";
 					crew.getCrewMembers().remove(infectedMember);

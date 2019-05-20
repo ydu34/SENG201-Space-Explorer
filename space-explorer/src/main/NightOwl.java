@@ -11,7 +11,7 @@ public class NightOwl extends CrewMember{
 	 */
 	public NightOwl(String name) {
 		super(name, "Night Owl", "Normal", 100, 100, 100, 2,
-				8,8,8,8,16,16);
+				5,10,5,10,10,20);
 	}
 	
 }

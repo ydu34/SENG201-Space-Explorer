@@ -47,7 +47,7 @@ public class SleepDialog extends JDialog {
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setText("Allow the crew member to take a quick nap and recover from fatigue.\n\n"
-				+ "The crew member's fatigue would be reduced by 10. \n\n"
+				+ "The crew member's fatigue would be reduced by 30. \n\n"
 				+ "Fatigue can not go below 0.\n\n"
 				+ "Sleeping uses up 1 action.");
 		textArea.setBackground(SystemColor.menu);

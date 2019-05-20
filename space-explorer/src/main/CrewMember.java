@@ -16,33 +16,16 @@ public class CrewMember {
 	private int maxActions = 2;
 	private boolean infected = false;
 	private boolean dead = false; 
-	private int repairFatigueCost;
-	private int repairHungerCost;
-	private int pilotFatigueCost;
-	private int pilotHungerCost;
-	private int searchFatigueCost;
-	private int searchHungerCost;
+	private int repairFatigueCost = 10;
+	private int repairHungerCost = 10;
+	private int pilotFatigueCost = 10;
+	private int pilotHungerCost = 10;
+	private int searchFatigueCost = 10;
+	private int searchHungerCost = 10;
 	
 	public CrewMember(String name, String type) {
 		this.name = name;
 		this.type = type;
-		this.status = "";
-		this.maxHealth = 100;
-		this.health = 100;
-		this.maxHunger = 100;
-		this.hunger = 0;
-		this.maxFatigue = 100;
-		this.fatigue = 0;
-		this.maxActions = 2;
-		this.actionsLeft = 2;
-		this.infected = false;
-		this.dead = false;
-		this.repairFatigueCost = 10;
-		this.repairHungerCost = 10;
-		this.pilotFatigueCost = 10;
-		this.pilotHungerCost = 10;	
-		this.searchFatigueCost = 20;
-		this.searchHungerCost = 20;
 	}
 	
 	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
@@ -57,14 +40,6 @@ public class CrewMember {
 		this.fatigue = 0;
 		this.maxActions = maxActions;
 		this.actionsLeft = maxActions;
-		this.infected = false;
-		this.dead = false;
-		this.repairFatigueCost = 10;
-		this.repairHungerCost = 10;
-		this.pilotFatigueCost = 10;
-		this.pilotHungerCost = 10;	
-		this.searchFatigueCost = 20;
-		this.searchHungerCost = 20;
 	}
 	
 	/**
@@ -91,12 +66,12 @@ public class CrewMember {
 		this.actionsLeft = maxActions;
 		this.infected = false;
 		this.dead = false;
-		this.repairFatigueCost = 10;
-		this.repairHungerCost = 10;
-		this.pilotFatigueCost = 10;
-		this.pilotHungerCost = 10;	
-		this.searchFatigueCost = 20;
-		this.searchHungerCost = 20;
+		this.repairFatigueCost = repairFatigueCost;
+		this.repairHungerCost = repairHungerCost;
+		this.pilotFatigueCost = pilotFatigueCost;
+		this.pilotHungerCost = pilotHungerCost;	
+		this.searchFatigueCost = searchFatigueCost;
+		this.searchHungerCost = searchHungerCost;
 	}
 	
 	public boolean canPilot() {
@@ -149,7 +124,7 @@ public class CrewMember {
 	 */	
 	public String sleep() {
 		int previousFatigue = fatigue;
-		decreaseFatigue(20);
+		decreaseFatigue(30);
 		int fatigueRecovered = previousFatigue - fatigue;
 		actionsLeft-=1;
 		return name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + "/" + maxFatigue + " fatigue.";
@@ -273,7 +248,7 @@ public class CrewMember {
 			break;
 		case "Night Owl":
 			returnString = "Night Owl does not like sleeping. "
-					+ "Night Owl's fatigue level increases by a slower rate when repairing ships and searching on planets.";
+					+ "Night Owl's fatigue level increases by a slower rate when repairing ships, searching on planets, and piloting the ship.";
 			break;
 		case "Protected":
 			returnString = "Protected has a strong physique. "
