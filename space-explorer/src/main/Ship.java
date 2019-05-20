@@ -33,7 +33,6 @@ public class Ship {
 
 	public void foundPiece() {
 		piecesFound +=1;
-		System.out.println("Found " + piecesFound + "/" + piecesNeeded + " pieces needed!");
 	}
 	
 
@@ -46,7 +45,8 @@ public class Ship {
 	
 	public void decreaseShieldLevel(int amount) {
 		shieldLevel -= amount;
-		if (shieldLevel == 0) {
+		if (shieldLevel <= 0) {
+			shieldLevel = 0;
 			destroyed = true;
 		}
 	}

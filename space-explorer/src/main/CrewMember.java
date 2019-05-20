@@ -377,12 +377,6 @@ public class CrewMember {
 	 */
 	public void setHealth(int health) {
 		this.health = health;
-		if (this.health > this.maxHealth) {
-			this.health = this.maxHealth;
-		}
-		if (health <= 0) {
-			dead = true; 
-		}
 	}
 
 	/**
@@ -447,9 +441,6 @@ public class CrewMember {
 	 */
 	public void setFatigue(int fatigue) {
 		this.fatigue = fatigue;
-		if (this.fatigue > this.maxFatigue) {
-			this.fatigue = this.maxFatigue;
-		}
 	}
 
 	/**
