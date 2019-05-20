@@ -1,6 +1,8 @@
 package main;
 /**
  * Represents a Regular type crew member.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class Regular extends CrewMember{
 	/**

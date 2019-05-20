@@ -2,8 +2,9 @@ package main;
 
 /**
  * Represents an item.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
-
 public class Item implements  Comparable<Item>{
 
 	private String name;
@@ -13,8 +14,8 @@ public class Item implements  Comparable<Item>{
 	/**
 	 * Creates an item.
 	 * @param name          A string name of the item.
-	 * @param price         An int number of the item price.
-	 * @param description  A string description of the item.
+	 * @param price         An int of the item price.
+	 * @param description   A string description of the item.
 	 */
 	public Item(String name, int price, String description) {
 		this.name = name;
@@ -58,7 +59,7 @@ public class Item implements  Comparable<Item>{
 
 	/**
 	 * Sets the price of the item.
-	 * @param price   An int number of the item price.
+	 * @param price   An int of the item price.
 	 */
 	public void setPrice(int price) {
 		this.price = price;
@@ -81,6 +82,10 @@ public class Item implements  Comparable<Item>{
 	}
 
 	@Override
+	/**
+	 * Compares this item with the specified item.
+	 * @return A negative int, zero, or a positive int as this item is less than, equal to, or greater than the specified item.
+	 */
 	public int compareTo(Item o) {
 		return (this.name).compareTo(o.name);
 	}

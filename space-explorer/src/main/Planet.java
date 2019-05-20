@@ -2,6 +2,8 @@ package main;
 
 /**
  * Represents a planet.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class Planet {
 	private String name;
@@ -9,7 +11,6 @@ public class Planet {
 	private SpaceOutpost outpost = new SpaceOutpost();
 	private String imageLink;
 	
-
 	/**
 	 * Creates a planet.
 	 * @param name      A string name of the planet.
@@ -18,6 +19,10 @@ public class Planet {
 		this.name = name;
 	}
 	
+	/**
+	 * Checks if there is a ship piece on the planet.
+	 * @return A string of whether there is a ship piece on the planet.
+	 */
 	public String planetPieceDetected() {
 		String text;
 		if (pieceDetected) {
@@ -51,26 +56,25 @@ public class Planet {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
 	/**
-	 * Checks if the transporter part for this planet has been found.
-	 * @return true if the transporter part for this planet has been found, false otherwise.
+	 * Checks if the ship piece on the planet has been found.
+	 * @return true if the ship piece on the planet has been found, false otherwise.
 	 */
 	public boolean isPieceDetected() {
 		return pieceDetected;
 	}
 	
 	/**
-	 * Sets if the transporter part has been found.
-	 * @param transporterDiscovery   A boolean expression of whether the transporter part has been found.
+	 * Sets if the ship piece on the planet has been found.
+	 * @param transporterDiscovery   A boolean expression of whether the ship piece on the planet has been found.
 	 */
 	public void setPieceDetected(boolean shipPieceFound) {
 		this.pieceDetected = shipPieceFound;
 	}
 
 	/**
-	 * Gets the space outpost on this planet.
+	 * Gets the space outpost on the planet.
 	 * @return the space outpost.
 	 */
 	public SpaceOutpost getOutpost() {
@@ -78,17 +82,24 @@ public class Planet {
 	}
 	
 	/**
-	 * Sets the space outpost on this planet.
+	 * Sets the space outpost on the planet.
 	 * @param outpost   A SpaceOutpost object.
 	 */
 	public void setOutpost(SpaceOutpost outpost) {
 		this.outpost = outpost;
 	}
-
+	
+	/**
+	 * Gets the link to the image.
+	 * @return the link to the image.
+	 */
 	public String getImageLink() {
 		return imageLink;
 	}
-
+	/**
+	 * Sets the link to the image.
+	 * @param imageLink  A string link to the image.
+	 */
 	public void setImageLink(String imageLink) {
 		this.imageLink = imageLink;
 	}

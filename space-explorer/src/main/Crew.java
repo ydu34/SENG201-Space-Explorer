@@ -40,7 +40,7 @@ public class Crew {
 	
 	/**
 	 * Increases the money of the crew.
-	 * @param amount   An int number of the money amount being added.
+	 * @param amount   An int of the money amount being added.
 	 */
 	public void increaseMoney(int amount) {
 		money += amount;
@@ -48,7 +48,7 @@ public class Crew {
 	
 	/**
 	 * Decreases the money of the crew.
-	 * @param amount   An int number of the money amount being taken off.
+	 * @param amount   An int of the money amount being taken off.
 	 */
 	public void decreaseMoney(int amount) {
 		money -= amount;
@@ -117,7 +117,7 @@ public class Crew {
 	
 	/**
 	 * Sets the amount of money the crew has.
-	 * @param money An int number of money the crew has.
+	 * @param money An int of money the crew has.
 	 */
 	public void setMoney(int money) {
 		this.money = money;

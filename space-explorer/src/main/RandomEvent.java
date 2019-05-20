@@ -1,12 +1,22 @@
 package main;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Generates random events that can occur when piloting ship to a new planet or moving on to the next day.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class RandomEvent {
 	private static int randomNum;
 	
+	/**
+	 * Decides by chance if any events occur when moving on to the next day.
+	 * @param crew   A Crew object.
+	 * @return A string message of the event occurred.
+	 */
 	public static String occurDay(Crew crew) {
-		String returnString = ""
-;		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
+		String returnString = "";		
+		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 		if (randomNum >= 0 && randomNum < 25) {
 			returnString += alienPirates(crew);
 		} else if (randomNum >= 25 && randomNum < 50) {
@@ -15,7 +25,11 @@ public class RandomEvent {
 		return returnString;
 	}
 	
-	
+	/**
+	 * Decides by chance if the ship goes through an asteroid belt when piloting ship to a new planet.
+	 * @param crew   A Crew object.
+	 * @return A string message of the damage caused by the asteroid belt.
+	 */
 	public static String occurPlanet(Crew crew) {
 		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 		if (randomNum >= 0 && randomNum < 35) {
@@ -24,6 +38,11 @@ public class RandomEvent {
 		return null;
 	}
 	
+	/**
+	 * Encounters alien pirates who steal items on ship.
+	 * @param crew   A Crew object
+	 * @return A string message of the items stolen by the alien pirates.
+	 */
 	public static String alienPirates(Crew crew) {
 		String returnString = "";
 		if (crew.getFoodItems().size() + crew.getMedicalItems().size() > 0) {
@@ -40,6 +59,11 @@ public class RandomEvent {
 		return returnString;
 	}
 	
+	/**
+	 * Encounters space plague, which decreases the health level of a chosen crew member.
+	 * @param crew   A Crew object.
+	 * @return A string message of the damage on the chosen crew member caused by the space plague.
+	 */
 	public static String spacePlague(Crew crew) {
 		String returnString = "";
 		if (crew.getCrewMembers().size() > 0) {
@@ -63,6 +87,11 @@ public class RandomEvent {
 		return returnString;
 	}
 	
+	/**
+	 * Encounters an asteroid belt, which decreases the ship's shield level.
+	 * @param crew   A Crew object.
+	 * @return A string message of the damage caused by the asteriod belt.
+	 */
 	public static String asteroidBelt(Crew crew) {
 		String returnString = "";
 		int amount = crew.getShip().getShieldLevel() / 5 + 10;

@@ -1,6 +1,8 @@
 package main;
 /**
  * Represents a Nibbler type crew member.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class Nibbler extends CrewMember{
 	/**
@@ -13,9 +15,10 @@ public class Nibbler extends CrewMember{
 	}
 	
 	/**
-	 * Consumes food items.
+	 * Consumes a food item.
 	 * @param item   A FoodItem object.
 	 * @param crew   A Crew object.
+	 * @return A string message of the crew member's updated hunger level.
 	 */
 	public String eat(FoodItem item, Crew crew) {
 		String returnString = "";

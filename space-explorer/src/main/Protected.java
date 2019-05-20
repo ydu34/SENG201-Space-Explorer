@@ -1,6 +1,8 @@
 package main;
 /**
  * Represents a Protected type crew member.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class Protected extends CrewMember{
 	/**

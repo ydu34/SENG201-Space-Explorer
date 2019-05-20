@@ -3,6 +3,8 @@ package main;
 
 /**
  * Represents a medical item.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class MedicalItem extends Item{
 
@@ -12,9 +14,9 @@ public class MedicalItem extends Item{
 	/**
 	 * Creates a medical item.
 	 * @param name                 A string name of the medical item.
-	 * @param price                An int number of the medical item price.
+	 * @param price                An int of the medical item price.
 	 * @param description          A string description of the medical item.
-	 * @param restoreHealthAmount  An int number of restore health amount when the medical item is consumed. 
+	 * @param restoreHealthAmount  An int of restore health amount when the medical item is consumed. 
 	 * @param removePlague         A boolean expression of whether the medical item is a cure to the space plague.
 	 */
 	public MedicalItem(String name, int price, String description, int restoreHealthAmount, boolean removePlague) {
@@ -25,7 +27,7 @@ public class MedicalItem extends Item{
 	
 	/**
 	 * Gets the restore health amount of the medical item.
-	 * @return An int number of the restore health amount of the medical item.
+	 * @return An int of the restore health amount of the medical item.
 	 */
 	public int getRestoreHealthAmount() {
 		return restoreHealthAmount;
@@ -33,7 +35,7 @@ public class MedicalItem extends Item{
 
 	/**
 	 * Sets the restore health amount of the medical item.
-	 * @param restoreHealthAmount   An int number of restore health amount when the medical item is consumed.
+	 * @param restoreHealthAmount   An int of restore health amount when the medical item is consumed.
 	 */
 	public void setRestoreHealthAmount(int restoreHealthAmount) {
 		this.restoreHealthAmount = restoreHealthAmount;

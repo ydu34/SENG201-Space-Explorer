@@ -2,6 +2,8 @@ package main;
 
 /**
  * Represents a NightOwl type crew member.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class NightOwl extends CrewMember{
 	
