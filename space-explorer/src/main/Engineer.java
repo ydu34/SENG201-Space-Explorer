@@ -1,12 +1,14 @@
 package main;
 
 /**
- * Represents an engineer.
+ * Represents an engineer type of crew member.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class Engineer extends CrewMember{
 	
 	/**
-	 * Creates an engineer.
+	 * Creates an engineer with the given name.
 	 * @param name   A string name of the crew member.
 	 */
 	public Engineer(String name) {
@@ -15,8 +17,9 @@ public class Engineer extends CrewMember{
 	}
 	
 	/**
-	 * Repairs the ship.
+	 * Repairs the ship to increase its shield level.
 	 * @param ship   A Ship object.
+	 * @return A string message of the ship's updated shield level. 
 	 */
 	public String repair(Ship ship) {
 		String returnString = "";

@@ -3,6 +3,8 @@ import java.util.*;
 
 /**
  * Represents a crew.
+ * @author Yu Duan
+ * @author Joyce Cheah
  */
 public class Crew {
 	private Ship ship = new Ship();
@@ -36,10 +38,18 @@ public class Crew {
 		return returnString;	
 	}
 	
+	/**
+	 * Increases the money of the crew.
+	 * @param amount   An int number of the money amount being added.
+	 */
 	public void increaseMoney(int amount) {
 		money += amount;
 	}
 	
+	/**
+	 * Decreases the money of the crew.
+	 * @param amount   An int number of the money amount being taken off.
+	 */
 	public void decreaseMoney(int amount) {
 		money -= amount;
 		if (money < 0) {
@@ -47,9 +57,18 @@ public class Crew {
 		}
 	}
 	
+	/**
+	 * Gets the medical items.
+	 * @return An ArrayList of the medical items.
+	 */
 	public ArrayList<MedicalItem> getMedicalItems() {
 		return medicalItems;
 	}
+	
+	/**
+	 * Gets the food items.
+	 * @return An ArrayList of the food items.
+	 */
 	public ArrayList<FoodItem> getFoodItems() {
 		return foodItems;
 	}
