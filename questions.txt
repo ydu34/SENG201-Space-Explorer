@@ -1,2 +1,19 @@
-Does asteroid belt random event occur both in moving to a new planet and start of a new day or just moving to a new planet.
-Should make images an attribute for the class Planet to allow each planet to have an image.
+Does asteroid belt random event occur both in moving to a new planet and start of a new day or just moving to a new planet?
+
+Should make images an attribute for the class Planet to allow each planet to have an image?
+
+Do we need to write unit test for the swing code?
+
+Does the uml class diagrams have to be up to date with what we currently have?
+
+Do we need to have uml class diagrams for the swing code?
+
+For getters and setters, do we delete the ones that are unused?
+
+For getters and setters for crew member, for example setHealth(), I use this method to decrease and increase the health of the crew member. should I change this into two methods, one for increaseHealth() and one for decreaseHealth().
+
+What code counts as game logic code?
+
+
+
+
