@@ -5,27 +5,45 @@ import java.util.concurrent.ThreadLocalRandom;
 public class CrewMember {
 	private String name;
 	private String type;
-	private String status = "Normal";
-	private int health = 100;
-	private int maxHealth = 100;
-	private int hunger = 100;
-	private int maxHunger = 100;
-	private int fatigue = 0;
-	private int maxFatigue = 100;
-	private int actionsLeft = 2;
-	private int maxActions = 2;
-	private boolean infected = false;
-	private boolean dead = false; 
-	private int repairFatigueCost = 10;
-	private int repairHungerCost = 10;
-	private int pilotFatigueCost = 10;
-	private int pilotHungerCost = 10;
-	private int searchFatigueCost = 10;
-	private int searchHungerCost = 10;
+	private String status;
+	private int health;
+	private int maxHealth;
+	private int hunger;
+	private int maxHunger;
+	private int fatigue;
+	private int maxFatigue;
+	private int actionsLeft;
+	private int maxActions;
+	private boolean infected;
+	private boolean dead; 
+	private int repairFatigueCost;
+	private int repairHungerCost;
+	private int pilotFatigueCost;
+	private int pilotHungerCost;
+	private int searchFatigueCost;
+	private int searchHungerCost;
 	
 	public CrewMember(String name, String type) {
 		this.name = name;
 		this.type = type;
+		this.status = "Normal";
+		this.health = 100;
+		this.maxHealth = 100;
+		this.hunger = 0;
+		this.maxHunger = 100;
+		this.fatigue = 0;
+		this.maxFatigue = 100;
+		this.actionsLeft = 2;
+		this.maxActions = 2;
+		this.infected = false;
+		this.dead = false;
+		this.repairFatigueCost = 10;
+		this.repairHungerCost = 10;
+		this.pilotFatigueCost = 10;
+		this.pilotHungerCost = 10;
+		this.searchFatigueCost = 20;
+		this.searchHungerCost = 20;
+		
 	}
 	
 	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
@@ -40,6 +58,14 @@ public class CrewMember {
 		this.fatigue = 0;
 		this.maxActions = maxActions;
 		this.actionsLeft = maxActions;
+		this.infected = false;
+		this.dead = false;
+		this.repairFatigueCost = 10;
+		this.repairHungerCost = 10;
+		this.pilotFatigueCost = 10;
+		this.pilotHungerCost = 10;
+		this.searchFatigueCost = 20;
+		this.searchHungerCost = 20;
 	}
 	
 	/**
@@ -148,6 +174,7 @@ public class CrewMember {
 			ship.increaseShieldLevel(10);
 			actionsLeft-=1;
 			increaseFatigue(repairFatigueCost);
+			increaseHunger(repairHungerCost);
 			returnString += ship.getName() +"'s shields is at " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
 		}
 		return returnString;

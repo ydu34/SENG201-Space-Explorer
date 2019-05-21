@@ -324,11 +324,11 @@ public class OutpostWindow {
 					for (int i = 0; i < listItems.getModel().getSize(); i++) {
 						if (listItems.getModel().getElementAt(i) instanceof MedicalItem) {
 							MedicalItem currentItem = (MedicalItem) listItems.getModel().getElementAt(i);
-							currentSpaceOutpost.purchaseItem(currentItem, game.getCrew());
+							currentSpaceOutpost.purchaseMedicalItem(currentItem, game.getCrew());
 						}
 						else {
 							FoodItem currentItem = (FoodItem) listItems.getModel().getElementAt(i);
-							currentSpaceOutpost.purchaseItem(currentItem, game.getCrew());
+							currentSpaceOutpost.purchaseFoodItem(currentItem, game.getCrew());
 						}
 					}
 					lblMoney.setText(Integer.toString(game.getCrew().getMoney()));

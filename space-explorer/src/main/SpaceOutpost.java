@@ -10,13 +10,13 @@ public class SpaceOutpost {
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
 	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
 
-	public void purchaseItem(MedicalItem item, Crew crew) {
+	public void purchaseMedicalItem(MedicalItem item, Crew crew) {
 		crew.decreaseMoney(item.getPrice());
 		crew.getMedicalItems().add(item);
 		medicalItems.remove(item);
 	}
 
-	public void purchaseItem(FoodItem item, Crew crew) {
+	public void purchaseFoodItem(FoodItem item, Crew crew) {
 		crew.decreaseMoney(item.getPrice());
 		crew.getFoodItems().add(item);
 		foodItems.remove(item);

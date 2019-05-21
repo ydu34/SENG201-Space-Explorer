@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CrewMemberTest {
-	private Engineer engineer;
 	private Ship ship;
+	private Planet planet;
 	private CrewMember crewMember1;
 	private CrewMember crewMember2;
 	private Crew crew;
@@ -19,8 +19,10 @@ class CrewMemberTest {
 	@BeforeEach
 	public void init() {
 		crew = new Crew();
-		crewMember1 = new Engineer("Tester1");
-		crewMember2 = new Engineer("Tester2");
+		ship = crew.getShip();
+		planet = new Planet("TestPlanet", "");
+		crewMember1 = new CrewMember("Tester1", "None");
+		crewMember2 = new CrewMember("Tester2", "None");
 		crew.getCrewMembers().add(crewMember1);
 		crew.getCrewMembers().add(crewMember2);
 		medicalItem = new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false);
@@ -54,13 +56,25 @@ class CrewMemberTest {
 	}
 	@Test
 	public void eatTest1() {
-		
+		crewMember1.setHunger(100);
+		crewMember1.eat(foodItem, crew);
+		assertEquals(80, crewMember1.getHunger());
+		assertEquals(1, crewMember1.getActionsLeft());
 	}
+	
+	
+	@Test
+	public void eatTest2() {
+		crewMember1.eat(foodItem, crew);
+		assertEquals(0, crewMember1.getHunger());
+	}
+	
 	@Test
 	public void useMedicalItemTest1() {
 		crewMember1.setHealth(10);
 		crewMember1.useMedicalItem(medicalItem, crew);
 		assertEquals(55, crewMember1.getHealth());
+		assertEquals(1, crewMember1.getActionsLeft());
 	}
 	
 	//Test the upper boundary when health is at maximum.
@@ -93,27 +107,53 @@ class CrewMemberTest {
 		assertEquals(0, crewMember1.getFatigue());
 	}
 	
-	
-
-	@Test
-	void engineerTest() {
-		
+	@Test 
+	public void repairTest1() {
+		ship.setShieldLevel(10);
+		crewMember1.repair(ship);
+		assertEquals(20, ship.getShieldLevel());
+		assertEquals(10, crewMember1.getFatigue());
+		assertEquals(10, crewMember1.getHunger());
 	}
 	
 	@Test
-	void healthNutTest() {
-		
-	}
-	
-	@Test
-	void nibblerTest() {
-		
+	public void repairTest2() {
+		ship.setShieldLevel(10);
+		crewMember1.setFatigue(91);
+		crewMember1.setHunger(91);
+		crewMember1.repair(ship);
+		assertEquals(10, ship.getShieldLevel());
+		assertEquals(91, crewMember1.getFatigue());
+		assertEquals(91, crewMember1.getHunger());
 	}
 	
 	@Test 
-	void nightOwlTest() {
-		
+	public void repairTest3() {
+		ship.setShieldLevel(10);
+		crewMember1.setFatigue(91);
+		crewMember1.repair(ship);
+		assertEquals(91, crewMember1.getFatigue());
+		assertEquals(10, ship.getShieldLevel());
 	}
 	
-
+	@Test
+	public void pilotTest1() {
+		crewMember1.pilot(planet, crewMember2, crew);
+		assertEquals(10, crewMember1.getFatigue());
+		assertEquals(10, crewMember1.getHunger());
+		assertEquals(10, crewMember2.getFatigue());
+		assertEquals(10, crewMember2.getHunger());
+		assertEquals(planet, crew.getCurrentLocation());
+		assertEquals(1, crewMember1.getActionsLeft());
+		assertEquals(1, crewMember2.getActionsLeft());
+	}
+	
+	@Test
+	public void engineerSubClassTest() {
+		ship.setShieldLevel(10);
+		Engineer engineer = new Engineer("Engineer");
+		engineer.repair(ship);
+		assertEquals(30, ship.getShieldLevel());		
+	}
+	
 }
