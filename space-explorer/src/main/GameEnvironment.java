@@ -172,8 +172,8 @@ public class GameEnvironment {
 		planets.add(new Planet("Emia", "/resources/planet5.png"));
 		planets.add(new Planet("Doyama", "/resources/planet6.png"));
 		planets.add(new Planet("Bruxotune", "/resources/planet7.jpg"));
-		planets.add(new Planet("Divunus", "/resources/planet9.jpg"));
 		planets.add(new Planet("Coth LTS4", "/resources/planet8.jpg"));
+		planets.add(new Planet("Divunus", "/resources/planet9.jpg"));
 	}
 
 	public void generateOutpostsItems() {
