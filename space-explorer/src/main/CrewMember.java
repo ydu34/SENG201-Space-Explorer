@@ -6,6 +6,7 @@ public class CrewMember {
 	private String name;
 	private String type;
 	private String status;
+	private String image; 
 	private int health;
 	private int maxHealth;
 	private int hunger;
@@ -23,7 +24,7 @@ public class CrewMember {
 	private int searchFatigueCost;
 	private int searchHungerCost;
 	
-	public CrewMember(String name, String type) {
+	public CrewMember(String name, String type, String image) {
 		this.name = name;
 		this.type = type;
 		this.status = "Normal";
@@ -43,13 +44,14 @@ public class CrewMember {
 		this.pilotHungerCost = 10;
 		this.searchFatigueCost = 20;
 		this.searchHungerCost = 20;
+		this.image = image;
 		
 	}
 	
-	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
+	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
-		this.status = status;
+		this.status = "Normal";
 		this.maxHealth = maxHealth;
 		this.health = maxHealth;
 		this.maxHunger = maxHunger;
@@ -66,6 +68,7 @@ public class CrewMember {
 		this.pilotHungerCost = 10;
 		this.searchFatigueCost = 20;
 		this.searchHungerCost = 20;
+		this.image = image;
 	}
 	
 	/**
@@ -77,11 +80,11 @@ public class CrewMember {
 	 * @param maxFatigue An int number of the maximum fatigue level.
 	 * @param maxActions An int number of the maximum actions.
 	 */
-	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions, 
+	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue, int maxActions, 
 			int repairFatigueCost, int repairHungerCost, int pilotFatigueCost, int pilotHungerCost, int searchFatigueCost, int searchHungerCost) {
 		this.name = name;
 		this.type = type;
-		this.status = status;
+		this.status = "Normal";
 		this.maxHealth = maxHealth;
 		this.health = maxHealth;
 		this.maxHunger = maxHunger;
@@ -98,6 +101,7 @@ public class CrewMember {
 		this.pilotHungerCost = pilotHungerCost;	
 		this.searchFatigueCost = searchFatigueCost;
 		this.searchHungerCost = searchHungerCost;
+		this.image = image;
 	}
 	
 	public boolean canPilot() {
@@ -596,6 +600,14 @@ public class CrewMember {
 
 	public void setSearchHungerCost(int searchHungerCost) {
 		this.searchHungerCost = searchHungerCost;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 

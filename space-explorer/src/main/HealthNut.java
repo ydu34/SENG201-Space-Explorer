@@ -3,12 +3,16 @@ package main;
  * Represents a HealthNut type crew member.
  */
 public class HealthNut extends CrewMember{
+	
+	public HealthNut(String name) {
+		super(name, "Health Nut", "", 100, 100, 100, 2);
+	}
 	/**
 	 * Creates a HealthNut type crew member.
 	 * @param name   A string name of the crew member.
 	 */
-	public HealthNut(String name) {
-		super(name, "Health Nut", "Normal", 100, 100, 100, 2);
+	public HealthNut(String name, String image) {
+		super(name, "Health Nut", image, 100, 100, 100, 2);
 	}
 	
 	/**

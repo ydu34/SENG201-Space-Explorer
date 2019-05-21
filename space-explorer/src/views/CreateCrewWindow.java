@@ -9,12 +9,16 @@ import main.GameEnvironment;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
@@ -38,6 +42,8 @@ import javax.swing.JOptionPane;
 
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.ImageIcon;
+import javax.swing.JSeparator;
 
 public class CreateCrewWindow {
 
@@ -79,10 +85,10 @@ public class CreateCrewWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		CrewMember crewMember1 = new CrewMember("Bill", "Engineer");
-		CrewMember crewMember2 = new CrewMember("Carole", "Health Nut");
-		CrewMember crewMember3 = new CrewMember("Noah", "Nibbler");
-		CrewMember crewMember4 = new CrewMember("Kim", "Night Owl");
+		CrewMember crewMember1 = new CrewMember("Bill", "Engineer", "/resources/astronautBlue.png");
+		CrewMember crewMember2 = new CrewMember("Carole", "Health Nut", "/resources/astronautRed.png");
+		CrewMember crewMember3 = new CrewMember("Noah", "Nibbler", "/resources/astronautTeal.png");
+		CrewMember crewMember4 = new CrewMember("Kim", "Night Owl", "/resources/astronautPurple.png");
 
 		JLabel lblNotify = new JLabel();
 		lblNotify.setBounds(373, 489, 360, 25);
@@ -161,12 +167,17 @@ public class CreateCrewWindow {
 		textFieldShipName.setBounds(393, 37, 292, 30);
 		frame.getContentPane().add(textFieldShipName);
 		textFieldShipName.setColumns(10);
-
-		JToggleButton tglbtnCrewMember1 = new JToggleButton("1", true);
+		
+		Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+		JToggleButton tglbtnCrewMember1 = new JToggleButton("", true);
+		tglbtnCrewMember1.setBorder(solidBorder);
+		tglbtnCrewMember1.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautBlue.png")));
+		tglbtnCrewMember1.setSelectedIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautBlue.png")));
 		tglbtnCrewMember1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				lblNotify.setText("");
 				updateProfile(tglbtnCrewMember1, crewMember1);
@@ -178,11 +189,13 @@ public class CreateCrewWindow {
 
 		CrewMemberToggleButtons.add(tglbtnCrewMember1);
 
-		JToggleButton tglbtnCrewMember2 = new JToggleButton("2");
+		JToggleButton tglbtnCrewMember2 = new JToggleButton("");
+		tglbtnCrewMember2.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautRed.png")));
 		tglbtnCrewMember2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				lblNotify.setText("");
 				updateProfile(tglbtnCrewMember2, crewMember2);
@@ -196,11 +209,13 @@ public class CreateCrewWindow {
 
 		CrewMemberToggleButtons.add(tglbtnCrewMember2);
 
-		JToggleButton tglbtnCrewMember3 = new JToggleButton("3");
+		JToggleButton tglbtnCrewMember3 = new JToggleButton("");
+		tglbtnCrewMember3.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautTeal.png")));
 		tglbtnCrewMember3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				lblNotify.setText("");
 				updateProfile(tglbtnCrewMember3, crewMember3);
@@ -214,11 +229,13 @@ public class CreateCrewWindow {
 
 		CrewMemberToggleButtons.add(tglbtnCrewMember3);
 
-		JToggleButton tglbtnCrewMember4 = new JToggleButton("4");
+		JToggleButton tglbtnCrewMember4 = new JToggleButton("");
+		tglbtnCrewMember4.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautPurple.png")));
 		tglbtnCrewMember4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				lblNotify.setText("");
 				updateProfile(tglbtnCrewMember4, crewMember4);
@@ -344,11 +361,15 @@ public class CreateCrewWindow {
 					switch (sliderCrewSize.getValue()) {
 					case 4:
 						crewMembers.add(game.createCrewMember(crewMember4));
+
 					case 3:
 						crewMembers.add(game.createCrewMember(crewMember3));
+
 					case 2:
 						crewMembers.add(game.createCrewMember(crewMember2));
+
 						crewMembers.add(game.createCrewMember(crewMember1));
+
 					}
 					Collections.reverse(crewMembers);
 					game.getCrew().setCrewMembers(crewMembers);
@@ -386,6 +407,8 @@ public class CreateCrewWindow {
 	
 	public void updateProfile(JToggleButton toggleButton, CrewMember crewMember) {
 		toggleButton.setSelected(true);
+		Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+		toggleButton.setBorder(solidBorder);
 		tfCMName.setText(crewMember.getName());
 		switch (crewMember.getType()) {
 		case "Engineer":

@@ -21,8 +21,8 @@ class CrewMemberTest {
 		crew = new Crew();
 		ship = crew.getShip();
 		planet = new Planet("TestPlanet", "");
-		crewMember1 = new CrewMember("Tester1", "None");
-		crewMember2 = new CrewMember("Tester2", "None");
+		crewMember1 = new CrewMember("Tester1", "None", "");
+		crewMember2 = new CrewMember("Tester2", "None", "");
 		crew.getCrewMembers().add(crewMember1);
 		crew.getCrewMembers().add(crewMember2);
 		medicalItem = new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false);

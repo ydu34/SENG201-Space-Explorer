@@ -215,17 +215,17 @@ public class GameEnvironment {
 	public CrewMember createCrewMember(CrewMember member) {
 		switch (member.getType()) {
 		case "Engineer":
-			return new Engineer(member.getName());
+			return new Engineer(member.getName(), member.getImage());
 		case "Health Nut":
-			return new HealthNut(member.getName());
+			return new HealthNut(member.getName(), member.getImage());
 		case "Nibbler":
-			return new Nibbler(member.getName());
+			return new Nibbler(member.getName(), member.getImage());
 		case "Night Owl":
-			return new NightOwl(member.getName());
+			return new NightOwl(member.getName(), member.getImage());
 		case "Explorer":
-			return new Explorer(member.getName());
+			return new Explorer(member.getName(), member.getImage());
 		case "Regular":
-			return new Regular(member.getName());
+			return new Regular(member.getName(), member.getImage());
 		}
 		return null;
 	}
