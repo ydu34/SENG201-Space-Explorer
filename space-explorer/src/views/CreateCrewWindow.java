@@ -35,6 +35,7 @@ import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.JList;
 import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class CreateCrewWindow {
 
@@ -230,7 +231,7 @@ public class CreateCrewWindow {
 		CrewMemberToggleButtons.add(tglbtnCrewMember4);
 
 		JTextArea textArea = new JTextArea(currentType.description());
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setLineWrap(true);

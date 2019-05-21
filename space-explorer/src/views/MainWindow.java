@@ -55,7 +55,7 @@ public class MainWindow {
 		frame.getContentPane().setLayout(null);
 
 		JButton btnOutpost = new JButton("Visit outpost");
-		btnOutpost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnOutpost.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnOutpost.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				finishedWindow();
@@ -72,7 +72,7 @@ public class MainWindow {
 				game.launchCrewMemberWindow();
 			}
 		});
-		btnCrew.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnCrew.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnCrew.setBounds(210, 495, 170, 35);
 		frame.getContentPane().add(btnCrew);
 
@@ -104,7 +104,7 @@ public class MainWindow {
 
 			}
 		});
-		btnNextDay.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 15));
+		btnNextDay.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnNextDay.setBounds(400, 495, 170, 35);
 		frame.getContentPane().add(btnNextDay);
 
@@ -195,7 +195,7 @@ public class MainWindow {
 				}
 			}
 		});
-		btnExitGame.setFont(new Font("Dialog", Font.BOLD, 15));
+		btnExitGame.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnExitGame.setBounds(590, 495, 170, 35);
 		frame.getContentPane().add(btnExitGame);
 		
