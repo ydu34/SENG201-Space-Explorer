@@ -114,7 +114,7 @@ public class OutpostWindow {
 		btnInventory.setBounds(399, 515, 148, 25);
 		frame.getContentPane().add(btnInventory);
 		
-		JLabel lblSeeItems = new JLabel("See what is available!");
+		JLabel lblSeeItems = new JLabel("See what is for sale!");
 		lblSeeItems.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeeItems.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblSeeItems.setBounds(50, 97, 290, 30);

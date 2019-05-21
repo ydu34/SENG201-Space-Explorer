@@ -34,6 +34,8 @@ import javax.swing.JToggleButton;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 
@@ -289,25 +291,31 @@ public class CreateCrewWindow {
 		JButton btnSave = new JButton("Save Crew Member");
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				for (JToggleButton button : CrewMemberToggleButtons) {
-					if (button.isSelected()) {
-						if (button.equals(tglbtnCrewMember1)) {
-							crewMember1.setName(tfCMName.getText());
-							crewMember1.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
-						} else if (button.equals(tglbtnCrewMember2)) {
-							crewMember2.setName(tfCMName.getText());
-							crewMember2.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
-						} else if (button.equals(tglbtnCrewMember3)) {
-							crewMember3.setName(tfCMName.getText());
-							crewMember3.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
-						} else if (button.equals(tglbtnCrewMember4)) {
-							crewMember4.setName(tfCMName.getText());
-							crewMember4.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+				String crewMemberName = tfCMName.getText().replaceFirst("\\s++$", "");
+				if (crewMemberName.length() > 14 || crewMemberName.length() < 2 || crewMemberName.isEmpty() || crewMemberName.startsWith(" ")) {
+					lblNotify.setText("");
+					String message = "The length of the name must be between 2 and 14 characters and cannot start with spaces.";
+					JOptionPane.showMessageDialog(frame, message);
+				} else {
+					for (JToggleButton button : CrewMemberToggleButtons) {
+						if (button.isSelected()) {
+							if (button.equals(tglbtnCrewMember1)) {
+								crewMember1.setName(tfCMName.getText());
+								crewMember1.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+							} else if (button.equals(tglbtnCrewMember2)) {
+								crewMember2.setName(tfCMName.getText());
+								crewMember2.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+							} else if (button.equals(tglbtnCrewMember3)) {
+								crewMember3.setName(tfCMName.getText());
+								crewMember3.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+							} else if (button.equals(tglbtnCrewMember4)) {
+								crewMember4.setName(tfCMName.getText());
+								crewMember4.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+							}
 						}
 					}
+					lblNotify.setText("Crew Member profile saved");
 				}
-				lblNotify.setText("Crew Member profile saved");
 			}
 		});
 		btnSave.setBounds(11, 292, 337, 25);
@@ -326,20 +334,26 @@ public class CreateCrewWindow {
 		JButton btnNext = new JButton("Finish Crew Creation");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				game.getShip().setName(textFieldShipName.getText());
-				ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
-				switch (sliderCrewSize.getValue()) {
-				case 4:
-					crewMembers.add(game.createCrewMember(crewMember4));
-				case 3:
-					crewMembers.add(game.createCrewMember(crewMember3));
-				case 2:
-					crewMembers.add(game.createCrewMember(crewMember2));
-					crewMembers.add(game.createCrewMember(crewMember1));
+				String shipName = textFieldShipName.getText().replaceFirst("\\s++$", "");
+				if (shipName.length() > 14 || shipName.length() < 2 || shipName.isEmpty() || shipName.startsWith(" ")) {
+					String message = "The length of the ship name must be between 2 and 14 characters and cannot start with spaces.";
+					JOptionPane.showMessageDialog(frame, message);
+				} else {
+					game.getShip().setName(shipName);
+					ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
+					switch (sliderCrewSize.getValue()) {
+					case 4:
+						crewMembers.add(game.createCrewMember(crewMember4));
+					case 3:
+						crewMembers.add(game.createCrewMember(crewMember3));
+					case 2:
+						crewMembers.add(game.createCrewMember(crewMember2));
+						crewMembers.add(game.createCrewMember(crewMember1));
+					}
+					Collections.reverse(crewMembers);
+					game.getCrew().setCrewMembers(crewMembers);
+					finishedWindow();
 				}
-				Collections.reverse(crewMembers);
-				game.getCrew().setCrewMembers(crewMembers);
-				finishedWindow();
 			}
 		});
 
