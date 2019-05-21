@@ -139,6 +139,7 @@ public class GameEnvironment {
 		initPlanets();
 		generateOutpostsItems();
 	}
+	
 
 	public void initCrewMemberTypes() {
 		crewMemberTypes.add(new Engineer("Engineer"));
@@ -254,7 +255,7 @@ public class GameEnvironment {
 		ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
 		for (CrewMember member : crew.getCrewMembers()) {
 			if (member.isInfected()) {
-				member.setHealth(member.getHealth() - 20);
+				member.decreaseHealth(20);;
 				if (member.isDead()) {
 					returnString += member.getName()
 							+ " has died to the space plague and has been removed from the crew.\n";

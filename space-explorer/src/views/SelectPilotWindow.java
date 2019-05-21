@@ -212,7 +212,7 @@ public class SelectPilotWindow {
 		JButton btnSelectPlanet_1 = new JButton("Select Planet");
 		btnSelectPlanet_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (pilot2.canPilot()) {
+				if (pilot2.canPilot() && pilot1.canPilot()) {
 					game.setChosenCrewMember(pilot1);
 					game.setOtherChosenCrewMember(pilot2);
 					finishedWindow();

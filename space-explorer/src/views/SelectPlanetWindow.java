@@ -89,7 +89,7 @@ public class SelectPlanetWindow {
 		lblEnginePieceAvailable.setBounds(12, 13, 186, 22);
 		panelEnginePiece.add(lblEnginePieceAvailable);
 		
-		JLabel lblPieceAvailableValue = new JLabel();
+		JLabel lblPieceAvailableValue = new JLabel(game.getCrew().getCurrentLocation().planetPieceDetected());
 		lblPieceAvailableValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
 		lblPieceAvailableValue.setBounds(210, 13, 103, 22);
@@ -168,11 +168,11 @@ public class SelectPlanetWindow {
 		btnReturn.setBounds(50, 515, 218, 25);
 		frame.getContentPane().add(btnReturn);
 		
-		JLabel lblNewLabel_1 = new JLabel("Explore a New World!");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel_1.setBounds(0, 0, 795, 60);
-		frame.getContentPane().add(lblNewLabel_1);
+		JLabel lblTitle = new JLabel("Explore a New World!");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblTitle.setBounds(0, 0, 795, 60);
+		frame.getContentPane().add(lblTitle);
 		
 		JSeparator separatorTop = new JSeparator();
 		separatorTop.setBounds(50, 62, 695, 2);
