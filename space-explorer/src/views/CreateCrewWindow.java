@@ -97,7 +97,7 @@ public class CreateCrewWindow {
 		JPanel panelProfile = new JPanel();
 		panelProfile.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-		panelProfile.setBounds(373, 158, 360, 330);
+		panelProfile.setBounds(385, 172, 360, 330);
 		frame.getContentPane().add(panelProfile);
 
 		panelProfile.setLayout(null);
@@ -158,7 +158,7 @@ public class CreateCrewWindow {
 
 		JLabel lblShipName = new JLabel("Ship name:");
 		lblShipName.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
-		lblShipName.setBounds(46, 26, 337, 48);
+		lblShipName.setBounds(50, 26, 337, 48);
 		frame.getContentPane().add(lblShipName);
 
 		textFieldShipName = new JTextField();
@@ -184,7 +184,7 @@ public class CreateCrewWindow {
 			}
 		});
 		tglbtnCrewMember1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember1.setBounds(45, 171, 140, 140);
+		tglbtnCrewMember1.setBounds(50, 185, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember1);
 
 		CrewMemberToggleButtons.add(tglbtnCrewMember1);
@@ -203,7 +203,7 @@ public class CreateCrewWindow {
 		});
 		tglbtnCrewMember2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		tglbtnCrewMember2.setBounds(210, 171, 140, 140);
+		tglbtnCrewMember2.setBounds(215, 185, 145, 145);
 
 		frame.getContentPane().add(tglbtnCrewMember2);
 
@@ -223,7 +223,7 @@ public class CreateCrewWindow {
 		});
 		tglbtnCrewMember3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		tglbtnCrewMember3.setBounds(45, 335, 140, 140);
+		tglbtnCrewMember3.setBounds(50, 349, 145, 145);
 
 		frame.getContentPane().add(tglbtnCrewMember3);
 
@@ -243,7 +243,7 @@ public class CreateCrewWindow {
 		});
 		tglbtnCrewMember4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 
-		tglbtnCrewMember4.setBounds(210, 335, 140, 140);
+		tglbtnCrewMember4.setBounds(215, 349, 145, 145);
 
 		frame.getContentPane().add(tglbtnCrewMember4);
 
@@ -271,11 +271,11 @@ public class CreateCrewWindow {
 
 		JLabel lblCrewSize = new JLabel("Number of Crew Members:");
 		lblCrewSize.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
-		lblCrewSize.setBounds(46, 88, 337, 48);
+		lblCrewSize.setBounds(50, 88, 337, 48);
 		frame.getContentPane().add(lblCrewSize);
 
 		JSlider sliderCrewSize = new JSlider();
-		sliderCrewSize.setFont(new Font("Dialog", Font.BOLD, 15));
+		sliderCrewSize.setFont(new Font("Dialog", Font.BOLD, 16));
 		sliderCrewSize.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				tglbtnCrewMember3.setEnabled(true);
@@ -302,10 +302,11 @@ public class CreateCrewWindow {
 		sliderCrewSize.setMajorTickSpacing(1);
 		sliderCrewSize.setMinimum(2);
 		sliderCrewSize.setMaximum(4);
-		sliderCrewSize.setBounds(385, 79, 310, 67);
+		sliderCrewSize.setBounds(385, 79, 360, 67);
 		frame.getContentPane().add(sliderCrewSize);
 
 		JButton btnSave = new JButton("Save Crew Member");
+		btnSave.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String crewMemberName = tfCMName.getText().replaceFirst("\\s++$", "");
@@ -378,9 +379,13 @@ public class CreateCrewWindow {
 			}
 		});
 
-		btnNext.setBounds(573, 515, 160, 25);
+		btnNext.setBounds(585, 515, 160, 25);
 
 		frame.getContentPane().add(btnNext);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBounds(50, 157, 695, 2);
+		frame.getContentPane().add(separator);
 
 		textFieldShipName.getDocument().addDocumentListener(new DocumentListener() {
 			public void changedUpdate(DocumentEvent e) {

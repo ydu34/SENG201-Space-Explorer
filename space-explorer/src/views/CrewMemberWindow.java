@@ -238,11 +238,11 @@ public class CrewMemberWindow {
 			}
 		});
 		tglbtnCrewMember1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember1.setBounds(50, 130, 140, 140);
+		tglbtnCrewMember1.setBounds(50, 128, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember1);
 
 		tglbtnCrewMember2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember2.setBounds(210, 130, 140, 140);
+		tglbtnCrewMember2.setBounds(210, 128, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember2);
 
 		tglbtnCrewMember3 = new JToggleButton("");
@@ -261,7 +261,7 @@ public class CrewMemberWindow {
 			}
 		});
 		tglbtnCrewMember3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember3.setBounds(50, 290, 140, 140);
+		tglbtnCrewMember3.setBounds(50, 288, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember3);
 
 		tglbtnCrewMember4 = new JToggleButton("");
@@ -279,7 +279,7 @@ public class CrewMemberWindow {
 			}
 		});
 		tglbtnCrewMember4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember4.setBounds(210, 290, 140, 140);
+		tglbtnCrewMember4.setBounds(210, 288, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember4);
 
 		JLabel lblWindowTitle = new JLabel("The Crew Lobby!");

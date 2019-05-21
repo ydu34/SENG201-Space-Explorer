@@ -194,11 +194,11 @@ public class GameEnvironment {
 
 	public String introductionText() {
 		String text = "Your crew is lost in space in a unknown galaxy. "
-				+ "Your spaceship's lightspeed engines are broken and scattered throughout the surrounding planets."
-				+ " You will need to find the missing engine parts of your spaceship so that you can repair it and travel back to Earth."
-				+ " \r\n\r\nEach day you may perform crew member actions."
-				+ " Each crew member has two actions that can be used.\n\n"
-				+ "Use the actions to help you search for the parts."
+				+ "Your spaceship's lightspeed engines are broken and scattered throughout the surrounding planets. "
+				+ "You will need to find the missing engine parts of your spaceship so that you can repair it and travel back to Earth."
+				+ " \r\n\r\nEach day you may perform crew member actions. "
+				+ "Each crew member has two actions that can be used.\n\n"
+				+ "Use the actions to help you search for the parts. "
 				+ "Each planet only has one engine part.";
 		return text;
 	}

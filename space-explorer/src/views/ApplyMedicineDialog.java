@@ -58,11 +58,11 @@ public class ApplyMedicineDialog extends JDialog {
 		}
 
 		// Combo box for the medical items in the crew inventory
-		JComboBox comboBox = new JComboBox(uniqueMedicalItems.toArray());
-		comboBox.setFont(new Font("Dialog", Font.PLAIN, 16));
+		JComboBox comboBoxItems = new JComboBox(uniqueMedicalItems.toArray());
+		comboBoxItems.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
-		comboBox.setBounds(30, 95, 314, 24);
-		contentPanel.add(comboBox);
+		comboBoxItems.setBounds(30, 95, 314, 24);
+		contentPanel.add(comboBoxItems);
 		JButton btnDoSomethingElse = new JButton("Do something else!");
 		btnDoSomethingElse.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,7 +77,7 @@ public class ApplyMedicineDialog extends JDialog {
 		contentPanel.add(btnDoSomethingElse);
 
 		// The current medical item that is selected by the player in the combo box
-		MedicalItem currentItem = (MedicalItem) comboBox.getSelectedItem();
+		MedicalItem currentItem = (MedicalItem) comboBoxItems.getSelectedItem();
 
 		JLabel lblImproveYourHealth = new JLabel("Improve your Health!");
 		lblImproveYourHealth.setHorizontalAlignment(SwingConstants.CENTER);
@@ -93,7 +93,7 @@ public class ApplyMedicineDialog extends JDialog {
 		JButton btnApply = new JButton("Apply");
 		btnApply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String message = game.getChosenCrewMember().useMedicalItem((MedicalItem) comboBox.getSelectedItem(), game.getCrew());
+				String message = game.getChosenCrewMember().useMedicalItem((MedicalItem) comboBoxItems.getSelectedItem(), game.getCrew());
 				setVisible(false);
 				dispose();
 				JOptionPane.showMessageDialog(parent, message);
@@ -107,42 +107,42 @@ public class ApplyMedicineDialog extends JDialog {
 			btnApply.setEnabled(false);
 		}
 
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(30, 132, 314, 208);
-		contentPanel.add(panel);
+		JPanel panelItemDescription = new JPanel();
+		panelItemDescription.setLayout(null);
+		panelItemDescription.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelItemDescription.setBounds(30, 132, 314, 208);
+		contentPanel.add(panelItemDescription);
 
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblStock.setBounds(12, 68, 68, 23);
-		panel.add(lblStock);
+		panelItemDescription.add(lblStock);
 
 		JLabel label = new JLabel("About this item");
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setFont(new Font("Dialog", Font.BOLD, 17));
 		label.setBounds(0, 0, 314, 35);
-		panel.add(label);
+		panelItemDescription.add(label);
 
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblName.setBounds(12, 40, 68, 22);
-		panel.add(lblName);
+		panelItemDescription.add(lblName);
 
 		JLabel lblStockValue = new JLabel();
 		lblStockValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblStockValue.setBounds(79, 68, 227, 23);
-		panel.add(lblStockValue);
+		panelItemDescription.add(lblStockValue);
 
 		JLabel lblNameValue = new JLabel();
 		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblNameValue.setBounds(79, 40, 227, 22);
-		panel.add(lblNameValue);
+		panelItemDescription.add(lblNameValue);
 
 		JLabel lblDescription = new JLabel("Description:");
 		lblDescription.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblDescription.setBounds(12, 95, 136, 23);
-		panel.add(lblDescription);
+		panelItemDescription.add(lblDescription);
 		
 				JTextArea textAreaDescription = new JTextArea((String) null);
 				textAreaDescription.setLineWrap(true);
@@ -151,20 +151,20 @@ public class ApplyMedicineDialog extends JDialog {
 				textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
 				textAreaDescription.setEditable(false);
 				textAreaDescription.setBounds(12, 120, 294, 60);
-				panel.add(textAreaDescription);
+				panelItemDescription.add(textAreaDescription);
 				
 				JLabel lblWarning = new JLabel("This uses up 1 action.");
 				lblWarning.setFont(new Font("Dialog", Font.BOLD, 16));
 				lblWarning.setBounds(12, 180, 290, 22);
-				panel.add(lblWarning);
+				panelItemDescription.add(lblWarning);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(30, 52, 314, 2);
 		contentPanel.add(separator);
 		// Listener for the combo box when the player changes item
-		comboBox.addActionListener(new ActionListener() {
+		comboBoxItems.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				MedicalItem currentItem = (MedicalItem) comboBox.getSelectedItem();
+				MedicalItem currentItem = (MedicalItem) comboBoxItems.getSelectedItem();
 				lblNameValue.setText(currentItem.getName());
 				lblStockValue.setText(Integer.toString(itemFrequency.get(currentItem)));
 				textAreaDescription.setText(currentItem.getDescription());
