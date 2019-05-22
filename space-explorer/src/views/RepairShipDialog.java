@@ -22,13 +22,17 @@ import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
+/**
+ * Represents a dialog that allows crew members to repair the ship.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class RepairShipDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-
 	/**
-	 * Create the dialog.
+	 * Creates the dialog. This includes a panel displaying the ship's shield level and the cost of repairing the ship to the crew member, and buttons to repair or return back to the actions window.
 	 */
 	public RepairShipDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);

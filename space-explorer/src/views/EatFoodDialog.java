@@ -31,12 +31,17 @@ import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
+/**
+ * Represents a dialog object that allows a crew member to consume food items. 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class EatFoodDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Create the dialog.
+	 * Creates the dialog. This includes a combo box to select a food item to consume, a panel displaying the details of selected food item, and a button to consume the selected food item.
 	 */
 	public EatFoodDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, title, true);

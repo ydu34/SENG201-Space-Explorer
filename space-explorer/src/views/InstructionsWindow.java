@@ -12,13 +12,18 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * Represents a window object that 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class InstructionsWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public InstructionsWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -26,16 +31,22 @@ public class InstructionsWindow {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeInstructionsWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a text display of the game instructions, and a continue button to proceed to the game.
 	 */
 	private void initialize() {
 		frame = new JFrame();

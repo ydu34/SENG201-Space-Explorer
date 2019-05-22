@@ -42,6 +42,11 @@ import javax.swing.UIManager;
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * Represents a window object that allows players to purchase items.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class OutpostWindow {
 
 	private JFrame frame;
@@ -49,7 +54,7 @@ public class OutpostWindow {
 	private int totalCost = 0;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public OutpostWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -57,16 +62,22 @@ public class OutpostWindow {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeOutpostWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a combo box of items available to purchase, display of total cost and coins available, a cart list of items selected, a panel displaying the selected item details, buttons to purchase, add to cart, remove from cart, view inventory, and return to ship. 
 	 */
 	private void initialize() {
 		OutpostWindow window = this;

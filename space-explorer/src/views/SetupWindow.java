@@ -14,6 +14,11 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Represents a window object that allows players to choose the game duration.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class SetupWindow{
 
 	private JFrame frmSpaceExplorers;
@@ -21,7 +26,7 @@ public class SetupWindow{
 
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public SetupWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -29,16 +34,22 @@ public class SetupWindow{
 		frmSpaceExplorers.setVisible(true);
 	}
 	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frmSpaceExplorers.dispose();
 	}
 	
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeSetupWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a slider to choose the number of days, and a display of the days chosen with the corresponding number of missing engine pieces to be found, and buttons to go back to the instructions window or proceed to the create crew window.  
 	 */
 	private void initialize() {
 		frmSpaceExplorers = new JFrame();

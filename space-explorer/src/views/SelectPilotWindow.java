@@ -32,6 +32,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
+/**
+ * Represents a window object that allows players to select pilots.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class SelectPilotWindow {
 
 	private JFrame frame;
@@ -41,7 +46,7 @@ public class SelectPilotWindow {
 	private JButton btnSelectPlanet;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public SelectPilotWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -49,16 +54,22 @@ public class SelectPilotWindow {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeSelectPilotWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a panel displaying the cost of piloting the ship to the crew members, two combo boxes to select main pilot and co-pilot, a panel to display the selected crew member's details, and buttons to proceed selecting a new planet or return to actions window.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -271,6 +282,12 @@ public class SelectPilotWindow {
 		});
 	}
 
+	/**
+	 * Creates the display text of the conditions and costs to pilot.
+	 * @param pilot1
+	 * @param pilot2
+	 * @return
+	 */
 	public String pilotInfo(CrewMember pilot1, CrewMember pilot2) {
 		String info;
 		if (pilot1.equals(pilot2)) {

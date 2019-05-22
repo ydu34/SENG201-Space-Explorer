@@ -30,12 +30,17 @@ import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
 
+/**
+ * Represents a dialog object that allows crew members to apply medical items.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class ApplyMedicineDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Create the dialog.
+	 * Creates the apply medicine dialog. This dialog includes a combo box for players to select a medical item, and a text area to show the selected medical item details.
 	 */
 	public ApplyMedicineDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, title, true);
@@ -65,6 +70,7 @@ public class ApplyMedicineDialog extends JDialog {
 		contentPanel.add(comboBox);
 		JButton btnDoSomethingElse = new JButton("Do something else!");
 		btnDoSomethingElse.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
@@ -92,6 +98,7 @@ public class ApplyMedicineDialog extends JDialog {
 
 		JButton btnApply = new JButton("Apply");
 		btnApply.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				String message = game.getChosenCrewMember().useMedicalItem((MedicalItem) comboBox.getSelectedItem(), game.getCrew());
 				setVisible(false);
@@ -158,6 +165,7 @@ public class ApplyMedicineDialog extends JDialog {
 		contentPanel.add(separator);
 		// Listener for the combo box when the player changes item
 		comboBox.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				MedicalItem currentItem = (MedicalItem) comboBox.getSelectedItem();
 				lblNameValue.setText(currentItem.getName());

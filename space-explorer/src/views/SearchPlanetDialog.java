@@ -24,12 +24,17 @@ import javax.swing.border.TitledBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
+/**
+ * Represents a dialog that allows crew members to search the current planet.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class SearchPlanetDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Create the dialog.
+	 * Creates the dialog. This includes a panel displaying the planet details and the cost of searching the planet to the crew members, and buttons to search or return to the actions window.
 	 */
 	public SearchPlanetDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);

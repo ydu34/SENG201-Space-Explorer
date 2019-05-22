@@ -22,12 +22,17 @@ import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
+/**
+ * Represents a dialog object that allows crew members to sleep.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class SleepDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Create the dialog.
+	 * Creates the dialog. This includes a panel displaying the details of sleep action, and buttons to sleep or return to the actions window.
 	 */
 	public SleepDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);

@@ -13,6 +13,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
 
+/**
+ * Represents a window object that allows players to see their final score.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class GameOverWindow {
 
 	private JFrame frame;
@@ -27,17 +32,23 @@ public class GameOverWindow {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeGameOverWindow(this);
 	}
 
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame. This includes a message of the game situation, a score display, an exit button and a play again button.
 	 */
 	private void initialize() {
 		frame = new JFrame();

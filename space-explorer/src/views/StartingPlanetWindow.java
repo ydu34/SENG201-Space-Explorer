@@ -14,13 +14,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 
+/**
+ * Represents a window object that allows players to select a starting planet.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class StartingPlanetWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public StartingPlanetWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -28,16 +33,22 @@ public class StartingPlanetWindow {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeStartingPlanetWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a combo box of planets available to choose, an image of the planet, and buttons to go back to the crew creating window or start the game.
 	 */
 	private void initialize() {
 		frame = new JFrame();

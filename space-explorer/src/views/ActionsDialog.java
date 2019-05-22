@@ -17,13 +17,18 @@ import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 import javax.swing.JSeparator;
 
+/**
+ * Represents a dialog object that allows the selected crew member to perform actions. 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class ActionsDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private GameEnvironment game;
 
 	/**
-	 * Create the dialog.
+	 * Creates the action dialog. This includes a list of action buttons for players to choose. 
 	 */
 	public ActionsDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, title, true);
@@ -43,7 +48,10 @@ public class ActionsDialog extends JDialog {
 		JButton btnEatFood = new JButton("Eat Food");
 		btnEatFood.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnEatFood.addActionListener(new ActionListener() {
-
+			
+			/**
+			 * Sets the dialog visibility to false and opens a dialog that allows the crew member to consume a food item.
+			 */
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
@@ -73,6 +81,7 @@ public class ActionsDialog extends JDialog {
 		JButton btnRepairShip = new JButton("Repair ship shields");
 		btnRepairShip.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnRepairShip.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				dispose();
@@ -100,6 +109,7 @@ public class ActionsDialog extends JDialog {
 		JButton btnPilotShip = new JButton("Pilot the ship");
 		btnPilotShip.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnPilotShip.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent arg0) {
 				parentWindow.finishedWindow();
 				game.launchSelectPilotWindow();
@@ -111,6 +121,7 @@ public class ActionsDialog extends JDialog {
 		JButton btnSleep = new JButton("Sleep");
 		btnSleep.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnSleep.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();

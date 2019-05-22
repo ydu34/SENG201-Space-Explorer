@@ -40,6 +40,11 @@ import javax.swing.JTable;
 import javax.swing.JList;
 import java.awt.SystemColor;
 
+/**
+ * Represents a window object that allows players to choose and personalize crew members.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class CreateCrewWindow {
 
 	private JFrame frame;
@@ -53,7 +58,7 @@ public class CreateCrewWindow {
 	private JComboBox cBoxTrait;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public CreateCrewWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -61,16 +66,22 @@ public class CreateCrewWindow {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeCreateCrewWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the this window. This window includes a text field for ship name input, a slider for choosing the number of crew members, and four numbered buttons for players to personalize each of the crew members.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -165,6 +176,7 @@ public class CreateCrewWindow {
 
 		JToggleButton tglbtnCrewMember1 = new JToggleButton("1", true);
 		tglbtnCrewMember1.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -181,6 +193,7 @@ public class CreateCrewWindow {
 
 		JToggleButton tglbtnCrewMember2 = new JToggleButton("2");
 		tglbtnCrewMember2.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -199,6 +212,7 @@ public class CreateCrewWindow {
 
 		JToggleButton tglbtnCrewMember3 = new JToggleButton("3");
 		tglbtnCrewMember3.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -217,6 +231,7 @@ public class CreateCrewWindow {
 
 		JToggleButton tglbtnCrewMember4 = new JToggleButton("4");
 		tglbtnCrewMember4.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -244,6 +259,7 @@ public class CreateCrewWindow {
 
 		// The listener for the combo box
 		cBoxTrait.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent arg0) {
 				CrewMember currentType = (CrewMember) cBoxTrait.getSelectedItem();
 				lblHealthValue_1.setText(currentType.getHealth() + "/" + currentType.getMaxHealth());
@@ -261,6 +277,7 @@ public class CreateCrewWindow {
 		JSlider sliderCrewSize = new JSlider();
 		sliderCrewSize.setFont(new Font("Dialog", Font.BOLD, 15));
 		sliderCrewSize.addChangeListener(new ChangeListener() {
+			
 			public void stateChanged(ChangeEvent e) {
 				tglbtnCrewMember3.setEnabled(true);
 				tglbtnCrewMember4.setEnabled(true);
@@ -291,6 +308,7 @@ public class CreateCrewWindow {
 
 		JButton btnSave = new JButton("Save Crew Member");
 		btnSave.addActionListener(new ActionListener() {
+	
 			public void actionPerformed(ActionEvent e) {
 
 				for (JToggleButton button : CrewMemberToggleButtons) {
@@ -328,6 +346,7 @@ public class CreateCrewWindow {
 
 		JButton btnNext = new JButton("Finish Crew Creation");
 		btnNext.addActionListener(new ActionListener() {
+			
 			public void actionPerformed(ActionEvent e) {
 				game.getShip().setName(textFieldShipName.getText());
 				ArrayList<CrewMember> crewMembers = new ArrayList<CrewMember>();
@@ -351,6 +370,7 @@ public class CreateCrewWindow {
 		frame.getContentPane().add(btnNext);
 
 		textFieldShipName.getDocument().addDocumentListener(new DocumentListener() {
+
 			public void changedUpdate(DocumentEvent e) {
 				enableButton();
 			}
@@ -373,6 +393,11 @@ public class CreateCrewWindow {
 		});
 	}
 	
+	/**
+	 * Updates the crew member profile details according to the crew member number button selected.
+	 * @param toggleButton   A JToggleButton object.
+	 * @param crewMember     A CrewMember object.
+	 */
 	public void updateProfile(JToggleButton toggleButton, CrewMember crewMember) {
 		toggleButton.setSelected(true);
 		tfCMName.setText(crewMember.getName());

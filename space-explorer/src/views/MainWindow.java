@@ -19,6 +19,11 @@ import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 import javax.swing.JSeparator;
 
+/**
+ * Represents the main window that allows players to play the game.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class MainWindow {
 
 	private JFrame frame;
@@ -26,7 +31,7 @@ public class MainWindow {
 	private JLabel lblDayValue;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public MainWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -34,16 +39,22 @@ public class MainWindow {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeMainWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame. This includes a photo of the current planet, a panel displaying the current game details, and buttons to visit outpost, view crew, move on to the next day, and exit game.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -207,6 +218,9 @@ public class MainWindow {
 		frame.getContentPane().add(separator_1);
 	}
 	
+	/**
+	 * Updates the current day number on the main window. 
+	 */
 	public void updateScreen() {
 		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
 	}

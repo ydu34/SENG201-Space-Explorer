@@ -30,14 +30,18 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
 
+/**
+ * Represents a window object that allows players to view the details of each item in the inventory.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class InventoryWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
 	
-
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public InventoryWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -45,16 +49,22 @@ public class InventoryWindow {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeInventoryWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a list of inventory, a panel displaying the details of the selected item, a display of the coins available, and a button to return to the outpost.
 	 */
 	private void initialize() {
 		frame = new JFrame();

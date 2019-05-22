@@ -10,6 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
+/**
+ * Represents a window object that allows players to start or quit the game.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class StartWindow {
 
 	private JFrame frame;
@@ -17,7 +22,7 @@ public class StartWindow {
 	
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public StartWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -25,16 +30,22 @@ public class StartWindow {
 		frame.setVisible(true);
 	}
 	
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 	
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeStartWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a button to start the game and a button to quit the game.
 	 */
 	private void initialize() {
 		frame = new JFrame();

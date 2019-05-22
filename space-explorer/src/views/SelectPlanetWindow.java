@@ -24,6 +24,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
+/**
+ * Represents a window object that allows players to select a new planet to pilot to.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class SelectPlanetWindow {
 
 	private JFrame frame;
@@ -32,7 +37,7 @@ public class SelectPlanetWindow {
 	private CrewMember pilot2;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public SelectPlanetWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -40,16 +45,22 @@ public class SelectPlanetWindow {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeSelectPlanetWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initializes the contents of the frame. This includes a list of planets available to choose from, and a panel that displays if any engine pieces are detected on the selected planet, and buttons to pilot or return to the actions window.
 	 */
 	private void initialize() {
 		frame = new JFrame();

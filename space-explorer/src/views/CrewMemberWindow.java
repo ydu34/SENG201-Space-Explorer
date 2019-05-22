@@ -26,6 +26,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
 
+/**
+ * Represents a window object that allows players to view each of the crew members' details and perform actions.
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
 public class CrewMemberWindow {
 
 	private JFrame frame;
@@ -42,7 +47,7 @@ public class CrewMemberWindow {
 	private JButton btnPerformAction;
 
 	/**
-	 * Create the application.
+	 * Creates the window application.
 	 */
 	public CrewMemberWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -50,16 +55,22 @@ public class CrewMemberWindow {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Closes the window.
+	 */
 	public void closeWindow() {
 		frame.dispose();
 	}
 
+	/**
+	 * Calls the close window method in game environment.
+	 */
 	public void finishedWindow() {
 		game.closeCrewMemberWindow(this);
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Initialize the contents of the frame. This includes four numbered buttons for players to view the details of each crew member, and an action button to allow the selected crew member to perform actions.
 	 */
 	private void initialize() {
 		CrewMemberWindow window = this;
@@ -301,6 +312,10 @@ public class CrewMemberWindow {
 
 	}
 
+	/**
+	 * Updates the profile details of crew members.
+	 * @param crewMember   A CrewMember object.
+	 */
 	public void updateProfile(CrewMember crewMember) {
 
 		lblNameValue.setText(crewMember.getName());
