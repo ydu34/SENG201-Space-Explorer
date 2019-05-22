@@ -47,6 +47,7 @@ public class OutpostWindow {
 	private JFrame frame;
 	private GameEnvironment game;
 	private int totalCost = 0;
+	private Item currentItem;
 
 	/**
 	 * Create the application.
@@ -99,7 +100,7 @@ public class OutpostWindow {
 		JComboBox comboBoxItems = new JComboBox(uniqueOutpostItems.toArray());
 		comboBoxItems.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		// The current item that is selected by the player in the combo box
-		Item currentItem = (Item) comboBoxItems.getSelectedItem();
+		currentItem = (Item) comboBoxItems.getSelectedItem();
 		comboBoxItems.setBounds(50, 132, 290, 30);
 		frame.getContentPane().add(comboBoxItems);
 		
@@ -331,6 +332,7 @@ public class OutpostWindow {
 							currentSpaceOutpost.purchaseFoodItem(currentItem, game.getCrew());
 						}
 					}
+					currentItem = (Item) comboBoxItems.getSelectedItem();
 					lblMoney.setText(Integer.toString(game.getCrew().getMoney()));
 					totalCost = 0;
 					lblTotalCostValue.setText(Integer.toString(totalCost));
@@ -347,4 +349,6 @@ public class OutpostWindow {
 		});
 		
 	}
+	
+	
 }
