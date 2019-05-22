@@ -13,6 +13,7 @@ import javax.swing.event.ChangeListener;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
 
 public class SetupWindow{
 
@@ -64,19 +65,19 @@ public class SetupWindow{
 		daysSlider.setMajorTickSpacing(1);
 		daysSlider.setMinimum(3);
 		daysSlider.setMaximum(10);
-		daysSlider.setBounds(41, 104, 702, 56);
+		daysSlider.setBounds(45, 100, 707, 56);
 		frmSpaceExplorers.getContentPane().add(daysSlider);
 		
 		JLabel lblPieces = new JLabel("Missing Pieces");
 		lblPieces.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblPieces.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPieces.setBounds(41, 344, 702, 56);
+		lblPieces.setBounds(48, 344, 702, 56);
 		frmSpaceExplorers.getContentPane().add(lblPieces);
 		
 		lblPiecesNum.setText("" + daysSlider.getValue() * 2 / 3);
 		lblPiecesNum.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPiecesNum.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblPiecesNum.setBounds(41, 424, 702, 56);
+		lblPiecesNum.setBounds(48, 424, 702, 56);
 		frmSpaceExplorers.getContentPane().add(lblPiecesNum);
 		
 		JButton btnNext = new JButton("Next");
@@ -88,13 +89,13 @@ public class SetupWindow{
 				game.launchCreateCrewWindow();
 			}
 		});
-		btnNext.setBounds(650, 504, 126, 33);
+		btnNext.setBounds(619, 514, 126, 33);
 		frmSpaceExplorers.getContentPane().add(btnNext);
 		
-		JLabel lblSelectTheNumber = new JLabel("Select the number of days the game will last");
-		lblSelectTheNumber.setFont(new Font("Dialog", Font.BOLD, 18));
+		JLabel lblSelectTheNumber = new JLabel("Select Game Duration\n");
+		lblSelectTheNumber.setFont(new Font("Dialog", Font.BOLD, 30));
 		lblSelectTheNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectTheNumber.setBounds(41, 24, 702, 56);
+		lblSelectTheNumber.setBounds(0, 0, 795, 60);
 		frmSpaceExplorers.getContentPane().add(lblSelectTheNumber);
 		
 		JButton btnBack = new JButton("Back");
@@ -104,21 +105,29 @@ public class SetupWindow{
 				game.launchInstructionsWindow();
 			}
 		});
-		btnBack.setBounds(10, 504, 126, 33);
+		btnBack.setBounds(50, 514, 126, 33);
 		frmSpaceExplorers.getContentPane().add(btnBack);
 		
 		JLabel lblDaysText = new JLabel("Game Duration (days)");
 		lblDaysText.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDaysText.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblDaysText.setBounds(41, 184, 702, 56);
+		lblDaysText.setBounds(48, 184, 702, 56);
 		frmSpaceExplorers.getContentPane().add(lblDaysText);
 		
 		
 		lblDays.setText("" + daysSlider.getValue());
 		lblDays.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDays.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblDays.setBounds(41, 264, 702, 56);
+		lblDays.setBounds(48, 264, 702, 56);
 		frmSpaceExplorers.getContentPane().add(lblDays);
+		
+		JSeparator separatorBottom = new JSeparator();
+		separatorBottom.setBounds(50, 503, 695, 2);
+		frmSpaceExplorers.getContentPane().add(separatorBottom);
+		
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(50, 62, 695, 2);
+		frmSpaceExplorers.getContentPane().add(separatorTop);
 		
 	}
 }

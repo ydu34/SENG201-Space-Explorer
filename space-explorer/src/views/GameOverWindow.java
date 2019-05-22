@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
+import javax.swing.UIManager;
 
 public class GameOverWindow {
 
@@ -86,7 +87,7 @@ public class GameOverWindow {
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setEditable(false);
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 30));
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);

@@ -30,6 +30,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
 import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 public class CrewMemberWindow {
 
@@ -121,7 +122,7 @@ public class CrewMemberWindow {
 		panelProfile.add(lblFatigue);
 
 		textAreaDescription = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
-		textAreaDescription.setBackground(SystemColor.menu);
+		textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
 		textAreaDescription.setEditable(false);
 		textAreaDescription.setWrapStyleWord(true);
 		textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
@@ -175,6 +176,7 @@ public class CrewMemberWindow {
 		lblStatusValue.setText(crewMember.getStatus());
 		lblActionsValue.setText(crewMember.getActionsLeft() + "/" + crewMember.getMaxActions());
 		textAreaDescription.setText(crewMember.description());
+		
 
 		JLabel lblActions = new JLabel("Actions");
 		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -224,6 +226,8 @@ public class CrewMemberWindow {
 		});
 
 		tglbtnCrewMember1 = new JToggleButton("", true);
+		Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+		tglbtnCrewMember1.setBorder(solidBorder);
 		tglbtnCrewMember1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {

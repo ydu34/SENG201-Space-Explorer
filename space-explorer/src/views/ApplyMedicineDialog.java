@@ -29,6 +29,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 public class ApplyMedicineDialog extends JDialog {
 
@@ -146,7 +147,7 @@ public class ApplyMedicineDialog extends JDialog {
 		
 				JTextArea textAreaDescription = new JTextArea((String) null);
 				textAreaDescription.setLineWrap(true);
-				textAreaDescription.setBackground(SystemColor.menu);
+				textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
 				textAreaDescription.setWrapStyleWord(true);
 				textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
 				textAreaDescription.setEditable(false);

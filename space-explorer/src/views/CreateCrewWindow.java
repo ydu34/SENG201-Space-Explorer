@@ -157,7 +157,7 @@ public class CreateCrewWindow {
 		panelProfile.add(cBoxTrait);
 
 		JLabel lblShipName = new JLabel("Ship name:");
-		lblShipName.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
+		lblShipName.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblShipName.setBounds(50, 26, 337, 48);
 		frame.getContentPane().add(lblShipName);
 
@@ -270,7 +270,7 @@ public class CreateCrewWindow {
 		});
 
 		JLabel lblCrewSize = new JLabel("Number of Crew Members:");
-		lblCrewSize.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 20));
+		lblCrewSize.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblCrewSize.setBounds(50, 88, 337, 48);
 		frame.getContentPane().add(lblCrewSize);
 
@@ -379,7 +379,7 @@ public class CreateCrewWindow {
 			}
 		});
 
-		btnNext.setBounds(585, 515, 160, 25);
+		btnNext.setBounds(553, 515, 192, 25);
 
 		frame.getContentPane().add(btnNext);
 		

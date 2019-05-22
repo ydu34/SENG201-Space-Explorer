@@ -115,66 +115,66 @@ public class MainWindow {
 		panel.setLayout(null);
 
 		JLabel lblDay = new JLabel("Day:");
-		lblDay.setBounds(12, 23, 137, 31);
+		lblDay.setBounds(12, 23, 138, 31);
 		panel.add(lblDay);
-		lblDay.setFont(new Font("Dialog", Font.BOLD, 17));
+		lblDay.setFont(new Font("Dialog", Font.BOLD, 16));
 
 		lblDayValue = new JLabel(game.getCurrentDay() + "/" + game.getGameDuration());
-		lblDayValue.setBounds(143, 23, 169, 31);
+		lblDayValue.setBounds(158, 23, 154, 31);
 		panel.add(lblDayValue);
 		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
 		lblDayValue.setFont(new Font("Dialog", Font.PLAIN, 17));
 
 		JLabel lblShip = new JLabel("Ship: \r\n");
-		lblShip.setBounds(12, 239, 137, 31);
+		lblShip.setBounds(12, 239, 138, 31);
 		panel.add(lblShip);
-		lblShip.setFont(new Font("Dialog", Font.BOLD, 17));
+		lblShip.setFont(new Font("Dialog", Font.BOLD, 16));
 
 		JLabel lblShipName = new JLabel(game.getShip().getName());
-		lblShipName.setBounds(143, 239, 169, 31);
+		lblShipName.setBounds(158, 239, 154, 31);
 		panel.add(lblShipName);
 		lblShipName.setFont(new Font("Dialog", Font.PLAIN, 17));
 
-		JLabel lblPiecesFound = new JLabel("Pieces found:");
-		lblPiecesFound.setBounds(12, 77, 137, 31);
+		JLabel lblPiecesFound = new JLabel("Parts found:");
+		lblPiecesFound.setBounds(12, 77, 138, 31);
 		panel.add(lblPiecesFound);
-		lblPiecesFound.setFont(new Font("Dialog", Font.BOLD, 17));
+		lblPiecesFound.setFont(new Font("Dialog", Font.BOLD, 16));
 
 		JLabel lblPiecesFoundValue = new JLabel(
 				game.getShip().getPiecesFound() + "/" + game.getShip().getPiecesNeeded());
-		lblPiecesFoundValue.setBounds(143, 77, 169, 31);
+		lblPiecesFoundValue.setBounds(158, 77, 154, 31);
 		panel.add(lblPiecesFoundValue);
 		lblPiecesFoundValue.setFont(new Font("Dialog", Font.PLAIN, 17));
 
 		JLabel lblShieldLevel = new JLabel("Shield Level:");
-		lblShieldLevel.setBounds(12, 293, 137, 31);
+		lblShieldLevel.setBounds(12, 293, 138, 31);
 		panel.add(lblShieldLevel);
-		lblShieldLevel.setFont(new Font("Dialog", Font.BOLD, 17));
+		lblShieldLevel.setFont(new Font("Dialog", Font.BOLD, 16));
 
 		JLabel lblShipLevelValue = new JLabel(
 				game.getShip().getShieldLevel() + "/" + game.getShip().getMaxShieldLevel());
-		lblShipLevelValue.setBounds(143, 293, 169, 31);
+		lblShipLevelValue.setBounds(158, 293, 154, 31);
 		panel.add(lblShipLevelValue);
 		lblShipLevelValue.setFont(new Font("Dialog", Font.PLAIN, 17));
 
 		JLabel lblPlanet = new JLabel("Planet:");
-		lblPlanet.setFont(new Font("Dialog", Font.BOLD, 17));
-		lblPlanet.setBounds(12, 131, 137, 31);
+		lblPlanet.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblPlanet.setBounds(12, 131, 138, 31);
 		panel.add(lblPlanet);
 
 		JLabel lblPlanetName = new JLabel(game.getCrew().getCurrentLocation().getName());
-		lblPlanetName.setBounds(143, 131, 169, 31);
+		lblPlanetName.setBounds(158, 131, 154, 31);
 		panel.add(lblPlanetName);
 		lblPlanetName.setFont(new Font("Dialog", Font.PLAIN, 17));
 		
-		JLabel lblPieceDetected = new JLabel("Piece detected:");
-		lblPieceDetected.setFont(new Font("Dialog", Font.BOLD, 17));
-		lblPieceDetected.setBounds(12, 185, 151, 31);
+		JLabel lblPieceDetected = new JLabel("Part detected:");
+		lblPieceDetected.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblPieceDetected.setBounds(12, 185, 138, 31);
 		panel.add(lblPieceDetected);
 		
 		JLabel lblPieceDetectedValue = new JLabel(game.getCrew().getCurrentLocation().planetPieceDetected());
 		lblPieceDetectedValue.setFont(new Font("Dialog", Font.PLAIN, 17));
-		lblPieceDetectedValue.setBounds(143, 185, 169, 31);
+		lblPieceDetectedValue.setBounds(158, 185, 154, 31);
 		panel.add(lblPieceDetectedValue);
 		
 		JSeparator separator1 = new JSeparator();

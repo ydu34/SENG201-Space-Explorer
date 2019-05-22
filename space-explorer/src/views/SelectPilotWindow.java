@@ -81,7 +81,7 @@ public class SelectPilotWindow {
 		game.setOtherChosenCrewMember(pilot2);
 
 		JTextArea textAreaPilotInfo = new JTextArea();
-		textAreaPilotInfo.setBackground(SystemColor.menu);
+		textAreaPilotInfo.setBackground(UIManager.getColor("Menu.background"));
 		textAreaPilotInfo.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
 		String info = pilotInfo(pilot1, pilot2);
 		textAreaPilotInfo.setText(info);
@@ -140,7 +140,7 @@ public class SelectPilotWindow {
 		panel.add(lblFatigue);
 
 		JTextArea textArea = new JTextArea(pilot1.description());
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
@@ -217,8 +217,14 @@ public class SelectPilotWindow {
 					game.setOtherChosenCrewMember(pilot2);
 					finishedWindow();
 					game.launchSelectPlanetWindow();
-				} else {
+				} else if (!(pilot1.canPilot())&& !(pilot2.canPilot())) {
+					String message = pilot1 + " and " + pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
+					JOptionPane.showMessageDialog(frame, message);
+				} else if (!(pilot2.canPilot())) {
 					String message = pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
+					JOptionPane.showMessageDialog(frame, message);
+				} else if (!(pilot1.canPilot())) {
+					String message = pilot1 + " does not have the required actions, fatigue, or hunger to pilot!";
 					JOptionPane.showMessageDialog(frame, message);
 				}
 			}

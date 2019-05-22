@@ -30,6 +30,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 public class EatFoodDialog extends JDialog {
 
@@ -112,7 +113,7 @@ public class EatFoodDialog extends JDialog {
 		contentPanel.add(panel);
 		
 		JTextArea textArea = new JTextArea((String) null);
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));

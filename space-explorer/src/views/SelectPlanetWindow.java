@@ -26,6 +26,7 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 public class SelectPlanetWindow {
 
@@ -84,7 +85,7 @@ public class SelectPlanetWindow {
 		frame.getContentPane().add(panelEnginePiece);
 		panelEnginePiece.setLayout(null);
 		
-		JLabel lblEnginePieceAvailable = new JLabel("Engine piece detected:");
+		JLabel lblEnginePieceAvailable = new JLabel("Part detected:");
 		lblEnginePieceAvailable.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblEnginePieceAvailable.setBounds(12, 13, 186, 22);
 		panelEnginePiece.add(lblEnginePieceAvailable);
@@ -143,7 +144,7 @@ public class SelectPlanetWindow {
 
 			}
 		});
-		listPlanets.setBackground(SystemColor.menu);
+		listPlanets.setBackground(UIManager.getColor("Menu.background"));
 		listPlanets.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		listPlanets.setBounds(34, 58, 256, 327);
 		panelSelectPlanet.add(listPlanets);
