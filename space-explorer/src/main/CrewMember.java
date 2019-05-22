@@ -10,17 +10,18 @@ import java.util.concurrent.ThreadLocalRandom;
 public class CrewMember {
 	private String name;
 	private String type;
-	private String status = "Normal";
-	private int health = 100;
-	private int maxHealth = 100;
-	private int hunger = 100;
-	private int maxHunger = 100;
-	private int fatigue = 0;
-	private int maxFatigue = 100;
-	private int actionsLeft = 2;
-	private int maxActions = 2;
-	private boolean infected = false;
-	private boolean dead = false; 
+	private String status;
+	private String image; 
+	private int health;
+	private int maxHealth;
+	private int hunger;
+	private int maxHunger;
+	private int fatigue;
+	private int maxFatigue;
+	private int actionsLeft;
+	private int maxActions;
+	private boolean infected;
+	private boolean dead; 
 	private int repairFatigueCost;
 	private int repairHungerCost;
 	private int pilotFatigueCost;
@@ -28,31 +29,35 @@ public class CrewMember {
 	private int searchFatigueCost;
 	private int searchHungerCost;
 	
+
 	/**
 	 * Creates a crew member with the given values.
 	 * @param name  A string name of the crew member.
 	 * @param type  A string type of the crew member.
 	 */
-	public CrewMember(String name, String type) {
+
+	public CrewMember(String name, String type, String image) {
 		this.name = name;
 		this.type = type;
-		this.status = "";
-		this.maxHealth = 100;
+		this.status = "Normal";
 		this.health = 100;
-		this.maxHunger = 100;
+		this.maxHealth = 100;
 		this.hunger = 0;
-		this.maxFatigue = 100;
+		this.maxHunger = 100;
 		this.fatigue = 0;
-		this.maxActions = 2;
+		this.maxFatigue = 100;
 		this.actionsLeft = 2;
+		this.maxActions = 2;
 		this.infected = false;
 		this.dead = false;
 		this.repairFatigueCost = 10;
 		this.repairHungerCost = 10;
 		this.pilotFatigueCost = 10;
-		this.pilotHungerCost = 10;	
+		this.pilotHungerCost = 10;
 		this.searchFatigueCost = 20;
 		this.searchHungerCost = 20;
+		this.image = image;
+		
 	}
 	
 	/**
@@ -65,10 +70,10 @@ public class CrewMember {
 	 * @param maxFatigue   An int of the maximum fatigue level.
 	 * @param maxActions   An int of the maximum actions allowed.
 	 */
-	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
+	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
 		this.name = name;
 		this.type = type;
-		this.status = status;
+		this.status = "Normal";
 		this.maxHealth = maxHealth;
 		this.health = maxHealth;
 		this.maxHunger = maxHunger;
@@ -82,9 +87,10 @@ public class CrewMember {
 		this.repairFatigueCost = 10;
 		this.repairHungerCost = 10;
 		this.pilotFatigueCost = 10;
-		this.pilotHungerCost = 10;	
+		this.pilotHungerCost = 10;
 		this.searchFatigueCost = 20;
 		this.searchHungerCost = 20;
+		this.image = image;
 	}
 	
 	/**
@@ -103,11 +109,11 @@ public class CrewMember {
 	 * @param searchFatigueCost   An int of the fatigue cost when the crew member searches the planet.
 	 * @param searchHungerCost    An int of the hunger cost when the crew member searches the planet.
 	 */
-	public CrewMember(String name, String type, String status, int maxHealth, int maxHunger, int maxFatigue, int maxActions, 
+	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue, int maxActions, 
 			int repairFatigueCost, int repairHungerCost, int pilotFatigueCost, int pilotHungerCost, int searchFatigueCost, int searchHungerCost) {
 		this.name = name;
 		this.type = type;
-		this.status = status;
+		this.status = "Normal";
 		this.maxHealth = maxHealth;
 		this.health = maxHealth;
 		this.maxHunger = maxHunger;
@@ -118,12 +124,13 @@ public class CrewMember {
 		this.actionsLeft = maxActions;
 		this.infected = false;
 		this.dead = false;
-		this.repairFatigueCost = 10;
-		this.repairHungerCost = 10;
-		this.pilotFatigueCost = 10;
-		this.pilotHungerCost = 10;	
-		this.searchFatigueCost = 20;
-		this.searchHungerCost = 20;
+		this.repairFatigueCost = repairFatigueCost;
+		this.repairHungerCost = repairHungerCost;
+		this.pilotFatigueCost = pilotFatigueCost;
+		this.pilotHungerCost = pilotHungerCost;	
+		this.searchFatigueCost = searchFatigueCost;
+		this.searchHungerCost = searchHungerCost;
+		this.image = image;
 	}
 	
 	/**
@@ -149,13 +156,10 @@ public class CrewMember {
 	 * @return A string message of the crew member's updated hunger level.
 	 */
 	public String eat(FoodItem item, Crew crew) {
-		hunger -= item.getRestoreHungerAmount();
-		if (hunger < 0) {
-			hunger = 0;
-		}
+		decreaseHunger(item.getRestoreHungerAmount());
 		crew.getFoodItems().remove(item);
 		actionsLeft -= 1;
-		return name + " now has " + hunger + ".";
+		return name + " now has " + hunger + "/" + maxHunger  + " hunger.";
 	}
 	
 	/**
@@ -166,11 +170,8 @@ public class CrewMember {
 	 */
 	public String useMedicalItem(MedicalItem item, Crew crew) {
 		String returnString = "";
-		health += item.getRestoreHealthAmount();
-		if (health > maxHealth) {
-			health = maxHealth;
-		}
-		returnString += name + " now has " + health + "/" + maxHealth + "health.\n";
+		increaseHealth(item.getRestoreHealthAmount());
+		returnString += name + " now has " + health + "/" + maxHealth + " health.\n";
 		if (item.isRemovePlague()) {
 			infected = false;
 			status = "Normal";
@@ -187,10 +188,7 @@ public class CrewMember {
 	 */	
 	public String sleep() {
 		int previousFatigue = fatigue;
-		fatigue -= 20;
-		if (fatigue < 0) {
-			fatigue = 0;
-		}
+		decreaseFatigue(30);
 		int fatigueRecovered = previousFatigue - fatigue;
 		actionsLeft-=1;
 		return name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + "/" + maxFatigue + " fatigue.";
@@ -214,7 +212,8 @@ public class CrewMember {
 		if (fatigue + repairFatigueCost  <= maxFatigue && hunger + repairHungerCost <= maxHunger) {
 			ship.increaseShieldLevel(10);
 			actionsLeft-=1;
-			setFatigue(fatigue + repairFatigueCost);
+			increaseFatigue(repairFatigueCost);
+			increaseHunger(repairHungerCost);
 			returnString += ship.getName() +"'s shields is at " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
 		}
 		return returnString;
@@ -244,10 +243,10 @@ public class CrewMember {
 		}
 		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost 
 				&& hunger <= maxHunger - pilotHungerCost && other.hunger <= other.maxHunger - other.pilotHungerCost) {
-			setFatigue(fatigue + pilotFatigueCost);
-			other.setFatigue(other.fatigue + other.pilotFatigueCost);
-			setHunger(hunger + pilotHungerCost);
-			other.setHunger(other.hunger + other.pilotHungerCost);
+			increaseFatigue(pilotFatigueCost);
+			other.increaseFatigue(other.pilotFatigueCost);
+			increaseHunger(pilotHungerCost);
+			other.increaseHunger(other.pilotHungerCost);
 			actionsLeft -= 1;
 			other.actionsLeft -=1;
 			crew.setCurrentLocation(planet);
@@ -263,7 +262,7 @@ public class CrewMember {
 	 * @param ship           A Ship object.
 	 * @return A string message of what was found.
 	 */
-	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew, Ship ship) {
+	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew) {
 		String returnString = "";
 		if (fatigue + searchFatigueCost  > maxFatigue) {
 			returnString += name + " is too tired to search the planet.\n";
@@ -273,27 +272,28 @@ public class CrewMember {
 		}
 		if (fatigue + searchFatigueCost  <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-			if (randomNum >= 0 && randomNum < 20 && crew.getCurrentLocation().isPieceDetected()) {
-				returnString += name + " has found a ship piece!\n";
+			if (randomNum >= 0 && randomNum < 30 && crew.getCurrentLocation().isPieceDetected()) {
+				returnString += name + " has found a engine piece!\n";
+				crew.getShip().foundPiece();
+				returnString += "Pieces found: " + crew.getShip().getPiecesFound() + "/" + crew.getShip().getPiecesNeeded() + ".";
 				crew.getCurrentLocation().setPieceDetected(false);
-				ship.foundPiece();
-			} else if (randomNum >= 20 && randomNum < 35) {
+			} else if (randomNum >= 30 && randomNum < 50) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
 				crew.getMedicalItems().add(medicalItems.get(randomNum));
 				returnString += name + " has found a medical item " + medicalItems.get(randomNum) + "!\n";
-			} else if (randomNum >= 35 && randomNum < 50) {
+			} else if (randomNum >= 50 && randomNum < 70) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
 				crew.getFoodItems().add(foodItems.get(randomNum));
 				returnString += name + " has found a food item " + foodItems.get(randomNum) + "!\n";
-			} else if (randomNum >= 50 && randomNum < 65) {
+			} else if (randomNum >= 70 && randomNum < 90) {
 				int amount = 50;
 				crew.increaseMoney(amount);
 				returnString += name + "has found " + amount + " Coins.\n";
 			} else {
 				returnString += name + " has found nothing.\n";
 			}
-			fatigue += searchFatigueCost;
-			hunger += searchHungerCost;
+			increaseFatigue(searchFatigueCost);
+			increaseHunger(searchHungerCost);
 			actionsLeft -= 1;
 		}
 		return returnString;
@@ -320,11 +320,11 @@ public class CrewMember {
 			break;
 		case "Night Owl":
 			returnString = "Night Owl does not like sleeping. "
-					+ "Night Owl's fatigue level increases by a slower rate when repairing ships and searching on planets.";
+					+ "Night Owl's fatigue level increases by a slower rate when repairing ships, searching on planets, and piloting the ship.";
 			break;
-		case "Protected":
-			returnString = "Protected has a strong physique. "
-					+ "Protected has more health.";
+		case "Explorer":
+			returnString = "Explorers are born to go where no one has been. "
+					+ "Explorer's fatigue and hunger level increase by a slower rate when piloting the ship, and searching the planet.";
 			break;
 		case "Regular":
 			returnString = "Regular does not have any special powers. "
@@ -333,6 +333,50 @@ public class CrewMember {
 		}
 		return returnString;
 	}
+	
+	public void increaseHealth(int amount) {
+		health += amount;
+		if (health > maxHealth) {
+			health = maxHealth;
+		}
+	}
+	
+	public void decreaseHealth(int amount) {
+		health -= amount;
+		if (health <= 0) {
+			health = 0;
+			dead = true; 
+		}
+	}
+	
+	public void increaseHunger(int amount) {
+		hunger += amount;
+		if (hunger > maxHunger) {
+			hunger = maxHunger;
+		}
+	}
+	
+	public void decreaseHunger(int amount) {
+		hunger -= amount;
+		if (hunger < 0) {
+			hunger = 0;
+		}
+	}
+	
+	public void increaseFatigue(int amount) {
+		fatigue += amount;
+		if (fatigue > maxFatigue) {
+			fatigue = maxFatigue;
+		}
+	}
+	
+	public void decreaseFatigue(int amount) {
+		fatigue -= amount;
+		if (fatigue < 0) {
+			fatigue = 0;
+		}
+	}
+	
 	
 	/**
 	 * Creates a string representation of the crew member.
@@ -404,12 +448,6 @@ public class CrewMember {
 	 */
 	public void setHealth(int health) {
 		this.health = health;
-		if (this.health > this.maxHealth) {
-			this.health = this.maxHealth;
-		}
-		if (health <= 0) {
-			dead = true; 
-		}
 	}
 
 	/**
@@ -474,9 +512,6 @@ public class CrewMember {
 	 */
 	public void setFatigue(int fatigue) {
 		this.fatigue = fatigue;
-		if (this.fatigue > this.maxFatigue) {
-			this.fatigue = this.maxFatigue;
-		}
 	}
 
 	/**
@@ -653,6 +688,14 @@ public class CrewMember {
 	 */
 	public void setSearchHungerCost(int searchHungerCost) {
 		this.searchHungerCost = searchHungerCost;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 	
 

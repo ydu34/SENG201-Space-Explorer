@@ -153,8 +153,8 @@ public class ActionsDialog extends JDialog {
 		btnBack.setBounds(15, 314, 289, 25);
 		contentPanel.add(btnBack);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(12, 52, 295, 2);
-		contentPanel.add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(12, 52, 295, 2);
+		contentPanel.add(separatorTop);
 	}
 }

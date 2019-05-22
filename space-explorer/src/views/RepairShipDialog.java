@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 /**
  * Represents a dialog that allows crew members to repair the ship.
@@ -78,7 +79,7 @@ public class RepairShipDialog extends JDialog {
 				txtrTheCrewMember.setLineWrap(true);
 				txtrTheCrewMember.setFont(new Font("Monospaced", Font.PLAIN, 15));
 				txtrTheCrewMember.setEditable(false);
-				txtrTheCrewMember.setBackground(SystemColor.menu);
+				txtrTheCrewMember.setBackground(UIManager.getColor("Menu.background"));
 				txtrTheCrewMember.setBounds(12, 99, 290, 165);
 				panel.add(txtrTheCrewMember);
 			}

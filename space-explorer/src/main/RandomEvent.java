@@ -15,11 +15,13 @@ public class RandomEvent {
 	 * @return A string message of the event occurred.
 	 */
 	public static String occurDay(Crew crew) {
+
 		String returnString = "";		
 		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-		if (randomNum >= 0 && randomNum < 25) {
+		if (randomNum >= 0 && randomNum < 30) {
+
 			returnString += alienPirates(crew);
-		} else if (randomNum >= 25 && randomNum < 50) {
+		} else if (randomNum >= 30 && randomNum < 60) {
 			returnString += spacePlague(crew);
 		} 
 		return returnString;
@@ -32,7 +34,7 @@ public class RandomEvent {
 	 */
 	public static String occurPlanet(Crew crew) {
 		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-		if (randomNum >= 0 && randomNum < 35) {
+		if (randomNum >= 0 && randomNum < 40) {
 			return asteroidBelt(crew);
 		}
 		return null;
@@ -73,7 +75,7 @@ public class RandomEvent {
 				infectedMember.setInfected(true);
 				returnString += infectedMember.getName() + " has been infected with space plague! \n";
 				infectedMember.setStatus("Infected");
-				infectedMember.setHealth(infectedMember.getHealth()-20);
+				infectedMember.decreaseHealth(20);
 				if (infectedMember.isDead()) {
 					returnString += infectedMember.getName() + " has died to the space plague and has been removed from the crew.";
 					crew.getCrewMembers().remove(infectedMember);

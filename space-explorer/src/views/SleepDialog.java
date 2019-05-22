@@ -21,6 +21,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 /**
  * Represents a dialog object that allows crew members to sleep.
@@ -52,10 +53,10 @@ public class SleepDialog extends JDialog {
 		
 		JTextArea textArea = new JTextArea();
 		textArea.setText("Allow the crew member to take a quick nap and recover from fatigue.\n\n"
-				+ "The crew member's fatigue would be reduced by 10. \n\n"
+				+ "The crew member's fatigue would be reduced by 30. \n\n"
 				+ "Fatigue can not go below 0.\n\n"
 				+ "Sleeping uses up 1 action.");
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);

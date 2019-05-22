@@ -23,6 +23,7 @@ import java.awt.SystemColor;
 import javax.swing.border.TitledBorder;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 /**
  * Represents a dialog that allows crew members to search the current planet.
@@ -48,7 +49,7 @@ public class SearchPlanetDialog extends JDialog {
 			JButton btnSearchPlanet = new JButton("SEARCH");
 			btnSearchPlanet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					String message = game.getChosenCrewMember().search(game.getMedItems(), game.getFoodItems(), game.getCrew(), game.getShip());
+					String message = game.getChosenCrewMember().search(game.getMedItems(), game.getFoodItems(), game.getCrew());
 					setVisible(false);
 					dispose();
 					if (!(message.isEmpty())) {
@@ -89,7 +90,7 @@ public class SearchPlanetDialog extends JDialog {
 		txtrAllowTheCrew.setLineWrap(true);
 		txtrAllowTheCrew.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		txtrAllowTheCrew.setEditable(false);
-		txtrAllowTheCrew.setBackground(SystemColor.menu);
+		txtrAllowTheCrew.setBackground(UIManager.getColor("Menu.background"));
 		txtrAllowTheCrew.setBounds(12, 83, 290, 181);
 		panel.add(txtrAllowTheCrew);
 		
@@ -98,7 +99,7 @@ public class SearchPlanetDialog extends JDialog {
 		panel.add(lblPlanet);
 		lblPlanet.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
-		JLabel lblPieceDetected = new JLabel("Piece detected: \r\n");
+		JLabel lblPieceDetected = new JLabel("Part detected: \r\n");
 		lblPieceDetected.setBounds(12, 50, 128, 25);
 		panel.add(lblPieceDetected);
 		lblPieceDetected.setFont(new Font("Dialog", Font.PLAIN, 16));

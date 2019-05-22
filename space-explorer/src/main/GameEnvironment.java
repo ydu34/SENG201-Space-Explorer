@@ -235,6 +235,7 @@ public class GameEnvironment {
 		initPlanets();
 		generateOutpostsItems();
 	}
+	
 
 	/**
 	 * Initializes the crew member types.
@@ -244,17 +245,18 @@ public class GameEnvironment {
 		crewMemberTypes.add(new HealthNut("Health Nut"));
 		crewMemberTypes.add(new Nibbler("Nibbler"));
 		crewMemberTypes.add(new NightOwl("Night Owl"));
-		crewMemberTypes.add(new Protected("Protected"));
 		crewMemberTypes.add(new Regular("Regular"));
+		crewMemberTypes.add(new Explorer("Explorer"));
 	}
 
 	/**
 	 * Initializes the medical items.
 	 */
 	public void initMedItems() {
-		medItems.add(new MedicalItem("Antiplague", 50, "Cures space plague, heals 20 health.", 20, true));
+		medItems.add(new MedicalItem("Antiplague", 50, "Cures space plague, heals 10 health.", 10, true));
 		medItems.add(new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false));
 		medItems.add(new MedicalItem("Galaxy Pills", 10, "Heals 20 health", 20, false));
+		medItems.add(new MedicalItem("Stimpak", 40, "Heals 60 health", 60, false));
 	}
 
 	/**
@@ -273,9 +275,15 @@ public class GameEnvironment {
 	 * Initializes the planets.
 	 */
 	public void initPlanets() {
-		for (String name : planetNames) {
-			planets.add(new Planet(name));
-		}
+		planets.add(new Planet("Asauzuno", "/resources/planet1.png"));
+		planets.add(new Planet("Uchiliv", "/resources/planet2.png"));
+		planets.add(new Planet("Yangosie", "/resources/planet3.jpg"));
+		planets.add(new Planet("Putrilia", "/resources/planet4.jpg"));
+		planets.add(new Planet("Emia", "/resources/planet5.png"));
+		planets.add(new Planet("Doyama", "/resources/planet6.png"));
+		planets.add(new Planet("Bruxotune", "/resources/planet7.jpg"));
+		planets.add(new Planet("Coth LTS4", "/resources/planet8.jpg"));
+		planets.add(new Planet("Divunus", "/resources/planet9.jpg"));
 	}
 
 	/**
@@ -300,7 +308,13 @@ public class GameEnvironment {
 	 * @return A string message of the game situation.
 	 */
 	public String introductionText() {
-		String text = "Your crew is lost in space in a unknown galaxy. Your spaceship's lightspeed engines are borken and scattered throughout the surrounding planets. You will need to find the missing pieces of your spaceship so that you can repair it and travel back to Earth. \r\n\r\nEach day you may perform crew member actions. Each crew member has two actions that can be used. ";
+		String text = "Your crew is lost in space in a unknown galaxy. "
+				+ "Your spaceship's lightspeed engines are broken and scattered throughout the surrounding planets. "
+				+ "You will need to find the missing engine parts of your spaceship so that you can repair it and travel back to Earth."
+				+ " \r\n\r\nEach day you may perform crew member actions. "
+				+ "Each crew member has two actions that can be used.\n\n"
+				+ "Use the actions to help you search for the parts. "
+				+ "Each planet only has one engine part.";
 		return text;
 	}
 
@@ -325,17 +339,17 @@ public class GameEnvironment {
 	public CrewMember createCrewMember(CrewMember member) {
 		switch (member.getType()) {
 		case "Engineer":
-			return new Engineer(member.getName());
+			return new Engineer(member.getName(), member.getImage());
 		case "Health Nut":
-			return new HealthNut(member.getName());
+			return new HealthNut(member.getName(), member.getImage());
 		case "Nibbler":
-			return new Nibbler(member.getName());
+			return new Nibbler(member.getName(), member.getImage());
 		case "Night Owl":
-			return new NightOwl(member.getName());
-		case "Protected":
-			return new Protected(member.getName());
+			return new NightOwl(member.getName(), member.getImage());
+		case "Explorer":
+			return new Explorer(member.getName(), member.getImage());
 		case "Regular":
-			return new Regular(member.getName());
+			return new Regular(member.getName(), member.getImage());
 		}
 		return null;
 	}
@@ -366,13 +380,13 @@ public class GameEnvironment {
 		ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
 		for (CrewMember member : crew.getCrewMembers()) {
 			if (member.isInfected()) {
-				member.setHealth(member.getHealth() - 20);
+				member.decreaseHealth(20);;
 				if (member.isDead()) {
 					returnString += member.getName()
 							+ " has died to the space plague and has been removed from the crew.\n";
 					deadCrewMembers.add(member);
 				} else {
-					returnString += member.getName() + " will lose 20 health each day until he gets cured.\n";
+					returnString += member.getName() + " will lose 20 health each day until they get cured.\n";
 					returnString += member.getName() + " now has " + member.getHealth() + "/" + member.getMaxHealth()
 							+ " health.\n";
 				}
@@ -394,6 +408,7 @@ public class GameEnvironment {
 			score += member.getHealth();
 			score += member.getMaxFatigue() - member.getFatigue();
 			score += member.getMaxHunger() - member.getHunger();
+			score += member.getActionsLeft() * 50;
 		}
 		score += ship.getShieldLevel();
 		if (ship.getPiecesFound() == ship.getPiecesNeeded()) {
@@ -404,6 +419,7 @@ public class GameEnvironment {
 		}
 		return score;
 	}
+
 	
 	/**
 	 * Checks if the game is over by checking if any of the game over conditions are met.

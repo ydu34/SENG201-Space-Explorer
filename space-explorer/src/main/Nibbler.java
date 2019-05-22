@@ -5,12 +5,17 @@ package main;
  * @author Joyce Cheah
  */
 public class Nibbler extends CrewMember{
+	
+	public Nibbler(String name) {
+		super(name, "Nibbler", "", 100, 100, 100, 2,
+				10,10,10,10,20,20);
+	}
 	/**
 	 * Creates a Nibbler type crew member.
 	 * @param name   A string name of the crew member.
 	 */
-	public Nibbler(String name) {
-		super(name, "Nibbler", "Normal", 100, 100, 100, 2,
+	public Nibbler(String name, String image) {
+		super(name, "Nibbler", image, 100, 100, 100, 2,
 				10,10,10,10,20,20);
 	}
 	

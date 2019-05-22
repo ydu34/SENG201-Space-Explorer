@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
 
 /**
  * Represents a window object that 
@@ -66,18 +67,21 @@ public class InstructionsWindow {
 		frame.getContentPane().add(btnNewButton);
 		
 		JTextPane txtpnYourCrewIs = new JTextPane();
-		txtpnYourCrewIs.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtpnYourCrewIs.setFont(new Font("Monospaced", Font.PLAIN, 20));
 		txtpnYourCrewIs.setText(game.introductionText());
-		txtpnYourCrewIs.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		txtpnYourCrewIs.setBackground(UIManager.getColor("menu"));
 		txtpnYourCrewIs.setEditable(false);
-		txtpnYourCrewIs.setBounds(37, 76, 703, 411);
+		txtpnYourCrewIs.setBounds(50, 86, 695, 401);
 		frame.getContentPane().add(txtpnYourCrewIs);
 		
-		JLabel lblNewLabel = new JLabel("LOST IN SPACE ");
+		JLabel lblNewLabel = new JLabel("INSTRUCTIONS\r\n");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel.setBounds(37, 13, 703, 50);
+		lblNewLabel.setBounds(0, 0, 795, 60);
 		frame.getContentPane().add(lblNewLabel);
+		
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(50, 62, 695, 2);
+		frame.getContentPane().add(separatorTop);
 	}
 }

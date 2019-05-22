@@ -6,6 +6,8 @@ import main.GameEnvironment;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -20,11 +22,15 @@ import javax.swing.JDialog;
 import javax.swing.JToggleButton;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPopupMenu;
+
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JSeparator;
 import java.awt.SystemColor;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 
 /**
  * Represents a window object that allows players to view each of the crew members' details and perform actions.
@@ -45,6 +51,10 @@ public class CrewMemberWindow {
 	private JLabel lblStatusValue;
 	private JTextArea textAreaDescription;
 	private JButton btnPerformAction;
+	private JToggleButton tglbtnCrewMember1;
+	private JToggleButton tglbtnCrewMember2;
+	private JToggleButton tglbtnCrewMember3;
+	private JToggleButton tglbtnCrewMember4;
 
 	/**
 	 * Creates the window application.
@@ -123,7 +133,7 @@ public class CrewMemberWindow {
 		panelProfile.add(lblFatigue);
 
 		textAreaDescription = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
-		textAreaDescription.setBackground(SystemColor.menu);
+		textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
 		textAreaDescription.setEditable(false);
 		textAreaDescription.setWrapStyleWord(true);
 		textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
@@ -177,6 +187,7 @@ public class CrewMemberWindow {
 		lblStatusValue.setText(crewMember.getStatus());
 		lblActionsValue.setText(crewMember.getActionsLeft() + "/" + crewMember.getMaxActions());
 		textAreaDescription.setText(crewMember.description());
+		
 
 		JLabel lblActions = new JLabel("Actions");
 		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -210,65 +221,80 @@ public class CrewMemberWindow {
 			btnPerformAction.setEnabled(false);
 		}
 
-		JToggleButton tglbtnCrewMember2 = new JToggleButton("2");
+		tglbtnCrewMember2 = new JToggleButton("");
 		tglbtnCrewMember2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				CrewMember crewMember = game.getCrew().getCrewMembers().get(1);
+				Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+				tglbtnCrewMember2.setBorder(solidBorder);
 				tglbtnCrewMember2.setSelected(true);
 				updateProfile(crewMember);
 			}
 		});
 
-		JToggleButton tglbtnCrewMember1 = new JToggleButton("1", true);
+		tglbtnCrewMember1 = new JToggleButton("", true);
+		Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+		tglbtnCrewMember1.setBorder(solidBorder);
 		tglbtnCrewMember1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				CrewMember crewMember = game.getCrew().getCrewMembers().get(0);
+				Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+				tglbtnCrewMember1.setBorder(solidBorder);
 				tglbtnCrewMember1.setSelected(true);
 				updateProfile(crewMember);
 			}
 		});
 		tglbtnCrewMember1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember1.setBounds(50, 130, 140, 140);
+		tglbtnCrewMember1.setBounds(50, 128, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember1);
 
 		tglbtnCrewMember2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember2.setBounds(210, 130, 140, 140);
+		tglbtnCrewMember2.setBounds(210, 128, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember2);
 
-		JToggleButton tglbtnCrewMember3 = new JToggleButton("3");
+		tglbtnCrewMember3 = new JToggleButton("");
+
 		tglbtnCrewMember3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				CrewMember crewMember = game.getCrew().getCrewMembers().get(2);
+				Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+				tglbtnCrewMember3.setBorder(solidBorder);
 				tglbtnCrewMember3.setSelected(true);
 				updateProfile(crewMember);
 			}
 		});
 		tglbtnCrewMember3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember3.setBounds(50, 290, 140, 140);
+		tglbtnCrewMember3.setBounds(50, 288, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember3);
 
-		JToggleButton tglbtnCrewMember4 = new JToggleButton("4");
+		tglbtnCrewMember4 = new JToggleButton("");
 		tglbtnCrewMember4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
+					button.setBorder(null);
 				}
 				CrewMember crewMember = game.getCrew().getCrewMembers().get(3);
+				Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+				tglbtnCrewMember4.setBorder(solidBorder);
 				tglbtnCrewMember4.setSelected(true);
 				updateProfile(crewMember);
 			}
 		});
 		tglbtnCrewMember4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tglbtnCrewMember4.setBounds(210, 290, 140, 140);
+		tglbtnCrewMember4.setBounds(210, 288, 145, 145);
 		frame.getContentPane().add(tglbtnCrewMember4);
 
 		JLabel lblWindowTitle = new JLabel("The Crew Lobby!");
@@ -309,7 +335,21 @@ public class CrewMemberWindow {
 		case 3:
 			tglbtnCrewMember4.setEnabled(false);
 		}
-
+		
+		initImages();
+	}
+	
+	public void initImages() {
+		switch (game.getCrew().getCrewMembers().size()) {
+		case 4:
+			tglbtnCrewMember4.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(3).getImage())));
+		case 3:
+			tglbtnCrewMember3.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(2).getImage())));
+		case 2:
+			tglbtnCrewMember2.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(1).getImage())));
+		case 1:
+			tglbtnCrewMember1.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(0).getImage())));
+		}
 	}
 
 	/**
@@ -317,7 +357,7 @@ public class CrewMemberWindow {
 	 * @param crewMember   A CrewMember object.
 	 */
 	public void updateProfile(CrewMember crewMember) {
-
+		
 		lblNameValue.setText(crewMember.getName());
 		lblTraitValue.setText(crewMember.getType());
 		lblHealthValue.setText(crewMember.getHealth() + "/" + crewMember.getMaxHealth());
@@ -331,6 +371,10 @@ public class CrewMemberWindow {
 			btnPerformAction.setEnabled(true);
 		} else {
 			btnPerformAction.setEnabled(false);
+		}
+		if (game.gameOver()) {
+			finishedWindow();
+			game.launchGameOverWindow();
 		}
 	}
 }

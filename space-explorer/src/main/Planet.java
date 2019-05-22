@@ -14,9 +14,11 @@ public class Planet {
 	/**
 	 * Creates a planet.
 	 * @param name      A string name of the planet.
+	 * @param imageLink A string holding the location of the image. 
 	 */
-	public Planet(String name) {
+	public Planet(String name, String imageLink) {
 		this.name = name;
+		this.imageLink = imageLink;
 	}
 	
 	/**

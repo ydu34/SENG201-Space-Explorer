@@ -29,11 +29,7 @@ public class Ship {
 	 * @return A string representation of the ship.
 	 */
 	public String toString() {
-		String returnString =
-				"Ship Status: " + 
-				"\nShields: " + shieldLevel + "/" + maxShieldLevel +
-				"\nPieces needed: " + piecesNeeded;
-		return returnString;
+		return name;
 	}
 	
 	/**
@@ -41,7 +37,6 @@ public class Ship {
 	 */
 	public void foundPiece() {
 		piecesFound +=1;
-		System.out.println("Found " + piecesFound + "/" + piecesNeeded + " pieces needed!");
 	}
 	
 	/**
@@ -61,7 +56,8 @@ public class Ship {
 	 */
 	public void decreaseShieldLevel(int amount) {
 		shieldLevel -= amount;
-		if (shieldLevel == 0) {
+		if (shieldLevel <= 0) {
+			shieldLevel = 0;
 			destroyed = true;
 		}
 	}

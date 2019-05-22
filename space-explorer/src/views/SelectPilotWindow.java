@@ -92,7 +92,7 @@ public class SelectPilotWindow {
 		game.setOtherChosenCrewMember(pilot2);
 
 		JTextArea textAreaPilotInfo = new JTextArea();
-		textAreaPilotInfo.setBackground(SystemColor.menu);
+		textAreaPilotInfo.setBackground(UIManager.getColor("Menu.background"));
 		textAreaPilotInfo.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
 		String info = pilotInfo(pilot1, pilot2);
 		textAreaPilotInfo.setText(info);
@@ -109,15 +109,15 @@ public class SelectPilotWindow {
 		cBoxPilot2.setBounds(492, 111, 235, 22);
 		frame.getContentPane().add(cBoxPilot2);
 
-		JButton btnNewButton = new JButton("Return ");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnReturn = new JButton("Return ");
+		btnReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
 				game.launchCrewMemberWindow();
 			}
 		});
-		btnNewButton.setBounds(45, 515, 97, 25);
-		frame.getContentPane().add(btnNewButton);
+		btnReturn.setBounds(45, 515, 97, 25);
+		frame.getContentPane().add(btnReturn);
 
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -151,7 +151,7 @@ public class SelectPilotWindow {
 		panel.add(lblFatigue);
 
 		JTextArea textArea = new JTextArea(pilot1.description());
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
@@ -204,10 +204,10 @@ public class SelectPilotWindow {
 		label_13.setBounds(9, 97, 78, 32);
 		panel.add(label_13);
 
-		JLabel lblNewLabel = new JLabel("Copilot:\r\n");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblNewLabel.setBounds(377, 114, 93, 22);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblCopilot = new JLabel("Copilot:\r\n");
+		lblCopilot.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblCopilot.setBounds(377, 114, 93, 22);
+		frame.getContentPane().add(lblCopilot);
 
 		JLabel lblMainPilot = new JLabel("Main Pilot:\r\n");
 		lblMainPilot.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -223,13 +223,19 @@ public class SelectPilotWindow {
 		JButton btnSelectPlanet_1 = new JButton("Select Planet");
 		btnSelectPlanet_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (pilot2.canPilot()) {
+				if (pilot2.canPilot() && pilot1.canPilot()) {
 					game.setChosenCrewMember(pilot1);
 					game.setOtherChosenCrewMember(pilot2);
 					finishedWindow();
 					game.launchSelectPlanetWindow();
-				} else {
+				} else if (!(pilot1.canPilot())&& !(pilot2.canPilot())) {
+					String message = pilot1 + " and " + pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
+					JOptionPane.showMessageDialog(frame, message);
+				} else if (!(pilot2.canPilot())) {
 					String message = pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
+					JOptionPane.showMessageDialog(frame, message);
+				} else if (!(pilot1.canPilot())) {
+					String message = pilot1 + " does not have the required actions, fatigue, or hunger to pilot!";
 					JOptionPane.showMessageDialog(frame, message);
 				}
 			}

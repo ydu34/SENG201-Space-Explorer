@@ -14,29 +14,6 @@ public class Crew {
 	private int money = 200;
 	private Planet currentLocation;
 	
-	public String medicalItemsDetails() {
-		ArrayList<MedicalItem> medicalItemsSet = new ArrayList<MedicalItem>(new TreeSet<MedicalItem>(medicalItems));
-		String returnString = "";
-		for (MedicalItem item: medicalItemsSet) {
-			returnString += item.getName() + "(" + Collections.frequency(medicalItems, item) + ")";
-			returnString += "\n"+ item.getDescription();
-			returnString += "\nPrice: " + item.getPrice();
-			returnString += "\n";
-		} 
-		return returnString;
-	}
-	
-	public String foodItemsDetails() {
-		ArrayList<FoodItem> foodItemsSet = new ArrayList<FoodItem>(new TreeSet<FoodItem>(foodItems));
-		String returnString = "";
-		for (FoodItem item: foodItemsSet) {
-			returnString += item.getName() + "(" + Collections.frequency(foodItems, item) + ")";
-			returnString += "\n"+ item.getDescription();
-			returnString += "\nPrice: " + item.getPrice();
-			returnString += "\n";
-		}
-		return returnString;	
-	}
 	
 	/**
 	 * Increases the money of the crew.

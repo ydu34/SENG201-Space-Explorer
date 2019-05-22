@@ -30,6 +30,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 import javax.swing.JSeparator;
+import javax.swing.UIManager;
 
 /**
  * Represents a dialog object that allows a crew member to consume food items. 
@@ -117,12 +118,12 @@ public class EatFoodDialog extends JDialog {
 		contentPanel.add(panel);
 		
 		JTextArea textArea = new JTextArea((String) null);
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		
 		textArea.setWrapStyleWord(true);
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setEditable(false);
-		textArea.setBounds(12, 120, 294, 75);
+		textArea.setBounds(12, 120, 294, 58);
 		panel.add(textArea);
 		
 		JLabel lblStock = new JLabel("Stock:");
@@ -157,6 +158,11 @@ public class EatFoodDialog extends JDialog {
 		lblDescription.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblDescription.setBounds(12, 95, 136, 23);
 		panel.add(lblDescription);
+		
+		JLabel label_1 = new JLabel("This uses up 1 action.");
+		label_1.setFont(new Font("Dialog", Font.BOLD, 16));
+		label_1.setBounds(12, 180, 290, 22);
+		panel.add(label_1);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(30, 52, 314, 2);

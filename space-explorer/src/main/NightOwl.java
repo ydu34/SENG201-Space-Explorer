@@ -7,13 +7,17 @@ package main;
  */
 public class NightOwl extends CrewMember{
 	
+	public NightOwl(String name) {
+		super(name, "Night Owl", "", 100, 100, 100, 2,
+				5,10,5,10,10,20);
+	}
 	/**
 	 * Creates a NightOwl type crew member.
 	 * @param name   A string name of the crew member.
 	 */
-	public NightOwl(String name) {
-		super(name, "Night Owl", "Normal", 100, 100, 100, 2,
-				8,8,8,8,16,16);
+	public NightOwl(String name, String image) {
+		super(name, "Night Owl", image, 100, 100, 100, 2,
+				5,10,5,10,10,20);
 	}
 	
 }

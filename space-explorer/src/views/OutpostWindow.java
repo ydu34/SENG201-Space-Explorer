@@ -52,6 +52,7 @@ public class OutpostWindow {
 	private JFrame frame;
 	private GameEnvironment game;
 	private int totalCost = 0;
+	private Item currentItem;
 
 	/**
 	 * Creates the window application.
@@ -110,7 +111,7 @@ public class OutpostWindow {
 		JComboBox comboBoxItems = new JComboBox(uniqueOutpostItems.toArray());
 		comboBoxItems.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		// The current item that is selected by the player in the combo box
-		Item currentItem = (Item) comboBoxItems.getSelectedItem();
+		currentItem = (Item) comboBoxItems.getSelectedItem();
 		comboBoxItems.setBounds(50, 132, 290, 30);
 		frame.getContentPane().add(comboBoxItems);
 		
@@ -125,7 +126,7 @@ public class OutpostWindow {
 		btnInventory.setBounds(399, 515, 148, 25);
 		frame.getContentPane().add(btnInventory);
 		
-		JLabel lblSeeItems = new JLabel("See what is available!");
+		JLabel lblSeeItems = new JLabel("See what is for sale!");
 		lblSeeItems.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeeItems.setFont(new Font("Dialog", Font.BOLD, 20));
 		lblSeeItems.setBounds(50, 97, 290, 30);
@@ -265,7 +266,7 @@ public class OutpostWindow {
 		frame.getContentPane().add(lblMoney);
 		
 		JLabel lblWarning = new JLabel("");
-		lblWarning.setBounds(50, 503, 283, 24);
+		lblWarning.setBounds(50, 503, 290, 24);
 		frame.getContentPane().add(lblWarning);
 		
 		JSeparator separatorTop = new JSeparator();
@@ -335,13 +336,14 @@ public class OutpostWindow {
 					for (int i = 0; i < listItems.getModel().getSize(); i++) {
 						if (listItems.getModel().getElementAt(i) instanceof MedicalItem) {
 							MedicalItem currentItem = (MedicalItem) listItems.getModel().getElementAt(i);
-							currentSpaceOutpost.purchaseItem(currentItem, game.getCrew());
+							currentSpaceOutpost.purchaseMedicalItem(currentItem, game.getCrew());
 						}
 						else {
 							FoodItem currentItem = (FoodItem) listItems.getModel().getElementAt(i);
-							currentSpaceOutpost.purchaseItem(currentItem, game.getCrew());
+							currentSpaceOutpost.purchaseFoodItem(currentItem, game.getCrew());
 						}
 					}
+					currentItem = (Item) comboBoxItems.getSelectedItem();
 					lblMoney.setText(Integer.toString(game.getCrew().getMoney()));
 					totalCost = 0;
 					lblTotalCostValue.setText(Integer.toString(totalCost));
@@ -358,4 +360,6 @@ public class OutpostWindow {
 		});
 		
 	}
+	
+	
 }

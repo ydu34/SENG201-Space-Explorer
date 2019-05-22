@@ -1,5 +1,9 @@
 package main;
+
+
 import java.util.ArrayList;
+
+
 
 /**
  * Represents a space outpost.
@@ -7,7 +11,7 @@ import java.util.ArrayList;
  * @author Joyce Cheah
  */
 public class SpaceOutpost {
-	
+
 	private ArrayList<MedicalItem> medicalItems = new ArrayList<MedicalItem>();
 	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
 
@@ -16,15 +20,10 @@ public class SpaceOutpost {
 	 * @param item   A MedicalItem object.
 	 * @param crew   A Crew object.
 	 */
-	public void purchaseItem(MedicalItem item, Crew crew) {
-		if (crew.getMoney() >= item.getPrice()) {
-			crew.decreaseMoney(item.getPrice());
-			crew.getMedicalItems().add(item);
-			medicalItems.remove(item);
-			System.out.println(item.getName() + " has been purchased!");
-		} else {
-			System.out.println("Not enough money!");
-		}
+	public void purchaseMedicalItem(MedicalItem item, Crew crew) {
+		crew.decreaseMoney(item.getPrice());
+		crew.getMedicalItems().add(item);
+		medicalItems.remove(item);
 	}
 	
 	/**
@@ -32,16 +31,12 @@ public class SpaceOutpost {
 	 * @param item   A FoodItem object.
 	 * @param crew   A Crew object.
 	 */
-	public void purchaseItem(FoodItem item, Crew crew) {
-		if (crew.getMoney() >= item.getPrice()) {
-			crew.decreaseMoney(item.getPrice());
-			crew.getFoodItems().add(item);
-			foodItems.remove(item);
-			System.out.println(item.getName() + " has been purchased!");
-		} else {
-			System.out.println("Not enough money!");
-		}
+	public void purchaseFoodItem(FoodItem item, Crew crew) {
+		crew.decreaseMoney(item.getPrice());
+		crew.getFoodItems().add(item);
+		foodItems.remove(item);
 	}
+
 
 	/**
 	 * Gets the medical items.
@@ -74,7 +69,5 @@ public class SpaceOutpost {
 	public void setFoodItems(ArrayList<FoodItem> foodItems) {
 		this.foodItems = foodItems;
 	}
-	
 
-	
 }
