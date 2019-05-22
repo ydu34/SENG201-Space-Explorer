@@ -24,7 +24,7 @@ import javax.swing.JSeparator;
 import javax.swing.UIManager;
 
 /**
- * Represents a dialog object that allows crew members to sleep.
+ * Represents a dialog that allows crew members to sleep.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -34,8 +34,11 @@ public class SleepDialog extends JDialog {
 
 	/**
 	 * Creates the dialog. This includes a panel displaying the details of sleep action, and buttons to sleep or return to the actions window.
+	 * @param parent		A JFrame that launches this dialog.
+	 * @param game 			A GameEnvironment object containing all the contents of the game.
+	 * @param parentWindow	A CrewMemberWindow that launched this dialog. 	
 	 */
-	public SleepDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
+	public SleepDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);
 		setResizable(false);
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -83,7 +86,7 @@ public class SleepDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
-				JDialog actions = new ActionsDialog(parent, "Space Explorers", game, parentWindow);
+				JDialog actions = new ActionsDialog(parent, game, parentWindow);
 				actions.setVisible(true);
 			}
 		});

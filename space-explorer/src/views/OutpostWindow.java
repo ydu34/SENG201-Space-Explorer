@@ -56,6 +56,7 @@ public class OutpostWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public OutpostWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

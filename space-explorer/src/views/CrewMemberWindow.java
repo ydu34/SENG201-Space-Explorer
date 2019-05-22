@@ -33,7 +33,7 @@ import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 
 /**
- * Represents a window object that allows players to view each of the crew members' details and perform actions.
+ * Represents a window that allows players to view each of the crew members' details and perform actions.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -58,6 +58,7 @@ public class CrewMemberWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game. 
 	 */
 	public CrewMemberWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -210,7 +211,7 @@ public class CrewMemberWindow {
 		btnPerformAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				JDialog actions = new ActionsDialog(frame, "Space Explorers", game, window);
+				JDialog actions = new ActionsDialog(frame, game, window);
 				actions.setVisible(true);
 			}
 		});

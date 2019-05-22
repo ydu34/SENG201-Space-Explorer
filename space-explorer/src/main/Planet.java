@@ -69,7 +69,7 @@ public class Planet {
 	
 	/**
 	 * Sets if the ship piece on the planet has been found.
-	 * @param transporterDiscovery   A boolean expression of whether the ship piece on the planet has been found.
+	 * @param shipPieceFound   A boolean expression of whether the ship piece on the planet has been found.
 	 */
 	public void setPieceDetected(boolean shipPieceFound) {
 		this.pieceDetected = shipPieceFound;

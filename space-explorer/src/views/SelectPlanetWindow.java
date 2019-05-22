@@ -29,7 +29,7 @@ import javax.swing.JSeparator;
 import javax.swing.UIManager;
 
 /**
- * Represents a window object that allows players to select a new planet to pilot to.
+ * Represents a window that allows players to select a new planet to pilot to.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -42,6 +42,7 @@ public class SelectPlanetWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public SelectPlanetWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 /**
- * Represents a window object that allows players to start or quit the game.
+ * Represents a window that allows players to start or quit the game.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -23,6 +23,7 @@ public class StartWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public StartWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

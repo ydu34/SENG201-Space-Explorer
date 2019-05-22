@@ -33,7 +33,7 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 
 /**
- * Represents a window object that allows players to select pilots.
+ * Represents a window that allows players to select the pilots.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -47,6 +47,7 @@ public class SelectPilotWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public SelectPilotWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -290,9 +291,9 @@ public class SelectPilotWindow {
 
 	/**
 	 * Creates the display text of the conditions and costs to pilot.
-	 * @param pilot1
-	 * @param pilot2
-	 * @return
+	 * @param pilot1	A CrewMember that is the first pilot. 
+	 * @param pilot2	A CrewMember that is the second pilot.
+	 * @return	Information on the requirements of piloting the ship.
 	 */
 	public String pilotInfo(CrewMember pilot1, CrewMember pilot2) {
 		String info;

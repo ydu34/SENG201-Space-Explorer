@@ -15,7 +15,7 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 
 /**
- * Represents a window object that allows players to see their final score.
+ * Represents a window that allows players to see their final score.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -26,6 +26,7 @@ public class GameOverWindow {
 
 	/**
 	 * Create the application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game. 
 	 */
 	public GameOverWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

@@ -32,6 +32,7 @@ public class MainWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public MainWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

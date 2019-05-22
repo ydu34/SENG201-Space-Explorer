@@ -46,7 +46,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 
 /**
- * Represents a window object that allows players to choose and personalize crew members.
+ * Represents a window that allows players to choose and personalize crew members.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -64,6 +64,7 @@ public class CreateCrewWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game. 
 	 */
 	public CreateCrewWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

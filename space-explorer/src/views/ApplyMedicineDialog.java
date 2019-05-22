@@ -32,7 +32,7 @@ import javax.swing.JSeparator;
 import javax.swing.UIManager;
 
 /**
- * Represents a dialog object that allows crew members to apply medical items.
+ * Represents a dialog that allows crew members to apply medical items.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -42,8 +42,11 @@ public class ApplyMedicineDialog extends JDialog {
 
 	/**
 	 * Creates the apply medicine dialog. This dialog includes a combo box for players to select a medical item, and a text area to show the selected medical item details.
+	 * @param parent		A JFrame that launches this dialog.
+	 * @param game 			A GameEnvironment object containing all the contents of the game.
+	 * @param parentWindow	A CrewMemberWindow that launched this dialog. 	
 	 */
-	public ApplyMedicineDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
+	public ApplyMedicineDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, title, true);
 		setResizable(false);
 		setBounds(100, 100, 375, 450);

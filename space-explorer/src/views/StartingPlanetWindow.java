@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JSeparator;
 
 /**
- * Represents a window object that allows players to select a starting planet.
+ * Represents a window that allows players to select a starting planet.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -27,6 +27,7 @@ public class StartingPlanetWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public StartingPlanetWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

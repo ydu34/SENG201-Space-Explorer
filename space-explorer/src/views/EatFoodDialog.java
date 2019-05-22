@@ -33,7 +33,7 @@ import javax.swing.JSeparator;
 import javax.swing.UIManager;
 
 /**
- * Represents a dialog object that allows a crew member to consume food items. 
+ * Represents a dialog that allows a crew member to consume food items. 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -43,9 +43,12 @@ public class EatFoodDialog extends JDialog {
 
 	/**
 	 * Creates the dialog. This includes a combo box to select a food item to consume, a panel displaying the details of selected food item, and a button to consume the selected food item.
+	 * @param parent		A JFrame that launches this dialog.
+	 * @param game 			A GameEnvironment object containing all the contents of the game.
+	 * @param parentWindow	A CrewMemberWindow that launched this dialog. 	
 	 */
-	public EatFoodDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
-		super(parent, title, true);
+	public EatFoodDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
+		super(parent, true);
 		setResizable(false);
 		setBounds(100, 100, 375, 450);
 		getContentPane().setLayout(new BorderLayout());

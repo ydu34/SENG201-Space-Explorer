@@ -15,6 +15,7 @@ public class Engineer extends CrewMember{
 	/**
 	 * Creates an engineer with the given name.
 	 * @param name   A string name of the crew member.
+	 * @param image  A string image of the crew member.
 	 */
 	public Engineer(String name, String image) {
 		super(name, "Engineer", image, 100, 100, 100, 2, 

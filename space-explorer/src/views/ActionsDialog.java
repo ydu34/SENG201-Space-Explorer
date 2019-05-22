@@ -18,7 +18,7 @@ import java.awt.Window.Type;
 import javax.swing.JSeparator;
 
 /**
- * Represents a dialog object that allows the selected crew member to perform actions. 
+ * Represents a dialog that allows the selected crew member to perform actions. 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -29,9 +29,12 @@ public class ActionsDialog extends JDialog {
 
 	/**
 	 * Creates the action dialog. This includes a list of action buttons for players to choose. 
+	 * @param parent		A JFrame that launched this dialog
+	 * @param game			A GameEnvironment object containing all the contents of the game.
+	 * @param parentWindow	A CrewMemberWindow that launched this dialog 	
 	 */
-	public ActionsDialog(JFrame parent, String title, GameEnvironment game, CrewMemberWindow parentWindow) {
-		super(parent, title, true);
+	public ActionsDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
+		super(parent, true);
 		setResizable(false);
 		setBounds(100, 100, 325, 400);
 		getContentPane().setLayout(new BorderLayout());
@@ -55,7 +58,7 @@ public class ActionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
-				JDialog eatFood = new EatFoodDialog(parent, "Space Explorers", game, parentWindow);
+				JDialog eatFood = new EatFoodDialog(parent, game, parentWindow);
 				eatFood.setVisible(true);
 			}
 
@@ -70,7 +73,7 @@ public class ActionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
-				JDialog applyMedicine = new ApplyMedicineDialog(parent, "Space Explorers", game, parentWindow);
+				JDialog applyMedicine = new ApplyMedicineDialog(parent, game, parentWindow);
 				applyMedicine.setVisible(true);
 			}
 
@@ -125,7 +128,7 @@ public class ActionsDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
-				SleepDialog sleep = new SleepDialog(parent, title, game, parentWindow);
+				SleepDialog sleep = new SleepDialog(parent, game, parentWindow);
 				sleep.setVisible(true);
 			}
 		});

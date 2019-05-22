@@ -34,6 +34,9 @@ public class RepairShipDialog extends JDialog {
 
 	/**
 	 * Creates the dialog. This includes a panel displaying the ship's shield level and the cost of repairing the ship to the crew member, and buttons to repair or return back to the actions window.
+	 * @param parent		A JFrame that launches this dialog.
+	 * @param game 			A GameEnvironment object containing all the contents of the game.
+	 * @param parentWindow	A CrewMemberWindow that launched this dialog. 	
 	 */
 	public RepairShipDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);

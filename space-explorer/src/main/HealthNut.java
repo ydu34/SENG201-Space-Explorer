@@ -12,6 +12,7 @@ public class HealthNut extends CrewMember{
 	/**
 	 * Creates a HealthNut type crew member.
 	 * @param name   A string name of the crew member.
+	 * @param image  A string image of the crew member.
 	 */
 	public HealthNut(String name, String image) {
 		super(name, "Health Nut", image, 100, 100, 100, 2);

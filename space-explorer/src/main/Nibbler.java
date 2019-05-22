@@ -13,6 +13,7 @@ public class Nibbler extends CrewMember{
 	/**
 	 * Creates a Nibbler type crew member.
 	 * @param name   A string name of the crew member.
+	 * @param image  A string image of the crew member.
 	 */
 	public Nibbler(String name, String image) {
 		super(name, "Nibbler", image, 100, 100, 100, 2,

@@ -36,6 +36,9 @@ public class SearchPlanetDialog extends JDialog {
 
 	/**
 	 * Creates the dialog. This includes a panel displaying the planet details and the cost of searching the planet to the crew members, and buttons to search or return to the actions window.
+	 * @param parent		A JFrame that launches this dialog.
+	 * @param game 			A GameEnvironment object containing all the contents of the game.
+	 * @param parentWindow	A CrewMemberWindow that launched this dialog. 	
 	 */
 	public SearchPlanetDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);

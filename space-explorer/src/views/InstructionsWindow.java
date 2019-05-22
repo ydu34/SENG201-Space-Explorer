@@ -14,7 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 
 /**
- * Represents a window object that 
+ * Represents a window that explains the instructions of the game to the player. 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -25,6 +25,7 @@ public class InstructionsWindow {
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public InstructionsWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

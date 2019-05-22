@@ -34,8 +34,8 @@ public class CrewMember {
 	 * Creates a crew member with the given values.
 	 * @param name  A string name of the crew member.
 	 * @param type  A string type of the crew member.
+	 * @param image A string image of the crew member.
 	 */
-
 	public CrewMember(String name, String type, String image) {
 		this.name = name;
 		this.type = type;
@@ -64,7 +64,7 @@ public class CrewMember {
 	 * Creates a crew member with the given values.
 	 * @param name         A string name of the crew member.
 	 * @param type         A string type of the crew member.
-	 * @param status       A string status of the crew member.
+	 * @param image        A string image of the crew member.
 	 * @param maxHealth    An int of the maximum health level.
 	 * @param maxHunger    An int of the maximum hunger level.
 	 * @param maxFatigue   An int of the maximum fatigue level.
@@ -97,7 +97,7 @@ public class CrewMember {
 	 * Creates a crew member with the given values.
 	 * @param name                A string name of the crew member.
 	 * @param type                A string type of the crew member.
-	 * @param status              A string status of the crew member.
+	 * @param image               A string image of the crew member.
 	 * @param maxHealth           An int of the maximum health level.
 	 * @param maxHunger           An int of the maximum hunger level.
 	 * @param maxFatigue          An int of the maximum fatigue level.
@@ -224,8 +224,7 @@ public class CrewMember {
 	 * @param planet   A Planet object.
 	 * @param other    A CrewMember object.
 	 * @param crew     A Crew object.
-	 * @return A string advising that the crew member is unable to pilot the ship
-	 * @return A string message of the random event occurred while traveling to the planet.
+	 * @return A string message of the whether the pilots are able to pilot or if an event happens
 	 */
 	public String pilot(Planet planet, CrewMember other, Crew crew) {
 		String returnString = "";
@@ -250,7 +249,8 @@ public class CrewMember {
 			actionsLeft -= 1;
 			other.actionsLeft -=1;
 			crew.setCurrentLocation(planet);
-			return RandomEvent.occurPlanet(crew); }
+			returnString += RandomEvent.occurPlanet(crew); 
+		}
 		return returnString;
 	}
 	
@@ -259,7 +259,6 @@ public class CrewMember {
 	 * @param medicalItems   An ArrayList of medical items.
 	 * @param foodItems      An ArrayList of food items.
 	 * @param crew           A Crew object.
-	 * @param ship           A Ship object.
 	 * @return A string message of what was found.
 	 */
 	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew) {

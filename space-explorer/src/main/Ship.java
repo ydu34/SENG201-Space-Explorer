@@ -104,7 +104,7 @@ public class Ship {
 	
 	/**
 	 * Sets the number of ship pieces the crew need to find.
-	 * @return the number of ship pieces the crew need to find.
+	 * @param  piecesNeeded An int of the number pieces needed.
 	 */
 	public void setPiecesNeeded(int piecesNeeded) {
 		this.piecesNeeded = piecesNeeded;

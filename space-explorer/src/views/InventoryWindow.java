@@ -31,7 +31,7 @@ import javax.swing.JSeparator;
 import java.awt.SystemColor;
 
 /**
- * Represents a window object that allows players to view the details of each item in the inventory.
+ * Represents a window that allows players to view the details of each item in the inventory.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -42,6 +42,7 @@ public class InventoryWindow {
 	
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public InventoryWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

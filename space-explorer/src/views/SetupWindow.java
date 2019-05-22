@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JSeparator;
 
 /**
- * Represents a window object that allows players to choose the game duration.
+ * Represents a window that allows players to choose the game duration.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -28,6 +28,7 @@ public class SetupWindow{
 
 	/**
 	 * Creates the window application.
+	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
 	 */
 	public SetupWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
