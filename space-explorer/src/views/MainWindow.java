@@ -1,26 +1,27 @@
 package views;
 
-import java.awt.EventQueue;
-import main.GameEnvironment;
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.SystemColor;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
-import javax.swing.ImageIcon;
-import javax.swing.border.TitledBorder;
 import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
+
+import main.GameEnvironment;
 
 /**
- * Represents the main window that allows players to play the game.
+ * The main window that displays the information regarding the situation of the
+ * game. There are buttons that lead to the outpost, the crew members, moving on
+ * to the next day, and exit the game.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -32,7 +33,9 @@ public class MainWindow {
 
 	/**
 	 * Creates the window application.
-	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
 	 */
 	public MainWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -55,7 +58,9 @@ public class MainWindow {
 	}
 
 	/**
-	 * Initialize the contents of the frame. This includes a photo of the current planet, a panel displaying the current game details, and buttons to visit outpost, view crew, move on to the next day, and exit game.
+	 * Initialize the contents of the frame. This includes a photo of the current
+	 * planet, a panel displaying the current game details, and buttons to visit
+	 * outpost, view crew, move on to the next day, and exit game.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -102,7 +107,7 @@ public class MainWindow {
 		JButton btnNextDay = new JButton("Next day");
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				if (game.gameOver()) {
 					finishedWindow();
 					game.launchGameOverWindow();
@@ -178,21 +183,21 @@ public class MainWindow {
 		lblPlanetName.setBounds(158, 131, 154, 31);
 		panel.add(lblPlanetName);
 		lblPlanetName.setFont(new Font("Dialog", Font.PLAIN, 17));
-		
+
 		JLabel lblPieceDetected = new JLabel("Part detected:");
 		lblPieceDetected.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblPieceDetected.setBounds(12, 185, 138, 31);
 		panel.add(lblPieceDetected);
-		
+
 		JLabel lblPieceDetectedValue = new JLabel(game.getCrew().getCurrentLocation().planetPieceDetected());
 		lblPieceDetectedValue.setFont(new Font("Dialog", Font.PLAIN, 17));
 		lblPieceDetectedValue.setBounds(158, 185, 154, 31);
 		panel.add(lblPieceDetectedValue);
-		
+
 		JSeparator separator1 = new JSeparator();
 		separator1.setBounds(12, 115, 288, 2);
 		panel.add(separator1);
-		
+
 		JSeparator separator2 = new JSeparator();
 		separator2.setBounds(12, 232, 288, 2);
 		panel.add(separator2);
@@ -210,18 +215,18 @@ public class MainWindow {
 		btnExitGame.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnExitGame.setBounds(590, 495, 170, 35);
 		frame.getContentPane().add(btnExitGame);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(20, 466, 740, 16);
 		frame.getContentPane().add(separator);
-		
+
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(20, 34, 740, 16);
 		frame.getContentPane().add(separator_1);
 	}
-	
+
 	/**
-	 * Updates the current day number on the main window. 
+	 * Updates the current day number on the main window.
 	 */
 	public void updateScreen() {
 		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());

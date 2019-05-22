@@ -1,35 +1,41 @@
 package main;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Generates random events that can occur when piloting ship to a new planet or moving on to the next day.
+ * Generates random events that can occur when piloting ship to a new planet or
+ * moving on to the next day.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
 public class RandomEvent {
 	private static int randomNum;
-	
+
 	/**
 	 * Decides by chance if any events occur when moving on to the next day.
-	 * @param crew   A Crew object.
+	 * 
+	 * @param crew A Crew object.
 	 * @return A string message of the event occurred.
 	 */
 	public static String occurDay(Crew crew) {
 
-		String returnString = "";		
+		String returnString = "";
 		randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 		if (randomNum >= 0 && randomNum < 30) {
 
 			returnString += alienPirates(crew);
 		} else if (randomNum >= 30 && randomNum < 60) {
 			returnString += spacePlague(crew);
-		} 
+		}
 		return returnString;
 	}
-	
+
 	/**
-	 * Decides by chance if the ship goes through an asteroid belt when piloting ship to a new planet.
-	 * @param crew   A Crew object.
+	 * Decides by chance if the ship goes through an asteroid belt when piloting
+	 * ship to a new planet.
+	 * 
+	 * @param crew A Crew object.
 	 * @return A string message of the damage caused by the asteroid belt.
 	 */
 	public static String occurPlanet(Crew crew) {
@@ -39,18 +45,21 @@ public class RandomEvent {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Encounters alien pirates who steal items on ship.
-	 * @param crew   A Crew object
+	 * 
+	 * @param crew A Crew object
 	 * @return A string message of the items stolen by the alien pirates.
 	 */
 	public static String alienPirates(Crew crew) {
 		String returnString = "";
 		if (crew.getFoodItems().size() + crew.getMedicalItems().size() > 0) {
-			randomNum = ThreadLocalRandom.current().nextInt(0, crew.getFoodItems().size()+crew.getMedicalItems().size());
+			randomNum = ThreadLocalRandom.current().nextInt(0,
+					crew.getFoodItems().size() + crew.getMedicalItems().size());
 			if (randomNum < crew.getFoodItems().size()) {
-				returnString += "Alien pirates boarded the ship and stole " + crew.getFoodItems().get(randomNum) + ".\n";
+				returnString += "Alien pirates boarded the ship and stole " + crew.getFoodItems().get(randomNum)
+						+ ".\n";
 				crew.getFoodItems().remove(randomNum);
 			} else {
 				int index = randomNum - crew.getFoodItems().size();
@@ -60,11 +69,14 @@ public class RandomEvent {
 		}
 		return returnString;
 	}
-	
+
 	/**
-	 * Encounters space plague, which decreases the health level of a chosen crew member.
-	 * @param crew   A Crew object.
-	 * @return A string message of the damage on the chosen crew member caused by the space plague.
+	 * Encounters space plague, which decreases the health level of a chosen crew
+	 * member.
+	 * 
+	 * @param crew A Crew object.
+	 * @return A string message of the damage on the chosen crew member caused by
+	 *         the space plague.
 	 */
 	public static String spacePlague(Crew crew) {
 		String returnString = "";
@@ -77,21 +89,24 @@ public class RandomEvent {
 				infectedMember.setStatus("Infected");
 				infectedMember.decreaseHealth(20);
 				if (infectedMember.isDead()) {
-					returnString += infectedMember.getName() + " has died to the space plague and has been removed from the crew.";
+					returnString += infectedMember.getName()
+							+ " has died to the space plague and has been removed from the crew.";
 					crew.getCrewMembers().remove(infectedMember);
 				} else {
-					returnString += infectedMember.getName() + " will lose 20 health each day until he gets cured. \n";
-					returnString += infectedMember.getName() + " now has " + infectedMember.getHealth() + "/" + infectedMember.getMaxHealth() + " health.";
+					returnString += infectedMember.getName() + " will lose 20 health each day until they get cured. \n";
+					returnString += infectedMember.getName() + " now has " + infectedMember.getHealth() + "/"
+							+ infectedMember.getMaxHealth() + " health.";
 				}
-				
-			} 
+
+			}
 		}
 		return returnString;
 	}
-	
+
 	/**
 	 * Encounters an asteroid belt, which decreases the ship's shield level.
-	 * @param crew   A Crew object.
+	 * 
+	 * @param crew A Crew object.
 	 * @return A string message of the damage caused by the asteriod belt.
 	 */
 	public static String asteroidBelt(Crew crew) {
@@ -99,7 +114,8 @@ public class RandomEvent {
 		int amount = crew.getShip().getShieldLevel() / 5 + 10;
 		crew.getShip().decreaseShieldLevel(amount);
 		returnString += "This ship went through an asteroid belt and took " + amount + " damage to the shield level.\n";
-		returnString += "The ship now has " + crew.getShip().getShieldLevel() + "/" + crew.getShip().getMaxShieldLevel() + " shield level.";
+		returnString += "The ship now has " + crew.getShip().getShieldLevel() + "/" + crew.getShip().getMaxShieldLevel()
+				+ " shield level.";
 		return returnString;
 	}
 }

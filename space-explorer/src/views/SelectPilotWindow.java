@@ -1,21 +1,19 @@
 package views;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JSeparator;
-import javax.swing.JSlider;
-import javax.swing.JScrollBar;
-import javax.swing.JTree;
-import javax.swing.JSpinner;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
-import javax.swing.JPanel;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -23,17 +21,9 @@ import javax.swing.border.TitledBorder;
 import main.CrewMember;
 import main.GameEnvironment;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.SystemColor;
-
 /**
  * Represents a window that allows players to select the pilots.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -47,7 +37,9 @@ public class SelectPilotWindow {
 
 	/**
 	 * Creates the window application.
-	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
 	 */
 	public SelectPilotWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -70,7 +62,10 @@ public class SelectPilotWindow {
 	}
 
 	/**
-	 * Initializes the contents of the frame. This includes a panel displaying the cost of piloting the ship to the crew members, two combo boxes to select main pilot and co-pilot, a panel to display the selected crew member's details, and buttons to proceed selecting a new planet or return to actions window.
+	 * Initializes the contents of the frame. This includes a panel displaying the
+	 * cost of piloting the ship to the crew members, two combo boxes to select main
+	 * pilot and co-pilot, a panel to display the selected crew member's details,
+	 * and buttons to proceed selecting a new planet or return to actions window.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -94,7 +89,8 @@ public class SelectPilotWindow {
 
 		JTextArea textAreaPilotInfo = new JTextArea();
 		textAreaPilotInfo.setBackground(UIManager.getColor("Menu.background"));
-		textAreaPilotInfo.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
+		textAreaPilotInfo.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "",
+				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
 		String info = pilotInfo(pilot1, pilot2);
 		textAreaPilotInfo.setText(info);
 		textAreaPilotInfo.setFont(new Font("Monospaced", Font.PLAIN, 15));
@@ -229,8 +225,9 @@ public class SelectPilotWindow {
 					game.setOtherChosenCrewMember(pilot2);
 					finishedWindow();
 					game.launchSelectPlanetWindow();
-				} else if (!(pilot1.canPilot())&& !(pilot2.canPilot())) {
-					String message = pilot1 + " and " + pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
+				} else if (!(pilot1.canPilot()) && !(pilot2.canPilot())) {
+					String message = pilot1 + " and " + pilot2
+							+ " does not have the required actions, fatigue, or hunger to pilot!";
 					JOptionPane.showMessageDialog(frame, message);
 				} else if (!(pilot2.canPilot())) {
 					String message = pilot2 + " does not have the required actions, fatigue, or hunger to pilot!";
@@ -291,9 +288,10 @@ public class SelectPilotWindow {
 
 	/**
 	 * Creates the display text of the conditions and costs to pilot.
-	 * @param pilot1	A CrewMember that is the first pilot. 
-	 * @param pilot2	A CrewMember that is the second pilot.
-	 * @return	Information on the requirements of piloting the ship.
+	 * 
+	 * @param pilot1 A CrewMember that is the first pilot.
+	 * @param pilot2 A CrewMember that is the second pilot.
+	 * @return Information on the requirements of piloting the ship.
 	 */
 	public String pilotInfo(CrewMember pilot1, CrewMember pilot2) {
 		String info;

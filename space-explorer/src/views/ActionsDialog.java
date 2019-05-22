@@ -1,24 +1,25 @@
 package views;
 
-import main.GameEnvironment;
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Window.Type;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import main.GameEnvironment;
 
 /**
- * Represents a dialog that allows the selected crew member to perform actions. 
+ * The dialog that allows the player to select the action they want their selected
+ * crew member to perform.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -28,10 +29,13 @@ public class ActionsDialog extends JDialog {
 	private GameEnvironment game;
 
 	/**
-	 * Creates the action dialog. This includes a list of action buttons for players to choose. 
-	 * @param parent		A JFrame that launched this dialog
-	 * @param game			A GameEnvironment object containing all the contents of the game.
-	 * @param parentWindow	A CrewMemberWindow that launched this dialog 	
+	 * Creates the action dialog. This includes a list of action buttons for players
+	 * to choose.
+	 * 
+	 * @param parent       A JFrame that launched this dialog
+	 * @param game         A GameEnvironment object containing all the contents of
+	 *                     the game.
+	 * @param parentWindow A CrewMemberWindow that launched this dialog
 	 */
 	public ActionsDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
 		super(parent, true);
@@ -51,9 +55,10 @@ public class ActionsDialog extends JDialog {
 		JButton btnEatFood = new JButton("Eat Food");
 		btnEatFood.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnEatFood.addActionListener(new ActionListener() {
-			
+
 			/**
-			 * Sets the dialog visibility to false and opens a dialog that allows the crew member to consume a food item.
+			 * Sets the dialog visibility to false and opens a dialog that allows the crew
+			 * member to consume a food item.
 			 */
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -84,7 +89,7 @@ public class ActionsDialog extends JDialog {
 		JButton btnRepairShip = new JButton("Repair ship shields");
 		btnRepairShip.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnRepairShip.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				dispose();
@@ -155,7 +160,7 @@ public class ActionsDialog extends JDialog {
 		});
 		btnBack.setBounds(15, 314, 289, 25);
 		contentPanel.add(btnBack);
-		
+
 		JSeparator separatorTop = new JSeparator();
 		separatorTop.setBounds(12, 52, 295, 2);
 		contentPanel.add(separatorTop);

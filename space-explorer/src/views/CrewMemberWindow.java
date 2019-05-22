@@ -1,39 +1,33 @@
 package views;
 
-import java.awt.EventQueue;
-import main.CrewMember;
-import main.GameEnvironment;
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JToggleButton;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JToggleButton;
-import javax.swing.JFormattedTextField;
-import javax.swing.JPopupMenu;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import javax.swing.JSeparator;
-import java.awt.SystemColor;
-import javax.swing.ImageIcon;
-import javax.swing.UIManager;
+import main.CrewMember;
+import main.GameEnvironment;
 
 /**
- * Represents a window that allows players to view each of the crew members' details and perform actions.
+ * Represents a window that allows players to view each of the crew members'
+ * details and perform actions.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -41,7 +35,7 @@ public class CrewMemberWindow {
 
 	private JFrame frame;
 	private GameEnvironment game;
-	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); 
+	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>();
 	private JLabel lblNameValue;
 	private JLabel lblTraitValue;
 	private JLabel lblHealthValue;
@@ -58,7 +52,9 @@ public class CrewMemberWindow {
 
 	/**
 	 * Creates the window application.
-	 * @param incomingGame	A GameEnvironment containing all the contents of the game. 
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
 	 */
 	public CrewMemberWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -81,7 +77,9 @@ public class CrewMemberWindow {
 	}
 
 	/**
-	 * Initialize the contents of the frame. This includes four numbered buttons for players to view the details of each crew member, and an action button to allow the selected crew member to perform actions.
+	 * Initialize the contents of the frame. This includes four numbered buttons for
+	 * players to view the details of each crew member, and an action button to
+	 * allow the selected crew member to perform actions.
 	 */
 	private void initialize() {
 		CrewMemberWindow window = this;
@@ -188,7 +186,6 @@ public class CrewMemberWindow {
 		lblStatusValue.setText(crewMember.getStatus());
 		lblActionsValue.setText(crewMember.getActionsLeft() + "/" + crewMember.getMaxActions());
 		textAreaDescription.setText(crewMember.description());
-		
 
 		JLabel lblActions = new JLabel("Actions");
 		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -336,29 +333,34 @@ public class CrewMemberWindow {
 		case 3:
 			tglbtnCrewMember4.setEnabled(false);
 		}
-		
+
 		initImages();
 	}
-	
+
 	public void initImages() {
 		switch (game.getCrew().getCrewMembers().size()) {
 		case 4:
-			tglbtnCrewMember4.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(3).getImage())));
+			tglbtnCrewMember4.setIcon(new ImageIcon(
+					CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(3).getImage())));
 		case 3:
-			tglbtnCrewMember3.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(2).getImage())));
+			tglbtnCrewMember3.setIcon(new ImageIcon(
+					CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(2).getImage())));
 		case 2:
-			tglbtnCrewMember2.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(1).getImage())));
+			tglbtnCrewMember2.setIcon(new ImageIcon(
+					CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(1).getImage())));
 		case 1:
-			tglbtnCrewMember1.setIcon(new ImageIcon(CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(0).getImage())));
+			tglbtnCrewMember1.setIcon(new ImageIcon(
+					CrewMemberWindow.class.getResource(game.getCrew().getCrewMembers().get(0).getImage())));
 		}
 	}
 
 	/**
 	 * Updates the profile details of crew members.
-	 * @param crewMember   A CrewMember object.
+	 * 
+	 * @param crewMember A CrewMember object.
 	 */
 	public void updateProfile(CrewMember crewMember) {
-		
+
 		lblNameValue.setText(crewMember.getName());
 		lblTraitValue.setText(crewMember.getType());
 		lblHealthValue.setText(crewMember.getHealth() + "/" + crewMember.getMaxHealth());

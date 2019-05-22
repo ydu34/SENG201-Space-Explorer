@@ -1,12 +1,24 @@
 package main;
 
-import views.*;
-
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+import views.CreateCrewWindow;
+import views.CrewMemberWindow;
+import views.GameOverWindow;
+import views.InstructionsWindow;
+import views.InventoryWindow;
+import views.MainWindow;
+import views.OutpostWindow;
+import views.SelectPilotWindow;
+import views.SelectPlanetWindow;
+import views.SetupWindow;
+import views.StartWindow;
+import views.StartingPlanetWindow;
+
 /**
- * Instantiates and keeps track of the objects.
+ * Instantiates and keeps track of the objects in the game. 
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -18,8 +30,6 @@ public class GameEnvironment {
 	private ArrayList<Planet> planets = new ArrayList<Planet>();
 	private int gameDuration;
 	private int currentDay = 1;
-	private String[] planetNames = { "Asauzuno", "Uchiliv", "Yangosie", "Putrilia", "Emia", "Doyama", "Bruxotune",
-			"Divunus", "Coth LTS4" };
 	private ArrayList<CrewMember> crewMemberTypes = new ArrayList<CrewMember>();
 	private CrewMember chosenCrewMember;
 	private CrewMember otherChosenCrewMember;
@@ -33,13 +43,14 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the start window.
-	 * @param startWindow   A StartWindow object.
+	 * 
+	 * @param startWindow A StartWindow object.
 	 */
 	public void closeStartWindow(StartWindow startWindow) {
 		startWindow.closeWindow();
 		launchInstructionsWindow();
 	}
-	
+
 	/**
 	 * Launches the window for inventory viewing.
 	 */
@@ -49,7 +60,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the inventory window.
-	 * @param inventoryWindow   An InventoryWindow object.
+	 * 
+	 * @param inventoryWindow An InventoryWindow object.
 	 */
 	public void closeInventoryWindow(InventoryWindow inventoryWindow) {
 		inventoryWindow.closeWindow();
@@ -64,7 +76,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the set up window.
-	 * @param setupWindow   A SetupWindow object.
+	 * 
+	 * @param setupWindow A SetupWindow object.
 	 */
 	public void closeSetupWindow(SetupWindow setupWindow) {
 		setupWindow.closeWindow();
@@ -79,7 +92,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the instructions window.
-	 * @param instructionsWindow   An InstructionsWindow window.
+	 * 
+	 * @param instructionsWindow An InstructionsWindow window.
 	 */
 	public void closeInstructionsWindow(InstructionsWindow instructionsWindow) {
 		instructionsWindow.closeWindow();
@@ -95,7 +109,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the create crew window.
-	 * @param createCrewWindow   A CreateCrewWindow object.
+	 * 
+	 * @param createCrewWindow A CreateCrewWindow object.
 	 */
 	public void closeCreateCrewWindow(CreateCrewWindow createCrewWindow) {
 		createCrewWindow.closeWindow();
@@ -111,7 +126,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the starting planet window.
-	 * @param startingPlanetWindow   A StartingPlanetWindow object.
+	 * 
+	 * @param startingPlanetWindow A StartingPlanetWindow object.
 	 */
 	public void closeStartingPlanetWindow(StartingPlanetWindow startingPlanetWindow) {
 		startingPlanetWindow.closeWindow();
@@ -126,14 +142,15 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the main game window.
-	 * @param mainWindow   A MainWindow object.
+	 * 
+	 * @param mainWindow A MainWindow object.
 	 */
 	public void closeMainWindow(MainWindow mainWindow) {
 		mainWindow.closeWindow();
 	}
 
 	/**
-	 * Launches the outpost window. 
+	 * Launches the outpost window.
 	 */
 	public void launchOutpostWindow() {
 		OutpostWindow outpostWindow = new OutpostWindow(this);
@@ -141,7 +158,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the outpost window.
-	 * @param outpostWindow   An OutpostWindow object.
+	 * 
+	 * @param outpostWindow An OutpostWindow object.
 	 */
 	public void closeOutpostWindow(OutpostWindow outpostWindow) {
 		outpostWindow.closeWindow();
@@ -156,7 +174,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the crew member window.
-	 * @param crewMemberWindow   A CrewMemberWindow object.
+	 * 
+	 * @param crewMemberWindow A CrewMemberWindow object.
 	 */
 	public void closeCrewMemberWindow(CrewMemberWindow crewMemberWindow) {
 		crewMemberWindow.closeWindow();
@@ -171,7 +190,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the select planet window.
-	 * @param selectPlanetWindow   A SelectPlanetWindow object.
+	 * 
+	 * @param selectPlanetWindow A SelectPlanetWindow object.
 	 */
 	public void closeSelectPlanetWindow(SelectPlanetWindow selectPlanetWindow) {
 		selectPlanetWindow.closeWindow();
@@ -185,15 +205,16 @@ public class GameEnvironment {
 	}
 
 	/**
-	 * Closes the pilot selection window 
-	 * @param selectPilotWindow   A SelectPilotWindow object.
+	 * Closes the pilot selection window
+	 * 
+	 * @param selectPilotWindow A SelectPilotWindow object.
 	 */
 	public void closeSelectPilotWindow(SelectPilotWindow selectPilotWindow) {
 		selectPilotWindow.closeWindow();
 	}
-	
+
 	/**
-	 * Launches the window for the final score. 
+	 * Launches the window for the final score.
 	 */
 	public void launchGameOverWindow() {
 		GameOverWindow gameOverWindow = new GameOverWindow(this);
@@ -201,7 +222,8 @@ public class GameEnvironment {
 
 	/**
 	 * Closes the game over window.
-	 * @param gameOverWindow   A GameOverWindow object.
+	 * 
+	 * @param gameOverWindow A GameOverWindow object.
 	 */
 	public void closeGameOverWindow(GameOverWindow gameOverWindow) {
 		gameOverWindow.closeWindow();
@@ -216,7 +238,8 @@ public class GameEnvironment {
 
 	/**
 	 * Initializes and starts the game.
-	 * @param args   An array of strings.
+	 * 
+	 * @param args An array of strings.
 	 */
 	public static void main(String[] args) {
 		GameEnvironment game = new GameEnvironment();
@@ -235,7 +258,6 @@ public class GameEnvironment {
 		initPlanets();
 		generateOutpostsItems();
 	}
-	
 
 	/**
 	 * Initializes the crew member types.
@@ -287,7 +309,8 @@ public class GameEnvironment {
 	}
 
 	/**
-	 * Generates eight food items and four medical items randomly to sell in outposts.
+	 * Generates eight food items and four medical items randomly to sell in
+	 * outposts.
 	 */
 	public void generateOutpostsItems() {
 		for (Planet planet : planets) {
@@ -305,6 +328,7 @@ public class GameEnvironment {
 
 	/**
 	 * Introduces the game situation.
+	 * 
 	 * @return A string message of the game situation.
 	 */
 	public String introductionText() {
@@ -313,13 +337,14 @@ public class GameEnvironment {
 				+ "You will need to find the missing engine parts of your spaceship so that you can repair it and travel back to Earth."
 				+ " \r\n\r\nEach day you may perform crew member actions. "
 				+ "Each crew member has two actions that can be used.\n\n"
-				+ "Use the actions to help you search for the parts. "
-				+ "Each planet only has one engine part.";
+				+ "Use the actions to help you search for the parts. " + "Each planet only has one engine part.";
 		return text;
 	}
 
 	/**
-	 * Checks if the game is over by checking if any of the conditions for game over are met.
+	 * Checks if the game is over by checking if any of the conditions for game over
+	 * are met.
+	 * 
 	 * @return true if any of the conditions are met, false otherwise.
 	 */
 	public boolean gameOver() {
@@ -332,8 +357,9 @@ public class GameEnvironment {
 	}
 
 	/**
-	 * Creates crew members personalized by players.
-	 * @param member   A CrewMember object.
+	 * Creates crew members personalized by the player.
+	 * 
+	 * @param member A CrewMember object.
 	 * @return A null CrewMember object.
 	 */
 	public CrewMember createCrewMember(CrewMember member) {
@@ -356,7 +382,9 @@ public class GameEnvironment {
 
 	/**
 	 * Moves on to the next day.
-	 * @return A string message of currently infected crew members and the event occurred.
+	 * 
+	 * @return A string message of currently infected crew members and the event
+	 *         occurred.
 	 */
 	public String nextDay() {
 		currentDay++;
@@ -372,15 +400,18 @@ public class GameEnvironment {
 	}
 
 	/**
-	 * Checks the well-being of the infected crew members.
-	 * @return A string message of the infected crew members' updated health levels or if they have died. 
+	 * Checks the crew members and see which are infected.
+	 * 
+	 * @return A string message of the infected crew members' updated health levels
+	 *         or if they have died.
 	 */
 	public String checkInfectedCrewMembers() {
 		String returnString = "";
 		ArrayList<CrewMember> deadCrewMembers = new ArrayList<CrewMember>();
 		for (CrewMember member : crew.getCrewMembers()) {
 			if (member.isInfected()) {
-				member.decreaseHealth(20);;
+				member.decreaseHealth(20);
+				;
 				if (member.isDead()) {
 					returnString += member.getName()
 							+ " has died to the space plague and has been removed from the crew.\n";
@@ -400,6 +431,7 @@ public class GameEnvironment {
 
 	/**
 	 * Calculates the final score of the game.
+	 * 
 	 * @return An int of the final score.
 	 */
 	public int calculateFinalScore() {
@@ -420,9 +452,10 @@ public class GameEnvironment {
 		return score;
 	}
 
-	
 	/**
-	 * Checks if the game is over by checking if any of the game over conditions are met.
+	 * Checks if the game is over by checking if any of the game over conditions are
+	 * met.
+	 * 
 	 * @return A string message describing why the game is over.
 	 */
 	public String gameOverMessage() {
@@ -493,14 +526,6 @@ public class GameEnvironment {
 
 	public void setCurrentDay(int currentDay) {
 		this.currentDay = currentDay;
-	}
-
-	public String[] getPlanetNames() {
-		return planetNames;
-	}
-
-	public void setPlanetNames(String[] planetNames) {
-		this.planetNames = planetNames;
 	}
 
 	public ArrayList<CrewMember> getCrewMemberTypes() {

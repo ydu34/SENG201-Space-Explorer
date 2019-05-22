@@ -1,52 +1,41 @@
 package views;
 
-import main.CrewMember;
-
-
-import main.GameEnvironment;
-
-
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-
 import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JSlider;
-import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.MatteBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.ChangeEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-import javax.swing.JToggleButton;
-import javax.swing.JTextPane;
-import javax.swing.JTable;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-
-import java.awt.SystemColor;
-import javax.swing.UIManager;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JSlider;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
+import main.CrewMember;
+import main.GameEnvironment;
 
 /**
- * Represents a window that allows players to choose and personalize crew members.
+ * A window that allows the player to create their crew. This includes naming
+ * the ship, selecting the crew size, and also choosing their crew members. The
+ * player can name and pick the trait of the crew member.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -64,7 +53,9 @@ public class CreateCrewWindow {
 
 	/**
 	 * Creates the window application.
-	 * @param incomingGame	A GameEnvironment containing all the contents of the game. 
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
 	 */
 	public CreateCrewWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -87,7 +78,10 @@ public class CreateCrewWindow {
 	}
 
 	/**
-	 * Initializes the contents of the this window. This window includes a text field for ship name input, a slider for choosing the number of crew members, and four numbered buttons for players to personalize each of the crew members.
+	 * Initializes the contents of the this window. This window includes a text
+	 * field for ship name input, a slider for choosing the number of crew members,
+	 * and four numbered buttons for players to personalize each of the crew
+	 * members.
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -179,14 +173,15 @@ public class CreateCrewWindow {
 		textFieldShipName.setBounds(393, 37, 292, 30);
 		frame.getContentPane().add(textFieldShipName);
 		textFieldShipName.setColumns(10);
-		
+
 		Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
 		JToggleButton tglbtnCrewMember1 = new JToggleButton("", true);
 		tglbtnCrewMember1.setBorder(solidBorder);
 		tglbtnCrewMember1.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautBlue.png")));
-		tglbtnCrewMember1.setSelectedIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautBlue.png")));
+		tglbtnCrewMember1
+				.setSelectedIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautBlue.png")));
 		tglbtnCrewMember1.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -205,7 +200,7 @@ public class CreateCrewWindow {
 		JToggleButton tglbtnCrewMember2 = new JToggleButton("");
 		tglbtnCrewMember2.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautRed.png")));
 		tglbtnCrewMember2.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -226,7 +221,7 @@ public class CreateCrewWindow {
 		JToggleButton tglbtnCrewMember3 = new JToggleButton("");
 		tglbtnCrewMember3.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautTeal.png")));
 		tglbtnCrewMember3.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -247,7 +242,7 @@ public class CreateCrewWindow {
 		JToggleButton tglbtnCrewMember4 = new JToggleButton("");
 		tglbtnCrewMember4.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautPurple.png")));
 		tglbtnCrewMember4.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				for (JToggleButton button : CrewMemberToggleButtons) {
 					button.setSelected(false);
@@ -276,7 +271,7 @@ public class CreateCrewWindow {
 
 		// The listener for the combo box
 		cBoxTrait.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent arg0) {
 				CrewMember currentType = (CrewMember) cBoxTrait.getSelectedItem();
 				lblHealthValue_1.setText(currentType.getHealth() + "/" + currentType.getMaxHealth());
@@ -294,7 +289,7 @@ public class CreateCrewWindow {
 		JSlider sliderCrewSize = new JSlider();
 		sliderCrewSize.setFont(new Font("Dialog", Font.BOLD, 16));
 		sliderCrewSize.addChangeListener(new ChangeListener() {
-			
+
 			public void stateChanged(ChangeEvent e) {
 				tglbtnCrewMember3.setEnabled(true);
 				tglbtnCrewMember4.setEnabled(true);
@@ -326,10 +321,11 @@ public class CreateCrewWindow {
 		JButton btnSave = new JButton("Save Crew Member");
 		btnSave.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnSave.addActionListener(new ActionListener() {
-	
+
 			public void actionPerformed(ActionEvent e) {
 				String crewMemberName = tfCMName.getText().replaceFirst("\\s++$", "");
-				if (crewMemberName.length() > 14 || crewMemberName.length() < 2 || crewMemberName.isEmpty() || crewMemberName.startsWith(" ")) {
+				if (crewMemberName.length() > 14 || crewMemberName.length() < 2 || crewMemberName.isEmpty()
+						|| crewMemberName.startsWith(" ")) {
 					lblNotify.setText("");
 					String message = "The length of the name must be between 2 and 14 characters and cannot start with spaces.";
 					JOptionPane.showMessageDialog(frame, message);
@@ -370,7 +366,7 @@ public class CreateCrewWindow {
 
 		JButton btnNext = new JButton("Finish Crew Creation");
 		btnNext.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				String shipName = textFieldShipName.getText().replaceFirst("\\s++$", "");
 				if (shipName.length() > 14 || shipName.length() < 2 || shipName.isEmpty() || shipName.startsWith(" ")) {
@@ -402,7 +398,7 @@ public class CreateCrewWindow {
 		btnNext.setBounds(553, 515, 192, 25);
 
 		frame.getContentPane().add(btnNext);
-		
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(50, 157, 695, 2);
 		frame.getContentPane().add(separator);
@@ -430,11 +426,13 @@ public class CreateCrewWindow {
 			}
 		});
 	}
-	
+
 	/**
-	 * Updates the crew member profile details according to the crew member number button selected.
-	 * @param toggleButton   A JToggleButton object.
-	 * @param crewMember     A CrewMember object.
+	 * Updates the crew member profile details according to the crew member number
+	 * button selected.
+	 * 
+	 * @param toggleButton A JToggleButton object.
+	 * @param crewMember   A CrewMember object.
 	 */
 	public void updateProfile(JToggleButton toggleButton, CrewMember crewMember) {
 		toggleButton.setSelected(true);

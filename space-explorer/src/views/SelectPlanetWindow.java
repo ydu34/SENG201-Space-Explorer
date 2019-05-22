@@ -1,35 +1,31 @@
 package views;
 
+import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import main.CrewMember;
 import main.GameEnvironment;
 import main.Planet;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.Image;
-
-import javax.swing.JComboBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JList;
-import javax.swing.border.TitledBorder;
-import java.awt.SystemColor;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
-import javax.swing.UIManager;
-
 /**
- * Represents a window that allows players to select a new planet to pilot to.
+ * The window that allows the player to select a new planet to pilot to.
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -42,7 +38,9 @@ public class SelectPlanetWindow {
 
 	/**
 	 * Creates the window application.
-	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
 	 */
 	public SelectPlanetWindow(GameEnvironment incomingGame) {
 		game = incomingGame;
@@ -109,6 +107,7 @@ public class SelectPlanetWindow {
 		panelEnginePiece.add(lblPieceAvailableValue);
 		
 		JLabel lblPlanetImage = new JLabel();
+		lblPlanetImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlanetImage.setBounds(419, 87, 325, 285);
 		
 		JPanel panelSelectPlanet = new JPanel();

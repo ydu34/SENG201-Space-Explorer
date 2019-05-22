@@ -1,20 +1,20 @@
 package views;
-import main.GameEnvironment;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
-import javax.swing.UIManager;
-import javax.swing.border.TitledBorder;
 import java.awt.Font;
-import javax.swing.JTextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
+import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
+import main.GameEnvironment;
 
 /**
- * Represents a window that explains the instructions of the game to the player. 
+ * The window that explains the instructions of the game to the player. 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -25,7 +25,9 @@ public class InstructionsWindow {
 
 	/**
 	 * Creates the window application.
-	 * @param incomingGame	A GameEnvironment containing all the contents of the game.
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
 	 */
 	public InstructionsWindow(GameEnvironment incomingGame) {
 		game = incomingGame;

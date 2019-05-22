@@ -1,38 +1,36 @@
 package views;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import main.FoodItem;
-import main.GameEnvironment;
-import main.MedicalItem;
-
 import java.awt.Font;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JComboBox;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeSet;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.border.TitledBorder;
-import javax.swing.JTextArea;
-import java.awt.SystemColor;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import main.GameEnvironment;
+import main.MedicalItem;
 
 /**
- * Represents a dialog that allows crew members to apply medical items.
+ * The dialog that allows the player to select a medical item to apply on the
+ * selected crew member.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -41,13 +39,17 @@ public class ApplyMedicineDialog extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 	/**
-	 * Creates the apply medicine dialog. This dialog includes a combo box for players to select a medical item, and a text area to show the selected medical item details.
-	 * @param parent		A JFrame that launches this dialog.
-	 * @param game 			A GameEnvironment object containing all the contents of the game.
-	 * @param parentWindow	A CrewMemberWindow that launched this dialog. 	
+	 * Creates the apply medicine dialog. This dialog includes a combo box for
+	 * players to select a medical item, and a text area to show the selected
+	 * medical item details.
+	 * 
+	 * @param parent       A JFrame that launches this dialog.
+	 * @param game         A GameEnvironment object containing all the contents of
+	 *                     the game.
+	 * @param parentWindow A CrewMemberWindow that launched this dialog.
 	 */
 	public ApplyMedicineDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
-		super(parent, title, true);
+		super(parent, true);
 		setResizable(false);
 		setBounds(100, 100, 375, 450);
 		getContentPane().setLayout(new BorderLayout());
@@ -69,16 +71,16 @@ public class ApplyMedicineDialog extends JDialog {
 		// Combo box for the medical items in the crew inventory
 		JComboBox comboBoxItems = new JComboBox(uniqueMedicalItems.toArray());
 		comboBoxItems.setFont(new Font("Dialog", Font.PLAIN, 16));
-		
+
 		comboBoxItems.setBounds(30, 95, 314, 24);
 		contentPanel.add(comboBoxItems);
 		JButton btnDoSomethingElse = new JButton("Do something else!");
 		btnDoSomethingElse.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
-				JDialog actions = new ActionsDialog(parent, "Space Explorers", game, parentWindow);
+				JDialog actions = new ActionsDialog(parent, game, parentWindow);
 				actions.setVisible(true);
 			}
 		});
@@ -104,7 +106,8 @@ public class ApplyMedicineDialog extends JDialog {
 		btnApply.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				String message = game.getChosenCrewMember().useMedicalItem((MedicalItem) comboBoxItems.getSelectedItem(), game.getCrew());
+				String message = game.getChosenCrewMember()
+						.useMedicalItem((MedicalItem) comboBoxItems.getSelectedItem(), game.getCrew());
 				setVisible(false);
 				dispose();
 				JOptionPane.showMessageDialog(parent, message);
@@ -154,21 +157,21 @@ public class ApplyMedicineDialog extends JDialog {
 		lblDescription.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblDescription.setBounds(12, 95, 136, 23);
 		panelItemDescription.add(lblDescription);
-		
-				JTextArea textAreaDescription = new JTextArea((String) null);
-				textAreaDescription.setLineWrap(true);
-				textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
-				textAreaDescription.setWrapStyleWord(true);
-				textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
-				textAreaDescription.setEditable(false);
-				textAreaDescription.setBounds(12, 120, 294, 60);
-				panelItemDescription.add(textAreaDescription);
-				
-				JLabel lblWarning = new JLabel("This uses up 1 action.");
-				lblWarning.setFont(new Font("Dialog", Font.BOLD, 16));
-				lblWarning.setBounds(12, 180, 290, 22);
-				panelItemDescription.add(lblWarning);
-		
+
+		JTextArea textAreaDescription = new JTextArea((String) null);
+		textAreaDescription.setLineWrap(true);
+		textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
+		textAreaDescription.setWrapStyleWord(true);
+		textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		textAreaDescription.setEditable(false);
+		textAreaDescription.setBounds(12, 120, 294, 60);
+		panelItemDescription.add(textAreaDescription);
+
+		JLabel lblWarning = new JLabel("This uses up 1 action.");
+		lblWarning.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblWarning.setBounds(12, 180, 290, 22);
+		panelItemDescription.add(lblWarning);
+
 		JSeparator separator = new JSeparator();
 		separator.setBounds(30, 52, 314, 2);
 		contentPanel.add(separator);

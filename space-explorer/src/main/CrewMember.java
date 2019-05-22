@@ -1,9 +1,11 @@
 package main;
+
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Represents a crew member.
+ * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
@@ -11,7 +13,7 @@ public class CrewMember {
 	private String name;
 	private String type;
 	private String status;
-	private String image; 
+	private String image;
 	private int health;
 	private int maxHealth;
 	private int hunger;
@@ -21,17 +23,17 @@ public class CrewMember {
 	private int actionsLeft;
 	private int maxActions;
 	private boolean infected;
-	private boolean dead; 
+	private boolean dead;
 	private int repairFatigueCost;
 	private int repairHungerCost;
 	private int pilotFatigueCost;
 	private int pilotHungerCost;
 	private int searchFatigueCost;
 	private int searchHungerCost;
-	
 
 	/**
 	 * Creates a crew member with the given values.
+	 * 
 	 * @param name  A string name of the crew member.
 	 * @param type  A string type of the crew member.
 	 * @param image A string image of the crew member.
@@ -57,20 +59,22 @@ public class CrewMember {
 		this.searchFatigueCost = 20;
 		this.searchHungerCost = 20;
 		this.image = image;
-		
+
 	}
-	
+
 	/**
 	 * Creates a crew member with the given values.
-	 * @param name         A string name of the crew member.
-	 * @param type         A string type of the crew member.
-	 * @param image        A string image of the crew member.
-	 * @param maxHealth    An int of the maximum health level.
-	 * @param maxHunger    An int of the maximum hunger level.
-	 * @param maxFatigue   An int of the maximum fatigue level.
-	 * @param maxActions   An int of the maximum actions allowed.
+	 * 
+	 * @param name       A string name of the crew member.
+	 * @param type       A string type of the crew member.
+	 * @param image      A string image of the crew member.
+	 * @param maxHealth  An int of the maximum health level.
+	 * @param maxHunger  An int of the maximum hunger level.
+	 * @param maxFatigue An int of the maximum fatigue level.
+	 * @param maxActions An int of the maximum actions allowed.
 	 */
-	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue, int maxActions) {
+	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue,
+			int maxActions) {
 		this.name = name;
 		this.type = type;
 		this.status = "Normal";
@@ -92,25 +96,33 @@ public class CrewMember {
 		this.searchHungerCost = 20;
 		this.image = image;
 	}
-	
+
 	/**
 	 * Creates a crew member with the given values.
-	 * @param name                A string name of the crew member.
-	 * @param type                A string type of the crew member.
-	 * @param image               A string image of the crew member.
-	 * @param maxHealth           An int of the maximum health level.
-	 * @param maxHunger           An int of the maximum hunger level.
-	 * @param maxFatigue          An int of the maximum fatigue level.
-	 * @param maxActions          An int of the maximum actions allowed.
-	 * @param repairFatigueCost   An int of the fatigue cost when the crew member repairs the ship shields.
-	 * @param repairHungerCost    An int of the hunger cost when the crew member repairs the ship shields.
-	 * @param pilotFatigueCost    An int of the fatigue cost when the crew member pilots the ship.
-	 * @param pilotHungerCost     An int of the hunger cost when the crew member pilots the ship.
-	 * @param searchFatigueCost   An int of the fatigue cost when the crew member searches the planet.
-	 * @param searchHungerCost    An int of the hunger cost when the crew member searches the planet.
+	 * 
+	 * @param name              A string name of the crew member.
+	 * @param type              A string type of the crew member.
+	 * @param image             A string image of the crew member.
+	 * @param maxHealth         An int of the maximum health level.
+	 * @param maxHunger         An int of the maximum hunger level.
+	 * @param maxFatigue        An int of the maximum fatigue level.
+	 * @param maxActions        An int of the maximum actions allowed.
+	 * @param repairFatigueCost An int of the fatigue cost when the crew member
+	 *                          repairs the ship shields.
+	 * @param repairHungerCost  An int of the hunger cost when the crew member
+	 *                          repairs the ship shields.
+	 * @param pilotFatigueCost  An int of the fatigue cost when the crew member
+	 *                          pilots the ship.
+	 * @param pilotHungerCost   An int of the hunger cost when the crew member
+	 *                          pilots the ship.
+	 * @param searchFatigueCost An int of the fatigue cost when the crew member
+	 *                          searches the planet.
+	 * @param searchHungerCost  An int of the hunger cost when the crew member
+	 *                          searches the planet.
 	 */
-	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue, int maxActions, 
-			int repairFatigueCost, int repairHungerCost, int pilotFatigueCost, int pilotHungerCost, int searchFatigueCost, int searchHungerCost) {
+	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue,
+			int maxActions, int repairFatigueCost, int repairHungerCost, int pilotFatigueCost, int pilotHungerCost,
+			int searchFatigueCost, int searchHungerCost) {
 		this.name = name;
 		this.type = type;
 		this.status = "Normal";
@@ -127,15 +139,17 @@ public class CrewMember {
 		this.repairFatigueCost = repairFatigueCost;
 		this.repairHungerCost = repairHungerCost;
 		this.pilotFatigueCost = pilotFatigueCost;
-		this.pilotHungerCost = pilotHungerCost;	
+		this.pilotHungerCost = pilotHungerCost;
 		this.searchFatigueCost = searchFatigueCost;
 		this.searchHungerCost = searchHungerCost;
 		this.image = image;
 	}
-	
+
 	/**
 	 * Checks if the crew member has enough attributes to pilot.
-	 * @return true if the crew member has enough attributes to pilot, false otherwise.
+	 * 
+	 * @return true if the crew member has enough attributes to pilot, false
+	 *         otherwise.
 	 */
 	public boolean canPilot() {
 		return (fatigue + pilotFatigueCost <= maxFatigue && hunger + pilotHungerCost <= maxHunger && actionsLeft > 0);
@@ -143,29 +157,32 @@ public class CrewMember {
 
 	/**
 	 * Checks if the crew member is available to perform actions.
+	 * 
 	 * @return true if the crew member has actions left, false otherwise.
 	 */
 	public boolean isAvailable() {
 		return actionsLeft > 0;
 	}
-	
+
 	/**
 	 * Consumes a food item to decrease hunger level.
-	 * @param item   A FoodItem object.
-	 * @param crew   A Crew object.
+	 * 
+	 * @param item A FoodItem object.
+	 * @param crew A Crew object.
 	 * @return A string message of the crew member's updated hunger level.
 	 */
 	public String eat(FoodItem item, Crew crew) {
 		decreaseHunger(item.getRestoreHungerAmount());
 		crew.getFoodItems().remove(item);
 		actionsLeft -= 1;
-		return name + " now has " + hunger + "/" + maxHunger  + " hunger.";
+		return name + " now has " + hunger + "/" + maxHunger + " hunger.";
 	}
-	
+
 	/**
 	 * Applies medical items to increase health level.
-	 * @param item   A MedicalItem object.
-	 * @param crew   A Crew object.
+	 * 
+	 * @param item A MedicalItem object.
+	 * @param crew A Crew object.
 	 * @return A string message of the crew member's updated status or health level.
 	 */
 	public String useMedicalItem(MedicalItem item, Crew crew) {
@@ -181,100 +198,112 @@ public class CrewMember {
 		actionsLeft -= 1;
 		return returnString;
 	}
-	
+
 	/**
 	 * Performs the sleep action to decrease fatigue level.
+	 * 
 	 * @return A string message of the crew member's updated fatigue level.
-	 */	
+	 */
 	public String sleep() {
 		int previousFatigue = fatigue;
 		decreaseFatigue(30);
 		int fatigueRecovered = previousFatigue - fatigue;
-		actionsLeft-=1;
-		return name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + "/" + maxFatigue + " fatigue.";
+		actionsLeft -= 1;
+		return name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + "/" + maxFatigue
+				+ " fatigue.";
 	}
-	
+
 	/**
-	 * Repairs the ship to increase shield level, if the conditions are met for the crew member.
-	 * @param ship   A Ship object.
-	 * @return A string message that the crew member is unable to repair ship, or a string of the ship's updated shield level.
+	 * Repairs the ship to increase shield level, if the conditions are met for the
+	 * crew member.
+	 * 
+	 * @param ship A Ship object.
+	 * @return A string message that the crew member is unable to repair ship, or a
+	 *         string of the ship's updated shield level.
 	 */
 	public String repair(Ship ship) {
 		String returnString = "";
-		if (fatigue + repairFatigueCost> maxFatigue) {
+		if (fatigue + repairFatigueCost > maxFatigue) {
 			returnString += name + " is too tired to repair the ship.";
-		} 
-		
+		}
+
 		if (hunger + repairHungerCost > maxHunger) {
 			returnString += name + " is too hungry to repair the ship.\n";
 		}
-		
-		if (fatigue + repairFatigueCost  <= maxFatigue && hunger + repairHungerCost <= maxHunger) {
+
+		if (fatigue + repairFatigueCost <= maxFatigue && hunger + repairHungerCost <= maxHunger) {
 			ship.increaseShieldLevel(10);
-			actionsLeft-=1;
+			actionsLeft -= 1;
 			increaseFatigue(repairFatigueCost);
 			increaseHunger(repairHungerCost);
-			returnString += ship.getName() +"'s shields is at " + ship.getShieldLevel() + "/" + ship.getMaxShieldLevel();
+			returnString += ship.getName() + "'s shields is at " + ship.getShieldLevel() + "/"
+					+ ship.getMaxShieldLevel();
 		}
 		return returnString;
 	}
-	
+
 	/**
-	 * Pilots the ship to a new planet with another chosen crew member, if the conditions are met for both crew members.
-	 * @param planet   A Planet object.
-	 * @param other    A CrewMember object.
-	 * @param crew     A Crew object.
-	 * @return A string message of the whether the pilots are able to pilot or if an event happens
+	 * Pilots the ship to a new planet with another chosen crew member, if the
+	 * conditions are met for both crew members.
+	 * 
+	 * @param planet A Planet object.
+	 * @param other  A CrewMember object.
+	 * @param crew   A Crew object.
+	 * @return A string message of the whether the pilots are able to pilot or if an
+	 *         event happens
 	 */
 	public String pilot(Planet planet, CrewMember other, Crew crew) {
 		String returnString = "";
-		if (fatigue + pilotFatigueCost> maxFatigue) {
+		if (fatigue + pilotFatigueCost > maxFatigue) {
 			returnString += name + " is too tired to pilot the ship.\n";
-		} 
+		}
 		if (hunger + pilotHungerCost > maxHunger) {
 			returnString += name + " is too hungry to pilot the ship.\n";
 		}
 		if (other.fatigue + pilotFatigueCost > other.maxFatigue) {
 			returnString += other.name + " is too tired to pilot the ship.\n";
-		} 
+		}
 		if (other.hunger + other.pilotHungerCost > other.maxHunger) {
 			returnString += other.name + " is too hungry to pilot the ship.\n";
 		}
-		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost 
+		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost
 				&& hunger <= maxHunger - pilotHungerCost && other.hunger <= other.maxHunger - other.pilotHungerCost) {
 			increaseFatigue(pilotFatigueCost);
 			other.increaseFatigue(other.pilotFatigueCost);
 			increaseHunger(pilotHungerCost);
 			other.increaseHunger(other.pilotHungerCost);
 			actionsLeft -= 1;
-			other.actionsLeft -=1;
+			other.actionsLeft -= 1;
 			crew.setCurrentLocation(planet);
-			returnString += RandomEvent.occurPlanet(crew); 
+			returnString += RandomEvent.occurPlanet(crew);
 		}
 		return returnString;
 	}
-	
+
 	/**
-	 * Searches the planet for items and the ship piece, if the conditions of the crew member are met.
-	 * @param medicalItems   An ArrayList of medical items.
-	 * @param foodItems      An ArrayList of food items.
-	 * @param crew           A Crew object.
+	 * Searches the planet for items and the ship piece, if the conditions of the
+	 * crew member are met.
+	 * 
+	 * @param medicalItems An ArrayList of medical items.
+	 * @param foodItems    An ArrayList of food items.
+	 * @param crew         A Crew object.
 	 * @return A string message of what was found.
 	 */
 	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew) {
 		String returnString = "";
-		if (fatigue + searchFatigueCost  > maxFatigue) {
+		if (fatigue + searchFatigueCost > maxFatigue) {
 			returnString += name + " is too tired to search the planet.\n";
 		}
 		if (hunger + searchHungerCost > maxHunger) {
 			returnString += name + " is too hungry to search the planet.\n";
 		}
-		if (fatigue + searchFatigueCost  <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
+		if (fatigue + searchFatigueCost <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 			if (randomNum >= 0 && randomNum < 30 && crew.getCurrentLocation().isPieceDetected()) {
 				returnString += name + " has found a engine piece!\n";
 				crew.getShip().foundPiece();
-				returnString += "Pieces found: " + crew.getShip().getPiecesFound() + "/" + crew.getShip().getPiecesNeeded() + ".";
+				returnString += "Pieces found: " + crew.getShip().getPiecesFound() + "/"
+						+ crew.getShip().getPiecesNeeded() + ".";
 				crew.getCurrentLocation().setPieceDetected(false);
 			} else if (randomNum >= 30 && randomNum < 50) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
@@ -297,19 +326,20 @@ public class CrewMember {
 		}
 		return returnString;
 	}
-	
+
 	/**
 	 * Creates a description and special abilities of the crew member type.
+	 * 
 	 * @return A string of the crew member type description.
 	 */
 	public String description() {
 		String returnString = "";
-		switch(type) {
-		case "Engineer" :
+		switch (type) {
+		case "Engineer":
 			returnString = "Engineers are masters at building, designing and maintaining machines. "
 					+ "The Engineer is more skilled at reparining the spaceship.";
 			break;
-		case "Health Nut" :
+		case "Health Nut":
 			returnString = "Health Nut has a very healthy lifestyle. "
 					+ "Health Nut's health level increases by more when consuming medical items";
 			break;
@@ -328,65 +358,66 @@ public class CrewMember {
 		case "Regular":
 			returnString = "Regular does not have any special powers. "
 					+ "Regular has higher hunger and fatigue tolerance levels.";
-			break; 
+			break;
 		}
 		return returnString;
 	}
-	
+
 	public void increaseHealth(int amount) {
 		health += amount;
 		if (health > maxHealth) {
 			health = maxHealth;
 		}
 	}
-	
+
 	public void decreaseHealth(int amount) {
 		health -= amount;
 		if (health <= 0) {
 			health = 0;
-			dead = true; 
+			dead = true;
 		}
 	}
-	
+
 	public void increaseHunger(int amount) {
 		hunger += amount;
 		if (hunger > maxHunger) {
 			hunger = maxHunger;
 		}
 	}
-	
+
 	public void decreaseHunger(int amount) {
 		hunger -= amount;
 		if (hunger < 0) {
 			hunger = 0;
 		}
 	}
-	
+
 	public void increaseFatigue(int amount) {
 		fatigue += amount;
 		if (fatigue > maxFatigue) {
 			fatigue = maxFatigue;
 		}
 	}
-	
+
 	public void decreaseFatigue(int amount) {
 		fatigue -= amount;
 		if (fatigue < 0) {
 			fatigue = 0;
 		}
 	}
-	
-	
+
 	/**
 	 * Creates a string representation of the crew member.
+	 * 
 	 * @return A string representation of the crew member.
 	 */
 	public String toString() {
 		return name;
 	}
-	
+
 	/**
 	 * Gets the name of the crew member.
+	 * 
 	 * @return A string name of the crew member.
 	 */
 	public String getName() {
@@ -395,7 +426,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the name of the crew member.
-	 * @param name   A string name of the crew member.
+	 * 
+	 * @param name A string name of the crew member.
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -403,6 +435,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the type of the crew member.
+	 * 
 	 * @return A string type of the crew member.
 	 */
 	public String getType() {
@@ -411,7 +444,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the type of the crew member.
-	 * @param type   A string type of the crew member.
+	 * 
+	 * @param type A string type of the crew member.
 	 */
 	public void setType(String type) {
 		this.type = type;
@@ -419,15 +453,17 @@ public class CrewMember {
 
 	/**
 	 * Gets the amount of actions left.
+	 * 
 	 * @return An int of actions left.
 	 */
 	public int getActionsLeft() {
 		return actionsLeft;
 	}
-	
+
 	/**
 	 * Sets the amount of actions left.
-	 * @param actionsLeft   An int of the actions left.
+	 * 
+	 * @param actionsLeft An int of the actions left.
 	 */
 	public void setActionsLeft(int actionsLeft) {
 		this.actionsLeft = actionsLeft;
@@ -435,6 +471,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the health level.
+	 * 
 	 * @return An int of the health level.
 	 */
 	public int getHealth() {
@@ -443,7 +480,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the health level.
-	 * @param health  An int of the health level.  
+	 * 
+	 * @param health An int of the health level.
 	 */
 	public void setHealth(int health) {
 		this.health = health;
@@ -451,6 +489,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the maximum health level.
+	 * 
 	 * @return An int of the maximum health level.
 	 */
 	public int getMaxHealth() {
@@ -459,7 +498,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the maximum health level.
-	 * @param maxHealth   An int of the maximum health level.
+	 * 
+	 * @param maxHealth An int of the maximum health level.
 	 */
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
@@ -467,6 +507,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the hunger level.
+	 * 
 	 * @return An int of the hunger level.
 	 */
 	public int getHunger() {
@@ -475,7 +516,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the hunger level.
-	 * @param hunger   An int of the hunger level.
+	 * 
+	 * @param hunger An int of the hunger level.
 	 */
 	public void setHunger(int hunger) {
 		this.hunger = hunger;
@@ -483,6 +525,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the maximum hunger level.
+	 * 
 	 * @return An int of the maximum hunger level.
 	 */
 	public int getMaxHunger() {
@@ -491,7 +534,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the maximum hunger level.
-	 * @param maxHunger   An int of the maximum hunger level.
+	 * 
+	 * @param maxHunger An int of the maximum hunger level.
 	 */
 	public void setMaxHunger(int maxHunger) {
 		this.maxHunger = maxHunger;
@@ -499,6 +543,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the fatigue level.
+	 * 
 	 * @return An int of the fatigue level.
 	 */
 	public int getFatigue() {
@@ -507,7 +552,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the fatigue level.
-	 * @param fatigue   An int of the fatigue level.
+	 * 
+	 * @param fatigue An int of the fatigue level.
 	 */
 	public void setFatigue(int fatigue) {
 		this.fatigue = fatigue;
@@ -515,6 +561,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the maximum fatigue level.
+	 * 
 	 * @return An int of the maximum fatigue level.
 	 */
 	public int getMaxFatigue() {
@@ -523,7 +570,8 @@ public class CrewMember {
 
 	/**
 	 * Sets the maximum fatigue level.
-	 * @param maxFatigue   An int of the maximum fatigue level.
+	 * 
+	 * @param maxFatigue An int of the maximum fatigue level.
 	 */
 	public void setMaxFatigue(int maxFatigue) {
 		this.maxFatigue = maxFatigue;
@@ -531,6 +579,7 @@ public class CrewMember {
 
 	/**
 	 * Gets the maximum actions available.
+	 * 
 	 * @return An int of the maximum actions available.
 	 */
 	public int getMaxActions() {
@@ -539,23 +588,26 @@ public class CrewMember {
 
 	/**
 	 * Sets the maximum actions available.
-	 * @param maxActions   An int of the maximum actions available.
+	 * 
+	 * @param maxActions An int of the maximum actions available.
 	 */
 	public void setMaxActions(int maxActions) {
 		this.maxActions = maxActions;
 	}
-	
+
 	/**
 	 * Checks if the crew member is infected by space plague.
+	 * 
 	 * @return true if the crew member is infected, false otherwise.
 	 */
 	public boolean isInfected() {
 		return infected;
 	}
-	
+
 	/**
 	 * Sets the crew member as infected by space plague.
-	 * @param infected   A boolean expression on whether crew member is infected.
+	 * 
+	 * @param infected A boolean expression on whether crew member is infected.
 	 */
 	public void setInfected(boolean infected) {
 		this.infected = infected;
@@ -563,6 +615,7 @@ public class CrewMember {
 
 	/**
 	 * Checks if the crew member is dead.
+	 * 
 	 * @return true if the crew member is dead, false otherwise.
 	 */
 	public boolean isDead() {
@@ -571,119 +624,134 @@ public class CrewMember {
 
 	/**
 	 * Sets the crew member to be dead.
-	 * @param dead   A boolean expression on whether the crew member is dead.
+	 * 
+	 * @param dead A boolean expression on whether the crew member is dead.
 	 */
 	public void setDead(boolean dead) {
 		this.dead = dead;
 	}
-	
+
 	/**
 	 * Gets the status of the crew member.
+	 * 
 	 * @return A string status of the crew member.
 	 */
 	public String getStatus() {
 		return status;
 	}
-	
+
 	/**
 	 * Sets the status of the crew member.
-	 * @param status   The string status of the crew member.
+	 * 
+	 * @param status The string status of the crew member.
 	 */
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
 	/**
 	 * Gets the fatigue cost of repairing the ship.
+	 * 
 	 * @return An int of the fatigue cost of repairing the ship.
 	 */
 	public int getRepairFatigueCost() {
 		return repairFatigueCost;
 	}
-	
+
 	/**
 	 * Sets the fatigue cost of repairing the ship.
-	 * @param repairFatigueCost   An int of the fatigue cost of repairing the ship.
+	 * 
+	 * @param repairFatigueCost An int of the fatigue cost of repairing the ship.
 	 */
 	public void setRepairFatigueCost(int repairFatigueCost) {
 		this.repairFatigueCost = repairFatigueCost;
 	}
-	
+
 	/**
 	 * Gets the hunger cost of repairing the ship.
+	 * 
 	 * @return An int of the hunger cost of repairing the ship.
 	 */
 	public int getRepairHungerCost() {
 		return repairHungerCost;
 	}
-	
+
 	/**
 	 * Sets the hunger cost of repairing the ship.
-	 * @param repairHungerCost   An int of the hunger cost of repairing the ship.
+	 * 
+	 * @param repairHungerCost An int of the hunger cost of repairing the ship.
 	 */
 	public void setRepairHungerCost(int repairHungerCost) {
 		this.repairHungerCost = repairHungerCost;
 	}
-	
+
 	/**
 	 * Gets the fatigue cost of piloting the ship.
+	 * 
 	 * @return An int of the fatigue cost of piloting the ship.
 	 */
 	public int getPilotFatigueCost() {
 		return pilotFatigueCost;
 	}
-	
+
 	/**
 	 * Sets the fatigue cost of piloting the ship.
-	 * @param pilotFatigueCost   An int of the fatigue cost of piloting the ship.
+	 * 
+	 * @param pilotFatigueCost An int of the fatigue cost of piloting the ship.
 	 */
 	public void setPilotFatigueCost(int pilotFatigueCost) {
 		this.pilotFatigueCost = pilotFatigueCost;
 	}
-	
+
 	/**
 	 * Gets the hunger cost of piloting the ship.
+	 * 
 	 * @return An int of the hunger cost of piloting the ship.
 	 */
 	public int getPilotHungerCost() {
 		return pilotHungerCost;
 	}
-	
+
 	/**
 	 * Sets the hunger cost of piloting the ship.
-	 * @param pilotHungerCost   An int of the hunger cost of piloting the ship.
+	 * 
+	 * @param pilotHungerCost An int of the hunger cost of piloting the ship.
 	 */
 	public void setPilotHungerCost(int pilotHungerCost) {
 		this.pilotHungerCost = pilotHungerCost;
 	}
-	
+
 	/**
 	 * Gets the fatigue cost of searching the planet.
+	 * 
 	 * @return An int of the fatigue cost of searching the planet.
 	 */
 	public int getSearchFatigueCost() {
 		return searchFatigueCost;
 	}
-	
+
 	/**
 	 * Sets the fatigue cost of searching the planet.
-	 * @param searchFatigueCost   An int of the fatigue cost of searching the planet.
+	 * 
+	 * @param searchFatigueCost An int of the fatigue cost of searching the planet.
 	 */
 	public void setSearchFatigueCost(int searchFatigueCost) {
 		this.searchFatigueCost = searchFatigueCost;
 	}
-	
+
 	/**
 	 * Gets the hunger cost of searching the planet.
+	 * 
 	 * @return An int of the hunger cost of searching the planet.
 	 */
 	public int getSearchHungerCost() {
 		return searchHungerCost;
 	}
-	
+
 	/**
 	 * Sets the hunger cost of searching the planet.
-	 * @param searchHungerCost   An int of the hunger cost of searching the planet.
+	 * 
+	 * @param searchHungerCost An int of the hunger cost of searching the planet.
 	 */
 	public void setSearchHungerCost(int searchHungerCost) {
 		this.searchHungerCost = searchHungerCost;
@@ -696,7 +764,5 @@ public class CrewMember {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
 
-	
 }
