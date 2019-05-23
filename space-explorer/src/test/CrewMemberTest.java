@@ -154,6 +154,7 @@ class CrewMemberTest {
 		game = new GameEnvironment();
 		game.initFoodItems();
 		game.initMedItems();
+		crew.setCurrentLocation(new Planet("Test", null));
 		crewMember1.search(game.getGameMedicalItems(), game.getGameFoodItems(), crew);
 		assertEquals(20, crewMember1.getFatigue());
 		assertEquals(20, crewMember1.getHunger());
