@@ -91,11 +91,11 @@ public class ApplyMedicineDialog extends JDialog {
 		// The current medical item that is selected by the player in the combo box
 		MedicalItem currentItem = (MedicalItem) comboBoxItems.getSelectedItem();
 
-		JLabel lblImproveYourHealth = new JLabel("Improve your Health!");
-		lblImproveYourHealth.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImproveYourHealth.setFont(new Font("Dialog", Font.BOLD, 25));
-		lblImproveYourHealth.setBounds(0, 0, 369, 50);
-		contentPanel.add(lblImproveYourHealth);
+		JLabel lblTitle = new JLabel("Improve your Health!");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Dialog", Font.BOLD, 25));
+		lblTitle.setBounds(0, 0, 369, 50);
+		contentPanel.add(lblTitle);
 
 		JLabel lblMedicineAvailable = new JLabel("Medicine available in Inventory:");
 		lblMedicineAvailable.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -172,9 +172,9 @@ public class ApplyMedicineDialog extends JDialog {
 		lblWarning.setBounds(12, 180, 290, 22);
 		panelItemDescription.add(lblWarning);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(30, 52, 314, 2);
-		contentPanel.add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(30, 52, 314, 2);
+		contentPanel.add(separatorTop);
 		// Listener for the combo box when the player changes item
 
 		comboBoxItems.addActionListener(new ActionListener() {

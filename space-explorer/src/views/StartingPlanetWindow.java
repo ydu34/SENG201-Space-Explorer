@@ -72,28 +72,26 @@ public class StartingPlanetWindow {
 		lblWindowTitle.setBounds(0, 0, 795, 60);
 		frame.getContentPane().add(lblWindowTitle);
 
-		JComboBox comboBoxPlanets = new JComboBox(game.getPlanets().toArray());
-		ImageIcon imageIcon = new ImageIcon(
-				StartingPlanetWindow.class.getResource(((Planet) comboBoxPlanets.getSelectedItem()).getImageLink()));
-		Image image = imageIcon.getImage();
-		Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_FAST);
-		imageIcon = new ImageIcon(newimg);
+		JComboBox<Object> comboBoxPlanets = new JComboBox<Object>((Object[]) game.getPlanets().toArray());
+		ImageIcon imageIconPlanet = new ImageIcon(
+				StartingPlanetWindow.class.getResource(((Planet) comboBoxPlanets.getSelectedItem()).getImage()));
+		Image imagePlanet = imageIconPlanet.getImage().getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
+		imageIconPlanet = new ImageIcon(imagePlanet);
 
 		JLabel lblPlanetImage = new JLabel();
 		lblPlanetImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlanetImage.setBounds(197, 86, 400, 350);
 		frame.getContentPane().add(lblPlanetImage);
-		lblPlanetImage.setIcon(imageIcon);
+		lblPlanetImage.setIcon(imageIconPlanet);
 
 		comboBoxPlanets.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		comboBoxPlanets.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ImageIcon imageIcon = new ImageIcon(StartingPlanetWindow.class
-						.getResource(((Planet) comboBoxPlanets.getSelectedItem()).getImageLink()));
-				Image image = imageIcon.getImage();
-				Image newimg = image.getScaledInstance(-1, 400, java.awt.Image.SCALE_FAST);
-				imageIcon = new ImageIcon(newimg);
-				lblPlanetImage.setIcon(imageIcon);
+				ImageIcon imageIconPlanet = new ImageIcon(
+						StartingPlanetWindow.class.getResource(((Planet) comboBoxPlanets.getSelectedItem()).getImage()));
+				Image imagePlanet = imageIconPlanet.getImage().getScaledInstance(-1, 400, java.awt.Image.SCALE_SMOOTH);
+				imageIconPlanet = new ImageIcon(imagePlanet);
+				lblPlanetImage.setIcon(imageIconPlanet);
 			}
 		});
 		comboBoxPlanets.setBounds(197, 449, 400, 41);
@@ -120,13 +118,13 @@ public class StartingPlanetWindow {
 		btnBack.setBounds(50, 520, 126, 33);
 		frame.getContentPane().add(btnBack);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(50, 62, 695, 2);
-		frame.getContentPane().add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(50, 62, 695, 2);
+		frame.getContentPane().add(separatorTop);
 
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(50, 503, 695, 2);
-		frame.getContentPane().add(separator_1);
+		JSeparator separatorBottom = new JSeparator();
+		separatorBottom.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separatorBottom);
 
 	}
 }

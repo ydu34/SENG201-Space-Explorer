@@ -57,11 +57,11 @@ public class EatFoodDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JLabel label = new JLabel("Have a Snack!");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Dialog", Font.BOLD, 25));
-		label.setBounds(0, 0, 369, 50);
-		contentPanel.add(label);
+		JLabel labelTitle = new JLabel("Have a Snack!");
+		labelTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		labelTitle.setFont(new Font("Dialog", Font.BOLD, 25));
+		labelTitle.setBounds(0, 0, 369, 50);
+		contentPanel.add(labelTitle);
 
 		JLabel lblAvailableInInventory = new JLabel("Food available in Inventory:");
 		lblAvailableInInventory.setFont(new Font("Dialog", Font.BOLD, 16));
@@ -78,14 +78,14 @@ public class EatFoodDialog extends JDialog {
 		for (FoodItem item : uniqueFoodItems) {
 			itemFrequency.put(item, Collections.frequency(game.getCrew().getFoodItems(), item));
 		}
-		JComboBox comboBox = new JComboBox(uniqueFoodItems.toArray());
-		comboBox.setFont(new Font("Dialog", Font.PLAIN, 16));
+		JComboBox comboBoxItem = new JComboBox(uniqueFoodItems.toArray());
+		comboBoxItem.setFont(new Font("Dialog", Font.PLAIN, 16));
 
 		// The current food item that is selected by the player in the combo box
-		FoodItem currentItem = (FoodItem) comboBox.getSelectedItem();
+		FoodItem currentItem = (FoodItem) comboBoxItem.getSelectedItem();
 
-		comboBox.setBounds(30, 95, 314, 24);
-		contentPanel.add(comboBox);
+		comboBoxItem.setBounds(30, 95, 314, 24);
+		contentPanel.add(comboBoxItem);
 
 		JButton btnReturn = new JButton("Do something else!");
 		btnReturn.addActionListener(new ActionListener() {
@@ -106,7 +106,7 @@ public class EatFoodDialog extends JDialog {
 		}
 		btnEat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String message = game.getChosenCrewMember().eat((FoodItem) comboBox.getSelectedItem(), game.getCrew());
+				String message = game.getChosenCrewMember().eat((FoodItem) comboBoxItem.getSelectedItem(), game.getCrew());
 				setVisible(false);
 				dispose();
 				JOptionPane.showMessageDialog(parent, message);
@@ -117,11 +117,11 @@ public class EatFoodDialog extends JDialog {
 		btnEat.setBounds(30, 353, 110, 25);
 		contentPanel.add(btnEat);
 
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setLayout(null);
-		panel.setBounds(30, 132, 314, 208);
-		contentPanel.add(panel);
+		JPanel panelItem = new JPanel();
+		panelItem.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelItem.setLayout(null);
+		panelItem.setBounds(30, 132, 314, 208);
+		contentPanel.add(panelItem);
 
 		JTextArea textArea = new JTextArea((String) null);
 		textArea.setBackground(UIManager.getColor("Menu.background"));
@@ -130,53 +130,53 @@ public class EatFoodDialog extends JDialog {
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setEditable(false);
 		textArea.setBounds(12, 120, 294, 58);
-		panel.add(textArea);
+		panelItem.add(textArea);
 
 		JLabel lblStock = new JLabel("Stock:");
 		lblStock.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblStock.setBounds(12, 68, 68, 23);
-		panel.add(lblStock);
+		panelItem.add(lblStock);
 
 		JLabel label_3 = new JLabel("About this item");
 		label_3.setHorizontalAlignment(SwingConstants.CENTER);
 		label_3.setFont(new Font("Dialog", Font.BOLD, 17));
 		label_3.setBounds(0, 0, 314, 35);
-		panel.add(label_3);
+		panelItem.add(label_3);
 
 		JLabel lblName = new JLabel("Name:");
 		lblName.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblName.setBounds(12, 40, 68, 22);
-		panel.add(lblName);
+		panelItem.add(lblName);
 
 		JLabel lblStockValue = new JLabel();
 
 		lblStockValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblStockValue.setBounds(79, 68, 227, 23);
-		panel.add(lblStockValue);
+		panelItem.add(lblStockValue);
 
 		JLabel lblNameValue = new JLabel();
 
 		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblNameValue.setBounds(79, 40, 227, 22);
-		panel.add(lblNameValue);
+		panelItem.add(lblNameValue);
 
 		JLabel lblDescription = new JLabel("Description:");
 		lblDescription.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblDescription.setBounds(12, 95, 136, 23);
-		panel.add(lblDescription);
+		panelItem.add(lblDescription);
 
 		JLabel label_1 = new JLabel("This uses up 1 action.");
 		label_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		label_1.setBounds(12, 180, 290, 22);
-		panel.add(label_1);
+		panelItem.add(label_1);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(30, 52, 314, 2);
-		contentPanel.add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(30, 52, 314, 2);
+		contentPanel.add(separatorTop);
 		// Listener for the combo box when the player changes item
-		comboBox.addActionListener(new ActionListener() {
+		comboBoxItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FoodItem currentItem = (FoodItem) comboBox.getSelectedItem();
+				FoodItem currentItem = (FoodItem) comboBoxItem.getSelectedItem();
 				lblNameValue.setText(currentItem.getName());
 				lblStockValue.setText(Integer.toString(itemFrequency.get(currentItem)));
 				textArea.setText(currentItem.getDescription());

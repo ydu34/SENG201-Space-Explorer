@@ -122,7 +122,7 @@ public class SelectPlanetWindow {
 			public void valueChanged(ListSelectionEvent arg0) {
 				lblPieceAvailableValue.setText(((Planet) listPlanets.getSelectedValue()).planetPieceDetected());
 				ImageIcon imageIcon = new ImageIcon(
-						StartingPlanetWindow.class.getResource(((Planet)listPlanets.getSelectedValue()).getImageLink()));
+						StartingPlanetWindow.class.getResource(((Planet)listPlanets.getSelectedValue()).getImage()));
 				Image image = imageIcon.getImage();
 				Image newimg = image.getScaledInstance(-1, 325, java.awt.Image.SCALE_FAST);
 				imageIcon = new ImageIcon(newimg);
@@ -194,15 +194,15 @@ public class SelectPlanetWindow {
 		
 		frame.getContentPane().add(lblPlanetImage);
 		ImageIcon imageIcon = new ImageIcon(
-				StartingPlanetWindow.class.getResource(((Planet)listPlanets.getSelectedValue()).getImageLink()));
+				StartingPlanetWindow.class.getResource(((Planet)listPlanets.getSelectedValue()).getImage()));
 		Image image = imageIcon.getImage();
 		Image newimg = image.getScaledInstance(-1, 325, java.awt.Image.SCALE_FAST);
 		imageIcon = new ImageIcon(newimg);
 		lblPlanetImage.setIcon(imageIcon);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(50, 503, 695, 2);
-		frame.getContentPane().add(separator);
+		JSeparator separatorBottom = new JSeparator();
+		separatorBottom.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separatorBottom);
 
 	}
 }

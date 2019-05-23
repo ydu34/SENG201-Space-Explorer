@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Represents a crew member.
+ * Stores the information of a crew member. This includes name, type, status, image, health, maximum health, hunger, maximum hunger, fatigue,
+ * maximum fatigue, actions left, maximum actions, infected state, dead state, and the cost of performing actions.
+ * Methods include the actions the crew member may perform. 
  * 
  * @author Yu Duan
  * @author Joyce Cheah
@@ -72,10 +74,8 @@ public class CrewMember {
 	 * @param maxHealth  An int of the maximum health level.
 	 * @param maxHunger  An int of the maximum hunger level.
 	 * @param maxFatigue An int of the maximum fatigue level.
-	 * @param maxActions An int of the maximum actions allowed.
 	 */
-	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue,
-			int maxActions) {
+	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue) {
 		this.name = name;
 		this.type = type;
 		this.status = "Normal";
@@ -85,8 +85,8 @@ public class CrewMember {
 		this.hunger = 0;
 		this.maxFatigue = maxFatigue;
 		this.fatigue = 0;
-		this.maxActions = maxActions;
-		this.actionsLeft = maxActions;
+		this.maxActions = 2;
+		this.actionsLeft = 2;
 		this.infected = false;
 		this.dead = false;
 		this.repairFatigueCost = 10;
@@ -107,7 +107,6 @@ public class CrewMember {
 	 * @param maxHealth         An int of the maximum health level.
 	 * @param maxHunger         An int of the maximum hunger level.
 	 * @param maxFatigue        An int of the maximum fatigue level.
-	 * @param maxActions        An int of the maximum actions allowed.
 	 * @param repairFatigueCost An int of the fatigue cost when the crew member
 	 *                          repairs the ship shields.
 	 * @param repairHungerCost  An int of the hunger cost when the crew member
@@ -122,7 +121,7 @@ public class CrewMember {
 	 *                          searches the planet.
 	 */
 	public CrewMember(String name, String type, String image, int maxHealth, int maxHunger, int maxFatigue,
-			int maxActions, int repairFatigueCost, int repairHungerCost, int pilotFatigueCost, int pilotHungerCost,
+			int repairFatigueCost, int repairHungerCost, int pilotFatigueCost, int pilotHungerCost,
 			int searchFatigueCost, int searchHungerCost) {
 		this.name = name;
 		this.type = type;
@@ -133,8 +132,8 @@ public class CrewMember {
 		this.hunger = 0;
 		this.maxFatigue = maxFatigue;
 		this.fatigue = 0;
-		this.maxActions = maxActions;
-		this.actionsLeft = maxActions;
+		this.maxActions = 2;
+		this.actionsLeft = 2;
 		this.infected = false;
 		this.dead = false;
 		this.repairFatigueCost = repairFatigueCost;
@@ -348,9 +347,10 @@ public class CrewMember {
 	}
 
 	/**
-	 * Increase the crew member's health by the given amount. The crew member's health cannot go above their maxHealth.
+	 * Increase the crew member's health by the given amount. The crew member's
+	 * health cannot go above their maxHealth.
 	 * 
-	 * @param amount	An int amount.
+	 * @param amount An int amount.
 	 */
 	public void increaseHealth(int amount) {
 		health += amount;
@@ -358,11 +358,12 @@ public class CrewMember {
 			health = maxHealth;
 		}
 	}
-	
+
 	/**
-	 * Decrease the crew member's health by the given amount. The crew member is dead if the health goes below 0, and then the health is set to 0.
+	 * Decrease the crew member's health by the given amount. The crew member is
+	 * dead if the health goes below 0, and then the health is set to 0.
 	 * 
-	 * @param amount	An int amount.
+	 * @param amount An int amount.
 	 */
 	public void decreaseHealth(int amount) {
 		health -= amount;
@@ -371,10 +372,12 @@ public class CrewMember {
 			dead = true;
 		}
 	}
+
 	/**
-	 * Increase the crew member's hunger by the given amount. The crew member's hunger cannot go above their maxHunger.
+	 * Increase the crew member's hunger by the given amount. The crew member's
+	 * hunger cannot go above their maxHunger.
 	 * 
-	 * @param amount	An int amount.
+	 * @param amount An int amount.
 	 */
 	public void increaseHunger(int amount) {
 		hunger += amount;
@@ -382,10 +385,12 @@ public class CrewMember {
 			hunger = maxHunger;
 		}
 	}
+
 	/**
-	 * Decrease the crew member's hunger by the given amount. The crew member's hunger cannot go below 0.
+	 * Decrease the crew member's hunger by the given amount. The crew member's
+	 * hunger cannot go below 0.
 	 * 
-	 * @param amount	An int amount.
+	 * @param amount An int amount.
 	 */
 	public void decreaseHunger(int amount) {
 		hunger -= amount;
@@ -393,11 +398,12 @@ public class CrewMember {
 			hunger = 0;
 		}
 	}
-	
+
 	/**
-	 * Increase the crew member's fatigue by the given amount. The crew member's fatigue cannot go above their maxFatigue.
+	 * Increase the crew member's fatigue by the given amount. The crew member's
+	 * fatigue cannot go above their maxFatigue.
 	 * 
-	 * @param amount	An int amount.
+	 * @param amount An int amount.
 	 */
 	public void increaseFatigue(int amount) {
 		fatigue += amount;
@@ -405,10 +411,12 @@ public class CrewMember {
 			fatigue = maxFatigue;
 		}
 	}
+
 	/**
-	 * Decrease the crew member's fatigue by the given amount. The crew member's fatigue cannot go below 0.
+	 * Decrease the crew member's fatigue by the given amount. The crew member's
+	 * fatigue cannot go below 0.
 	 * 
-	 * @param amount	An int amount.
+	 * @param amount An int amount.
 	 */
 	public void decreaseFatigue(int amount) {
 		fatigue -= amount;
@@ -768,10 +776,20 @@ public class CrewMember {
 		this.searchHungerCost = searchHungerCost;
 	}
 
+	/**
+	 * Gets the image location.
+	 * 
+	 * @return The image location.
+	 */
 	public String getImage() {
 		return image;
 	}
 
+	/**
+	 * Sets the image location.
+	 * 
+	 * @param image The new image location.
+	 */
 	public void setImage(String image) {
 		this.image = image;
 	}

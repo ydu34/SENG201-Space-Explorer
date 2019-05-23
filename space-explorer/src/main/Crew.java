@@ -3,8 +3,8 @@ package main;
 import java.util.ArrayList;
 
 /**
- * Represents a crew that holds the ship, the crew members, the medical items,
- * the food items, the money, and the current location.
+ * Represents the player's crew that holds the ship, the crew members, the
+ * medical items, the food items, the money, and the current location.
  * 
  * @author Yu Duan
  * @author Joyce Cheah

@@ -114,7 +114,7 @@ public class ActionsDialog extends JDialog {
 		btnSearchPlanet.setBounds(15, 242, 289, 25);
 		contentPanel.add(btnSearchPlanet);
 
-		JButton btnPilotShip = new JButton("Pilot the ship");
+		JButton btnPilotShip = new JButton("Pilot the ship to another planet");
 		btnPilotShip.setFont(new Font("Dialog", Font.PLAIN, 16));
 		btnPilotShip.addActionListener(new ActionListener() {
 

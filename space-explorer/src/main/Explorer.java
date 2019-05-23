@@ -9,7 +9,7 @@ package main;
 public class Explorer extends CrewMember {
 
 	public Explorer(String name) {
-		super(name, "Explorer", "", 100, 100, 100, 2, 10, 10, 5, 5, 15, 15);
+		super(name, "Explorer", "", 100, 100, 100, 10, 10, 5, 5, 15, 15);
 	}
 
 	/**
@@ -19,6 +19,6 @@ public class Explorer extends CrewMember {
 	 * @param image A string image of the crew member.
 	 */
 	public Explorer(String name, String image) {
-		super(name, "Explorer", image, 100, 100, 100, 2, 10, 10, 5, 5, 15, 15);
+		super(name, "Explorer", image, 100, 100, 100, 10, 10, 5, 5, 15, 15);
 	}
 }

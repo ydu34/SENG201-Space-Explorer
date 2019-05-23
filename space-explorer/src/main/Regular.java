@@ -9,7 +9,7 @@ package main;
 public class Regular extends CrewMember {
 
 	public Regular(String name) {
-		super(name, "Regular", "", 100, 130, 130, 2);
+		super(name, "Regular", "", 100, 130, 130);
 	}
 
 	/**
@@ -19,7 +19,7 @@ public class Regular extends CrewMember {
 	 * @param image A string image of the crew member.
 	 */
 	public Regular(String name, String image) {
-		super(name, "Regular", image, 100, 130, 130, 2);
+		super(name, "Regular", image, 100, 130, 130);
 	}
 
 }

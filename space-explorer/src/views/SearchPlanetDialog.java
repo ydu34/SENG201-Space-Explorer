@@ -81,11 +81,11 @@ public class SearchPlanetDialog extends JDialog {
 			contentPanel.add(btnReturn);
 		}
 
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(30, 63, 314, 277);
-		contentPanel.add(panel);
+		JPanel panelSearchInfo = new JPanel();
+		panelSearchInfo.setLayout(null);
+		panelSearchInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelSearchInfo.setBounds(30, 63, 314, 277);
+		contentPanel.add(panelSearchInfo);
 
 		JTextArea txtrAllowTheCrew = new JTextArea();
 		txtrAllowTheCrew.setWrapStyleWord(true);
@@ -98,27 +98,27 @@ public class SearchPlanetDialog extends JDialog {
 		txtrAllowTheCrew.setEditable(false);
 		txtrAllowTheCrew.setBackground(UIManager.getColor("Menu.background"));
 		txtrAllowTheCrew.setBounds(12, 83, 290, 181);
-		panel.add(txtrAllowTheCrew);
+		panelSearchInfo.add(txtrAllowTheCrew);
 
 		JLabel lblPlanet = new JLabel("Planet:");
 		lblPlanet.setBounds(12, 13, 128, 25);
-		panel.add(lblPlanet);
+		panelSearchInfo.add(lblPlanet);
 		lblPlanet.setFont(new Font("Dialog", Font.PLAIN, 16));
 
 		JLabel lblPieceDetected = new JLabel("Part detected: \r\n");
 		lblPieceDetected.setBounds(12, 50, 128, 25);
-		panel.add(lblPieceDetected);
+		panelSearchInfo.add(lblPieceDetected);
 		lblPieceDetected.setFont(new Font("Dialog", Font.PLAIN, 16));
 
 		JLabel lblPlanetValue = new JLabel(game.getCrew().getCurrentLocation().getName());
 		lblPlanetValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPlanetValue.setBounds(152, 13, 150, 25);
-		panel.add(lblPlanetValue);
+		panelSearchInfo.add(lblPlanetValue);
 
 		JLabel lblPieceDetectedValue = new JLabel(game.getCrew().getCurrentLocation().planetPieceDetected());
 		lblPieceDetectedValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblPieceDetectedValue.setBounds(152, 50, 150, 25);
-		panel.add(lblPieceDetectedValue);
+		panelSearchInfo.add(lblPieceDetectedValue);
 
 		JLabel lblSearchThePlanet = new JLabel("Search the Planet!");
 		lblSearchThePlanet.setHorizontalAlignment(SwingConstants.CENTER);
@@ -126,8 +126,8 @@ public class SearchPlanetDialog extends JDialog {
 		lblSearchThePlanet.setBounds(0, 0, 369, 50);
 		contentPanel.add(lblSearchThePlanet);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(30, 52, 314, 2);
-		contentPanel.add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(30, 52, 314, 2);
+		contentPanel.add(separatorTop);
 	}
 }

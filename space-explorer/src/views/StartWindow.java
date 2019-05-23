@@ -80,10 +80,10 @@ public class StartWindow {
 		btnQuit.setFont(new Font("SansSerif", Font.BOLD, 20));
 		frame.getContentPane().add(btnQuit);
 
-		JLabel label = new JLabel("SPACE EXPLORERS");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setFont(new Font("Dialog", Font.BOLD, 60));
-		label.setBounds(0, 0, 795, 408);
-		frame.getContentPane().add(label);
+		JLabel lblTitle = new JLabel("SPACE EXPLORERS");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Dialog", Font.BOLD, 60));
+		lblTitle.setBounds(0, 0, 795, 408);
+		frame.getContentPane().add(lblTitle);
 	}
 }

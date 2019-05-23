@@ -9,7 +9,7 @@ package main;
 public class HealthNut extends CrewMember {
 
 	public HealthNut(String name) {
-		super(name, "Health Nut", "", 100, 100, 100, 2);
+		super(name, "Health Nut", "", 100, 100, 100);
 	}
 
 	/**
@@ -19,7 +19,7 @@ public class HealthNut extends CrewMember {
 	 * @param image A string image of the crew member.
 	 */
 	public HealthNut(String name, String image) {
-		super(name, "Health Nut", image, 100, 100, 100, 2);
+		super(name, "Health Nut", image, 100, 100, 100);
 	}
 
 	/**

@@ -9,7 +9,7 @@ package main;
 public class Nibbler extends CrewMember {
 
 	public Nibbler(String name) {
-		super(name, "Nibbler", "", 100, 100, 100, 2, 10, 10, 10, 10, 20, 20);
+		super(name, "Nibbler", "", 100, 100, 100, 10, 10, 10, 10, 20, 20);
 	}
 
 	/**
@@ -19,7 +19,7 @@ public class Nibbler extends CrewMember {
 	 * @param image A string that holds the path to the image for this crew member.
 	 */
 	public Nibbler(String name, String image) {
-		super(name, "Nibbler", image, 100, 100, 100, 2, 10, 10, 10, 10, 20, 20);
+		super(name, "Nibbler", image, 100, 100, 100, 10, 10, 10, 10, 20, 20);
 	}
 
 	/**

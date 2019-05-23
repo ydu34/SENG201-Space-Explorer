@@ -10,17 +10,17 @@ public class Planet {
 	private String name;
 	private boolean pieceDetected = true;
 	private SpaceOutpost outpost = new SpaceOutpost();
-	private String imageLink;
+	private String image;
 
 	/**
 	 * Creates a planet.
 	 * 
 	 * @param name      A string name of the planet.
-	 * @param imageLink A string holding the location of the image.
+	 * @param image A string holding the location of the image.
 	 */
-	public Planet(String name, String imageLink) {
+	public Planet(String name, String image) {
 		this.name = name;
-		this.imageLink = imageLink;
+		this.image = image;
 	}
 
 	/**
@@ -103,21 +103,21 @@ public class Planet {
 	}
 
 	/**
-	 * Gets the link to the image.
+	 * Gets the path location of the image.
 	 * 
-	 * @return the link to the image.
+	 * @return the the path location of the image.
 	 */
-	public String getImageLink() {
-		return imageLink;
+	public String getImage() {
+		return image;
 	}
 
 	/**
 	 * Sets the link to the image.
 	 * 
-	 * @param imageLink A string link to the image.
+	 * @param image A string link to the image.
 	 */
-	public void setImageLink(String imageLink) {
-		this.imageLink = imageLink;
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 }

@@ -13,7 +13,7 @@ public class Engineer extends CrewMember {
 	 * @param name
 	 */
 	public Engineer(String name) {
-		super(name, "Engineer", "", 100, 100, 100, 2, 5, 5, 10, 10, 20, 20);
+		super(name, "Engineer", "", 100, 100, 100, 5, 5, 10, 10, 20, 20);
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class Engineer extends CrewMember {
 	 * @param image A string image of the crew member.
 	 */
 	public Engineer(String name, String image) {
-		super(name, "Engineer", image, 100, 100, 100, 2, 5, 5, 10, 10, 20, 20);
+		super(name, "Engineer", image, 100, 100, 100, 5, 5, 10, 10, 20, 20);
 	}
 
 	/**

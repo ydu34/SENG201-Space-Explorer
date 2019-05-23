@@ -109,11 +109,11 @@ public class SetupWindow {
 		btnNext.setBounds(619, 514, 126, 33);
 		frmSpaceExplorers.getContentPane().add(btnNext);
 
-		JLabel lblSelectTheNumber = new JLabel("Select Game Duration\n");
-		lblSelectTheNumber.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblSelectTheNumber.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSelectTheNumber.setBounds(0, 0, 795, 60);
-		frmSpaceExplorers.getContentPane().add(lblSelectTheNumber);
+		JLabel lblTitle = new JLabel("Select Game Duration\n");
+		lblTitle.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setBounds(0, 0, 795, 60);
+		frmSpaceExplorers.getContentPane().add(lblTitle);
 
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

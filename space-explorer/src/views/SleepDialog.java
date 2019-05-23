@@ -49,11 +49,11 @@ public class SleepDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setLayout(null);
-		panel.setBounds(30, 63, 314, 277);
-		contentPanel.add(panel);
+		JPanel panelSleepInfo = new JPanel();
+		panelSleepInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelSleepInfo.setLayout(null);
+		panelSleepInfo.setBounds(30, 63, 314, 277);
+		contentPanel.add(panelSleepInfo);
 
 		JTextArea textArea = new JTextArea();
 		textArea.setText("Allow the crew member to take a quick nap and recover from fatigue.\n\n"
@@ -65,10 +65,10 @@ public class SleepDialog extends JDialog {
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
 		textArea.setBounds(12, 13, 290, 251);
-		panel.add(textArea);
+		panelSleepInfo.add(textArea);
 
-		JButton button = new JButton("SLEEP");
-		button.addActionListener(new ActionListener() {
+		JButton buttonSleep = new JButton("SLEEP");
+		buttonSleep.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				dispose();
@@ -77,9 +77,9 @@ public class SleepDialog extends JDialog {
 				parentWindow.updateProfile(game.getChosenCrewMember());
 			}
 		});
-		button.setFont(new Font("Dialog", Font.BOLD, 16));
-		button.setBounds(30, 353, 110, 25);
-		contentPanel.add(button);
+		buttonSleep.setFont(new Font("Dialog", Font.BOLD, 16));
+		buttonSleep.setBounds(30, 353, 110, 25);
+		contentPanel.add(buttonSleep);
 
 		JButton btnDoSomethingElse = new JButton("Do something else!");
 		btnDoSomethingElse.addActionListener(new ActionListener() {
@@ -100,8 +100,8 @@ public class SleepDialog extends JDialog {
 		lblTakeANap.setBounds(0, 0, 369, 50);
 		contentPanel.add(lblTakeANap);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(30, 52, 314, 2);
-		contentPanel.add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(30, 52, 314, 2);
+		contentPanel.add(separatorTop);
 	}
 }

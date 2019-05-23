@@ -93,7 +93,7 @@ public class OutpostWindow {
 		frame.getContentPane().setLayout(null);
 
 		JLabel lblCoins = new JLabel("Coins Available:");
-		lblCoins.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
+		lblCoins.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblCoins.setBounds(410, 450, 152, 33);
 		frame.getContentPane().add(lblCoins);
 
@@ -117,7 +117,7 @@ public class OutpostWindow {
 		comboBoxItems.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		// The current item that is selected by the player in the combo box
 		currentItem = (Item) comboBoxItems.getSelectedItem();
-		comboBoxItems.setBounds(50, 132, 290, 30);
+		comboBoxItems.setBounds(50, 121, 290, 30);
 		frame.getContentPane().add(comboBoxItems);
 
 		JButton btnInventory = new JButton("View Inventory");
@@ -127,24 +127,24 @@ public class OutpostWindow {
 				game.launchInventoryWindow();
 			}
 		});
-		btnInventory.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
-		btnInventory.setBounds(399, 515, 148, 25);
+		btnInventory.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnInventory.setBounds(555, 515, 190, 25);
 		frame.getContentPane().add(btnInventory);
 
 		JLabel lblSeeItems = new JLabel("See what is for sale!");
 		lblSeeItems.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSeeItems.setFont(new Font("Dialog", Font.BOLD, 20));
-		lblSeeItems.setBounds(50, 97, 290, 30);
+		lblSeeItems.setBounds(50, 86, 290, 30);
 		frame.getContentPane().add(lblSeeItems);
 
 		JPanel panelItemInfo = new JPanel();
 		panelItemInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelItemInfo.setBounds(400, 97, 340, 310);
+		panelItemInfo.setBounds(407, 97, 338, 310);
 		frame.getContentPane().add(panelItemInfo);
 		panelItemInfo.setLayout(null);
 
 		JTextArea descriptionArea = new JTextArea(currentItem.getDescription());
-		descriptionArea.setBackground(SystemColor.menu);
+		descriptionArea.setBackground(UIManager.getColor("Menu.background"));
 		descriptionArea.setEditable(false);
 		descriptionArea.setLineWrap(true);
 		descriptionArea.setWrapStyleWord(true);
@@ -172,7 +172,7 @@ public class OutpostWindow {
 
 		btnAddCart.setBounds(35, 271, 273, 25);
 		panelItemInfo.add(btnAddCart);
-		btnAddCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
+		btnAddCart.setFont(new Font("Dialog", Font.PLAIN, 16));
 
 		JLabel lblItemName = new JLabel("");
 		lblItemName.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -217,8 +217,8 @@ public class OutpostWindow {
 				game.launchMainWindow();
 			}
 		});
-		btnBackToShip.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 14));
-		btnBackToShip.setBounds(612, 515, 136, 25);
+		btnBackToShip.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnBackToShip.setBounds(50, 515, 190, 25);
 		frame.getContentPane().add(btnBackToShip);
 
 		JLabel lblTitle = new JLabel();
@@ -230,22 +230,22 @@ public class OutpostWindow {
 
 		JButton btnPurchase = new JButton("PURCHASE");
 		btnPurchase.setFont(new Font("Dialog", Font.BOLD, 20));
-		btnPurchase.setBounds(50, 437, 290, 46);
+		btnPurchase.setBounds(50, 426, 290, 46);
 		frame.getContentPane().add(btnPurchase);
 
 		JButton btnRemoveFromCart = new JButton("Remove from Cart");
-		btnRemoveFromCart.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 19));
-		btnRemoveFromCart.setBounds(50, 403, 290, 25);
+		btnRemoveFromCart.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnRemoveFromCart.setBounds(50, 392, 290, 25);
 		frame.getContentPane().add(btnRemoveFromCart);
 		btnRemoveFromCart.setEnabled(false);
 
 		DefaultListModel<Item> listModel = new DefaultListModel();
 		JScrollPane scrollPaneItems = new JScrollPane();
 		scrollPaneItems.setSize(290, 220);
-		scrollPaneItems.setLocation(50, 172);
+		scrollPaneItems.setLocation(50, 161);
 		frame.getContentPane().add(scrollPaneItems);
 		JList listItems = new JList(listModel);
-		listItems.setBackground(SystemColor.menu);
+		listItems.setBackground(UIManager.getColor("Menu.background"));
 		scrollPaneItems.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
 		scrollPaneItems.setViewportView(listItems);
@@ -257,7 +257,7 @@ public class OutpostWindow {
 		});
 
 		JLabel lblTotalCost = new JLabel("Total Cost:");
-		lblTotalCost.setFont(new Font("L M Mono Prop Lt10", Font.BOLD, 18));
+		lblTotalCost.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblTotalCost.setBounds(410, 420, 152, 33);
 		frame.getContentPane().add(lblTotalCost);
 
@@ -272,7 +272,7 @@ public class OutpostWindow {
 		frame.getContentPane().add(lblMoney);
 
 		JLabel lblWarning = new JLabel("");
-		lblWarning.setBounds(50, 503, 290, 24);
+		lblWarning.setBounds(50, 474, 290, 24);
 		frame.getContentPane().add(lblWarning);
 
 		JSeparator separatorTop = new JSeparator();

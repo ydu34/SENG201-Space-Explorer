@@ -97,13 +97,13 @@ public class CrewMemberWindow {
 				game.launchMainWindow();
 			}
 		});
-		btnBack.setBounds(590, 527, 154, 25);
+		btnBack.setBounds(50, 523, 150, 25);
 		frame.getContentPane().add(btnBack);
 
 		JPanel panelProfile = new JPanel();
 		panelProfile.setLayout(null);
 		panelProfile.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelProfile.setBounds(375, 100, 370, 355);
+		panelProfile.setBounds(374, 113, 370, 333);
 		frame.getContentPane().add(panelProfile);
 
 		JLabel lblName = new JLabel("Name:");
@@ -137,7 +137,7 @@ public class CrewMemberWindow {
 		textAreaDescription.setWrapStyleWord(true);
 		textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textAreaDescription.setLineWrap(true);
-		textAreaDescription.setBounds(19, 209, 337, 100);
+		textAreaDescription.setBounds(19, 183, 337, 100);
 		panelProfile.add(textAreaDescription);
 
 		lblHealthValue = new JLabel();
@@ -193,18 +193,13 @@ public class CrewMemberWindow {
 		panelProfile.add(lblActions);
 
 		btnPerformAction = new JButton("Perform Action");
-		btnPerformAction.setBounds(19, 321, 337, 25);
+		btnPerformAction.setBounds(19, 295, 337, 25);
 		panelProfile.add(btnPerformAction);
 
 		JLabel lblStatus = new JLabel("Status:");
 		lblStatus.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblStatus.setBounds(19, 81, 78, 22);
 		panelProfile.add(lblStatus);
-
-		JLabel lblDescription = new JLabel("Description:\r\n");
-		lblDescription.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblDescription.setBounds(19, 183, 165, 22);
-		panelProfile.add(lblDescription);
 		btnPerformAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 

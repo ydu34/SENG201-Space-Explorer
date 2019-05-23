@@ -96,7 +96,7 @@ public class InventoryWindow {
 		}
 
 		JList listInventory = new JList(uniqueInventoryItems.toArray());
-		listInventory.setBackground(SystemColor.menu);
+		listInventory.setBackground(UIManager.getColor("Menu.background"));
 		listInventory.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
 		listInventory.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -137,7 +137,7 @@ public class InventoryWindow {
 		panelItemInfo.add(lblItemAmount);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setBackground(SystemColor.menu);
+		textArea.setBackground(UIManager.getColor("Menu.background"));
 		textArea.setEditable(false);
 		textArea.setWrapStyleWord(true);
 		textArea.setLineWrap(true);
@@ -166,18 +166,18 @@ public class InventoryWindow {
 				game.launchOutpostWindow();
 			}
 		});
-		btnBackToOutpost.setFont(new Font("Dialog", Font.BOLD, 14));
-		btnBackToOutpost.setBounds(585, 525, 160, 27);
+		btnBackToOutpost.setFont(new Font("Dialog", Font.PLAIN, 16));
+		btnBackToOutpost.setBounds(542, 525, 203, 27);
 		frame.getContentPane().add(btnBackToOutpost);
 
-		JLabel label = new JLabel("Coins Available:");
-		label.setFont(new Font("Dialog", Font.BOLD, 18));
-		label.setBounds(384, 427, 148, 27);
-		frame.getContentPane().add(label);
+		JLabel lblCoinsAvailable = new JLabel("Coins Available:");
+		lblCoinsAvailable.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblCoinsAvailable.setBounds(396, 427, 176, 27);
+		frame.getContentPane().add(lblCoinsAvailable);
 
 		JLabel label_1 = new JLabel(Integer.toString(game.getCrew().getMoney()));
 		label_1.setFont(new Font("Dialog", Font.BOLD, 18));
-		label_1.setBounds(542, 427, 182, 27);
+		label_1.setBounds(576, 427, 148, 27);
 		frame.getContentPane().add(label_1);
 
 		JLabel lblItems = new JLabel("Items:");
@@ -185,13 +185,13 @@ public class InventoryWindow {
 		lblItems.setBounds(50, 91, 286, 27);
 		frame.getContentPane().add(lblItems);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(50, 62, 695, 2);
-		frame.getContentPane().add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(50, 62, 695, 2);
+		frame.getContentPane().add(separatorTop);
 
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setBounds(50, 503, 695, 2);
-		frame.getContentPane().add(separator_1);
+		JSeparator separatorBottom = new JSeparator();
+		separatorBottom.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separatorBottom);
 
 		listInventory.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {

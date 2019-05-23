@@ -56,6 +56,7 @@ public class GameOverWindow {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("SPACE EXPLORERS");
 		frame.setResizable(false);
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,14 +100,14 @@ public class GameOverWindow {
 		lblScore.setBounds(156, 338, 467, 49);
 		frame.getContentPane().add(lblScore);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setEditable(false);
-		textArea.setBackground(UIManager.getColor("Menu.background"));
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 30));
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		textArea.setText(game.gameOverMessage());
-		textArea.setBounds(145, 147, 493, 180);
-		frame.getContentPane().add(textArea);
+		JTextArea textAreaGameOverReason = new JTextArea();
+		textAreaGameOverReason.setEditable(false);
+		textAreaGameOverReason.setBackground(UIManager.getColor("Menu.background"));
+		textAreaGameOverReason.setFont(new Font("Monospaced", Font.PLAIN, 30));
+		textAreaGameOverReason.setWrapStyleWord(true);
+		textAreaGameOverReason.setLineWrap(true);
+		textAreaGameOverReason.setText(game.gameOverMessage());
+		textAreaGameOverReason.setBounds(145, 147, 493, 180);
+		frame.getContentPane().add(textAreaGameOverReason);
 	}
 }

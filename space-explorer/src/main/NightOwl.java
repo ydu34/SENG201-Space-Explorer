@@ -9,7 +9,7 @@ package main;
 public class NightOwl extends CrewMember {
 
 	public NightOwl(String name) {
-		super(name, "Night Owl", "", 100, 100, 100, 2, 5, 10, 5, 10, 10, 20);
+		super(name, "Night Owl", "", 100, 100, 100, 5, 10, 5, 10, 10, 20);
 	}
 
 	/**
@@ -19,7 +19,7 @@ public class NightOwl extends CrewMember {
 	 * @param image A string image of the crew member
 	 */
 	public NightOwl(String name, String image) {
-		super(name, "Night Owl", image, 100, 100, 100, 2, 5, 10, 5, 10, 10, 20);
+		super(name, "Night Owl", image, 100, 100, 100, 5, 10, 5, 10, 10, 20);
 	}
 
 }

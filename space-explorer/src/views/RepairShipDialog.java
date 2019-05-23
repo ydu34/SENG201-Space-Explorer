@@ -49,24 +49,24 @@ public class RepairShipDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panel.setBounds(30, 63, 314, 277);
-			contentPanel.add(panel);
-			panel.setLayout(null);
+			JPanel panelRepairInfo = new JPanel();
+			panelRepairInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panelRepairInfo.setBounds(30, 63, 314, 277);
+			contentPanel.add(panelRepairInfo);
+			panelRepairInfo.setLayout(null);
 			{
 				JLabel lblShipNameValue = new JLabel(game.getShip().getName());
 				lblShipNameValue.setHorizontalAlignment(SwingConstants.CENTER);
 				lblShipNameValue.setFont(new Font("Dialog", Font.BOLD, 25));
 				lblShipNameValue.setBounds(0, 0, 314, 47);
-				panel.add(lblShipNameValue);
+				panelRepairInfo.add(lblShipNameValue);
 			}
 			{
 				JLabel lblShields = new JLabel("Shields:");
 				lblShields.setHorizontalAlignment(SwingConstants.LEFT);
 				lblShields.setFont(new Font("Dialog", Font.PLAIN, 16));
 				lblShields.setBounds(12, 60, 100, 26);
-				panel.add(lblShields);
+				panelRepairInfo.add(lblShields);
 			}
 			{
 				JLabel lblShieldsValue = new JLabel(
@@ -74,7 +74,7 @@ public class RepairShipDialog extends JDialog {
 				lblShieldsValue.setHorizontalAlignment(SwingConstants.CENTER);
 				lblShieldsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 				lblShieldsValue.setBounds(123, 60, 184, 26);
-				panel.add(lblShieldsValue);
+				panelRepairInfo.add(lblShieldsValue);
 			}
 			{
 				JTextArea txtrTheCrewMember = new JTextArea();
@@ -88,12 +88,12 @@ public class RepairShipDialog extends JDialog {
 				txtrTheCrewMember.setEditable(false);
 				txtrTheCrewMember.setBackground(UIManager.getColor("Menu.background"));
 				txtrTheCrewMember.setBounds(12, 99, 290, 165);
-				panel.add(txtrTheCrewMember);
+				panelRepairInfo.add(txtrTheCrewMember);
 			}
 		}
 		{
-			JButton button = new JButton("REPAIR");
-			button.addActionListener(new ActionListener() {
+			JButton buttonRepair = new JButton("REPAIR");
+			buttonRepair.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					setVisible(false);
 					dispose();
@@ -102,9 +102,9 @@ public class RepairShipDialog extends JDialog {
 					parentWindow.updateProfile(game.getChosenCrewMember());
 				}
 			});
-			button.setFont(new Font("Dialog", Font.BOLD, 16));
-			button.setBounds(30, 353, 110, 25);
-			contentPanel.add(button);
+			buttonRepair.setFont(new Font("Dialog", Font.BOLD, 16));
+			buttonRepair.setBounds(30, 353, 110, 25);
+			contentPanel.add(buttonRepair);
 		}
 		{
 			JButton btnReturn = new JButton("Do something else!");
@@ -128,9 +128,9 @@ public class RepairShipDialog extends JDialog {
 			contentPanel.add(lblRepairTheShip);
 		}
 		{
-			JSeparator separator = new JSeparator();
-			separator.setBounds(30, 52, 314, 2);
-			contentPanel.add(separator);
+			JSeparator separatorTop = new JSeparator();
+			separatorTop.setBounds(30, 52, 314, 2);
+			contentPanel.add(separatorTop);
 		}
 	}
 }

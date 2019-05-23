@@ -30,6 +30,7 @@ import javax.swing.event.DocumentListener;
 
 import main.CrewMember;
 import main.GameEnvironment;
+import javax.swing.SwingConstants;
 
 /**
  * A window that allows the player to create their crew. This includes naming
@@ -45,11 +46,9 @@ public class CreateCrewWindow {
 	private JTextField textFieldShipName;
 	private GameEnvironment game;
 	private JTextField tfCMName;
-	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); // used to contain all
-																								// the toggle buttons
-																								// that toggle crew
-																								// members
+	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); 																		
 	private JComboBox cBoxTrait;
+	private Border BorderSelectedCrewMember;
 
 	/**
 	 * Creates the window application.
@@ -97,13 +96,15 @@ public class CreateCrewWindow {
 		CrewMember crewMember4 = new CrewMember("Kim", "Night Owl", "/resources/astronautPurple.png");
 
 		JLabel lblNotify = new JLabel();
-		lblNotify.setBounds(373, 489, 360, 25);
+		lblNotify.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNotify.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNotify.setBounds(395, 493, 360, 25);
 		frame.getContentPane().add(lblNotify);
 
 		JPanel panelProfile = new JPanel();
 		panelProfile.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-		panelProfile.setBounds(385, 172, 360, 330);
+		panelProfile.setBounds(385, 164, 360, 330);
 		frame.getContentPane().add(panelProfile);
 
 		panelProfile.setLayout(null);
@@ -163,20 +164,20 @@ public class CreateCrewWindow {
 		panelProfile.add(cBoxTrait);
 
 		JLabel lblShipName = new JLabel("Ship name:");
-		lblShipName.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblShipName.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblShipName.setBounds(50, 26, 337, 48);
 		frame.getContentPane().add(lblShipName);
 
 		textFieldShipName = new JTextField();
-		textFieldShipName.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		textFieldShipName.setFont(new Font("Dialog", Font.PLAIN, 18));
 		textFieldShipName.setText("Gattaca");
 		textFieldShipName.setBounds(393, 37, 292, 30);
 		frame.getContentPane().add(textFieldShipName);
 		textFieldShipName.setColumns(10);
 
-		Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
+		BorderSelectedCrewMember = new MatteBorder(4, 4, 4, 4, Color.green);
 		JToggleButton tglbtnCrewMember1 = new JToggleButton("", true);
-		tglbtnCrewMember1.setBorder(solidBorder);
+		tglbtnCrewMember1.setBorder(BorderSelectedCrewMember);
 		tglbtnCrewMember1.setIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautBlue.png")));
 		tglbtnCrewMember1
 				.setSelectedIcon(new ImageIcon(CreateCrewWindow.class.getResource("/resources/astronautBlue.png")));
@@ -282,7 +283,7 @@ public class CreateCrewWindow {
 		});
 
 		JLabel lblCrewSize = new JLabel("Number of Crew Members:");
-		lblCrewSize.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblCrewSize.setFont(new Font("Dialog", Font.BOLD, 18));
 		lblCrewSize.setBounds(50, 88, 337, 48);
 		frame.getContentPane().add(lblCrewSize);
 
@@ -315,7 +316,7 @@ public class CreateCrewWindow {
 		sliderCrewSize.setMajorTickSpacing(1);
 		sliderCrewSize.setMinimum(2);
 		sliderCrewSize.setMaximum(4);
-		sliderCrewSize.setBounds(385, 79, 360, 67);
+		sliderCrewSize.setBounds(385, 79, 360, 55);
 		frame.getContentPane().add(sliderCrewSize);
 
 		JButton btnSave = new JButton("Save Crew Member");
@@ -347,7 +348,7 @@ public class CreateCrewWindow {
 							}
 						}
 					}
-					lblNotify.setText("Crew Member profile saved");
+					lblNotify.setText("Crew Member profile saved!");
 				}
 			}
 		});
@@ -395,13 +396,13 @@ public class CreateCrewWindow {
 			}
 		});
 
-		btnNext.setBounds(553, 515, 192, 25);
+		btnNext.setBounds(545, 523, 200, 25);
 
 		frame.getContentPane().add(btnNext);
 
-		JSeparator separator = new JSeparator();
-		separator.setBounds(50, 157, 695, 2);
-		frame.getContentPane().add(separator);
+		JSeparator separatorTop = new JSeparator();
+		separatorTop.setBounds(50, 148, 695, 2);
+		frame.getContentPane().add(separatorTop);
 
 		textFieldShipName.getDocument().addDocumentListener(new DocumentListener() {
 
@@ -436,8 +437,7 @@ public class CreateCrewWindow {
 	 */
 	public void updateProfile(JToggleButton toggleButton, CrewMember crewMember) {
 		toggleButton.setSelected(true);
-		Border solidBorder = new MatteBorder(4, 4, 4, 4, Color.green);
-		toggleButton.setBorder(solidBorder);
+		toggleButton.setBorder(BorderSelectedCrewMember);
 		tfCMName.setText(crewMember.getName());
 		switch (crewMember.getType()) {
 		case "Engineer":
