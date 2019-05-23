@@ -32,7 +32,8 @@ public class CrewMember {
 	private int searchHungerCost;
 
 	/**
-	 * Creates a crew member with the given values.
+	 * Creates a crew member with the given values. This constructor is only used in
+	 * the CreateCrewWindow.
 	 * 
 	 * @param name  A string name of the crew member.
 	 * @param type  A string type of the crew member.
@@ -290,41 +291,41 @@ public class CrewMember {
 	 * @return A string message of what was found.
 	 */
 	public String search(ArrayList<MedicalItem> medicalItems, ArrayList<FoodItem> foodItems, Crew crew) {
-		String returnString = "";
+		String message = "";
 		if (fatigue + searchFatigueCost > maxFatigue) {
-			returnString += name + " is too tired to search the planet.\n";
+			message += name + " is too tired to search the planet.\n";
 		}
 		if (hunger + searchHungerCost > maxHunger) {
-			returnString += name + " is too hungry to search the planet.\n";
+			message += name + " is too hungry to search the planet.\n";
 		}
 		if (fatigue + searchFatigueCost <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 			if (randomNum >= 0 && randomNum < 30 && crew.getCurrentLocation().isPieceDetected()) {
-				returnString += name + " has found a engine piece!\n";
+				message += name + " has found a engine piece!\n";
 				crew.getShip().foundPiece();
-				returnString += "Pieces found: " + crew.getShip().getPiecesFound() + "/"
+				message += "Pieces found: " + crew.getShip().getPiecesFound() + "/"
 						+ crew.getShip().getPiecesNeeded() + ".";
 				crew.getCurrentLocation().setPieceDetected(false);
 			} else if (randomNum >= 30 && randomNum < 50) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
 				crew.getMedicalItems().add(medicalItems.get(randomNum));
-				returnString += name + " has found a medical item " + medicalItems.get(randomNum) + "!\n";
+				message += name + " has found a medical item " + medicalItems.get(randomNum) + "!\n";
 			} else if (randomNum >= 50 && randomNum < 70) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
 				crew.getFoodItems().add(foodItems.get(randomNum));
-				returnString += name + " has found a food item " + foodItems.get(randomNum) + "!\n";
+				message += name + " has found a food item " + foodItems.get(randomNum) + "!\n";
 			} else if (randomNum >= 70 && randomNum < 90) {
 				int amount = 50;
 				crew.increaseMoney(amount);
-				returnString += name + "has found " + amount + " Coins.\n";
+				message += name + "has found " + amount + " Coins.\n";
 			} else {
-				returnString += name + " has found nothing.\n";
+				message += name + " has found nothing.\n";
 			}
 			increaseFatigue(searchFatigueCost);
 			increaseHunger(searchHungerCost);
 			actionsLeft -= 1;
 		}
-		return returnString;
+		return message;
 	}
 
 	/**

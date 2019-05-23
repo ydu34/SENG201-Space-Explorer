@@ -7,7 +7,11 @@ package main;
  * @author Joyce Cheah
  */
 public class Engineer extends CrewMember {
-
+	
+	/**
+	 * Creates an Engineer with the given name.
+	 * @param name
+	 */
 	public Engineer(String name) {
 		super(name, "Engineer", "", 100, 100, 100, 2, 5, 5, 10, 10, 20, 20);
 	}

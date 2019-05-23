@@ -137,7 +137,7 @@ class CrewMemberTest {
 	}
 	
 	@Test
-	public void pilotTest1() {
+	public void pilotTest() {
 		crewMember1.pilot(planet, crewMember2, crew);
 		assertEquals(10, crewMember1.getFatigue());
 		assertEquals(10, crewMember1.getHunger());
@@ -148,12 +148,29 @@ class CrewMemberTest {
 		assertEquals(1, crewMember2.getActionsLeft());
 	}
 	
+	
 	@Test
 	public void engineerSubClassTest() {
 		ship.setShieldLevel(10);
 		Engineer engineer = new Engineer("Engineer");
 		engineer.repair(ship);
 		assertEquals(30, ship.getShieldLevel());		
+	}
+	
+	@Test
+	public void nibblerSubClassTest() {
+		Nibbler nibbler = new Nibbler("Nibbler");
+		nibbler.setHunger(100);
+		nibbler.eat(foodItem, crew);
+		assertEquals(70, nibbler.getHunger());
+	}
+	
+	@Test
+	public void healthNutsubClassTest() {
+		HealthNut healthNut = new HealthNut("Health Nut");
+		healthNut.setHealth(10);
+		healthNut.useMedicalItem(medicalItem, crew);
+		assertEquals(65, healthNut.getHealth());
 	}
 	
 }

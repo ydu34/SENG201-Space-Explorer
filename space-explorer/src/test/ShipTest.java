@@ -15,7 +15,7 @@ class ShipTest {
 	}
 	
 	@Test
-	void testPieceFound() {
+	void pieceFoundTest() {
 		ship.foundPiece();
 		assertEquals(1, ship.getPiecesFound());
 	}
