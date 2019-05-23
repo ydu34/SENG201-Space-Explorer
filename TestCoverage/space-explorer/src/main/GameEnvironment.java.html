@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GameEnvironment.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">main</a> &gt; <span class="el_source">GameEnvironment.java</span></div><h1>GameEnvironment.java</h1><pre class="source lang-java linenums">package main;
+
+import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
+
+import views.CreateCrewWindow;
+import views.CrewMemberWindow;
+import views.GameOverWindow;
+import views.InstructionsWindow;
+import views.InventoryWindow;
+import views.MainWindow;
+import views.OutpostWindow;
+import views.SelectPilotWindow;
+import views.SelectPlanetWindow;
+import views.SetupWindow;
+import views.StartWindow;
+import views.StartingPlanetWindow;
+
+/**
+ * Instantiates and keeps track of the objects in the game. 
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+<span class="fc" id="L25">public class GameEnvironment {</span>
+<span class="fc" id="L26">	private Crew crew = new Crew();</span>
+<span class="fc" id="L27">	private Ship ship = crew.getShip();</span>
+<span class="fc" id="L28">	private ArrayList&lt;MedicalItem&gt; gameMedicalItems = new ArrayList&lt;MedicalItem&gt;();</span>
+<span class="fc" id="L29">	private ArrayList&lt;FoodItem&gt; gameFoodItems = new ArrayList&lt;FoodItem&gt;();</span>
+<span class="fc" id="L30">	private ArrayList&lt;Planet&gt; planets = new ArrayList&lt;Planet&gt;();</span>
+	private int gameDuration;
+<span class="fc" id="L32">	private int currentDay = 1;</span>
+<span class="fc" id="L33">	private ArrayList&lt;CrewMember&gt; crewMemberTypes = new ArrayList&lt;CrewMember&gt;();</span>
+	private CrewMember chosenCrewMember;
+	private CrewMember otherChosenCrewMember;
+
+	/**
+	 * Launches the window for a new game.
+	 */
+	public void launchStartWindow() {
+<span class="nc" id="L41">		StartWindow startWindow = new StartWindow(this);</span>
+<span class="nc" id="L42">	}</span>
+
+	/**
+	 * Closes the start window.
+	 * 
+	 * @param startWindow A StartWindow object.
+	 */
+	public void closeStartWindow(StartWindow startWindow) {
+<span class="nc" id="L50">		startWindow.closeWindow();</span>
+<span class="nc" id="L51">		launchInstructionsWindow();</span>
+<span class="nc" id="L52">	}</span>
+
+	/**
+	 * Launches the window for inventory viewing.
+	 */
+	public void launchInventoryWindow() {
+<span class="nc" id="L58">		InventoryWindow inventoryWindow = new InventoryWindow(this);</span>
+<span class="nc" id="L59">	}</span>
+
+	/**
+	 * Closes the inventory window.
+	 * 
+	 * @param inventoryWindow An InventoryWindow object.
+	 */
+	public void closeInventoryWindow(InventoryWindow inventoryWindow) {
+<span class="nc" id="L67">		inventoryWindow.closeWindow();</span>
+<span class="nc" id="L68">	}</span>
+
+	/**
+	 * Launches the window for game duration adjustment.
+	 */
+	public void launchSetUpWindow() {
+<span class="nc" id="L74">		SetupWindow setupWindow = new SetupWindow(this);</span>
+<span class="nc" id="L75">	}</span>
+
+	/**
+	 * Closes the set up window.
+	 * 
+	 * @param setupWindow A SetupWindow object.
+	 */
+	public void closeSetupWindow(SetupWindow setupWindow) {
+<span class="nc" id="L83">		setupWindow.closeWindow();</span>
+<span class="nc" id="L84">	}</span>
+
+	/**
+	 * Launches the window for game instructions.
+	 */
+	public void launchInstructionsWindow() {
+<span class="nc" id="L90">		InstructionsWindow instructionsWindow = new InstructionsWindow(this);</span>
+<span class="nc" id="L91">	}</span>
+
+	/**
+	 * Closes the instructions window.
+	 * 
+	 * @param instructionsWindow An InstructionsWindow window.
+	 */
+	public void closeInstructionsWindow(InstructionsWindow instructionsWindow) {
+<span class="nc" id="L99">		instructionsWindow.closeWindow();</span>
+<span class="nc" id="L100">		launchSetUpWindow();</span>
+<span class="nc" id="L101">	}</span>
+
+	/**
+	 * Launches the window for crew creating.
+	 */
+	public void launchCreateCrewWindow() {
+<span class="nc" id="L107">		CreateCrewWindow createCrewWindow = new CreateCrewWindow(this);</span>
+<span class="nc" id="L108">	}</span>
+
+	/**
+	 * Closes the create crew window.
+	 * 
+	 * @param createCrewWindow A CreateCrewWindow object.
+	 */
+	public void closeCreateCrewWindow(CreateCrewWindow createCrewWindow) {
+<span class="nc" id="L116">		createCrewWindow.closeWindow();</span>
+<span class="nc" id="L117">		launchStartingPlanetWindow();</span>
+<span class="nc" id="L118">	}</span>
+
+	/**
+	 * Launches the window for starting planet selection.
+	 */
+	public void launchStartingPlanetWindow() {
+<span class="nc" id="L124">		StartingPlanetWindow startingPlanetWindow = new StartingPlanetWindow(this);</span>
+<span class="nc" id="L125">	}</span>
+
+	/**
+	 * Closes the starting planet window.
+	 * 
+	 * @param startingPlanetWindow A StartingPlanetWindow object.
+	 */
+	public void closeStartingPlanetWindow(StartingPlanetWindow startingPlanetWindow) {
+<span class="nc" id="L133">		startingPlanetWindow.closeWindow();</span>
+<span class="nc" id="L134">	}</span>
+
+	/**
+	 * Launches the main game window.
+	 */
+	public void launchMainWindow() {
+<span class="nc" id="L140">		MainWindow mainWindow = new MainWindow(this);</span>
+<span class="nc" id="L141">	}</span>
+
+	/**
+	 * Closes the main game window.
+	 * 
+	 * @param mainWindow A MainWindow object.
+	 */
+	public void closeMainWindow(MainWindow mainWindow) {
+<span class="nc" id="L149">		mainWindow.closeWindow();</span>
+<span class="nc" id="L150">	}</span>
+
+	/**
+	 * Launches the outpost window.
+	 */
+	public void launchOutpostWindow() {
+<span class="nc" id="L156">		OutpostWindow outpostWindow = new OutpostWindow(this);</span>
+<span class="nc" id="L157">	}</span>
+
+	/**
+	 * Closes the outpost window.
+	 * 
+	 * @param outpostWindow An OutpostWindow object.
+	 */
+	public void closeOutpostWindow(OutpostWindow outpostWindow) {
+<span class="nc" id="L165">		outpostWindow.closeWindow();</span>
+<span class="nc" id="L166">	}</span>
+
+	/**
+	 * Launches the window for all the crew members' details.
+	 */
+	public void launchCrewMemberWindow() {
+<span class="nc" id="L172">		CrewMemberWindow crewMemberWindow = new CrewMemberWindow(this);</span>
+<span class="nc" id="L173">	}</span>
+
+	/**
+	 * Closes the crew member window.
+	 * 
+	 * @param crewMemberWindow A CrewMemberWindow object.
+	 */
+	public void closeCrewMemberWindow(CrewMemberWindow crewMemberWindow) {
+<span class="nc" id="L181">		crewMemberWindow.closeWindow();</span>
+<span class="nc" id="L182">	}</span>
+
+	/**
+	 * Launches the window for new planet selection.
+	 */
+	public void launchSelectPlanetWindow() {
+<span class="nc" id="L188">		SelectPlanetWindow selectPlanetWindow = new SelectPlanetWindow(this);</span>
+<span class="nc" id="L189">	}</span>
+
+	/**
+	 * Closes the select planet window.
+	 * 
+	 * @param selectPlanetWindow A SelectPlanetWindow object.
+	 */
+	public void closeSelectPlanetWindow(SelectPlanetWindow selectPlanetWindow) {
+<span class="nc" id="L197">		selectPlanetWindow.closeWindow();</span>
+<span class="nc" id="L198">	}</span>
+
+	/**
+	 * Launches the window for pilot selection.
+	 */
+	public void launchSelectPilotWindow() {
+<span class="nc" id="L204">		SelectPilotWindow selectPilotWindow = new SelectPilotWindow(this);</span>
+<span class="nc" id="L205">	}</span>
+
+	/**
+	 * Closes the pilot selection window
+	 * 
+	 * @param selectPilotWindow A SelectPilotWindow object.
+	 */
+	public void closeSelectPilotWindow(SelectPilotWindow selectPilotWindow) {
+<span class="nc" id="L213">		selectPilotWindow.closeWindow();</span>
+<span class="nc" id="L214">	}</span>
+
+	/**
+	 * Launches the window for the final score.
+	 */
+	public void launchGameOverWindow() {
+<span class="nc" id="L220">		GameOverWindow gameOverWindow = new GameOverWindow(this);</span>
+<span class="nc" id="L221">	}</span>
+
+	/**
+	 * Closes the game over window.
+	 * 
+	 * @param gameOverWindow A GameOverWindow object.
+	 */
+	public void closeGameOverWindow(GameOverWindow gameOverWindow) {
+<span class="nc" id="L229">		gameOverWindow.closeWindow();</span>
+<span class="nc" id="L230">		GameEnvironment game = new GameEnvironment();</span>
+<span class="nc" id="L231">		game.initCrewMemberTypes();</span>
+<span class="nc" id="L232">		game.initMedItems();</span>
+<span class="nc" id="L233">		game.initFoodItems();</span>
+<span class="nc" id="L234">		game.initPlanets();</span>
+<span class="nc" id="L235">		game.generateOutpostsItems();</span>
+<span class="nc" id="L236">		game.launchStartWindow();</span>
+<span class="nc" id="L237">	}</span>
+
+	/**
+	 * Initializes and starts the game.
+	 * 
+	 * @param args An array of strings.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L245">		GameEnvironment game = new GameEnvironment();</span>
+<span class="nc" id="L246">		game.initialize();</span>
+<span class="nc" id="L247">		game.launchStartWindow();</span>
+
+<span class="nc" id="L249">	}</span>
+
+	/**
+	 * Calls the methods for objects initializing.
+	 */
+	public void initialize() {
+<span class="fc" id="L255">		initCrewMemberTypes();</span>
+<span class="fc" id="L256">		initMedItems();</span>
+<span class="fc" id="L257">		initFoodItems();</span>
+<span class="fc" id="L258">		initPlanets();</span>
+<span class="fc" id="L259">		generateOutpostsItems();</span>
+<span class="fc" id="L260">	}</span>
+
+	/**
+	 * Initializes the crew member types.
+	 */
+	public void initCrewMemberTypes() {
+<span class="fc" id="L266">		crewMemberTypes.add(new Engineer(&quot;Engineer&quot;, null));</span>
+<span class="fc" id="L267">		crewMemberTypes.add(new HealthNut(&quot;Health Nut&quot;, null));</span>
+<span class="fc" id="L268">		crewMemberTypes.add(new Nibbler(&quot;Nibbler&quot;, null));</span>
+<span class="fc" id="L269">		crewMemberTypes.add(new NightOwl(&quot;Night Owl&quot;, null));</span>
+<span class="fc" id="L270">		crewMemberTypes.add(new Regular(&quot;Regular&quot;, null));</span>
+<span class="fc" id="L271">		crewMemberTypes.add(new Explorer(&quot;Explorer&quot;, null));</span>
+<span class="fc" id="L272">	}</span>
+
+	/**
+	 * Initializes the medical items.
+	 */
+	public void initMedItems() {
+<span class="fc" id="L278">		gameMedicalItems.add(new MedicalItem(&quot;Antiplague&quot;, 50, &quot;Cures space plague, heals 10 health.&quot;, 10, true));</span>
+<span class="fc" id="L279">		gameMedicalItems.add(new MedicalItem(&quot;Space Bandages&quot;, 20, &quot;Heals 45 health&quot;, 45, false));</span>
+<span class="fc" id="L280">		gameMedicalItems.add(new MedicalItem(&quot;Galaxy Pills&quot;, 10, &quot;Heals 20 health&quot;, 20, false));</span>
+<span class="fc" id="L281">		gameMedicalItems.add(new MedicalItem(&quot;Stimpak&quot;, 40, &quot;Heals 60 health&quot;, 60, false));</span>
+<span class="fc" id="L282">	}</span>
+
+	/**
+	 * Initializes the food items.
+	 */
+	public void initFoodItems() {
+<span class="fc" id="L288">		gameFoodItems.add(new FoodItem(&quot;Space soup&quot;, 10, &quot;Restore 20 hunger&quot;, 20));</span>
+<span class="fc" id="L289">		gameFoodItems.add(new FoodItem(&quot;Asteroid Meatballs&quot;, 30, &quot;Restore 50 hunger&quot;, 50));</span>
+<span class="fc" id="L290">		gameFoodItems.add(new FoodItem(&quot;Cosmo crepes&quot;, 20, &quot;Restore 30 hunger&quot;, 30));</span>
+<span class="fc" id="L291">		gameFoodItems.add(new FoodItem(&quot;Galaxy steak&quot;, 70, &quot;Restore 80 hunger&quot;, 80));</span>
+<span class="fc" id="L292">		gameFoodItems.add(new FoodItem(&quot;Moon cheese&quot;, 50, &quot;Restore 40 hunger&quot;, 40));</span>
+<span class="fc" id="L293">		gameFoodItems.add(new FoodItem(&quot;Space snack&quot;, 15, &quot;Restore 8 hunger&quot;, 8));</span>
+<span class="fc" id="L294">	}</span>
+
+	/**
+	 * Initializes the planets.
+	 */
+	public void initPlanets() {
+<span class="fc" id="L300">		planets.add(new Planet(&quot;Asauzuno&quot;, &quot;/resources/planet1.png&quot;));</span>
+<span class="fc" id="L301">		planets.add(new Planet(&quot;Uchiliv&quot;, &quot;/resources/planet2.png&quot;));</span>
+<span class="fc" id="L302">		planets.add(new Planet(&quot;Yangosie&quot;, &quot;/resources/planet3.jpg&quot;));</span>
+<span class="fc" id="L303">		planets.add(new Planet(&quot;Putrilia&quot;, &quot;/resources/planet4.jpg&quot;));</span>
+<span class="fc" id="L304">		planets.add(new Planet(&quot;Emia&quot;, &quot;/resources/planet5.png&quot;));</span>
+<span class="fc" id="L305">		planets.add(new Planet(&quot;Doyama&quot;, &quot;/resources/planet6.png&quot;));</span>
+<span class="fc" id="L306">		planets.add(new Planet(&quot;Bruxotune&quot;, &quot;/resources/planet7.jpg&quot;));</span>
+<span class="fc" id="L307">		planets.add(new Planet(&quot;Coth LTS4&quot;, &quot;/resources/planet8.jpg&quot;));</span>
+<span class="fc" id="L308">		planets.add(new Planet(&quot;Divunus&quot;, &quot;/resources/planet9.jpg&quot;));</span>
+<span class="fc" id="L309">	}</span>
+
+	/**
+	 * Generates eight food items and four medical items randomly to sell in
+	 * outposts.
+	 */
+	public void generateOutpostsItems() {
+<span class="fc bfc" id="L316" title="All 2 branches covered.">		for (Planet planet : planets) {</span>
+<span class="fc" id="L317">			SpaceOutpost planetOutpost = planet.getOutpost();</span>
+<span class="fc bfc" id="L318" title="All 2 branches covered.">			while (planetOutpost.getFoodItems().size() &lt; 8) {</span>
+<span class="fc" id="L319">				int randomNum = ThreadLocalRandom.current().nextInt(0, gameFoodItems.size());</span>
+<span class="fc" id="L320">				planetOutpost.getFoodItems().add(gameFoodItems.get(randomNum));</span>
+			}
+<span class="fc bfc" id="L322" title="All 2 branches covered.">			while (planetOutpost.getMedicalItems().size() &lt; 4) {</span>
+<span class="fc" id="L323">				int randomNum = ThreadLocalRandom.current().nextInt(0, gameMedicalItems.size());</span>
+<span class="fc" id="L324">				planetOutpost.getMedicalItems().add(gameMedicalItems.get(randomNum));</span>
+			}
+		}
+<span class="fc" id="L327">	}</span>
+
+	/**
+	 * Introduces the game situation.
+	 * 
+	 * @return A string message of the game situation.
+	 */
+	public String introductionText() {
+<span class="nc" id="L335">		String text = &quot;Your crew is lost in space in a unknown galaxy. &quot;</span>
+				+ &quot;Your spaceship's lightspeed engines are broken and scattered throughout the surrounding planets. &quot;
+				+ &quot;You will need to find the missing engine parts of your spaceship so that you can repair it and travel back to Earth.&quot;
+				+ &quot; \r\n\r\nEach day you may perform crew member actions. &quot;
+				+ &quot;Each crew member has two actions that can be used.\n\n&quot;
+				+ &quot;Use the actions to help you search for the parts. &quot; + &quot;Each planet only has one engine part.&quot;;
+<span class="nc" id="L341">		return text;</span>
+	}
+
+	/**
+	 * Checks if the game is over by checking if any of the conditions for game over
+	 * are met.
+	 * 
+	 * @return true if any of the conditions are met, false otherwise.
+	 */
+	public boolean gameOver() {
+<span class="fc bfc" id="L351" title="All 6 branches covered.">		if (currentDay &gt;= gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed()</span>
+<span class="fc bfc" id="L352" title="All 2 branches covered.">				|| crew.getCrewMembers().size() == 0) {</span>
+<span class="fc" id="L353">			return true;</span>
+		} else {
+<span class="fc" id="L355">			return false;</span>
+		}
+	}
+
+	/**
+	 * Creates crew members personalized by the player.
+	 * 
+	 * @param member A CrewMember object.
+	 * @return A null CrewMember object.
+	 */
+	public CrewMember createCrewMember(CrewMember member) {
+<span class="nc bnc" id="L366" title="All 7 branches missed.">		switch (member.getType()) {</span>
+		case &quot;Engineer&quot;:
+<span class="nc" id="L368">			return new Engineer(member.getName(), member.getImage());</span>
+		case &quot;Health Nut&quot;:
+<span class="nc" id="L370">			return new HealthNut(member.getName(), member.getImage());</span>
+		case &quot;Nibbler&quot;:
+<span class="nc" id="L372">			return new Nibbler(member.getName(), member.getImage());</span>
+		case &quot;Night Owl&quot;:
+<span class="nc" id="L374">			return new NightOwl(member.getName(), member.getImage());</span>
+		case &quot;Explorer&quot;:
+<span class="nc" id="L376">			return new Explorer(member.getName(), member.getImage());</span>
+		case &quot;Regular&quot;:
+<span class="nc" id="L378">			return new Regular(member.getName(), member.getImage());</span>
+		}
+<span class="nc" id="L380">		return null;</span>
+	}
+
+	/**
+	 * Moves on to the next day.
+	 * 
+	 * @return A string message of currently infected crew members and the event
+	 *         occurred.
+	 */
+	public String nextDay() {
+<span class="fc" id="L390">		currentDay++;</span>
+<span class="fc" id="L391">		String returnString = &quot;Day &quot; + currentDay + &quot;/&quot; + gameDuration + &quot;.\n&quot;;</span>
+<span class="fc bfc" id="L392" title="All 2 branches covered.">		for (CrewMember member : crew.getCrewMembers()) {</span>
+<span class="fc" id="L393">			member.setActionsLeft(member.getMaxActions());</span>
+		}
+<span class="fc" id="L395">		returnString += checkInfectedCrewMembers();</span>
+<span class="fc" id="L396">		generateOutpostsItems();</span>
+
+<span class="fc" id="L398">		returnString += RandomEvent.occurDay(crew);</span>
+<span class="fc" id="L399">		return returnString;</span>
+	}
+
+	/**
+	 * Checks the crew members and see which are infected.
+	 * 
+	 * @return A string message of the infected crew members' updated health levels
+	 *         or if they have died.
+	 */
+	public String checkInfectedCrewMembers() {
+<span class="fc" id="L409">		String returnString = &quot;&quot;;</span>
+<span class="fc" id="L410">		ArrayList&lt;CrewMember&gt; deadCrewMembers = new ArrayList&lt;CrewMember&gt;();</span>
+<span class="fc bfc" id="L411" title="All 2 branches covered.">		for (CrewMember member : crew.getCrewMembers()) {</span>
+<span class="fc bfc" id="L412" title="All 2 branches covered.">			if (member.isInfected()) {</span>
+<span class="fc" id="L413">				member.decreaseHealth(20);</span>
+				;
+<span class="fc bfc" id="L415" title="All 2 branches covered.">				if (member.isDead()) {</span>
+<span class="fc" id="L416">					returnString += member.getName()</span>
+<span class="fc" id="L417">							+ &quot; has died to the space plague and has been removed from the crew.\n&quot;;</span>
+<span class="fc" id="L418">					deadCrewMembers.add(member);</span>
+<span class="fc" id="L419">				} else {</span>
+<span class="fc" id="L420">					returnString += member.getName() + &quot; will lose 20 health each day until they get cured.\n&quot;;</span>
+<span class="fc" id="L421">					returnString += member.getName() + &quot; now has &quot; + member.getHealth() + &quot;/&quot; + member.getMaxHealth()</span>
+<span class="fc" id="L422">							+ &quot; health.\n&quot;;</span>
+				}
+			}
+		}
+<span class="fc bfc" id="L426" title="All 2 branches covered.">		for (CrewMember deadMember : deadCrewMembers) {</span>
+<span class="fc" id="L427">			crew.getCrewMembers().remove(deadMember);</span>
+		}
+<span class="fc" id="L429">		return returnString;</span>
+	}
+
+	/**
+	 * Calculates the final score of the game.
+	 * 
+	 * @return An int of the final score.
+	 */
+	public int calculateFinalScore() {
+<span class="nc" id="L438">		int score = 0;</span>
+<span class="nc bnc" id="L439" title="All 2 branches missed.">		for (CrewMember member : crew.getCrewMembers()) {</span>
+<span class="nc" id="L440">			score += member.getHealth();</span>
+<span class="nc" id="L441">			score += member.getMaxFatigue() - member.getFatigue();</span>
+<span class="nc" id="L442">			score += member.getMaxHunger() - member.getHunger();</span>
+<span class="nc" id="L443">			score += member.getActionsLeft() * 50;</span>
+		}
+<span class="nc" id="L445">		score += ship.getShieldLevel();</span>
+<span class="nc bnc" id="L446" title="All 2 branches missed.">		if (ship.getPiecesFound() == ship.getPiecesNeeded()) {</span>
+<span class="nc" id="L447">			score = score * 2;</span>
+<span class="nc bnc" id="L448" title="All 2 branches missed.">			if (score &lt; 0) {</span>
+<span class="nc" id="L449">				score = 0;</span>
+			}
+		}
+<span class="nc" id="L452">		return score;</span>
+	}
+
+	/**
+	 * Checks if the game is over by checking if any of the game over conditions are
+	 * met.
+	 * 
+	 * @return A string message describing why the game is over.
+	 */
+	public String gameOverMessage() {
+<span class="nc bnc" id="L462" title="All 2 branches missed.">		if (ship.isDestroyed()) {</span>
+<span class="nc" id="L463">			return &quot;The asteroid hits and your ship is torn apart.&quot;;</span>
+<span class="nc bnc" id="L464" title="All 2 branches missed.">		} else if (ship.getPiecesFound() &gt;= ship.getPiecesNeeded()) {</span>
+<span class="nc" id="L465">			return &quot;Your crew have found the necessary engine pieces and they returned home.&quot;;</span>
+<span class="nc bnc" id="L466" title="All 2 branches missed.">		} else if (currentDay &gt;= gameDuration) {</span>
+<span class="nc" id="L467">			return &quot;The days have passed and all the engines pieces were stolen by alien pirates.&quot;;</span>
+<span class="nc bnc" id="L468" title="All 2 branches missed.">		} else if (crew.getCrewMembers().size() == 0) {</span>
+<span class="nc" id="L469">			return &quot;The empty spaceship floats silently through space eventually looted by alien pirates.&quot;;</span>
+		} else {
+<span class="nc" id="L471">			return &quot;It is unkown what happend to your crew and spaceship.&quot;;</span>
+		}
+	}
+
+	public Crew getCrew() {
+<span class="fc" id="L476">		return crew;</span>
+	}
+
+	public void setCrew(Crew crew) {
+<span class="nc" id="L480">		this.crew = crew;</span>
+<span class="nc" id="L481">	}</span>
+
+	public Ship getShip() {
+<span class="fc" id="L484">		return ship;</span>
+	}
+
+	public void setShip(Ship ship) {
+<span class="nc" id="L488">		this.ship = ship;</span>
+<span class="nc" id="L489">	}</span>
+
+	public ArrayList&lt;MedicalItem&gt; getGameMedicalItems() {
+<span class="fc" id="L492">		return gameMedicalItems;</span>
+	}
+
+	public void setGameMedicalItems(ArrayList&lt;MedicalItem&gt; medItems) {
+<span class="nc" id="L496">		this.gameMedicalItems = medItems;</span>
+<span class="nc" id="L497">	}</span>
+
+	public ArrayList&lt;FoodItem&gt; getGameFoodItems() {
+<span class="fc" id="L500">		return gameFoodItems;</span>
+	}
+
+	public void setGameFoodItems(ArrayList&lt;FoodItem&gt; foodItems) {
+<span class="nc" id="L504">		this.gameFoodItems = foodItems;</span>
+<span class="nc" id="L505">	}</span>
+
+	public ArrayList&lt;Planet&gt; getPlanets() {
+<span class="nc" id="L508">		return planets;</span>
+	}
+
+	public void setPlanets(ArrayList&lt;Planet&gt; planets) {
+<span class="nc" id="L512">		this.planets = planets;</span>
+<span class="nc" id="L513">	}</span>
+
+	public int getGameDuration() {
+<span class="nc" id="L516">		return gameDuration;</span>
+	}
+
+	public void setGameDuration(int gameDuration) {
+<span class="fc" id="L520">		this.gameDuration = gameDuration;</span>
+<span class="fc" id="L521">	}</span>
+
+	public int getCurrentDay() {
+<span class="fc" id="L524">		return currentDay;</span>
+	}
+
+	public void setCurrentDay(int currentDay) {
+<span class="fc" id="L528">		this.currentDay = currentDay;</span>
+<span class="fc" id="L529">	}</span>
+
+	public ArrayList&lt;CrewMember&gt; getCrewMemberTypes() {
+<span class="nc" id="L532">		return crewMemberTypes;</span>
+	}
+
+	public void setCrewMemberTypes(ArrayList&lt;CrewMember&gt; crewMemberTypes) {
+<span class="nc" id="L536">		this.crewMemberTypes = crewMemberTypes;</span>
+<span class="nc" id="L537">	}</span>
+
+	public CrewMember getChosenCrewMember() {
+<span class="nc" id="L540">		return chosenCrewMember;</span>
+	}
+
+	public void setChosenCrewMember(CrewMember chosenCrewMember) {
+<span class="nc" id="L544">		this.chosenCrewMember = chosenCrewMember;</span>
+<span class="nc" id="L545">	}</span>
+
+	public CrewMember getOtherChosenCrewMember() {
+<span class="nc" id="L548">		return otherChosenCrewMember;</span>
+	}
+
+	public void setOtherChosenCrewMember(CrewMember otherChosenCrewMember) {
+<span class="nc" id="L552">		this.otherChosenCrewMember = otherChosenCrewMember;</span>
+<span class="nc" id="L553">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

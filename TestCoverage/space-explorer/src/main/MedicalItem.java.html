@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>MedicalItem.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">main</a> &gt; <span class="el_source">MedicalItem.java</span></div><h1>MedicalItem.java</h1><pre class="source lang-java linenums">package main;
+
+/**
+ * Represents a medical item, which restores health of crew members. Some medical
+ * items can remove space plague.
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+public class MedicalItem extends Item {
+
+	private int restoreHealthAmount;
+	private boolean removePlague;
+
+	/**
+	 * Creates a medical item.
+	 * 
+	 * @param name                A string name of the medical item.
+	 * @param price               An int of the medical item price.
+	 * @param description         A string description of the medical item.
+	 * @param restoreHealthAmount An int of restore health amount when the medical
+	 *                            item is consumed.
+	 * @param removePlague        A boolean expression of whether the medical item
+	 *                            is a cure to the space plague.
+	 */
+	public MedicalItem(String name, int price, String description, int restoreHealthAmount, boolean removePlague) {
+<span class="fc" id="L27">		super(name, price, description);</span>
+<span class="fc" id="L28">		this.restoreHealthAmount = restoreHealthAmount;</span>
+<span class="fc" id="L29">		this.removePlague = removePlague;</span>
+<span class="fc" id="L30">	}</span>
+
+	/**
+	 * Gets the restore health amount of the medical item.
+	 * 
+	 * @return An int of the restore health amount of the medical item.
+	 */
+	public int getRestoreHealthAmount() {
+<span class="fc" id="L38">		return restoreHealthAmount;</span>
+	}
+
+	/**
+	 * Sets the restore health amount of the medical item.
+	 * 
+	 * @param restoreHealthAmount An int of restore health amount when the medical
+	 *                            item is consumed.
+	 */
+	public void setRestoreHealthAmount(int restoreHealthAmount) {
+<span class="nc" id="L48">		this.restoreHealthAmount = restoreHealthAmount;</span>
+<span class="nc" id="L49">	}</span>
+
+	/**
+	 * Checks if the medical item is the cure to the space plague.
+	 * 
+	 * @return True if the medical item is the cure to the space plague, false
+	 *         otherwise.
+	 */
+	public boolean isRemovePlague() {
+<span class="fc" id="L58">		return removePlague;</span>
+	}
+
+	/**
+	 * Sets the medical item as the cure to the space plague.
+	 * 
+	 * @param removePlague A boolean expression of whether the medical item is a
+	 *                     cure to the space plague.
+	 */
+	public void setRemovePlague(boolean removePlague) {
+<span class="nc" id="L68">		this.removePlague = removePlague;</span>
+<span class="nc" id="L69">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

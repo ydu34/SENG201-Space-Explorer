@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>InventoryWindow.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">views</a> &gt; <span class="el_source">InventoryWindow.java</span></div><h1>InventoryWindow.java</h1><pre class="source lang-java linenums">package views;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeSet;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import main.GameEnvironment;
+import main.Item;
+
+/**
+ * The window that allows the player to view their inventory. The player can
+ * view the details of the items.
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+public class InventoryWindow {
+
+	private JFrame frame;
+	private GameEnvironment game;
+
+	/**
+	 * Creates the window application.
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
+	 */
+<span class="nc" id="L50">	public InventoryWindow(GameEnvironment incomingGame) {</span>
+<span class="nc" id="L51">		game = incomingGame;</span>
+<span class="nc" id="L52">		initialize();</span>
+<span class="nc" id="L53">		frame.setVisible(true);</span>
+<span class="nc" id="L54">	}</span>
+
+	/**
+	 * Closes the window.
+	 */
+	public void closeWindow() {
+<span class="nc" id="L60">		frame.dispose();</span>
+<span class="nc" id="L61">	}</span>
+
+	/**
+	 * Calls the close window method in game environment.
+	 */
+	public void finishedWindow() {
+<span class="nc" id="L67">		game.closeInventoryWindow(this);</span>
+<span class="nc" id="L68">	}</span>
+
+	/**
+	 * Initializes the contents of the frame. This includes a list of inventory, a
+	 * panel displaying the details of the selected item, a display of the coins
+	 * available, and a button to return to the outpost.
+	 */
+	private void initialize() {
+<span class="nc" id="L76">		frame = new JFrame();</span>
+<span class="nc" id="L77">		frame.setResizable(false);</span>
+<span class="nc" id="L78">		frame.setTitle(&quot;SPACE EXPLORERS&quot;);</span>
+<span class="nc" id="L79">		frame.setBounds(100, 100, 800, 600);</span>
+<span class="nc" id="L80">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L81">		frame.getContentPane().setLayout(null);</span>
+
+<span class="nc" id="L83">		JLabel lblYourInventory = new JLabel(&quot;Ship Inventory&quot;);</span>
+<span class="nc" id="L84">		lblYourInventory.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L85">		lblYourInventory.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 30));</span>
+<span class="nc" id="L86">		lblYourInventory.setBounds(0, 0, 795, 60);</span>
+<span class="nc" id="L87">		frame.getContentPane().add(lblYourInventory);</span>
+
+<span class="nc" id="L89">		ArrayList&lt;Item&gt; inventoryItems = new ArrayList&lt;Item&gt;();</span>
+<span class="nc" id="L90">		inventoryItems.addAll(game.getCrew().getFoodItems());</span>
+<span class="nc" id="L91">		inventoryItems.addAll(game.getCrew().getMedicalItems());</span>
+<span class="nc" id="L92">		ArrayList&lt;Item&gt; uniqueInventoryItems = new ArrayList&lt;Item&gt;(new TreeSet&lt;Item&gt;(inventoryItems));</span>
+<span class="nc" id="L93">		Map&lt;Item, Integer&gt; itemFrequency = new HashMap&lt;Item, Integer&gt;();</span>
+<span class="nc bnc" id="L94" title="All 2 branches missed.">		for (Item item : uniqueInventoryItems) {</span>
+<span class="nc" id="L95">			itemFrequency.put(item, Collections.frequency(inventoryItems, item));</span>
+		}
+
+<span class="nc" id="L98">		JList listInventory = new JList(uniqueInventoryItems.toArray());</span>
+<span class="nc" id="L99">		listInventory.setBackground(UIManager.getColor(&quot;Menu.background&quot;));</span>
+<span class="nc" id="L100">		listInventory.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder(&quot;TitledBorder.border&quot;), &quot;&quot;,</span>
+<span class="nc" id="L101">				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));</span>
+<span class="nc" id="L102">		listInventory.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 16));</span>
+
+<span class="nc" id="L104">		listInventory.setBounds(50, 127, 314, 348);</span>
+<span class="nc" id="L105">		frame.getContentPane().add(listInventory);</span>
+
+<span class="nc" id="L107">		JPanel panelItemInfo = new JPanel();</span>
+<span class="nc" id="L108">		panelItemInfo.setBorder(new TitledBorder(null, &quot;&quot;, TitledBorder.LEADING, TitledBorder.TOP, null, null));</span>
+<span class="nc" id="L109">		panelItemInfo.setBounds(396, 127, 344, 280);</span>
+<span class="nc" id="L110">		frame.getContentPane().add(panelItemInfo);</span>
+<span class="nc" id="L111">		panelItemInfo.setLayout(null);</span>
+
+<span class="nc" id="L113">		JLabel lblAmount = new JLabel(&quot;Amount:&quot;);</span>
+<span class="nc" id="L114">		lblAmount.setBounds(12, 89, 112, 22);</span>
+<span class="nc" id="L115">		panelItemInfo.add(lblAmount);</span>
+<span class="nc" id="L116">		lblAmount.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 16));</span>
+
+<span class="nc" id="L118">		JLabel lblItemName = new JLabel();</span>
+<span class="nc bnc" id="L119" title="All 2 branches missed.">		if (uniqueInventoryItems.size() != 0) {</span>
+<span class="nc" id="L120">			lblItemName.setText(((Item) listInventory.getModel().getElementAt(0)).getName());</span>
+		}
+<span class="nc" id="L122">		lblItemName.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L123">		lblItemName.setBounds(155, 50, 151, 38);</span>
+<span class="nc" id="L124">		panelItemInfo.add(lblItemName);</span>
+
+<span class="nc" id="L126">		JLabel lblName = new JLabel(&quot;Name:&quot;);</span>
+<span class="nc" id="L127">		lblName.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 16));</span>
+<span class="nc" id="L128">		lblName.setBounds(12, 54, 112, 22);</span>
+<span class="nc" id="L129">		panelItemInfo.add(lblName);</span>
+
+<span class="nc" id="L131">		JLabel lblItemAmount = new JLabel();</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">		if (uniqueInventoryItems.size() != 0) {</span>
+<span class="nc" id="L133">			lblItemAmount.setText(Integer.toString(itemFrequency.get((Item) listInventory.getModel().getElementAt(0))));</span>
+		}
+<span class="nc" id="L135">		lblItemAmount.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L136">		lblItemAmount.setBounds(155, 101, 151, 35);</span>
+<span class="nc" id="L137">		panelItemInfo.add(lblItemAmount);</span>
+
+<span class="nc" id="L139">		JTextArea textArea = new JTextArea();</span>
+<span class="nc" id="L140">		textArea.setBackground(UIManager.getColor(&quot;Menu.background&quot;));</span>
+<span class="nc" id="L141">		textArea.setEditable(false);</span>
+<span class="nc" id="L142">		textArea.setWrapStyleWord(true);</span>
+<span class="nc" id="L143">		textArea.setLineWrap(true);</span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">		if (uniqueInventoryItems.size() != 0) {</span>
+<span class="nc" id="L145">			textArea.setText(((Item) listInventory.getModel().getElementAt(0)).getDescription());</span>
+		}
+<span class="nc" id="L147">		textArea.setFont(new Font(&quot;Monospaced&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L148">		textArea.setBounds(12, 149, 309, 118);</span>
+<span class="nc" id="L149">		panelItemInfo.add(textArea);</span>
+
+<span class="nc" id="L151">		JLabel label_2 = new JLabel(&quot;About this item&quot;);</span>
+<span class="nc" id="L152">		label_2.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L153">		label_2.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L154">		label_2.setBounds(0, 0, 344, 50);</span>
+<span class="nc" id="L155">		panelItemInfo.add(label_2);</span>
+
+<span class="nc" id="L157">		JLabel lblDescription = new JLabel(&quot;Description:&quot;);</span>
+<span class="nc" id="L158">		lblDescription.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 16));</span>
+<span class="nc" id="L159">		lblDescription.setBounds(12, 123, 112, 22);</span>
+<span class="nc" id="L160">		panelItemInfo.add(lblDescription);</span>
+
+<span class="nc" id="L162">		JButton btnBackToOutpost = new JButton(&quot;Back to Outpost&quot;);</span>
+<span class="nc" id="L163">		btnBackToOutpost.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L165">				finishedWindow();</span>
+<span class="nc" id="L166">				game.launchOutpostWindow();</span>
+<span class="nc" id="L167">			}</span>
+		});
+<span class="nc" id="L169">		btnBackToOutpost.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L170">		btnBackToOutpost.setBounds(542, 525, 203, 27);</span>
+<span class="nc" id="L171">		frame.getContentPane().add(btnBackToOutpost);</span>
+
+<span class="nc" id="L173">		JLabel lblCoinsAvailable = new JLabel(&quot;Coins Available:&quot;);</span>
+<span class="nc" id="L174">		lblCoinsAvailable.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="nc" id="L175">		lblCoinsAvailable.setBounds(396, 427, 176, 27);</span>
+<span class="nc" id="L176">		frame.getContentPane().add(lblCoinsAvailable);</span>
+
+<span class="nc" id="L178">		JLabel label_1 = new JLabel(Integer.toString(game.getCrew().getMoney()));</span>
+<span class="nc" id="L179">		label_1.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="nc" id="L180">		label_1.setBounds(576, 427, 148, 27);</span>
+<span class="nc" id="L181">		frame.getContentPane().add(label_1);</span>
+
+<span class="nc" id="L183">		JLabel lblItems = new JLabel(&quot;Items:&quot;);</span>
+<span class="nc" id="L184">		lblItems.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 18));</span>
+<span class="nc" id="L185">		lblItems.setBounds(50, 91, 286, 27);</span>
+<span class="nc" id="L186">		frame.getContentPane().add(lblItems);</span>
+
+<span class="nc" id="L188">		JSeparator separatorTop = new JSeparator();</span>
+<span class="nc" id="L189">		separatorTop.setBounds(50, 62, 695, 2);</span>
+<span class="nc" id="L190">		frame.getContentPane().add(separatorTop);</span>
+
+<span class="nc" id="L192">		JSeparator separatorBottom = new JSeparator();</span>
+<span class="nc" id="L193">		separatorBottom.setBounds(50, 503, 695, 2);</span>
+<span class="nc" id="L194">		frame.getContentPane().add(separatorBottom);</span>
+
+<span class="nc" id="L196">		listInventory.addListSelectionListener(new ListSelectionListener() {</span>
+			public void valueChanged(ListSelectionEvent arg0) {
+<span class="nc" id="L198">				Item currentItem = (Item) listInventory.getSelectedValue();</span>
+<span class="nc" id="L199">				lblItemName.setText(currentItem.getName());</span>
+<span class="nc" id="L200">				lblItemAmount.setText(Integer.toString(itemFrequency.get(currentItem)));</span>
+<span class="nc" id="L201">				textArea.setText(currentItem.getDescription());</span>
+<span class="nc" id="L202">			}</span>
+		});
+<span class="nc" id="L204">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

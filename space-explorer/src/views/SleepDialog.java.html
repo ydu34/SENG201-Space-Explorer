@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>SleepDialog.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">views</a> &gt; <span class="el_source">SleepDialog.java</span></div><h1>SleepDialog.java</h1><pre class="source lang-java linenums">package views;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+
+import main.GameEnvironment;
+
+/**
+ * The dialog that allows the player to allow the crew member to sleep.
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+public class SleepDialog extends JDialog {
+
+<span class="nc" id="L31">	private final JPanel contentPanel = new JPanel();</span>
+
+	/**
+	 * Creates the dialog. This includes a panel displaying the details of sleep
+	 * action, and buttons to sleep or return to the actions window.
+	 * 
+	 * @param parent       A JFrame that launches this dialog.
+	 * @param game         A GameEnvironment object containing all the contents of
+	 *                     the game.
+	 * @param parentWindow A CrewMemberWindow that launched this dialog.
+	 */
+	public SleepDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
+<span class="nc" id="L43">		super(parent, true);</span>
+<span class="nc" id="L44">		setResizable(false);</span>
+<span class="nc" id="L45">		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);</span>
+<span class="nc" id="L46">		setBounds(100, 100, 375, 450);</span>
+<span class="nc" id="L47">		getContentPane().setLayout(new BorderLayout());</span>
+<span class="nc" id="L48">		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L49">		getContentPane().add(contentPanel, BorderLayout.CENTER);</span>
+<span class="nc" id="L50">		contentPanel.setLayout(null);</span>
+
+<span class="nc" id="L52">		JPanel panelSleepInfo = new JPanel();</span>
+<span class="nc" id="L53">		panelSleepInfo.setBorder(new TitledBorder(null, &quot;&quot;, TitledBorder.LEADING, TitledBorder.TOP, null, null));</span>
+<span class="nc" id="L54">		panelSleepInfo.setLayout(null);</span>
+<span class="nc" id="L55">		panelSleepInfo.setBounds(30, 63, 314, 277);</span>
+<span class="nc" id="L56">		contentPanel.add(panelSleepInfo);</span>
+
+<span class="nc" id="L58">		JTextArea textArea = new JTextArea();</span>
+<span class="nc" id="L59">		textArea.setText(&quot;Allow the crew member to take a quick nap and recover from fatigue.\n\n&quot;</span>
+				+ &quot;The crew member's fatigue would be reduced by 30. \n\n&quot; + &quot;Fatigue can not go below 0.\n\n&quot;
+				+ &quot;Sleeping uses up 1 action.&quot;);
+<span class="nc" id="L62">		textArea.setBackground(UIManager.getColor(&quot;Menu.background&quot;));</span>
+<span class="nc" id="L63">		textArea.setFont(new Font(&quot;Monospaced&quot;, Font.PLAIN, 15));</span>
+<span class="nc" id="L64">		textArea.setEditable(false);</span>
+<span class="nc" id="L65">		textArea.setWrapStyleWord(true);</span>
+<span class="nc" id="L66">		textArea.setLineWrap(true);</span>
+<span class="nc" id="L67">		textArea.setBounds(12, 13, 290, 251);</span>
+<span class="nc" id="L68">		panelSleepInfo.add(textArea);</span>
+
+<span class="nc" id="L70">		JButton buttonSleep = new JButton(&quot;SLEEP&quot;);</span>
+<span class="nc" id="L71">		buttonSleep.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L73">				setVisible(false);</span>
+<span class="nc" id="L74">				dispose();</span>
+<span class="nc" id="L75">				String message = game.getChosenCrewMember().sleep();</span>
+<span class="nc" id="L76">				JOptionPane.showMessageDialog(parent, message);</span>
+<span class="nc" id="L77">				parentWindow.updateProfile(game.getChosenCrewMember());</span>
+<span class="nc" id="L78">			}</span>
+		});
+<span class="nc" id="L80">		buttonSleep.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 16));</span>
+<span class="nc" id="L81">		buttonSleep.setBounds(30, 353, 110, 25);</span>
+<span class="nc" id="L82">		contentPanel.add(buttonSleep);</span>
+
+<span class="nc" id="L84">		JButton btnDoSomethingElse = new JButton(&quot;Do something else!&quot;);</span>
+<span class="nc" id="L85">		btnDoSomethingElse.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L87">				setVisible(false);</span>
+<span class="nc" id="L88">				dispose();</span>
+<span class="nc" id="L89">				JDialog actions = new ActionsDialog(parent, game, parentWindow);</span>
+<span class="nc" id="L90">				actions.setVisible(true);</span>
+<span class="nc" id="L91">			}</span>
+		});
+<span class="nc" id="L93">		btnDoSomethingElse.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L94">		btnDoSomethingElse.setBounds(144, 353, 200, 25);</span>
+<span class="nc" id="L95">		contentPanel.add(btnDoSomethingElse);</span>
+
+<span class="nc" id="L97">		JLabel lblTakeANap = new JLabel(&quot;Take a Nap!&quot;);</span>
+<span class="nc" id="L98">		lblTakeANap.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L99">		lblTakeANap.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 30));</span>
+<span class="nc" id="L100">		lblTakeANap.setBounds(0, 0, 369, 50);</span>
+<span class="nc" id="L101">		contentPanel.add(lblTakeANap);</span>
+
+<span class="nc" id="L103">		JSeparator separatorTop = new JSeparator();</span>
+<span class="nc" id="L104">		separatorTop.setBounds(30, 52, 314, 2);</span>
+<span class="nc" id="L105">		contentPanel.add(separatorTop);</span>
+<span class="nc" id="L106">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

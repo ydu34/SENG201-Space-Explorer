@@ -1,7 +1,7 @@
 package main;
 
 /**
- * Represents a food item.
+ * Represents a food item, which restores hunger of crew members.
  * 
  * @author Yu Duan
  * @author Joyce Cheah

@@ -1,7 +1,8 @@
 package main;
 
 /**
- * Represents a planet.
+ * Represents a planet, which has a name, an image, a space outpost, and if
+ * their is a piece on this planet.
  * 
  * @author Yu Duan
  * @author Joyce Cheah
@@ -15,7 +16,7 @@ public class Planet {
 	/**
 	 * Creates a planet.
 	 * 
-	 * @param name      A string name of the planet.
+	 * @param name  A string name of the planet.
 	 * @param image A string holding the location of the image.
 	 */
 	public Planet(String name, String image) {

@@ -8,10 +8,6 @@ package main;
  */
 public class Regular extends CrewMember {
 
-	public Regular(String name) {
-		super(name, "Regular", "", 100, 130, 130);
-	}
-
 	/**
 	 * Creates a Regular type crew member.
 	 * 

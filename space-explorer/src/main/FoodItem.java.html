@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FoodItem.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">main</a> &gt; <span class="el_source">FoodItem.java</span></div><h1>FoodItem.java</h1><pre class="source lang-java linenums">package main;
+
+/**
+ * Represents a food item, which restores hunger of crew members.
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+public class FoodItem extends Item {
+	private int restoreHungerAmount;
+
+	/**
+	 * Creates a food item.
+	 * 
+	 * @param name                A string name of the food item.
+	 * @param price               An int of the food price.
+	 * @param description         A string description of the food.
+	 * @param restoreHungerAmount An int of the restore hunger amount when the food
+	 *                            is consumed.
+	 */
+	public FoodItem(String name, int price, String description, int restoreHungerAmount) {
+<span class="fc" id="L22">		super(name, price, description);</span>
+<span class="fc" id="L23">		this.restoreHungerAmount = restoreHungerAmount;</span>
+<span class="fc" id="L24">	}</span>
+
+	/**
+	 * Gets the restore hunger amount of the food item.
+	 * 
+	 * @return An int representing the restore hunger amount of the food item.
+	 */
+	public int getRestoreHungerAmount() {
+<span class="fc" id="L32">		return restoreHungerAmount;</span>
+	}
+
+	/**
+	 * Sets the restore hunger amount of the food item.
+	 * 
+	 * @param restoreHungerAmount An int of the restore hunger amount when the food
+	 *                            is consumed.
+	 */
+	public void setRestoreHungerAmount(int restoreHungerAmount) {
+<span class="nc" id="L42">		this.restoreHungerAmount = restoreHungerAmount;</span>
+<span class="nc" id="L43">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

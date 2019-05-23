@@ -16,13 +16,14 @@ class CrewMemberTest {
 	private MedicalItem medicalItem;
 	private FoodItem foodItem;
 	private MedicalItem antiplague;
+	private GameEnvironment game;
 	@BeforeEach
 	public void init() {
 		crew = new Crew();
 		ship = crew.getShip();
 		planet = new Planet("TestPlanet", "");
-		crewMember1 = new CrewMember("Tester1", "None", "");
-		crewMember2 = new CrewMember("Tester2", "None", "");
+		crewMember1 = new CrewMember("Tester1", "None", null);
+		crewMember2 = new CrewMember("Tester2", "None", null);
 		crew.getCrewMembers().add(crewMember1);
 		crew.getCrewMembers().add(crewMember2);
 		medicalItem = new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false);
@@ -55,7 +56,7 @@ class CrewMemberTest {
 		assertFalse(crewMember1.isAvailable());
 	}
 	@Test
-	public void eatTest1() {
+	public void testEatFoodRestoreHunger() {
 		crewMember1.setHunger(100);
 		crewMember1.eat(foodItem, crew);
 		assertEquals(80, crewMember1.getHunger());
@@ -64,13 +65,13 @@ class CrewMemberTest {
 	
 	
 	@Test
-	public void eatTest2() {
+	public void testEatFoodAt0Hunger() {
 		crewMember1.eat(foodItem, crew);
 		assertEquals(0, crewMember1.getHunger());
 	}
 	
 	@Test
-	public void useMedicalItemTest1() {
+	public void testUseMedicalItemRestoreHealth() {
 		crewMember1.setHealth(10);
 		crewMember1.useMedicalItem(medicalItem, crew);
 		assertEquals(55, crewMember1.getHealth());
@@ -79,13 +80,13 @@ class CrewMemberTest {
 	
 	//Test the upper boundary when health is at maximum.
 	@Test
-	public void useMedicalItemTest2() {
+	public void testUseMedicalItemAtMaxHealth() {
 		crewMember1.useMedicalItem(medicalItem, crew);
 		assertEquals(100, crewMember1.getHealth());
 	}
 	
 	@Test
-	public void useMedicalItemTest3() {
+	public void testUseMedicalItemRestorePlague() {
 		crewMember1.setInfected(true);
 		crewMember1.setStatus("Infected");
 		crewMember1.useMedicalItem(antiplague, crew);
@@ -148,6 +149,37 @@ class CrewMemberTest {
 		assertEquals(1, crewMember2.getActionsLeft());
 	}
 	
+	@Test
+	public void testSearchHappens() {
+		game = new GameEnvironment();
+		game.initFoodItems();
+		game.initMedItems();
+		crewMember1.search(game.getGameMedicalItems(), game.getGameFoodItems(), crew);
+		assertEquals(20, crewMember1.getFatigue());
+		assertEquals(20, crewMember1.getHunger());
+		assertEquals(1, crewMember1.getActionsLeft());
+	}
+	
+	@Test
+	public void testSerachFatigueTooHigh() {
+		game = new GameEnvironment();
+		game.initFoodItems();
+		game.initMedItems();
+		crewMember1.setFatigue(81);
+		crewMember1.search(game.getGameMedicalItems(), game.getGameFoodItems(), crew);
+		assertEquals(2, crewMember1.getActionsLeft());
+	}
+	
+	@Test
+	public void testSearchHungerTooHigh() {
+		game = new GameEnvironment();
+		game.initFoodItems();
+		game.initMedItems();
+		crewMember1.setHunger(81);
+		crewMember1.search(game.getGameMedicalItems(), game.getGameFoodItems(), crew);
+		assertEquals(2, crewMember1.getActionsLeft());
+	}
+	
 	
 	@Test
 	public void engineerSubClassTest() {
@@ -159,7 +191,7 @@ class CrewMemberTest {
 	
 	@Test
 	public void nibblerSubClassTest() {
-		Nibbler nibbler = new Nibbler("Nibbler");
+		Nibbler nibbler = new Nibbler("Nibbler", null);
 		nibbler.setHunger(100);
 		nibbler.eat(foodItem, crew);
 		assertEquals(70, nibbler.getHunger());
@@ -167,7 +199,7 @@ class CrewMemberTest {
 	
 	@Test
 	public void healthNutsubClassTest() {
-		HealthNut healthNut = new HealthNut("Health Nut");
+		HealthNut healthNut = new HealthNut("Health Nut", null);
 		healthNut.setHealth(10);
 		healthNut.useMedicalItem(medicalItem, crew);
 		assertEquals(65, healthNut.getHealth());

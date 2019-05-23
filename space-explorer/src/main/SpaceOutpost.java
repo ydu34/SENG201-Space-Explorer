@@ -3,7 +3,7 @@ package main;
 import java.util.ArrayList;
 
 /**
- * Represents a space outpost.
+ * Represents a space outpost, which contains medical items and food items to sell to the player. 
  * 
  * @author Yu Duan
  * @author Joyce Cheah
@@ -38,7 +38,7 @@ public class SpaceOutpost {
 	}
 
 	/**
-	 * Gets the medical items.
+	 * Gets the medical items available.
 	 * 
 	 * @return An ArrayList of the medical items.
 	 */
@@ -56,7 +56,7 @@ public class SpaceOutpost {
 	}
 
 	/**
-	 * Gets the food items.
+	 * Gets the food items available.
 	 * 
 	 * @return An ArrayList of the food items.
 	 */

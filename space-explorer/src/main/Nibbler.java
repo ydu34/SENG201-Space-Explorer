@@ -8,10 +8,6 @@ package main;
  */
 public class Nibbler extends CrewMember {
 
-	public Nibbler(String name) {
-		super(name, "Nibbler", "", 100, 100, 100, 10, 10, 10, 10, 20, 20);
-	}
-
 	/**
 	 * Creates a Nibbler type crew member.
 	 * 
@@ -23,7 +19,7 @@ public class Nibbler extends CrewMember {
 	}
 
 	/**
-	 * Consumes a food item.
+	 * Consumes a food item, decrease an additional 10 hunger for Nibbler.
 	 * 
 	 * @param item A FoodItem object.
 	 * @param crew A Crew object.

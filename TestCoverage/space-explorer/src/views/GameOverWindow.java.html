@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>GameOverWindow.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">views</a> &gt; <span class="el_source">GameOverWindow.java</span></div><h1>GameOverWindow.java</h1><pre class="source lang-java linenums">package views;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
+import main.GameEnvironment;
+
+/**
+ * The window that displays the final outcome of the game and the final score.
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+public class GameOverWindow {
+
+	private JFrame frame;
+	private GameEnvironment game;
+
+	/**
+	 * Create the application.
+	 * 
+	 * @param incomingGame A GameEnvironment containing all the contents of the
+	 *                     game.
+	 */
+<span class="nc" id="L33">	public GameOverWindow(GameEnvironment incomingGame) {</span>
+<span class="nc" id="L34">		game = incomingGame;</span>
+<span class="nc" id="L35">		initialize();</span>
+<span class="nc" id="L36">		frame.setVisible(true);</span>
+<span class="nc" id="L37">	}</span>
+
+	/**
+	 * Closes the window.
+	 */
+	public void closeWindow() {
+<span class="nc" id="L43">		frame.dispose();</span>
+<span class="nc" id="L44">	}</span>
+
+	/**
+	 * Calls the close window method in game environment.
+	 */
+	public void finishedWindow() {
+<span class="nc" id="L50">		game.closeGameOverWindow(this);</span>
+<span class="nc" id="L51">	}</span>
+
+	/**
+	 * Initialize the contents of the frame. This includes a message of the game
+	 * situation, a score display, an exit button and a play again button.
+	 */
+	private void initialize() {
+<span class="nc" id="L58">		frame = new JFrame();</span>
+<span class="nc" id="L59">		frame.setTitle(&quot;SPACE EXPLORERS&quot;);</span>
+<span class="nc" id="L60">		frame.setResizable(false);</span>
+<span class="nc" id="L61">		frame.setBounds(100, 100, 800, 600);</span>
+<span class="nc" id="L62">		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L63">		frame.getContentPane().setLayout(null);</span>
+
+<span class="nc" id="L65">		JButton btnExit = new JButton(&quot;Exit&quot;);</span>
+<span class="nc" id="L66">		btnExit.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L68">				System.exit(0);</span>
+<span class="nc" id="L69">			}</span>
+		});
+<span class="nc" id="L71">		btnExit.setFont(new Font(&quot;L M Mono Prop Lt10&quot;, Font.BOLD, 14));</span>
+<span class="nc" id="L72">		btnExit.setBounds(647, 486, 114, 25);</span>
+<span class="nc" id="L73">		frame.getContentPane().add(btnExit);</span>
+
+<span class="nc" id="L75">		JButton btnPlayAgain = new JButton(&quot;Play Again&quot;);</span>
+<span class="nc" id="L76">		btnPlayAgain.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L78">				finishedWindow();</span>
+<span class="nc" id="L79">			}</span>
+		});
+<span class="nc" id="L81">		btnPlayAgain.setFont(new Font(&quot;L M Mono Prop Lt10&quot;, Font.BOLD, 14));</span>
+<span class="nc" id="L82">		btnPlayAgain.setBounds(647, 523, 114, 25);</span>
+<span class="nc" id="L83">		frame.getContentPane().add(btnPlayAgain);</span>
+
+<span class="nc" id="L85">		JLabel lblGameOverMessage = new JLabel();</span>
+<span class="nc" id="L86">		lblGameOverMessage.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">		if (game.getShip().getPiecesFound() == game.getShip().getPiecesNeeded()) {</span>
+<span class="nc" id="L88">			lblGameOverMessage.setText(&quot;VICTORY&quot;);</span>
+<span class="nc" id="L89">		} else {</span>
+<span class="nc" id="L90">			lblGameOverMessage.setText(&quot;GAME OVER&quot;);</span>
+		}
+<span class="nc" id="L92">		lblGameOverMessage.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 40));</span>
+<span class="nc" id="L93">		lblGameOverMessage.setBounds(12, 30, 749, 104);</span>
+<span class="nc" id="L94">		frame.getContentPane().add(lblGameOverMessage);</span>
+
+<span class="nc" id="L96">		JLabel lblScore = new JLabel();</span>
+<span class="nc" id="L97">		lblScore.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L98">		lblScore.setFont(new Font(&quot;Tahoma&quot;, Font.PLAIN, 30));</span>
+<span class="nc" id="L99">		lblScore.setText(&quot;SCORE:   &quot; + game.calculateFinalScore());</span>
+<span class="nc" id="L100">		lblScore.setBounds(156, 338, 467, 49);</span>
+<span class="nc" id="L101">		frame.getContentPane().add(lblScore);</span>
+
+<span class="nc" id="L103">		JTextArea textAreaGameOverReason = new JTextArea();</span>
+<span class="nc" id="L104">		textAreaGameOverReason.setEditable(false);</span>
+<span class="nc" id="L105">		textAreaGameOverReason.setBackground(UIManager.getColor(&quot;Menu.background&quot;));</span>
+<span class="nc" id="L106">		textAreaGameOverReason.setFont(new Font(&quot;Monospaced&quot;, Font.PLAIN, 30));</span>
+<span class="nc" id="L107">		textAreaGameOverReason.setWrapStyleWord(true);</span>
+<span class="nc" id="L108">		textAreaGameOverReason.setLineWrap(true);</span>
+<span class="nc" id="L109">		textAreaGameOverReason.setText(game.gameOverMessage());</span>
+<span class="nc" id="L110">		textAreaGameOverReason.setBounds(145, 147, 493, 180);</span>
+<span class="nc" id="L111">		frame.getContentPane().add(textAreaGameOverReason);</span>
+<span class="nc" id="L112">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

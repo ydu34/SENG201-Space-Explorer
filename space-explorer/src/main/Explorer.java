@@ -8,10 +8,6 @@ package main;
  */
 public class Explorer extends CrewMember {
 
-	public Explorer(String name) {
-		super(name, "Explorer", "", 100, 100, 100, 10, 10, 5, 5, 15, 15);
-	}
-
 	/**
 	 * Creates an Explorer with the given name and the given image.
 	 * 

@@ -1,7 +1,8 @@
 package main;
 
 /**
- * Represents a medical item.
+ * Represents a medical item, which restores health of crew members. Some medical
+ * items can remove space plague.
  * 
  * @author Yu Duan
  * @author Joyce Cheah

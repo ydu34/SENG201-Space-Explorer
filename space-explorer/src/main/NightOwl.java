@@ -8,10 +8,6 @@ package main;
  */
 public class NightOwl extends CrewMember {
 
-	public NightOwl(String name) {
-		super(name, "Night Owl", "", 100, 100, 100, 5, 10, 5, 10, 10, 20);
-	}
-
 	/**
 	 * Creates a NightOwl type crew member.
 	 * 

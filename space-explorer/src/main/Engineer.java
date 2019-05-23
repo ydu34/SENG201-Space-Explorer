@@ -1,7 +1,7 @@
 package main;
 
 /**
- * Represents an Engineer type of crew member.
+ * Represents an Engineer type of crew member. 
  * 
  * @author Yu Duan
  * @author Joyce Cheah
@@ -27,7 +27,7 @@ public class Engineer extends CrewMember {
 	}
 
 	/**
-	 * Repairs the ship to increase its shield level.
+	 * Repairs the ship to increase its shield level by 10, engineer increases the shield level further by 10. 
 	 * 
 	 * @param ship A Ship object.
 	 * @return A string message of the ship's updated shield level.

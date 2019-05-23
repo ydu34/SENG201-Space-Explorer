@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Engineer.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">main</a> &gt; <span class="el_source">Engineer.java</span></div><h1>Engineer.java</h1><pre class="source lang-java linenums">package main;
+
+/**
+ * Represents an Engineer type of crew member. 
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+public class Engineer extends CrewMember {
+	
+	/**
+	 * Creates an Engineer with the given name.
+	 * @param name
+	 */
+	public Engineer(String name) {
+<span class="fc" id="L16">		super(name, &quot;Engineer&quot;, &quot;&quot;, 100, 100, 100, 5, 5, 10, 10, 20, 20);</span>
+<span class="fc" id="L17">	}</span>
+
+	/**
+	 * Creates an Engineer with the given name and the given image.
+	 * 
+	 * @param name  A string name of the crew member.
+	 * @param image A string image of the crew member.
+	 */
+	public Engineer(String name, String image) {
+<span class="fc" id="L26">		super(name, &quot;Engineer&quot;, image, 100, 100, 100, 5, 5, 10, 10, 20, 20);</span>
+<span class="fc" id="L27">	}</span>
+
+	/**
+	 * Repairs the ship to increase its shield level by 10, engineer increases the shield level further by 10. 
+	 * 
+	 * @param ship A Ship object.
+	 * @return A string message of the ship's updated shield level.
+	 */
+	public String repair(Ship ship) {
+<span class="fc" id="L36">		String returnString = &quot;&quot;;</span>
+<span class="fc" id="L37">		returnString += super.repair(ship);</span>
+<span class="fc" id="L38">		ship.increaseShieldLevel(10);</span>
+<span class="fc" id="L39">		returnString += &quot;\n&quot; + super.getName() + &quot; repairs extra shields from their trait Engineer.&quot;;</span>
+<span class="fc" id="L40">		returnString += &quot;\n&quot; + ship.getName() + &quot;'s shields is at &quot; + ship.getShieldLevel() + &quot;/&quot;</span>
+<span class="fc" id="L41">				+ ship.getMaxShieldLevel() + &quot; shields.&quot;;</span>
+<span class="fc" id="L42">		return returnString;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

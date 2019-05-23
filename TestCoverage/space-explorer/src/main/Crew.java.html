@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Crew.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">main</a> &gt; <span class="el_source">Crew.java</span></div><h1>Crew.java</h1><pre class="source lang-java linenums">package main;
+
+import java.util.ArrayList;
+
+/**
+ * Represents the player's crew that holds the ship, the crew members, the
+ * medical items, the food items, the money, and the current location.
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+<span class="fc" id="L12">public class Crew {</span>
+<span class="fc" id="L13">	private Ship ship = new Ship();</span>
+<span class="fc" id="L14">	private ArrayList&lt;CrewMember&gt; crewMembers = new ArrayList&lt;CrewMember&gt;();</span>
+<span class="fc" id="L15">	private ArrayList&lt;MedicalItem&gt; medicalItems = new ArrayList&lt;MedicalItem&gt;();</span>
+<span class="fc" id="L16">	private ArrayList&lt;FoodItem&gt; foodItems = new ArrayList&lt;FoodItem&gt;();</span>
+<span class="fc" id="L17">	private int money = 200;</span>
+	private Planet currentLocation;
+
+	/**
+	 * Increases the money of the crew.
+	 * 
+	 * @param amount An int of the money amount being added.
+	 */
+	public void increaseMoney(int amount) {
+<span class="fc" id="L26">		money += amount;</span>
+<span class="fc" id="L27">	}</span>
+
+	/**
+	 * Decreases the money of the crew.
+	 * 
+	 * @param amount An int of the money amount being taken off.
+	 */
+	public void decreaseMoney(int amount) {
+<span class="fc" id="L35">		money -= amount;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">		if (money &lt; 0) {</span>
+<span class="fc" id="L37">			money = 0;</span>
+		}
+<span class="fc" id="L39">	}</span>
+
+	/**
+	 * Gets the medical items.
+	 * 
+	 * @return An ArrayList of the medical items.
+	 */
+	public ArrayList&lt;MedicalItem&gt; getMedicalItems() {
+<span class="fc" id="L47">		return medicalItems;</span>
+	}
+
+	/**
+	 * Gets the food items.
+	 * 
+	 * @return An ArrayList of the food items.
+	 */
+	public ArrayList&lt;FoodItem&gt; getFoodItems() {
+<span class="fc" id="L56">		return foodItems;</span>
+	}
+
+	/**
+	 * Gets the crew members.
+	 * 
+	 * @return An ArrayList of the crew members.
+	 */
+	public ArrayList&lt;CrewMember&gt; getCrewMembers() {
+<span class="fc" id="L65">		return crewMembers;</span>
+	}
+
+	/**
+	 * Sets the crew members.
+	 * 
+	 * @param crewMembers An ArrayList of the crew members.
+	 */
+	public void setCrewMembers(ArrayList&lt;CrewMember&gt; crewMembers) {
+<span class="fc" id="L74">		this.crewMembers = crewMembers;</span>
+<span class="fc" id="L75">	}</span>
+
+	/**
+	 * Gets the crew ship.
+	 * 
+	 * @return the ship of the crew.
+	 */
+	public Ship getShip() {
+<span class="fc" id="L83">		return ship;</span>
+	}
+
+	/**
+	 * Sets the ship of the crew.
+	 * 
+	 * @param ship A ship.
+	 */
+	public void setShip(Ship ship) {
+<span class="nc" id="L92">		this.ship = ship;</span>
+<span class="nc" id="L93">	}</span>
+
+	/**
+	 * Gets the amount of money the crew has.
+	 * 
+	 * @return The amount of money the crew has.
+	 */
+
+	public int getMoney() {
+<span class="fc" id="L102">		return money;</span>
+	}
+
+	/**
+	 * Sets the amount of money the crew has.
+	 * 
+	 * @param money An int of money the crew has.
+	 */
+	public void setMoney(int money) {
+<span class="fc" id="L111">		this.money = money;</span>
+<span class="fc" id="L112">	}</span>
+
+	/**
+	 * Gets the current location of the crew.
+	 * 
+	 * @return the current location of the crew.
+	 */
+	public Planet getCurrentLocation() {
+<span class="fc" id="L120">		return currentLocation;</span>
+	}
+
+	/**
+	 * Sets the current location of the crew.
+	 * 
+	 * @param currentLocation The planet the crew is currently on.
+	 */
+	public void setCurrentLocation(Planet currentLocation) {
+<span class="fc" id="L129">		this.currentLocation = currentLocation;</span>
+<span class="fc" id="L130">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

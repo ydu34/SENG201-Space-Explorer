@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>ActionsDialog.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">space-explorer (23/05/2019 9:13:26 PM)</a> &gt; <a href="../../index.html" class="el_group">space-explorer</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">views</a> &gt; <span class="el_source">ActionsDialog.java</span></div><h1>ActionsDialog.java</h1><pre class="source lang-java linenums">package views;
+
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import main.GameEnvironment;
+
+/**
+ * The dialog that allows the player to select the action they want their selected
+ * crew member to perform.
+ * 
+ * @author Yu Duan
+ * @author Joyce Cheah
+ */
+public class ActionsDialog extends JDialog {
+
+<span class="nc" id="L28">	private final JPanel contentPanel = new JPanel();</span>
+	private GameEnvironment game;
+
+	/**
+	 * Creates the action dialog. This includes a list of action buttons for players
+	 * to choose.
+	 * 
+	 * @param parent       A JFrame that launched this dialog
+	 * @param game         A GameEnvironment object containing all the contents of
+	 *                     the game.
+	 * @param parentWindow A CrewMemberWindow that launched this dialog
+	 */
+	public ActionsDialog(JFrame parent, GameEnvironment game, CrewMemberWindow parentWindow) {
+<span class="nc" id="L41">		super(parent, true);</span>
+<span class="nc" id="L42">		setResizable(false);</span>
+<span class="nc" id="L43">		setBounds(100, 100, 325, 400);</span>
+<span class="nc" id="L44">		getContentPane().setLayout(new BorderLayout());</span>
+<span class="nc" id="L45">		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));</span>
+<span class="nc" id="L46">		getContentPane().add(contentPanel, BorderLayout.CENTER);</span>
+<span class="nc" id="L47">		contentPanel.setLayout(null);</span>
+
+<span class="nc" id="L49">		JLabel lblDialogTitle = new JLabel(&quot;Actions&quot;);</span>
+<span class="nc" id="L50">		lblDialogTitle.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L51">		lblDialogTitle.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 25));</span>
+<span class="nc" id="L52">		lblDialogTitle.setBounds(0, 0, 319, 50);</span>
+<span class="nc" id="L53">		contentPanel.add(lblDialogTitle);</span>
+
+<span class="nc" id="L55">		JButton btnEatFood = new JButton(&quot;Eat Food&quot;);</span>
+<span class="nc" id="L56">		btnEatFood.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L57">		btnEatFood.addActionListener(new ActionListener() {</span>
+
+			/**
+			 * Sets the dialog visibility to false and opens a dialog that allows the crew
+			 * member to consume a food item.
+			 */
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L64">				setVisible(false);</span>
+<span class="nc" id="L65">				dispose();</span>
+<span class="nc" id="L66">				JDialog eatFood = new EatFoodDialog(parent, game, parentWindow);</span>
+<span class="nc" id="L67">				eatFood.setVisible(true);</span>
+<span class="nc" id="L68">			}</span>
+
+		});
+<span class="nc" id="L71">		btnEatFood.setBounds(15, 134, 289, 25);</span>
+<span class="nc" id="L72">		contentPanel.add(btnEatFood);</span>
+
+<span class="nc" id="L74">		JButton btnApplyMed = new JButton(&quot;Apply Medicine&quot;);</span>
+<span class="nc" id="L75">		btnApplyMed.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L76">		btnApplyMed.addActionListener(new ActionListener() {</span>
+
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L79">				setVisible(false);</span>
+<span class="nc" id="L80">				dispose();</span>
+<span class="nc" id="L81">				JDialog applyMedicine = new ApplyMedicineDialog(parent, game, parentWindow);</span>
+<span class="nc" id="L82">				applyMedicine.setVisible(true);</span>
+<span class="nc" id="L83">			}</span>
+
+		});
+<span class="nc" id="L86">		btnApplyMed.setBounds(15, 170, 289, 25);</span>
+<span class="nc" id="L87">		contentPanel.add(btnApplyMed);</span>
+
+<span class="nc" id="L89">		JButton btnRepairShip = new JButton(&quot;Repair ship shields&quot;);</span>
+<span class="nc" id="L90">		btnRepairShip.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L91">		btnRepairShip.addActionListener(new ActionListener() {</span>
+
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L94">				setVisible(false);</span>
+<span class="nc" id="L95">				dispose();</span>
+<span class="nc" id="L96">				RepairShipDialog repairShip = new RepairShipDialog(parent, game, parentWindow);</span>
+<span class="nc" id="L97">				repairShip.setVisible(true);</span>
+<span class="nc" id="L98">			}</span>
+		});
+<span class="nc" id="L100">		btnRepairShip.setBounds(15, 206, 289, 25);</span>
+<span class="nc" id="L101">		contentPanel.add(btnRepairShip);</span>
+
+<span class="nc" id="L103">		JButton btnSearchPlanet = new JButton(&quot;Search planet &quot;);</span>
+<span class="nc" id="L104">		btnSearchPlanet.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L105">		btnSearchPlanet.addActionListener(new ActionListener() {</span>
+
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L108">				setVisible(false);</span>
+<span class="nc" id="L109">				dispose();</span>
+<span class="nc" id="L110">				SearchPlanetDialog searchPlanet = new SearchPlanetDialog(parent, game, parentWindow);</span>
+<span class="nc" id="L111">				searchPlanet.setVisible(true);</span>
+<span class="nc" id="L112">			}</span>
+		});
+<span class="nc" id="L114">		btnSearchPlanet.setBounds(15, 242, 289, 25);</span>
+<span class="nc" id="L115">		contentPanel.add(btnSearchPlanet);</span>
+
+<span class="nc" id="L117">		JButton btnPilotShip = new JButton(&quot;Pilot the ship to another planet&quot;);</span>
+<span class="nc" id="L118">		btnPilotShip.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L119">		btnPilotShip.addActionListener(new ActionListener() {</span>
+
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L122">				parentWindow.finishedWindow();</span>
+<span class="nc" id="L123">				game.launchSelectPilotWindow();</span>
+<span class="nc" id="L124">			}</span>
+		});
+<span class="nc" id="L126">		btnPilotShip.setBounds(15, 278, 289, 25);</span>
+<span class="nc" id="L127">		contentPanel.add(btnPilotShip);</span>
+
+<span class="nc" id="L129">		JButton btnSleep = new JButton(&quot;Sleep&quot;);</span>
+<span class="nc" id="L130">		btnSleep.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L131">		btnSleep.addActionListener(new ActionListener() {</span>
+
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L134">				setVisible(false);</span>
+<span class="nc" id="L135">				dispose();</span>
+<span class="nc" id="L136">				SleepDialog sleep = new SleepDialog(parent, game, parentWindow);</span>
+<span class="nc" id="L137">				sleep.setVisible(true);</span>
+<span class="nc" id="L138">			}</span>
+		});
+<span class="nc" id="L140">		btnSleep.setBounds(15, 98, 289, 25);</span>
+<span class="nc" id="L141">		contentPanel.add(btnSleep);</span>
+
+<span class="nc" id="L143">		JLabel lblCrewMember = new JLabel(&quot;Crew Member:&quot;);</span>
+<span class="nc" id="L144">		lblCrewMember.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L145">		lblCrewMember.setBounds(15, 63, 124, 30);</span>
+<span class="nc" id="L146">		contentPanel.add(lblCrewMember);</span>
+
+<span class="nc" id="L148">		JLabel lblCrewMemberValue = new JLabel(game.getChosenCrewMember().getName());</span>
+<span class="nc" id="L149">		lblCrewMemberValue.setFont(new Font(&quot;Dialog&quot;, Font.BOLD, 16));</span>
+<span class="nc" id="L150">		lblCrewMemberValue.setBounds(151, 63, 153, 30);</span>
+<span class="nc" id="L151">		contentPanel.add(lblCrewMemberValue);</span>
+
+<span class="nc" id="L153">		JButton btnBack = new JButton(&quot;Back&quot;);</span>
+<span class="nc" id="L154">		btnBack.setFont(new Font(&quot;Dialog&quot;, Font.PLAIN, 16));</span>
+<span class="nc" id="L155">		btnBack.addActionListener(new ActionListener() {</span>
+			public void actionPerformed(ActionEvent arg0) {
+<span class="nc" id="L157">				setVisible(false);</span>
+<span class="nc" id="L158">				dispose();</span>
+<span class="nc" id="L159">			}</span>
+		});
+<span class="nc" id="L161">		btnBack.setBounds(15, 314, 289, 25);</span>
+<span class="nc" id="L162">		contentPanel.add(btnBack);</span>
+
+<span class="nc" id="L164">		JSeparator separatorTop = new JSeparator();</span>
+<span class="nc" id="L165">		separatorTop.setBounds(12, 52, 295, 2);</span>
+<span class="nc" id="L166">		contentPanel.add(separatorTop);</span>
+<span class="nc" id="L167">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span>space-explorer (23/05/2019 9:13:26 PM)</div></body></html>

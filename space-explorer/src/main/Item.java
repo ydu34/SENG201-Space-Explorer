@@ -1,7 +1,7 @@
 package main;
 
 /**
- * Represents an item.
+ * Represents an item, which has a name, price, and description. 
  * 
  * @author Yu Duan
  * @author Joyce Cheah

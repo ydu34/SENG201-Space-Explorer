@@ -8,10 +8,6 @@ package main;
  */
 public class HealthNut extends CrewMember {
 
-	public HealthNut(String name) {
-		super(name, "Health Nut", "", 100, 100, 100);
-	}
-
 	/**
 	 * Creates a HealthNut type crew member.
 	 * 
@@ -23,7 +19,7 @@ public class HealthNut extends CrewMember {
 	}
 
 	/**
-	 * Applies medical items.
+	 * Applies medical items, restore an additional 10 health for Health Nut.
 	 * 
 	 * @param item A MedicalItem object.
 	 * @param crew A Crew object.

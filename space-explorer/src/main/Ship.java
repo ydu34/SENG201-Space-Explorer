@@ -1,7 +1,8 @@
 package main;
 
 /**
- * Represents a ship.
+ * Represents a ship, which has a name, shield level, maximum shield level,
+ * pieces needed, pieces found, and if the ship is destroyed.
  * 
  * @author Yu Duan
  * @author Joyce Cheah

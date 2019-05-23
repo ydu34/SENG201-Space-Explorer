@@ -25,8 +25,8 @@ import views.StartingPlanetWindow;
 public class GameEnvironment {
 	private Crew crew = new Crew();
 	private Ship ship = crew.getShip();
-	private ArrayList<MedicalItem> medItems = new ArrayList<MedicalItem>();
-	private ArrayList<FoodItem> foodItems = new ArrayList<FoodItem>();
+	private ArrayList<MedicalItem> gameMedicalItems = new ArrayList<MedicalItem>();
+	private ArrayList<FoodItem> gameFoodItems = new ArrayList<FoodItem>();
 	private ArrayList<Planet> planets = new ArrayList<Planet>();
 	private int gameDuration;
 	private int currentDay = 1;
@@ -263,34 +263,34 @@ public class GameEnvironment {
 	 * Initializes the crew member types.
 	 */
 	public void initCrewMemberTypes() {
-		crewMemberTypes.add(new Engineer("Engineer"));
-		crewMemberTypes.add(new HealthNut("Health Nut"));
-		crewMemberTypes.add(new Nibbler("Nibbler"));
-		crewMemberTypes.add(new NightOwl("Night Owl"));
-		crewMemberTypes.add(new Regular("Regular"));
-		crewMemberTypes.add(new Explorer("Explorer"));
+		crewMemberTypes.add(new Engineer("Engineer", null));
+		crewMemberTypes.add(new HealthNut("Health Nut", null));
+		crewMemberTypes.add(new Nibbler("Nibbler", null));
+		crewMemberTypes.add(new NightOwl("Night Owl", null));
+		crewMemberTypes.add(new Regular("Regular", null));
+		crewMemberTypes.add(new Explorer("Explorer", null));
 	}
 
 	/**
 	 * Initializes the medical items.
 	 */
 	public void initMedItems() {
-		medItems.add(new MedicalItem("Antiplague", 50, "Cures space plague, heals 10 health.", 10, true));
-		medItems.add(new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false));
-		medItems.add(new MedicalItem("Galaxy Pills", 10, "Heals 20 health", 20, false));
-		medItems.add(new MedicalItem("Stimpak", 40, "Heals 60 health", 60, false));
+		gameMedicalItems.add(new MedicalItem("Antiplague", 50, "Cures space plague, heals 10 health.", 10, true));
+		gameMedicalItems.add(new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false));
+		gameMedicalItems.add(new MedicalItem("Galaxy Pills", 10, "Heals 20 health", 20, false));
+		gameMedicalItems.add(new MedicalItem("Stimpak", 40, "Heals 60 health", 60, false));
 	}
 
 	/**
 	 * Initializes the food items.
 	 */
 	public void initFoodItems() {
-		foodItems.add(new FoodItem("Space soup", 10, "Restore 20 hunger", 20));
-		foodItems.add(new FoodItem("Asteroid Meatballs", 30, "Restore 50 hunger", 50));
-		foodItems.add(new FoodItem("Cosmo crepes", 20, "Restore 30 hunger", 30));
-		foodItems.add(new FoodItem("Galaxy steak", 70, "Restore 80 hunger", 80));
-		foodItems.add(new FoodItem("Moon cheese", 50, "Restore 40 hunger", 40));
-		foodItems.add(new FoodItem("Space snack", 15, "Restore 8 hunger", 8));
+		gameFoodItems.add(new FoodItem("Space soup", 10, "Restore 20 hunger", 20));
+		gameFoodItems.add(new FoodItem("Asteroid Meatballs", 30, "Restore 50 hunger", 50));
+		gameFoodItems.add(new FoodItem("Cosmo crepes", 20, "Restore 30 hunger", 30));
+		gameFoodItems.add(new FoodItem("Galaxy steak", 70, "Restore 80 hunger", 80));
+		gameFoodItems.add(new FoodItem("Moon cheese", 50, "Restore 40 hunger", 40));
+		gameFoodItems.add(new FoodItem("Space snack", 15, "Restore 8 hunger", 8));
 	}
 
 	/**
@@ -316,12 +316,12 @@ public class GameEnvironment {
 		for (Planet planet : planets) {
 			SpaceOutpost planetOutpost = planet.getOutpost();
 			while (planetOutpost.getFoodItems().size() < 8) {
-				int randomNum = ThreadLocalRandom.current().nextInt(0, foodItems.size());
-				planetOutpost.getFoodItems().add(foodItems.get(randomNum));
+				int randomNum = ThreadLocalRandom.current().nextInt(0, gameFoodItems.size());
+				planetOutpost.getFoodItems().add(gameFoodItems.get(randomNum));
 			}
 			while (planetOutpost.getMedicalItems().size() < 4) {
-				int randomNum = ThreadLocalRandom.current().nextInt(0, medItems.size());
-				planetOutpost.getMedicalItems().add(medItems.get(randomNum));
+				int randomNum = ThreadLocalRandom.current().nextInt(0, gameMedicalItems.size());
+				planetOutpost.getMedicalItems().add(gameMedicalItems.get(randomNum));
 			}
 		}
 	}
@@ -488,20 +488,20 @@ public class GameEnvironment {
 		this.ship = ship;
 	}
 
-	public ArrayList<MedicalItem> getMedItems() {
-		return medItems;
+	public ArrayList<MedicalItem> getGameMedicalItems() {
+		return gameMedicalItems;
 	}
 
-	public void setMedItems(ArrayList<MedicalItem> medItems) {
-		this.medItems = medItems;
+	public void setGameMedicalItems(ArrayList<MedicalItem> medItems) {
+		this.gameMedicalItems = medItems;
 	}
 
-	public ArrayList<FoodItem> getFoodItems() {
-		return foodItems;
+	public ArrayList<FoodItem> getGameFoodItems() {
+		return gameFoodItems;
 	}
 
-	public void setFoodItems(ArrayList<FoodItem> foodItems) {
-		this.foodItems = foodItems;
+	public void setGameFoodItems(ArrayList<FoodItem> foodItems) {
+		this.gameFoodItems = foodItems;
 	}
 
 	public ArrayList<Planet> getPlanets() {

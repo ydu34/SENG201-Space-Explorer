@@ -37,7 +37,7 @@ class GameEnvironmentTest {
 	}
 	
 	@Test 
-	void gameOverTest1() {
+	void testGameOverGameDurationReached() {
 		game.setCurrentDay(10);
 		assertEquals(true, game.gameOver());
 		game.setCurrentDay(9);
@@ -47,7 +47,7 @@ class GameEnvironmentTest {
 	}
 	
 	@Test
-	void gameOverTest2() {
+	void testGameOverAllPiecesFound() {
 		game.getShip().setPiecesFound(6);
 		assertEquals(true, game.gameOver());
 		game.getShip().setPiecesFound(5);
@@ -55,15 +55,30 @@ class GameEnvironmentTest {
 	}
 	
 	@Test
-	void gameOverTest3() {
+	void testGameOverCrewEmpty() {
 		game.getCrew().setCrewMembers(new ArrayList<CrewMember>());
 		assertEquals(true, game.gameOver());
 	}
 	
 	@Test
-	void gameOverTest4() {
+	void testGameOverShipDestroyed() {
 		game.getShip().setDestroyed(true);
 		assertEquals(true, game.gameOver());
+	}
+	
+	@Test
+	void testCheckInfectedCrewMemberLoseHealth() {
+		game.getCrew().getCrewMembers().get(0).setInfected(true);
+		game.checkInfectedCrewMembers();
+		assertEquals(80, game.getCrew().getCrewMembers().get(0).getHealth());
+	}
+	
+	@Test
+	void testCheckInfectedCrewMemberDies() {
+		game.getCrew().getCrewMembers().get(0).setInfected(true);
+		game.getCrew().getCrewMembers().get(0).setHealth(20);
+		game.checkInfectedCrewMembers();
+		assertEquals(3, game.getCrew().getCrewMembers().size());
 	}
 
 }
