@@ -187,17 +187,17 @@ public class CrewMember {
 	 * @return A string message of the crew member's updated status or health level.
 	 */
 	public String useMedicalItem(MedicalItem item, Crew crew) {
-		String returnString = "";
+		String message = "";
 		increaseHealth(item.getRestoreHealthAmount());
-		returnString += name + " now has " + health + "/" + maxHealth + " health.\n";
+		message += name + " now has " + health + "/" + maxHealth + " health.\n";
 		if (item.isRemovePlague()) {
 			infected = false;
 			status = "Normal";
-			returnString += name + " has been cured of space plague.";
+			message += name + " has been cured of space plague.";
 		}
 		crew.getMedicalItems().remove(item);
 		actionsLeft -= 1;
-		return returnString;
+		return message;
 	}
 
 	/**
@@ -247,38 +247,21 @@ public class CrewMember {
 	 * Pilots the ship to a new planet with another chosen crew member, if the
 	 * conditions are met for both crew members.
 	 * 
-	 * @param planet A Planet object.
-	 * @param other  A CrewMember object.
-	 * @param crew   A Crew object.
-	 * @return A string message of the whether the pilots are able to pilot or if an
-	 *         event happens
+	 * @param planet A Planet object that is the destination planet.
+	 * @param other  A CrewMember object that is the other pilot.
+	 * @param crew   A Crew object that is the player's crew.
+	 * @return A string message saying if an event happens or not.
 	 */
 	public String pilot(Planet planet, CrewMember other, Crew crew) {
-		String returnString = "";
-		if (fatigue + pilotFatigueCost > maxFatigue) {
-			returnString += name + " is too tired to pilot the ship.\n";
-		}
-		if (hunger + pilotHungerCost > maxHunger) {
-			returnString += name + " is too hungry to pilot the ship.\n";
-		}
-		if (other.fatigue + pilotFatigueCost > other.maxFatigue) {
-			returnString += other.name + " is too tired to pilot the ship.\n";
-		}
-		if (other.hunger + other.pilotHungerCost > other.maxHunger) {
-			returnString += other.name + " is too hungry to pilot the ship.\n";
-		}
-		if (fatigue <= maxFatigue - pilotFatigueCost && other.fatigue <= other.maxFatigue - pilotFatigueCost
-				&& hunger <= maxHunger - pilotHungerCost && other.hunger <= other.maxHunger - other.pilotHungerCost) {
-			increaseFatigue(pilotFatigueCost);
-			other.increaseFatigue(other.pilotFatigueCost);
-			increaseHunger(pilotHungerCost);
-			other.increaseHunger(other.pilotHungerCost);
-			actionsLeft -= 1;
-			other.actionsLeft -= 1;
-			crew.setCurrentLocation(planet);
-			returnString += RandomEvent.occurPlanet(crew);
-		}
-		return returnString;
+		increaseFatigue(pilotFatigueCost);
+		other.increaseFatigue(other.pilotFatigueCost);
+		increaseHunger(pilotHungerCost);
+		other.increaseHunger(other.pilotHungerCost);
+		actionsLeft -= 1;
+		other.actionsLeft -= 1;
+		crew.setCurrentLocation(planet);
+		String message = RandomEvent.occurPlanet(crew);
+		return message;
 	}
 
 	/**
@@ -303,8 +286,8 @@ public class CrewMember {
 			if (randomNum >= 0 && randomNum < 30 && crew.getCurrentLocation().isPieceDetected()) {
 				message += name + " has found a engine piece!\n";
 				crew.getShip().foundPiece();
-				message += "Pieces found: " + crew.getShip().getPiecesFound() + "/"
-						+ crew.getShip().getPiecesNeeded() + ".";
+				message += "Pieces found: " + crew.getShip().getPiecesFound() + "/" + crew.getShip().getPiecesNeeded()
+						+ ".";
 				crew.getCurrentLocation().setPieceDetected(false);
 			} else if (randomNum >= 30 && randomNum < 50) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
@@ -364,13 +347,23 @@ public class CrewMember {
 		return returnString;
 	}
 
+	/**
+	 * Increase the crew member's health by the given amount. The crew member's health cannot go above their maxHealth.
+	 * 
+	 * @param amount	An int amount.
+	 */
 	public void increaseHealth(int amount) {
 		health += amount;
 		if (health > maxHealth) {
 			health = maxHealth;
 		}
 	}
-
+	
+	/**
+	 * Decrease the crew member's health by the given amount. The crew member is dead if the health goes below 0, and then the health is set to 0.
+	 * 
+	 * @param amount	An int amount.
+	 */
 	public void decreaseHealth(int amount) {
 		health -= amount;
 		if (health <= 0) {
@@ -378,28 +371,45 @@ public class CrewMember {
 			dead = true;
 		}
 	}
-
+	/**
+	 * Increase the crew member's hunger by the given amount. The crew member's hunger cannot go above their maxHunger.
+	 * 
+	 * @param amount	An int amount.
+	 */
 	public void increaseHunger(int amount) {
 		hunger += amount;
 		if (hunger > maxHunger) {
 			hunger = maxHunger;
 		}
 	}
-
+	/**
+	 * Decrease the crew member's hunger by the given amount. The crew member's hunger cannot go below 0.
+	 * 
+	 * @param amount	An int amount.
+	 */
 	public void decreaseHunger(int amount) {
 		hunger -= amount;
 		if (hunger < 0) {
 			hunger = 0;
 		}
 	}
-
+	
+	/**
+	 * Increase the crew member's fatigue by the given amount. The crew member's fatigue cannot go above their maxFatigue.
+	 * 
+	 * @param amount	An int amount.
+	 */
 	public void increaseFatigue(int amount) {
 		fatigue += amount;
 		if (fatigue > maxFatigue) {
 			fatigue = maxFatigue;
 		}
 	}
-
+	/**
+	 * Decrease the crew member's fatigue by the given amount. The crew member's fatigue cannot go below 0.
+	 * 
+	 * @param amount	An int amount.
+	 */
 	public void decreaseFatigue(int amount) {
 		fatigue -= amount;
 		if (fatigue < 0) {
