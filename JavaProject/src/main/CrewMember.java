@@ -268,8 +268,8 @@ public class CrewMember {
 	 * Searches the planet for items and the ship piece, if the conditions of the
 	 * crew member are met.
 	 * 
-	 * @param medicalItems An ArrayList containing the medical items in the game.
-	 * @param foodItems    An ArrayList containing the food items in the game.
+	 * @param medicalItems An ArrayList of medical items.
+	 * @param foodItems    An ArrayList of food items.
 	 * @param crew         A Crew object.
 	 * @return A string message of what was found.
 	 */
