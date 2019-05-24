@@ -107,15 +107,12 @@ public class MainWindow {
 		JButton btnNextDay = new JButton("Next Day");
 		btnNextDay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				String message = game.nextDay();
 				if (game.gameOver()) {
 					finishedWindow();
 					game.launchGameOverWindow();
 				} else {
-					String message = game.nextDay();
-					if (!(message.isEmpty())) {
-						JOptionPane.showMessageDialog(frame, message);
-					}
+					JOptionPane.showMessageDialog(frame, message);
 					updateScreen();
 				}
 
