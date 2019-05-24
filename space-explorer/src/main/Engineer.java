@@ -1,7 +1,7 @@
 package main;
 
 /**
- * Represents an Engineer type of crew member. 
+ * Represents an Engineer type of crew member.
  * 
  * @author Yu Duan
  * @author Joyce Cheah
