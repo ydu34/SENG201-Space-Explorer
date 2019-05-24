@@ -66,14 +66,14 @@ public class SetupWindow {
 		frmSpaceExplorers.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmSpaceExplorers.getContentPane().setLayout(null);
 
-		JLabel lblPiecesNum = new JLabel();
-		JLabel lblDays = new JLabel();
+		JLabel lblPartsValue = new JLabel();
+		JLabel lblDaysValue = new JLabel();
 
 		JSlider daysSlider = new JSlider();
 		daysSlider.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
-				lblPiecesNum.setText("" + daysSlider.getValue() * 2 / 3);
-				lblDays.setText("" + daysSlider.getValue());
+				lblPartsValue.setText("" + daysSlider.getValue() * 2 / 3);
+				lblDaysValue.setText("" + daysSlider.getValue());
 			}
 		});
 		daysSlider.setSnapToTicks(true);
@@ -85,23 +85,23 @@ public class SetupWindow {
 		daysSlider.setBounds(45, 100, 707, 56);
 		frmSpaceExplorers.getContentPane().add(daysSlider);
 
-		JLabel lblPieces = new JLabel("Missing Pieces");
-		lblPieces.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblPieces.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPieces.setBounds(48, 344, 702, 56);
-		frmSpaceExplorers.getContentPane().add(lblPieces);
+		JLabel lblParts = new JLabel("Missing Engine Parts");
+		lblParts.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblParts.setHorizontalAlignment(SwingConstants.CENTER);
+		lblParts.setBounds(48, 344, 702, 56);
+		frmSpaceExplorers.getContentPane().add(lblParts);
 
-		lblPiecesNum.setText("" + daysSlider.getValue() * 2 / 3);
-		lblPiecesNum.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPiecesNum.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblPiecesNum.setBounds(48, 424, 702, 56);
-		frmSpaceExplorers.getContentPane().add(lblPiecesNum);
+		lblPartsValue.setText("" + daysSlider.getValue() * 2 / 3);
+		lblPartsValue.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPartsValue.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblPartsValue.setBounds(48, 424, 702, 56);
+		frmSpaceExplorers.getContentPane().add(lblPartsValue);
 
 		JButton btnNext = new JButton("Next");
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				game.setGameDuration(daysSlider.getValue());
-				game.getShip().setPiecesNeeded(daysSlider.getValue() * 2 / 3);
+				game.getShip().setPartsNeeded(daysSlider.getValue() * 2 / 3);
 				finishedWindow();
 				game.launchCreateCrewWindow();
 			}
@@ -131,11 +131,11 @@ public class SetupWindow {
 		lblDaysText.setBounds(48, 184, 702, 56);
 		frmSpaceExplorers.getContentPane().add(lblDaysText);
 
-		lblDays.setText("" + daysSlider.getValue());
-		lblDays.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDays.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblDays.setBounds(48, 264, 702, 56);
-		frmSpaceExplorers.getContentPane().add(lblDays);
+		lblDaysValue.setText("" + daysSlider.getValue());
+		lblDaysValue.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDaysValue.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblDaysValue.setBounds(48, 264, 702, 56);
+		frmSpaceExplorers.getContentPane().add(lblDaysValue);
 
 		JSeparator separatorBottom = new JSeparator();
 		separatorBottom.setBounds(50, 503, 695, 2);

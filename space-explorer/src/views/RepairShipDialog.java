@@ -64,7 +64,7 @@ public class RepairShipDialog extends JDialog {
 			{
 				JLabel lblShields = new JLabel("Shields:");
 				lblShields.setHorizontalAlignment(SwingConstants.LEFT);
-				lblShields.setFont(new Font("Dialog", Font.PLAIN, 16));
+				lblShields.setFont(new Font("Dialog", Font.BOLD, 16));
 				lblShields.setBounds(12, 60, 100, 26);
 				panelRepairInfo.add(lblShields);
 			}
@@ -72,7 +72,7 @@ public class RepairShipDialog extends JDialog {
 				JLabel lblShieldsValue = new JLabel(
 						game.getCrew().getShip().getShieldLevel() + "/" + game.getCrew().getShip().getMaxShieldLevel());
 				lblShieldsValue.setHorizontalAlignment(SwingConstants.CENTER);
-				lblShieldsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+				lblShieldsValue.setFont(new Font("Dialog", Font.BOLD, 16));
 				lblShieldsValue.setBounds(123, 60, 184, 26);
 				panelRepairInfo.add(lblShieldsValue);
 			}
@@ -121,11 +121,11 @@ public class RepairShipDialog extends JDialog {
 			contentPanel.add(btnReturn);
 		}
 		{
-			JLabel lblRepairTheShip = new JLabel("Repair the ship!");
-			lblRepairTheShip.setHorizontalAlignment(SwingConstants.CENTER);
-			lblRepairTheShip.setFont(new Font("Dialog", Font.BOLD, 25));
-			lblRepairTheShip.setBounds(0, 0, 369, 50);
-			contentPanel.add(lblRepairTheShip);
+			JLabel lblTitle = new JLabel("Repair the ship!");
+			lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+			lblTitle.setFont(new Font("Dialog", Font.BOLD, 25));
+			lblTitle.setBounds(0, 0, 369, 50);
+			contentPanel.add(lblTitle);
 		}
 		{
 			JSeparator separatorTop = new JSeparator();

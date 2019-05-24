@@ -123,100 +123,100 @@ public class SelectPilotWindow {
 		panelCrewMemberInfo.setBounds(385, 141, 360, 343);
 		frame.getContentPane().add(panelCrewMemberInfo);
 
-		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblName.setBounds(9, 11, 78, 32);
-		panelCrewMemberInfo.add(lblName);
+		JLabel lblNameText = new JLabel("Name:");
+		lblNameText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNameText.setBounds(19, 12, 78, 32);
+		panelCrewMemberInfo.add(lblNameText);
 
-		JLabel lblTrait = new JLabel("Trait:");
-		lblTrait.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblTrait.setBounds(9, 54, 78, 32);
-		panelCrewMemberInfo.add(lblTrait);
+		JLabel lblTraitText = new JLabel("Trait:");
+		lblTraitText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblTraitText.setBounds(19, 55, 78, 32);
+		panelCrewMemberInfo.add(lblTraitText);
 
-		JLabel lblHealth = new JLabel("Health:");
-		lblHealth.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblHealth.setBounds(9, 140, 78, 32);
-		panelCrewMemberInfo.add(lblHealth);
+		JLabel lblHealthText = new JLabel("Health:");
+		lblHealthText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblHealthText.setBounds(19, 141, 78, 32);
+		panelCrewMemberInfo.add(lblHealthText);
 
-		JLabel lblHunger = new JLabel("Hunger:\r\n");
-		lblHunger.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblHunger.setBounds(9, 183, 78, 32);
-		panelCrewMemberInfo.add(lblHunger);
+		JLabel lblHungerText = new JLabel("Hunger:\r\n");
+		lblHungerText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblHungerText.setBounds(19, 184, 78, 32);
+		panelCrewMemberInfo.add(lblHungerText);
 
-		JLabel lblFatigue = new JLabel("Fatigue:");
-		lblFatigue.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblFatigue.setBounds(183, 140, 78, 32);
-		panelCrewMemberInfo.add(lblFatigue);
+		JLabel lblFatigueText = new JLabel("Fatigue:");
+		lblFatigueText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblFatigueText.setBounds(193, 141, 78, 32);
+		panelCrewMemberInfo.add(lblFatigueText);
 
-		JTextArea textArea = new JTextArea(pilot1.description());
-		textArea.setBackground(UIManager.getColor("Menu.background"));
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
-		textArea.setEditable(false);
-		textArea.setBounds(9, 226, 337, 102);
-		panelCrewMemberInfo.add(textArea);
+		JTextArea textAreaDescription = new JTextArea(pilot1.description());
+		textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
+		textAreaDescription.setWrapStyleWord(true);
+		textAreaDescription.setLineWrap(true);
+		textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
+		textAreaDescription.setEditable(false);
+		textAreaDescription.setBounds(19, 226, 327, 102);
+		panelCrewMemberInfo.add(textAreaDescription);
 
 		JLabel lblHealthValue = new JLabel(pilot1.getHealth() + "/" + pilot1.getMaxHealth());
 		lblHealthValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHealthValue.setBounds(96, 140, 78, 32);
+		lblHealthValue.setBounds(106, 141, 78, 32);
 		panelCrewMemberInfo.add(lblHealthValue);
 
 		JLabel lblHungerValue = new JLabel(pilot1.getHunger() + "/" + pilot1.getMaxHunger());
 		lblHungerValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHungerValue.setBounds(96, 183, 78, 32);
+		lblHungerValue.setBounds(106, 184, 78, 32);
 		panelCrewMemberInfo.add(lblHungerValue);
 
 		JLabel lblFatigueValue = new JLabel(pilot1.getFatigue() + "/" + pilot1.getMaxFatigue());
 		lblFatigueValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblFatigueValue.setBounds(270, 140, 78, 32);
+		lblFatigueValue.setBounds(280, 141, 78, 32);
 		panelCrewMemberInfo.add(lblFatigueValue);
 
 		JLabel lblTraitValue = new JLabel(pilot1.getType());
 		lblTraitValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblTraitValue.setBounds(96, 54, 250, 32);
+		lblTraitValue.setBounds(106, 55, 250, 32);
 		panelCrewMemberInfo.add(lblTraitValue);
 
 		JLabel lblNameValue = new JLabel(pilot1.getName());
 		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblNameValue.setBounds(96, 11, 250, 32);
+		lblNameValue.setBounds(106, 12, 250, 32);
 		panelCrewMemberInfo.add(lblNameValue);
 
 		JLabel lblStatusValue = new JLabel(pilot1.getStatus());
 		lblStatusValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblStatusValue.setBounds(96, 97, 250, 32);
+		lblStatusValue.setBounds(106, 98, 250, 32);
 		panelCrewMemberInfo.add(lblStatusValue);
 
 		JLabel lblActions = new JLabel("Actions");
 		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblActions.setBounds(183, 183, 78, 32);
+		lblActions.setBounds(193, 184, 78, 32);
 		panelCrewMemberInfo.add(lblActions);
 
 		JLabel lblActionsValue = new JLabel(pilot1.getActionsLeft() + "/" + pilot1.getMaxActions());
 		lblActionsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblActionsValue.setBounds(270, 183, 78, 32);
+		lblActionsValue.setBounds(280, 184, 78, 32);
 		panelCrewMemberInfo.add(lblActionsValue);
 
-		JLabel label_13 = new JLabel("Status:");
-		label_13.setFont(new Font("Dialog", Font.BOLD, 16));
-		label_13.setBounds(9, 97, 78, 32);
-		panelCrewMemberInfo.add(label_13);
+		JLabel lblStatusText = new JLabel("Status:");
+		lblStatusText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblStatusText.setBounds(19, 98, 78, 32);
+		panelCrewMemberInfo.add(lblStatusText);
 
-		JLabel lblPilot2 = new JLabel("Pilot 2:");
-		lblPilot2.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPilot2.setBounds(395, 115, 93, 22);
-		frame.getContentPane().add(lblPilot2);
+		JLabel lblPilot2Text = new JLabel("Pilot 2:");
+		lblPilot2Text.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblPilot2Text.setBounds(395, 115, 93, 22);
+		frame.getContentPane().add(lblPilot2Text);
 
-		JLabel lblPilot1 = new JLabel("Pilot 1:");
-		lblPilot1.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblPilot1.setBounds(395, 85, 93, 22);
-		frame.getContentPane().add(lblPilot1);
+		JLabel lblPilot1Text = new JLabel("Pilot 1:");
+		lblPilot1Text.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblPilot1Text.setBounds(395, 85, 93, 22);
+		frame.getContentPane().add(lblPilot1Text);
 
-		JLabel lblPreparationToTravel = new JLabel("Preparation to travel!");
-		lblPreparationToTravel.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblPreparationToTravel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPreparationToTravel.setBounds(0, 0, 794, 71);
-		frame.getContentPane().add(lblPreparationToTravel);
+		JLabel lblWindowTitle = new JLabel("Preparation to travel!");
+		lblWindowTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblWindowTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWindowTitle.setBounds(0, 0, 794, 60);
+		frame.getContentPane().add(lblWindowTitle);
 
 		JButton btnSelectPlanet_1 = new JButton("Select Planet");
 		btnSelectPlanet_1.addActionListener(new ActionListener() {
@@ -246,9 +246,9 @@ public class SelectPilotWindow {
 		separatorTop.setBounds(50, 62, 695, 2);
 		frame.getContentPane().add(separatorTop);
 		
-		JSeparator separator = new JSeparator();
-		separator.setBounds(50, 503, 695, 2);
-		frame.getContentPane().add(separator);
+		JSeparator separatorBottom = new JSeparator();
+		separatorBottom.setBounds(50, 503, 695, 2);
+		frame.getContentPane().add(separatorBottom);
 
 		// combo box 1 action listener for pilot 1
 		comboBoxPilot1.addActionListener(new ActionListener() {
@@ -261,7 +261,7 @@ public class SelectPilotWindow {
 				lblFatigueValue.setText(pilot1.getFatigue() + "/" + pilot1.getMaxFatigue());
 				lblActionsValue.setText(pilot1.getActionsLeft() + "/" + pilot1.getMaxActions());
 				lblStatusValue.setText(pilot1.getStatus());
-				textArea.setText(pilot1.description());
+				textAreaDescription.setText(pilot1.description());
 				if (pilot1.equals(pilot2)) {
 					btnSelectPlanet_1.setEnabled(false);
 				} else {
@@ -283,7 +283,7 @@ public class SelectPilotWindow {
 				lblFatigueValue.setText(pilot2.getFatigue() + "/" + pilot2.getMaxFatigue());
 				lblActionsValue.setText(pilot2.getActionsLeft() + "/" + pilot2.getMaxActions());
 				lblStatusValue.setText(pilot2.getStatus());
-				textArea.setText(pilot2.description());
+				textAreaDescription.setText(pilot2.description());
 				if (pilot1.equals(pilot2)) {
 					btnSelectPlanet_1.setEnabled(false);
 				} else {

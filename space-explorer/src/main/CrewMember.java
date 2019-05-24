@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Stores the information of a crew member. This includes name, type, status, image, health, maximum health, hunger, maximum hunger, fatigue,
- * maximum fatigue, actions left, maximum actions, infected state, dead state, and the cost of performing actions.
- * Methods include the actions the crew member may perform. 
+ * Stores the information of a crew member. This includes name, type, status,
+ * image, health, maximum health, hunger, maximum hunger, fatigue, maximum
+ * fatigue, actions left, maximum actions, infected state, dead state, and the
+ * cost of performing actions. Methods include the actions the crew member may
+ * perform.
  * 
  * @author Yu Duan
  * @author Joyce Cheah
@@ -205,12 +207,9 @@ public class CrewMember {
 	 * @return A string message of the crew member's updated fatigue level.
 	 */
 	public String sleep() {
-		int previousFatigue = fatigue;
 		decreaseFatigue(30);
-		int fatigueRecovered = previousFatigue - fatigue;
 		actionsLeft -= 1;
-		return name + " has recovered " + fatigueRecovered + " fatigue and now has " + fatigue + "/" + maxFatigue
-				+ " fatigue.";
+		return name + " now has " + fatigue + "/" + maxFatigue + " fatigue.";
 	}
 
 	/**
@@ -282,12 +281,12 @@ public class CrewMember {
 		}
 		if (fatigue + searchFatigueCost <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
-			if (randomNum >= 0 && randomNum < 30 && crew.getCurrentLocation().isPieceDetected()) {
-				message += name + " has found a engine piece!\n";
+			if (randomNum >= 0 && randomNum < 30 && crew.getCurrentLocation().isPartDetected()) {
+				message += name + " has found a engine part!\n";
 				crew.getShip().foundPiece();
-				message += "Pieces found: " + crew.getShip().getPiecesFound() + "/" + crew.getShip().getPiecesNeeded()
+				message += "Engine parts found: " + crew.getShip().getPartsFound() + "/" + crew.getShip().getPartsNeeded()
 						+ ".";
-				crew.getCurrentLocation().setPieceDetected(false);
+				crew.getCurrentLocation().setPartDetected(false);
 			} else if (randomNum >= 30 && randomNum < 50) {
 				randomNum = ThreadLocalRandom.current().nextInt(0, medicalItems.size());
 				crew.getMedicalItems().add(medicalItems.get(randomNum));

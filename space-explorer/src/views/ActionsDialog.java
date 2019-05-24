@@ -140,10 +140,10 @@ public class ActionsDialog extends JDialog {
 		btnSleep.setBounds(15, 98, 289, 25);
 		contentPanel.add(btnSleep);
 
-		JLabel lblCrewMember = new JLabel("Crew Member:");
-		lblCrewMember.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblCrewMember.setBounds(15, 63, 124, 30);
-		contentPanel.add(lblCrewMember);
+		JLabel lblCrewMemberText = new JLabel("Crew Member:");
+		lblCrewMemberText.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblCrewMemberText.setBounds(15, 63, 124, 30);
+		contentPanel.add(lblCrewMemberText);
 
 		JLabel lblCrewMemberValue = new JLabel(game.getChosenCrewMember().getName());
 		lblCrewMemberValue.setFont(new Font("Dialog", Font.BOLD, 16));

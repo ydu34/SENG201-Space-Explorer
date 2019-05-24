@@ -80,11 +80,11 @@ public class InventoryWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 
-		JLabel lblYourInventory = new JLabel("Ship Inventory");
-		lblYourInventory.setHorizontalAlignment(SwingConstants.CENTER);
-		lblYourInventory.setFont(new Font("Dialog", Font.BOLD, 30));
-		lblYourInventory.setBounds(0, 0, 795, 60);
-		frame.getContentPane().add(lblYourInventory);
+		JLabel lblTitle = new JLabel("Ship Inventory");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Dialog", Font.BOLD, 30));
+		lblTitle.setBounds(0, 0, 795, 60);
+		frame.getContentPane().add(lblTitle);
 
 		ArrayList<Item> inventoryItems = new ArrayList<Item>();
 		inventoryItems.addAll(game.getCrew().getFoodItems());
@@ -96,6 +96,7 @@ public class InventoryWindow {
 		}
 
 		JList listInventory = new JList(uniqueInventoryItems.toArray());
+		listInventory.setSelectedIndex(0);
 		listInventory.setBackground(UIManager.getColor("Menu.background"));
 		listInventory.setBorder(new CompoundBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "",
 				TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)), new EmptyBorder(10, 10, 10, 10)));
@@ -110,54 +111,54 @@ public class InventoryWindow {
 		frame.getContentPane().add(panelItemInfo);
 		panelItemInfo.setLayout(null);
 
-		JLabel lblAmount = new JLabel("Amount:");
-		lblAmount.setBounds(12, 89, 112, 22);
-		panelItemInfo.add(lblAmount);
-		lblAmount.setFont(new Font("Dialog", Font.BOLD, 16));
+		JLabel lblAmountText = new JLabel("Amount:");
+		lblAmountText.setBounds(12, 89, 112, 22);
+		panelItemInfo.add(lblAmountText);
+		lblAmountText.setFont(new Font("Dialog", Font.BOLD, 16));
 
-		JLabel lblItemName = new JLabel();
+		JLabel lblItemValue = new JLabel();
 		if (uniqueInventoryItems.size() != 0) {
-			lblItemName.setText(((Item) listInventory.getModel().getElementAt(0)).getName());
+			lblItemValue.setText(((Item) listInventory.getModel().getElementAt(0)).getName());
 		}
-		lblItemName.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblItemName.setBounds(155, 50, 151, 38);
-		panelItemInfo.add(lblItemName);
+		lblItemValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblItemValue.setBounds(155, 54, 189, 22);
+		panelItemInfo.add(lblItemValue);
 
-		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblName.setBounds(12, 54, 112, 22);
-		panelItemInfo.add(lblName);
+		JLabel lblNameText = new JLabel("Name:");
+		lblNameText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNameText.setBounds(12, 54, 112, 22);
+		panelItemInfo.add(lblNameText);
 
-		JLabel lblItemAmount = new JLabel();
+		JLabel lblAmoutValue = new JLabel();
 		if (uniqueInventoryItems.size() != 0) {
-			lblItemAmount.setText(Integer.toString(itemFrequency.get((Item) listInventory.getModel().getElementAt(0))));
+			lblAmoutValue.setText(Integer.toString(itemFrequency.get((Item) listInventory.getModel().getElementAt(0))));
 		}
-		lblItemAmount.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblItemAmount.setBounds(155, 101, 151, 35);
-		panelItemInfo.add(lblItemAmount);
+		lblAmoutValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblAmoutValue.setBounds(155, 89, 189, 22);
+		panelItemInfo.add(lblAmoutValue);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setBackground(UIManager.getColor("Menu.background"));
-		textArea.setEditable(false);
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
+		JTextArea textAreaDescription = new JTextArea();
+		textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
+		textAreaDescription.setEditable(false);
+		textAreaDescription.setWrapStyleWord(true);
+		textAreaDescription.setLineWrap(true);
 		if (uniqueInventoryItems.size() != 0) {
-			textArea.setText(((Item) listInventory.getModel().getElementAt(0)).getDescription());
+			textAreaDescription.setText(((Item) listInventory.getModel().getElementAt(0)).getDescription());
 		}
-		textArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
-		textArea.setBounds(12, 149, 309, 118);
-		panelItemInfo.add(textArea);
+		textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		textAreaDescription.setBounds(12, 149, 309, 118);
+		panelItemInfo.add(textAreaDescription);
 
-		JLabel label_2 = new JLabel("About this item");
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setFont(new Font("Dialog", Font.BOLD, 20));
-		label_2.setBounds(0, 0, 344, 50);
-		panelItemInfo.add(label_2);
+		JLabel lblPanelItemInfoTitle = new JLabel("About this item");
+		lblPanelItemInfoTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPanelItemInfoTitle.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblPanelItemInfoTitle.setBounds(0, 0, 344, 50);
+		panelItemInfo.add(lblPanelItemInfoTitle);
 
-		JLabel lblDescription = new JLabel("Description:");
-		lblDescription.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblDescription.setBounds(12, 123, 112, 22);
-		panelItemInfo.add(lblDescription);
+		JLabel lblDescriptionText = new JLabel("Description:");
+		lblDescriptionText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblDescriptionText.setBounds(12, 123, 112, 22);
+		panelItemInfo.add(lblDescriptionText);
 
 		JButton btnBackToOutpost = new JButton("Back to Outpost");
 		btnBackToOutpost.addActionListener(new ActionListener() {
@@ -175,15 +176,15 @@ public class InventoryWindow {
 		lblCoinsAvailable.setBounds(396, 427, 176, 27);
 		frame.getContentPane().add(lblCoinsAvailable);
 
-		JLabel label_1 = new JLabel(Integer.toString(game.getCrew().getMoney()));
-		label_1.setFont(new Font("Dialog", Font.BOLD, 18));
-		label_1.setBounds(576, 427, 148, 27);
-		frame.getContentPane().add(label_1);
+		JLabel lblCoinsValue = new JLabel(Integer.toString(game.getCrew().getMoney()));
+		lblCoinsValue.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblCoinsValue.setBounds(576, 427, 148, 27);
+		frame.getContentPane().add(lblCoinsValue);
 
-		JLabel lblItems = new JLabel("Items:");
-		lblItems.setFont(new Font("Dialog", Font.BOLD, 18));
-		lblItems.setBounds(50, 91, 286, 27);
-		frame.getContentPane().add(lblItems);
+		JLabel lblItemsText = new JLabel("Items:");
+		lblItemsText.setFont(new Font("Dialog", Font.BOLD, 18));
+		lblItemsText.setBounds(50, 91, 286, 27);
+		frame.getContentPane().add(lblItemsText);
 
 		JSeparator separatorTop = new JSeparator();
 		separatorTop.setBounds(50, 62, 695, 2);
@@ -196,9 +197,9 @@ public class InventoryWindow {
 		listInventory.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				Item currentItem = (Item) listInventory.getSelectedValue();
-				lblItemName.setText(currentItem.getName());
-				lblItemAmount.setText(Integer.toString(itemFrequency.get(currentItem)));
-				textArea.setText(currentItem.getDescription());
+				lblItemValue.setText(currentItem.getName());
+				lblAmoutValue.setText(Integer.toString(itemFrequency.get(currentItem)));
+				textAreaDescription.setText(currentItem.getDescription());
 			}
 		});
 	}

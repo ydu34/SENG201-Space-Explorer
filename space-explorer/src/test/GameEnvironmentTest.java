@@ -27,7 +27,7 @@ class GameEnvironmentTest {
 		game.getCrew().getCrewMembers().add(new HealthNut("Carole", ""));
 		game.getCrew().getCrewMembers().add(new Nibbler("Noah", ""));
 		game.getCrew().getCrewMembers().add(new NightOwl("Kim", ""));
-		game.getShip().setPiecesNeeded(6);
+		game.getShip().setPartsNeeded(6);
 	}
 
 	@Test
@@ -48,9 +48,9 @@ class GameEnvironmentTest {
 	
 	@Test
 	void testGameOverAllPiecesFound() {
-		game.getShip().setPiecesFound(6);
+		game.getShip().setPartsFound(6);
 		assertEquals(true, game.gameOver());
-		game.getShip().setPiecesFound(5);
+		game.getShip().setPartsFound(5);
 		assertEquals(false, game.gameOver());
 	}
 	

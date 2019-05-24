@@ -95,16 +95,16 @@ public class SelectPlanetWindow {
 		frame.getContentPane().add(panelEnginePiece);
 		panelEnginePiece.setLayout(null);
 		
-		JLabel lblEnginePieceAvailable = new JLabel("Part detected:");
-		lblEnginePieceAvailable.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblEnginePieceAvailable.setBounds(12, 13, 186, 22);
-		panelEnginePiece.add(lblEnginePieceAvailable);
+		JLabel lblPartDetectedText = new JLabel("Part detected:");
+		lblPartDetectedText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblPartDetectedText.setBounds(12, 13, 186, 22);
+		panelEnginePiece.add(lblPartDetectedText);
 		
-		JLabel lblPieceAvailableValue = new JLabel(game.getCrew().getCurrentLocation().planetPieceDetected());
-		lblPieceAvailableValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		JLabel lblPartAvailableValue = new JLabel(game.getCrew().getCurrentLocation().planetPartDetected());
+		lblPartAvailableValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		
-		lblPieceAvailableValue.setBounds(210, 13, 103, 22);
-		panelEnginePiece.add(lblPieceAvailableValue);
+		lblPartAvailableValue.setBounds(210, 13, 103, 22);
+		panelEnginePiece.add(lblPartAvailableValue);
 		
 		JLabel lblPlanetImage = new JLabel();
 		lblPlanetImage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -120,7 +120,7 @@ public class SelectPlanetWindow {
 		listPlanets.setBorder(null);
 		listPlanets.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
-				lblPieceAvailableValue.setText(((Planet) listPlanets.getSelectedValue()).planetPieceDetected());
+				lblPartAvailableValue.setText(((Planet) listPlanets.getSelectedValue()).planetPartDetected());
 				ImageIcon imageIcon = new ImageIcon(
 						StartingPlanetWindow.class.getResource(((Planet)listPlanets.getSelectedValue()).getImage()));
 				Image image = imageIcon.getImage();
@@ -165,9 +165,9 @@ public class SelectPlanetWindow {
 		lblSelectPlanet.setBounds(34, 13, 279, 32);
 		panelSelectPlanet.add(lblSelectPlanet);
 		
-		JSeparator separatorPanelTop = new JSeparator();
-		separatorPanelTop.setBounds(12, 53, 301, 2);
-		panelSelectPlanet.add(separatorPanelTop);
+		JSeparator separatorPanelSelectPlanetTop = new JSeparator();
+		separatorPanelSelectPlanetTop.setBounds(12, 53, 301, 2);
+		panelSelectPlanet.add(separatorPanelSelectPlanetTop);
 
 		JButton btnReturn = new JButton("Do something else!");
 		btnReturn.addActionListener(new ActionListener() {
@@ -180,11 +180,11 @@ public class SelectPlanetWindow {
 		btnReturn.setBounds(50, 515, 218, 25);
 		frame.getContentPane().add(btnReturn);
 		
-		JLabel lblTitle = new JLabel("Explore a New World!");
-		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblTitle.setBounds(0, 0, 795, 60);
-		frame.getContentPane().add(lblTitle);
+		JLabel lblWindowTitle = new JLabel("Explore a New World!");
+		lblWindowTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblWindowTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblWindowTitle.setBounds(0, 0, 795, 60);
+		frame.getContentPane().add(lblWindowTitle);
 		
 		JSeparator separatorTop = new JSeparator();
 		separatorTop.setBounds(50, 62, 695, 2);

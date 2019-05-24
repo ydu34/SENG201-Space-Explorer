@@ -60,28 +60,28 @@ public class InstructionsWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnNewButton = new JButton("CONTINUE");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnContinue = new JButton("CONTINUE");
+		btnContinue.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				finishedWindow();
 			}
 		});
-		btnNewButton.setBounds(256, 500, 273, 35);
-		frame.getContentPane().add(btnNewButton);
+		btnContinue.setBounds(256, 500, 273, 35);
+		frame.getContentPane().add(btnContinue);
 		
-		JTextPane txtpnYourCrewIs = new JTextPane();
-		txtpnYourCrewIs.setFont(new Font("Monospaced", Font.PLAIN, 20));
-		txtpnYourCrewIs.setText(game.introductionText());
-		txtpnYourCrewIs.setBackground(UIManager.getColor("menu"));
-		txtpnYourCrewIs.setEditable(false);
-		txtpnYourCrewIs.setBounds(50, 86, 695, 401);
-		frame.getContentPane().add(txtpnYourCrewIs);
+		JTextPane textPaneInstructions = new JTextPane();
+		textPaneInstructions.setFont(new Font("Monospaced", Font.PLAIN, 20));
+		textPaneInstructions.setText(game.introductionText());
+		textPaneInstructions.setBackground(UIManager.getColor("menu"));
+		textPaneInstructions.setEditable(false);
+		textPaneInstructions.setBounds(50, 86, 695, 401);
+		frame.getContentPane().add(textPaneInstructions);
 		
-		JLabel lblNewLabel = new JLabel("INSTRUCTIONS\r\n");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
-		lblNewLabel.setBounds(0, 0, 795, 60);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblTitle = new JLabel("INSTRUCTIONS\r\n");
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 30));
+		lblTitle.setBounds(0, 0, 795, 60);
+		frame.getContentPane().add(lblTitle);
 		
 		JSeparator separatorTop = new JSeparator();
 		separatorTop.setBounds(50, 62, 695, 2);

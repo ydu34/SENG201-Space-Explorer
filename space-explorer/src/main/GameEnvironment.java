@@ -17,22 +17,36 @@ import views.StartWindow;
 import views.StartingPlanetWindow;
 
 /**
- * Instantiates and keeps track of the objects in the game. 
+ * Instantiates and keeps track of the objects in the game, and methods for
+ * launching and closing GUI windows are here.
  * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
 public class GameEnvironment {
-	private Crew crew = new Crew();
-	private Ship ship = crew.getShip();
-	private ArrayList<MedicalItem> gameMedicalItems = new ArrayList<MedicalItem>();
-	private ArrayList<FoodItem> gameFoodItems = new ArrayList<FoodItem>();
-	private ArrayList<Planet> planets = new ArrayList<Planet>();
+	private Crew crew;
+	private Ship ship;
+	private ArrayList<MedicalItem> gameMedicalItems;
+	private ArrayList<FoodItem> gameFoodItems;
+	private ArrayList<Planet> planets;
 	private int gameDuration;
-	private int currentDay = 1;
-	private ArrayList<CrewMember> crewMemberTypes = new ArrayList<CrewMember>();
+	private int currentDay;
+	private ArrayList<CrewMember> crewMemberTypes;
 	private CrewMember chosenCrewMember;
 	private CrewMember otherChosenCrewMember;
+
+	/**
+	 * Creates the game environment and initializes objects.
+	 */
+	public GameEnvironment() {
+		crew = new Crew();
+		ship = crew.getShip();
+		gameMedicalItems = new ArrayList<MedicalItem>();
+		gameFoodItems = new ArrayList<FoodItem>();
+		planets = new ArrayList<Planet>();
+		currentDay = 1;
+		crewMemberTypes = new ArrayList<CrewMember>();
+	}
 
 	/**
 	 * Launches the window for a new game.
@@ -229,7 +243,7 @@ public class GameEnvironment {
 		gameOverWindow.closeWindow();
 		GameEnvironment game = new GameEnvironment();
 		game.initCrewMemberTypes();
-		game.initMedItems();
+		game.initMedicalItems();
 		game.initFoodItems();
 		game.initPlanets();
 		game.generateOutpostsItems();
@@ -253,7 +267,7 @@ public class GameEnvironment {
 	 */
 	public void initialize() {
 		initCrewMemberTypes();
-		initMedItems();
+		initMedicalItems();
 		initFoodItems();
 		initPlanets();
 		generateOutpostsItems();
@@ -274,7 +288,7 @@ public class GameEnvironment {
 	/**
 	 * Initializes the medical items.
 	 */
-	public void initMedItems() {
+	public void initMedicalItems() {
 		gameMedicalItems.add(new MedicalItem("Antiplague", 50, "Cures space plague, heals 10 health.", 10, true));
 		gameMedicalItems.add(new MedicalItem("Space Bandages", 20, "Heals 45 health", 45, false));
 		gameMedicalItems.add(new MedicalItem("Galaxy Pills", 10, "Heals 20 health", 20, false));
@@ -348,7 +362,7 @@ public class GameEnvironment {
 	 * @return true if any of the conditions are met, false otherwise.
 	 */
 	public boolean gameOver() {
-		if (currentDay >= gameDuration || ship.getPiecesNeeded() == ship.getPiecesFound() || ship.isDestroyed()
+		if (currentDay >= gameDuration || ship.getPartsNeeded() == ship.getPartsFound() || ship.isDestroyed()
 				|| crew.getCrewMembers().size() == 0) {
 			return true;
 		} else {
@@ -443,7 +457,7 @@ public class GameEnvironment {
 			score += member.getActionsLeft() * 50;
 		}
 		score += ship.getShieldLevel();
-		if (ship.getPiecesFound() == ship.getPiecesNeeded()) {
+		if (ship.getPartsFound() == ship.getPartsNeeded()) {
 			score = score * 2;
 			if (score < 0) {
 				score = 0;
@@ -461,7 +475,7 @@ public class GameEnvironment {
 	public String gameOverMessage() {
 		if (ship.isDestroyed()) {
 			return "The asteroid hits and your ship is torn apart.";
-		} else if (ship.getPiecesFound() >= ship.getPiecesNeeded()) {
+		} else if (ship.getPartsFound() >= ship.getPartsNeeded()) {
 			return "Your crew have found the necessary engine pieces and they returned home.";
 		} else if (currentDay >= gameDuration) {
 			return "The days have passed and all the engines pieces were stolen by alien pirates.";

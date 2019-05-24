@@ -49,8 +49,8 @@ public class SearchPlanetDialog extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		{
-			JButton btnSearchPlanet = new JButton("SEARCH");
-			btnSearchPlanet.addActionListener(new ActionListener() {
+			JButton btnPanelTitle = new JButton("SEARCH");
+			btnPanelTitle.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String message = game.getChosenCrewMember().search(game.getGameMedicalItems(), game.getGameFoodItems(),
 							game.getCrew());
@@ -62,9 +62,9 @@ public class SearchPlanetDialog extends JDialog {
 					parentWindow.updateProfile(game.getChosenCrewMember());
 				}
 			});
-			btnSearchPlanet.setFont(new Font("Dialog", Font.BOLD, 16));
-			btnSearchPlanet.setBounds(30, 353, 110, 25);
-			contentPanel.add(btnSearchPlanet);
+			btnPanelTitle.setFont(new Font("Dialog", Font.BOLD, 16));
+			btnPanelTitle.setBounds(30, 353, 110, 25);
+			contentPanel.add(btnPanelTitle);
 		}
 		{
 			JButton btnReturn = new JButton("Do something else!");
@@ -101,23 +101,23 @@ public class SearchPlanetDialog extends JDialog {
 		panelSearchInfo.add(txtrAllowTheCrew);
 
 		JLabel lblPlanet = new JLabel("Planet:");
-		lblPlanet.setBounds(12, 13, 128, 25);
+		lblPlanet.setBounds(12, 13, 140, 25);
 		panelSearchInfo.add(lblPlanet);
-		lblPlanet.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblPlanet.setFont(new Font("Dialog", Font.BOLD, 16));
 
 		JLabel lblPieceDetected = new JLabel("Part detected: \r\n");
-		lblPieceDetected.setBounds(12, 50, 128, 25);
+		lblPieceDetected.setBounds(12, 50, 140, 25);
 		panelSearchInfo.add(lblPieceDetected);
-		lblPieceDetected.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblPieceDetected.setFont(new Font("Dialog", Font.BOLD, 16));
 
 		JLabel lblPlanetValue = new JLabel(game.getCrew().getCurrentLocation().getName());
-		lblPlanetValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPlanetValue.setBounds(152, 13, 150, 25);
+		lblPlanetValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblPlanetValue.setBounds(164, 13, 150, 25);
 		panelSearchInfo.add(lblPlanetValue);
 
-		JLabel lblPieceDetectedValue = new JLabel(game.getCrew().getCurrentLocation().planetPieceDetected());
-		lblPieceDetectedValue.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblPieceDetectedValue.setBounds(152, 50, 150, 25);
+		JLabel lblPieceDetectedValue = new JLabel(game.getCrew().getCurrentLocation().planetPartDetected());
+		lblPieceDetectedValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblPieceDetectedValue.setBounds(164, 50, 150, 25);
 		panelSearchInfo.add(lblPieceDetectedValue);
 
 		JLabel lblSearchThePlanet = new JLabel("Search the Planet!");

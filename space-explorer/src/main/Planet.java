@@ -2,36 +2,39 @@ package main;
 
 /**
  * Represents a planet, which has a name, an image, a space outpost, and if
- * their is a piece on this planet.
+ * their is a engine part to be found on this planet.
  * 
  * @author Yu Duan
  * @author Joyce Cheah
  */
 public class Planet {
 	private String name;
-	private boolean pieceDetected = true;
-	private SpaceOutpost outpost = new SpaceOutpost();
+	private boolean partDetected;
+	private SpaceOutpost outpost;
 	private String image;
 
 	/**
-	 * Creates a planet.
+	 * Creates a planet with a name and a image. The planet starts with a part
+	 * detected and an space outpost.
 	 * 
 	 * @param name  A string name of the planet.
 	 * @param image A string holding the location of the image.
 	 */
 	public Planet(String name, String image) {
 		this.name = name;
+		partDetected = true;
+		outpost = new SpaceOutpost();
 		this.image = image;
 	}
 
 	/**
-	 * Checks if there is a ship piece on the planet.
+	 * Checks if there is a ship part on the planet.
 	 * 
-	 * @return A string of whether there is a ship piece on the planet.
+	 * @return A string of whether there is a ship part on the planet.
 	 */
-	public String planetPieceDetected() {
+	public String planetPartDetected() {
 		String text;
-		if (pieceDetected) {
+		if (partDetected) {
 			text = "Yes";
 		} else {
 			text = "No";
@@ -71,8 +74,8 @@ public class Planet {
 	 * 
 	 * @return true if the ship piece on the planet has been found, false otherwise.
 	 */
-	public boolean isPieceDetected() {
-		return pieceDetected;
+	public boolean isPartDetected() {
+		return partDetected;
 	}
 
 	/**
@@ -81,8 +84,8 @@ public class Planet {
 	 * @param shipPieceFound A boolean expression of whether the ship piece on the
 	 *                       planet has been found.
 	 */
-	public void setPieceDetected(boolean shipPieceFound) {
-		this.pieceDetected = shipPieceFound;
+	public void setPartDetected(boolean shipPartFound) {
+		this.partDetected = shipPartFound;
 	}
 
 	/**

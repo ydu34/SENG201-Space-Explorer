@@ -11,8 +11,8 @@ public class Ship {
 	private String name;
 	private int shieldLevel;
 	private int maxShieldLevel;
-	private int piecesNeeded;
-	private int piecesFound;
+	private int partsNeeded;
+	private int partsFound;
 	private boolean destroyed;
 
 	/**
@@ -21,8 +21,8 @@ public class Ship {
 	public Ship() {
 		maxShieldLevel = 100;
 		shieldLevel = maxShieldLevel;
-		piecesFound = 0;
-		piecesNeeded = 0;
+		partsFound = 0;
+		partsNeeded = 0;
 		destroyed = false;
 	}
 
@@ -39,7 +39,7 @@ public class Ship {
 	 * Updates the count of ship pieces found.
 	 */
 	public void foundPiece() {
-		piecesFound += 1;
+		partsFound += 1;
 	}
 
 	/**
@@ -106,37 +106,37 @@ public class Ship {
 	/**
 	 * Gets the number of ship pieces the crew needs to find.
 	 * 
-	 * @return the number of ship pieces the crew needs to find.
+	 * @return the number of ship parts the crew needs to find.
 	 */
-	public int getPiecesNeeded() {
-		return piecesNeeded;
+	public int getPartsNeeded() {
+		return partsNeeded;
 	}
 
 	/**
-	 * Sets the number of ship pieces the crew need to find.
+	 * Sets the number of ship parts the crew need to find.
 	 * 
-	 * @param piecesNeeded An int of the number pieces needed.
+	 * @param partsNeeded An int of the number pieces needed.
 	 */
-	public void setPiecesNeeded(int piecesNeeded) {
-		this.piecesNeeded = piecesNeeded;
+	public void setPartsNeeded(int piecesNeeded) {
+		this.partsNeeded = piecesNeeded;
 	}
 
 	/**
-	 * Gets the number of ship pieces already found.
+	 * Gets the number of ship parts already found.
 	 * 
-	 * @return An int of the ship pieces already found.
+	 * @return An int of the ship parts already found.
 	 */
-	public int getPiecesFound() {
-		return piecesFound;
+	public int getPartsFound() {
+		return partsFound;
 	}
 
 	/**
-	 * Sets the number of ship pieces already found.
+	 * Sets the number of ship parts already found.
 	 * 
-	 * @param piecesFound An int of the ship pieces already found.
+	 * @param partsFound An int of the ship parts already found.
 	 */
-	public void setPiecesFound(int piecesFound) {
-		this.piecesFound = piecesFound;
+	public void setPartsFound(int piecesFound) {
+		this.partsFound = piecesFound;
 	}
 
 	/**

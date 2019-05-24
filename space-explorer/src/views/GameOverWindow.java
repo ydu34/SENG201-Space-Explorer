@@ -84,7 +84,7 @@ public class GameOverWindow {
 
 		JLabel lblGameOverMessage = new JLabel();
 		lblGameOverMessage.setHorizontalAlignment(SwingConstants.CENTER);
-		if (game.getShip().getPiecesFound() == game.getShip().getPiecesNeeded()) {
+		if (game.getShip().getPartsFound() == game.getShip().getPartsNeeded()) {
 			lblGameOverMessage.setText("VICTORY");
 		} else {
 			lblGameOverMessage.setText("GAME OVER");
