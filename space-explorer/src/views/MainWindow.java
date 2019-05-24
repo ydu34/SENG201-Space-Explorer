@@ -230,5 +230,9 @@ public class MainWindow {
 	 */
 	public void updateScreen() {
 		lblDayValue.setText(game.getCurrentDay() + "/" + game.getGameDuration());
+		if (game.gameOver()) {
+			finishedWindow();
+			game.launchGameOverWindow();
+		}
 	}
 }

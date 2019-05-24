@@ -362,7 +362,7 @@ public class GameEnvironment {
 	 * @return true if any of the conditions are met, false otherwise.
 	 */
 	public boolean gameOver() {
-		if (currentDay >= gameDuration || ship.getPartsNeeded() == ship.getPartsFound() || ship.isDestroyed()
+		if (currentDay > gameDuration || ship.getPartsNeeded() == ship.getPartsFound() || ship.isDestroyed()
 				|| crew.getCrewMembers().size() == 0) {
 			return true;
 		} else {
@@ -478,7 +478,7 @@ public class GameEnvironment {
 		} else if (ship.getPartsFound() >= ship.getPartsNeeded()) {
 			return "Your crew have found the necessary engine pieces and they returned home.";
 		} else if (currentDay >= gameDuration) {
-			return "The days have passed and all the engines pieces were stolen by alien pirates.";
+			return "The days have passed and you have failed to find the required parts to return home.";
 		} else if (crew.getCrewMembers().size() == 0) {
 			return "The empty spaceship floats silently through space eventually looted by alien pirates.";
 		} else {

@@ -39,7 +39,7 @@ class GameEnvironmentTest {
 	@Test 
 	void testGameOverGameDurationReached() {
 		game.setCurrentDay(10);
-		assertEquals(true, game.gameOver());
+		assertEquals(false, game.gameOver());
 		game.setCurrentDay(9);
 		assertEquals(false, game.gameOver());
 		game.setCurrentDay(11);
