@@ -282,8 +282,8 @@ public class CrewMember {
 		if (fatigue + searchFatigueCost <= maxFatigue && hunger + searchHungerCost <= maxHunger) {
 			int randomNum = ThreadLocalRandom.current().nextInt(0, 100);
 			if (randomNum >= 0 && randomNum < 30 && crew.getCurrentLocation().isPartDetected()) {
-				message += name + " has found a engine part!\n";
-				crew.getShip().foundPiece();
+				message += name + " has found an engine part!\n";
+				crew.getShip().foundPart();
 				message += "Engine parts found: " + crew.getShip().getPartsFound() + "/" + crew.getShip().getPartsNeeded()
 						+ ".";
 				crew.getCurrentLocation().setPartDetected(false);

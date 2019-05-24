@@ -346,7 +346,7 @@ public class GameEnvironment {
 	 * @return A string message of the game situation.
 	 */
 	public String introductionText() {
-		String text = "Your crew is lost in space in a unknown galaxy. "
+		String text = "Your crew is lost in space in an unknown galaxy. "
 				+ "Your spaceship's lightspeed engines are broken and scattered throughout the surrounding planets. "
 				+ "You will need to find the missing engine parts of your spaceship so that you can repair it and travel back to Earth."
 				+ " \r\n\r\nEach day you may perform crew member actions. "

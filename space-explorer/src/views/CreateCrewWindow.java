@@ -45,9 +45,9 @@ public class CreateCrewWindow {
 	private JFrame frame;
 	private JTextField textFieldShipName;
 	private GameEnvironment game;
-	private JTextField tfCMName;
+	private JTextField textFieldName;
 	private ArrayList<JToggleButton> CrewMemberToggleButtons = new ArrayList<JToggleButton>(); 																		
-	private JComboBox cBoxTrait;
+	private JComboBox comboBoxType;
 	private Border BorderSelectedCrewMember;
 
 	/**
@@ -95,73 +95,73 @@ public class CreateCrewWindow {
 		CrewMember crewMember3 = new CrewMember("Noah", "Nibbler", "/resources/astronautTeal.png");
 		CrewMember crewMember4 = new CrewMember("Kim", "Night Owl", "/resources/astronautPurple.png");
 
-		JLabel lblNotify = new JLabel();
-		lblNotify.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNotify.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblNotify.setBounds(395, 493, 360, 25);
-		frame.getContentPane().add(lblNotify);
+		JLabel lblNotifyMessage = new JLabel();
+		lblNotifyMessage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNotifyMessage.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblNotifyMessage.setBounds(395, 493, 360, 25);
+		frame.getContentPane().add(lblNotifyMessage);
 
-		JPanel panelProfile = new JPanel();
-		panelProfile.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		JPanel panelCrewMemberInfo = new JPanel();
+		panelCrewMemberInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 
-		panelProfile.setBounds(385, 164, 360, 330);
-		frame.getContentPane().add(panelProfile);
+		panelCrewMemberInfo.setBounds(385, 164, 360, 330);
+		frame.getContentPane().add(panelCrewMemberInfo);
 
-		panelProfile.setLayout(null);
+		panelCrewMemberInfo.setLayout(null);
 
-		JLabel lblName = new JLabel("Name:");
-		lblName.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblName.setBounds(11, 10, 78, 32);
-		panelProfile.add(lblName);
+		JLabel lblNameText = new JLabel("Name:");
+		lblNameText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblNameText.setBounds(11, 10, 78, 32);
+		panelCrewMemberInfo.add(lblNameText);
 
-		JLabel lblTrait = new JLabel("Trait:");
-		lblTrait.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblTrait.setBounds(11, 52, 78, 32);
-		panelProfile.add(lblTrait);
+		JLabel lblTypeText = new JLabel("Type:");
+		lblTypeText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblTypeText.setBounds(11, 52, 78, 32);
+		panelCrewMemberInfo.add(lblTypeText);
 
-		tfCMName = new JTextField("Bill");
-		tfCMName.setFont(new Font("Dialog", Font.PLAIN, 16));
-		tfCMName.setBounds(80, 10, 236, 32);
-		panelProfile.add(tfCMName);
-		tfCMName.setColumns(10);
+		textFieldName = new JTextField("Bill");
+		textFieldName.setFont(new Font("Dialog", Font.PLAIN, 16));
+		textFieldName.setBounds(91, 10, 236, 32);
+		panelCrewMemberInfo.add(textFieldName);
+		textFieldName.setColumns(10);
 
-		JLabel lblHealth = new JLabel("Health:");
-		lblHealth.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblHealth.setBounds(11, 94, 78, 32);
-		panelProfile.add(lblHealth);
+		JLabel lblHealthText = new JLabel("Health:");
+		lblHealthText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblHealthText.setBounds(11, 94, 78, 32);
+		panelCrewMemberInfo.add(lblHealthText);
 
-		JLabel lblHunger = new JLabel("Hunger:\r\n");
-		lblHunger.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblHunger.setBounds(11, 136, 78, 32);
-		panelProfile.add(lblHunger);
+		JLabel lblHungerText = new JLabel("Hunger:\r\n");
+		lblHungerText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblHungerText.setBounds(11, 136, 78, 32);
+		panelCrewMemberInfo.add(lblHungerText);
 
-		JLabel lblFatigue = new JLabel("Fatigue:");
-		lblFatigue.setFont(new Font("Dialog", Font.BOLD, 16));
-		lblFatigue.setBounds(189, 94, 78, 32);
-		panelProfile.add(lblFatigue);
+		JLabel lblFatigueText = new JLabel("Fatigue:");
+		lblFatigueText.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblFatigueText.setBounds(189, 94, 78, 32);
+		panelCrewMemberInfo.add(lblFatigueText);
 
-		cBoxTrait = new JComboBox(game.getCrewMemberTypes().toArray());
-		cBoxTrait.setFont(new Font("Dialog", Font.PLAIN, 16));
+		comboBoxType = new JComboBox(game.getCrewMemberTypes().toArray());
+		comboBoxType.setFont(new Font("Dialog", Font.PLAIN, 16));
 		// Get the current selected type of crew member
-		CrewMember currentType = (CrewMember) cBoxTrait.getSelectedItem();
+		CrewMember currentType = (CrewMember) comboBoxType.getSelectedItem();
 
-		JLabel lblHealthValue_1 = new JLabel(currentType.getHealth() + "/" + currentType.getMaxHealth());
-		lblHealthValue_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHealthValue_1.setBounds(100, 94, 78, 32);
-		panelProfile.add(lblHealthValue_1);
+		JLabel lblHealthValue = new JLabel(currentType.getHealth() + "/" + currentType.getMaxHealth());
+		lblHealthValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblHealthValue.setBounds(100, 94, 78, 32);
+		panelCrewMemberInfo.add(lblHealthValue);
 
-		JLabel lblHungerValue_1 = new JLabel(currentType.getHunger() + "/" + currentType.getMaxHunger());
-		lblHungerValue_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblHungerValue_1.setBounds(100, 136, 78, 32);
-		panelProfile.add(lblHungerValue_1);
+		JLabel lblHungerValue = new JLabel(currentType.getHunger() + "/" + currentType.getMaxHunger());
+		lblHungerValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblHungerValue.setBounds(100, 136, 78, 32);
+		panelCrewMemberInfo.add(lblHungerValue);
 
-		JLabel lblFatigueValue_1 = new JLabel(currentType.getFatigue() + "/" + currentType.getMaxFatigue());
-		lblFatigueValue_1.setFont(new Font("Dialog", Font.PLAIN, 16));
-		lblFatigueValue_1.setBounds(278, 94, 78, 32);
-		panelProfile.add(lblFatigueValue_1);
+		JLabel lblFatigueValue = new JLabel(currentType.getFatigue() + "/" + currentType.getMaxFatigue());
+		lblFatigueValue.setFont(new Font("Dialog", Font.PLAIN, 16));
+		lblFatigueValue.setBounds(278, 94, 78, 32);
+		panelCrewMemberInfo.add(lblFatigueValue);
 
-		cBoxTrait.setBounds(80, 52, 236, 32);
-		panelProfile.add(cBoxTrait);
+		comboBoxType.setBounds(91, 52, 236, 32);
+		panelCrewMemberInfo.add(comboBoxType);
 
 		JLabel lblShipName = new JLabel("Ship name:");
 		lblShipName.setFont(new Font("Dialog", Font.BOLD, 18));
@@ -188,7 +188,7 @@ public class CreateCrewWindow {
 					button.setSelected(false);
 					button.setBorder(null);
 				}
-				lblNotify.setText("");
+				lblNotifyMessage.setText("");
 				updateProfile(tglbtnCrewMember1, crewMember1);
 			}
 		});
@@ -207,7 +207,7 @@ public class CreateCrewWindow {
 					button.setSelected(false);
 					button.setBorder(null);
 				}
-				lblNotify.setText("");
+				lblNotifyMessage.setText("");
 				updateProfile(tglbtnCrewMember2, crewMember2);
 			}
 		});
@@ -228,7 +228,7 @@ public class CreateCrewWindow {
 					button.setSelected(false);
 					button.setBorder(null);
 				}
-				lblNotify.setText("");
+				lblNotifyMessage.setText("");
 				updateProfile(tglbtnCrewMember3, crewMember3);
 			}
 		});
@@ -249,7 +249,7 @@ public class CreateCrewWindow {
 					button.setSelected(false);
 					button.setBorder(null);
 				}
-				lblNotify.setText("");
+				lblNotifyMessage.setText("");
 				updateProfile(tglbtnCrewMember4, crewMember4);
 			}
 		});
@@ -267,17 +267,17 @@ public class CreateCrewWindow {
 		textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textArea.setLineWrap(true);
 		textArea.setBounds(11, 181, 337, 102);
-		panelProfile.add(textArea);
+		panelCrewMemberInfo.add(textArea);
 		textArea.setEditable(false);
 
 		// The listener for the combo box
-		cBoxTrait.addActionListener(new ActionListener() {
+		comboBoxType.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				CrewMember currentType = (CrewMember) cBoxTrait.getSelectedItem();
-				lblHealthValue_1.setText(currentType.getHealth() + "/" + currentType.getMaxHealth());
-				lblHungerValue_1.setText(currentType.getHunger() + "/" + currentType.getMaxHunger());
-				lblFatigueValue_1.setText(currentType.getFatigue() + "/" + currentType.getMaxFatigue());
+				CrewMember currentType = (CrewMember) comboBoxType.getSelectedItem();
+				lblHealthValue.setText(currentType.getHealth() + "/" + currentType.getMaxHealth());
+				lblHungerValue.setText(currentType.getHunger() + "/" + currentType.getMaxHunger());
+				lblFatigueValue.setText(currentType.getFatigue() + "/" + currentType.getMaxFatigue());
 				textArea.setText(currentType.description());
 			}
 		});
@@ -324,46 +324,46 @@ public class CreateCrewWindow {
 		btnSave.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String crewMemberName = tfCMName.getText().replaceFirst("\\s++$", "");
+				String crewMemberName = textFieldName.getText().replaceFirst("\\s++$", "");
 				if (crewMemberName.length() > 14 || crewMemberName.length() < 2 || crewMemberName.isEmpty()
 						|| crewMemberName.startsWith(" ")) {
-					lblNotify.setText("");
+					lblNotifyMessage.setText("");
 					String message = "The length of the name must be between 2 and 14 characters and cannot start with spaces.";
 					JOptionPane.showMessageDialog(frame, message);
 				} else {
 					for (JToggleButton button : CrewMemberToggleButtons) {
 						if (button.isSelected()) {
 							if (button.equals(tglbtnCrewMember1)) {
-								crewMember1.setName(tfCMName.getText());
-								crewMember1.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+								crewMember1.setName(textFieldName.getText());
+								crewMember1.setType(((CrewMember) comboBoxType.getSelectedItem()).getType());
 							} else if (button.equals(tglbtnCrewMember2)) {
-								crewMember2.setName(tfCMName.getText());
-								crewMember2.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+								crewMember2.setName(textFieldName.getText());
+								crewMember2.setType(((CrewMember) comboBoxType.getSelectedItem()).getType());
 							} else if (button.equals(tglbtnCrewMember3)) {
-								crewMember3.setName(tfCMName.getText());
-								crewMember3.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+								crewMember3.setName(textFieldName.getText());
+								crewMember3.setType(((CrewMember) comboBoxType.getSelectedItem()).getType());
 							} else if (button.equals(tglbtnCrewMember4)) {
-								crewMember4.setName(tfCMName.getText());
-								crewMember4.setType(((CrewMember) cBoxTrait.getSelectedItem()).getType());
+								crewMember4.setName(textFieldName.getText());
+								crewMember4.setType(((CrewMember) comboBoxType.getSelectedItem()).getType());
 							}
 						}
 					}
-					lblNotify.setText("Crew Member profile saved!");
+					lblNotifyMessage.setText("Crew Member profile saved!");
 				}
 			}
 		});
 		btnSave.setBounds(11, 292, 337, 25);
-		panelProfile.add(btnSave);
+		panelCrewMemberInfo.add(btnSave);
 
 		JLabel lblActions = new JLabel("Actions:");
 		lblActions.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblActions.setBounds(189, 136, 78, 32);
-		panelProfile.add(lblActions);
+		panelCrewMemberInfo.add(lblActions);
 
 		JLabel lblActionsValue = new JLabel(currentType.getActionsLeft() + "/" + currentType.getMaxActions());
 		lblActionsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblActionsValue.setBounds(278, 136, 78, 32);
-		panelProfile.add(lblActionsValue);
+		panelCrewMemberInfo.add(lblActionsValue);
 
 		JButton btnNext = new JButton("Finish Crew Creation");
 		btnNext.addActionListener(new ActionListener() {
@@ -438,25 +438,25 @@ public class CreateCrewWindow {
 	public void updateProfile(JToggleButton toggleButton, CrewMember crewMember) {
 		toggleButton.setSelected(true);
 		toggleButton.setBorder(BorderSelectedCrewMember);
-		tfCMName.setText(crewMember.getName());
+		textFieldName.setText(crewMember.getName());
 		switch (crewMember.getType()) {
 		case "Engineer":
-			cBoxTrait.setSelectedIndex(0);
+			comboBoxType.setSelectedIndex(0);
 			break;
 		case "Health Nut":
-			cBoxTrait.setSelectedIndex(1);
+			comboBoxType.setSelectedIndex(1);
 			break;
 		case "Nibbler":
-			cBoxTrait.setSelectedIndex(2);
+			comboBoxType.setSelectedIndex(2);
 			break;
 		case "Night Owl":
-			cBoxTrait.setSelectedIndex(3);
+			comboBoxType.setSelectedIndex(3);
 			break;
 		case "Regular":
-			cBoxTrait.setSelectedIndex(4);
+			comboBoxType.setSelectedIndex(4);
 			break;
 		case "Explorer":
-			cBoxTrait.setSelectedIndex(5);
+			comboBoxType.setSelectedIndex(5);
 			break;
 		}
 	}

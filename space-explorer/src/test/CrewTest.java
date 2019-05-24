@@ -17,13 +17,13 @@ class CrewTest {
 	}
 	
 	@Test
-	void increaseMoneyTest() {
+	void testIncreaseMoney() {
 		crew.increaseMoney(100);
 		assertEquals(300, crew.getMoney());
 	}
 	
 	@Test
-	void decreaseMoneyTest() {
+	void testDecreaseMoney() {
 		crew.setMoney(0);
 		crew.decreaseMoney(100);
 		assertEquals(0, crew.getMoney());

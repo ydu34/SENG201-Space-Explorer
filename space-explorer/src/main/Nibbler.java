@@ -29,7 +29,7 @@ public class Nibbler extends CrewMember {
 		String returnString = "";
 		returnString += super.eat(item, crew);
 		super.setHunger(super.getHunger() - 10);
-		returnString += "\n" + super.getName() + " is less hungry from their trait Nibbler.";
+		returnString += "\n" + super.getName() + " is less hungry from their Nibbler ability.";
 		returnString += "\n" + super.getName() + " now has " + super.getHunger() + "/" + super.getMaxHunger()
 				+ " hunger.";
 		return returnString;

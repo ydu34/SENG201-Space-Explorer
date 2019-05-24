@@ -38,7 +38,7 @@ public class Ship {
 	/**
 	 * Updates the count of ship pieces found.
 	 */
-	public void foundPiece() {
+	public void foundPart() {
 		partsFound += 1;
 	}
 

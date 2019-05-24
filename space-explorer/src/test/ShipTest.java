@@ -15,19 +15,19 @@ class ShipTest {
 	}
 	
 	@Test
-	void pieceFoundTest() {
-		ship.foundPiece();
+	void testPartFoundTest() {
+		ship.foundPart();
 		assertEquals(1, ship.getPartsFound());
 	}
 	
 	@Test
-	void increaseShieldLevelTest() {
+	void testIncreaseShieldLevel() {
 		ship.increaseShieldLevel(10);
 		assertEquals(100, ship.getShieldLevel());
 	}
 	
 	@Test
-	void decreaseShieldLevelTest1() {
+	void testDecreaseShieldLevelShipDestroyed1() {
 		ship.setShieldLevel(1);
 		ship.decreaseShieldLevel(10);
 		assertEquals(0, ship.getShieldLevel());
@@ -35,7 +35,7 @@ class ShipTest {
 	}
 	
 	@Test
-	void decreaseShieldLevelTest2() {
+	void testDecreaseShieldLevelShipDestryoed2() {
 		ship.setShieldLevel(10);
 		ship.decreaseShieldLevel(10);
 		assertEquals(0, ship.getShieldLevel());

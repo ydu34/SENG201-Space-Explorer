@@ -29,14 +29,14 @@ class SpaceOutpostTest {
 	}
 	
 	@Test
-	void purchaseMedicalItemTest() {
+	void testPurchaseMedicalItem() {
 		spaceOutpost.purchaseMedicalItem(antiplague, crew);
 		assertEquals(150, crew.getMoney());
 		assertEquals(0, spaceOutpost.getMedicalItems().size());
 	}
 	
 	@Test
-	void purchaseFoodItemTest() {
+	void testPurchaseFoodItem() {
 		spaceOutpost.purchaseFoodItem(galaxySteak, crew);
 		assertEquals(130, crew.getMoney());
 		assertEquals(0, spaceOutpost.getFoodItems().size());

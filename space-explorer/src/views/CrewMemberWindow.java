@@ -100,36 +100,36 @@ public class CrewMemberWindow {
 		btnBack.setBounds(50, 523, 150, 25);
 		frame.getContentPane().add(btnBack);
 
-		JPanel panelProfile = new JPanel();
-		panelProfile.setLayout(null);
-		panelProfile.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelProfile.setBounds(374, 113, 370, 333);
-		frame.getContentPane().add(panelProfile);
+		JPanel panelCrewMemberInfo = new JPanel();
+		panelCrewMemberInfo.setLayout(null);
+		panelCrewMemberInfo.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelCrewMemberInfo.setBounds(374, 113, 370, 333);
+		frame.getContentPane().add(panelCrewMemberInfo);
 
 		JLabel lblNameText = new JLabel("Name:");
 		lblNameText.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblNameText.setBounds(19, 13, 78, 22);
-		panelProfile.add(lblNameText);
+		panelCrewMemberInfo.add(lblNameText);
 
 		JLabel lblTypeText = new JLabel("Type:");
 		lblTypeText.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblTypeText.setBounds(19, 47, 78, 22);
-		panelProfile.add(lblTypeText);
+		panelCrewMemberInfo.add(lblTypeText);
 
 		JLabel lblHealthText = new JLabel("Health:");
 		lblHealthText.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblHealthText.setBounds(19, 115, 78, 22);
-		panelProfile.add(lblHealthText);
+		panelCrewMemberInfo.add(lblHealthText);
 
 		JLabel lblHungerText = new JLabel("Hunger:\r\n");
 		lblHungerText.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblHungerText.setBounds(19, 149, 78, 22);
-		panelProfile.add(lblHungerText);
+		panelCrewMemberInfo.add(lblHungerText);
 
 		JLabel lblFatigueText = new JLabel("Fatigue:");
 		lblFatigueText.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblFatigueText.setBounds(193, 115, 78, 22);
-		panelProfile.add(lblFatigueText);
+		panelCrewMemberInfo.add(lblFatigueText);
 
 		textAreaDescription = new JTextArea(game.getCrew().getCrewMembers().get(0).description());
 		textAreaDescription.setBackground(UIManager.getColor("Menu.background"));
@@ -138,43 +138,43 @@ public class CrewMemberWindow {
 		textAreaDescription.setFont(new Font("Monospaced", Font.PLAIN, 15));
 		textAreaDescription.setLineWrap(true);
 		textAreaDescription.setBounds(19, 183, 337, 100);
-		panelProfile.add(textAreaDescription);
+		panelCrewMemberInfo.add(textAreaDescription);
 
 		lblHealthValue = new JLabel();
 		lblHealthValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblHealthValue.setBounds(106, 115, 78, 22);
-		panelProfile.add(lblHealthValue);
+		panelCrewMemberInfo.add(lblHealthValue);
 
 		lblHungerValue = new JLabel();
 		lblHungerValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblHungerValue.setBounds(106, 149, 78, 22);
-		panelProfile.add(lblHungerValue);
+		panelCrewMemberInfo.add(lblHungerValue);
 
 		lblFatigueValue = new JLabel();
 		lblFatigueValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblFatigueValue.setBounds(280, 115, 78, 22);
-		panelProfile.add(lblFatigueValue);
+		panelCrewMemberInfo.add(lblFatigueValue);
 
 		lblTypeValue = new JLabel();
 		lblTypeValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblTypeValue.setBounds(106, 47, 250, 22);
-		panelProfile.add(lblTypeValue);
+		panelCrewMemberInfo.add(lblTypeValue);
 
 		lblNameValue = new JLabel();
 		lblNameValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblNameValue.setBounds(106, 13, 250, 22);
-		panelProfile.add(lblNameValue);
+		panelCrewMemberInfo.add(lblNameValue);
 
 		lblStatusValue = new JLabel();
 		lblStatusValue.setText((String) null);
 		lblStatusValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblStatusValue.setBounds(106, 81, 250, 22);
-		panelProfile.add(lblStatusValue);
+		panelCrewMemberInfo.add(lblStatusValue);
 
 		lblActionsValue = new JLabel();
 		lblActionsValue.setFont(new Font("Dialog", Font.PLAIN, 16));
 		lblActionsValue.setBounds(280, 149, 78, 22);
-		panelProfile.add(lblActionsValue);
+		panelCrewMemberInfo.add(lblActionsValue);
 
 		// The default selected crew member when first entering the window
 		CrewMember crewMember = game.getCrew().getCrewMembers().get(0);
@@ -190,16 +190,16 @@ public class CrewMemberWindow {
 		JLabel lblActionsText = new JLabel("Actions");
 		lblActionsText.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblActionsText.setBounds(193, 149, 78, 22);
-		panelProfile.add(lblActionsText);
+		panelCrewMemberInfo.add(lblActionsText);
 
 		btnPerformAction = new JButton("Perform Action");
 		btnPerformAction.setBounds(19, 295, 337, 25);
-		panelProfile.add(btnPerformAction);
+		panelCrewMemberInfo.add(btnPerformAction);
 
 		JLabel lblStatusText = new JLabel("Status:");
 		lblStatusText.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblStatusText.setBounds(19, 81, 78, 22);
-		panelProfile.add(lblStatusText);
+		panelCrewMemberInfo.add(lblStatusText);
 		btnPerformAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 

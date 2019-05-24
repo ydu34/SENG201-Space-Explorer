@@ -31,7 +31,7 @@ class GameEnvironmentTest {
 	}
 
 	@Test
-	void nextDayTest() {
+	void testNextDay() {
 		game.nextDay();
 		assertEquals(2, game.getCurrentDay());
 	}

@@ -5,15 +5,17 @@
 3. Run "java -jar ydu34_jch376_SpaceExplorer.jar"
 
 # How to load the source code.
-1. Open Eclipse in your workspace directory.
-2. Create a new empty Java project in the workspace (File->New->Java Proejct).
-3. Find the source folder (src) in the Java Project in the Package Explorer.
-4. Righclick the source folder (src) and choose Import->General->File System.
-5. Browse to the directory of the zip folder->space-explorer. 
-6. Select the source folder (src), press OK.
-7. Tick the source folder (src), and press Finish.
-8. If there are errors in the test package, open one of the tests, hover over @Test, and select 'Add JUnit 5 library to the build path.
-9. Run the program by navigating to the main package, and right click GaneEnvironment.java and choose Run As -> Java Application.
+1. Ensure Java 11 is installed on the machine.
+2. Open Eclipse in your workspace directory.
+3. Create a new empty Java project in the workspace (File->New->Java Proejct->Finish).
+DON'T CREATE moduel-info.java!
+4. Find the source folder (src) in the Java Project in the Package Explorer(Window->Show View-> Package Explorer).
+5. Righclick the source folder (src) and choose Import->General->File System.
+6. Browse to the directory of the zip folder.
+7. Select the source folder (src), press OK.
+8. Tick the source folder (src), and press Finish.
+9. If there are errors in the test package, open one of the tests, hover over @Test, and select 'Add JUnit 5 library to the build path.
+10. Run the program by navigating to the main package, and right click GaneEnvironment.java and choose Run As -> Java Application.
 
 # Attributions
 Image: https://commons.wikimedia.org/wiki/File:Hd189733b_blue_planet_art.png  
