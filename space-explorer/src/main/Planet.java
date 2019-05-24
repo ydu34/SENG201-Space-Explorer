@@ -81,7 +81,7 @@ public class Planet {
 	/**
 	 * Sets if the ship piece on the planet has been found.
 	 * 
-	 * @param shipPieceFound A boolean expression of whether the ship piece on the
+	 * @param shipPartFound A boolean expression of whether the ship part on the
 	 *                       planet has been found.
 	 */
 	public void setPartDetected(boolean shipPartFound) {

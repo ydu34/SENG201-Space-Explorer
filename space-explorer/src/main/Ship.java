@@ -104,7 +104,7 @@ public class Ship {
 	}
 
 	/**
-	 * Gets the number of ship pieces the crew needs to find.
+	 * Gets the number of ship parts the crew needs to find.
 	 * 
 	 * @return the number of ship parts the crew needs to find.
 	 */
@@ -117,8 +117,8 @@ public class Ship {
 	 * 
 	 * @param partsNeeded An int of the number pieces needed.
 	 */
-	public void setPartsNeeded(int piecesNeeded) {
-		this.partsNeeded = piecesNeeded;
+	public void setPartsNeeded(int partsNeeded) {
+		this.partsNeeded = partsNeeded;
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class Ship {
 	 * 
 	 * @param partsFound An int of the ship parts already found.
 	 */
-	public void setPartsFound(int piecesFound) {
-		this.partsFound = piecesFound;
+	public void setPartsFound(int partsFound) {
+		this.partsFound = partsFound;
 	}
 
 	/**
